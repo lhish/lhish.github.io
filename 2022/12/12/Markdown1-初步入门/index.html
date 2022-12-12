@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>Markdown1:初步入门 | Hexo</title>
+        <meta name="author" content="John Doe">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.1/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.1/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.min.js"></script>
+        
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:2147483647;justify-content:space-between;background:#fff;transition:all 0.3s ease-out;-webkit-user-select:none;-moz-user-select:none;user-select:none"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="showpage" style="display: -not-none">
+                    <div id="menushow">
+                        <nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menushow" id="phone-menu">
+        <div class="curtain" @click="menushow = !menushow" v-show="menushow"></div>
+        <div class="title" @click="menushow = !menushow">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Hexo</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menushow">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        <div class="article">
+    <div>
+        <h1>Markdown1:初步入门 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/12/12
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h4 id="1-的作用"><a href="#1-的作用" class="headerlink" title="1. #的作用"></a>1. #的作用</h4><p><code>#</code>代表了标题，<code>#</code>越多，标题越小(1-6)。</p>
+<hr>
+<h5 id="但如果想要显示-但是又不想作为一个标题的提示符。"><a href="#但如果想要显示-但是又不想作为一个标题的提示符。" class="headerlink" title="但如果想要显示#但是又不想作为一个标题的提示符。"></a>但如果想要显示<code>#</code>但是又不想作为一个标题的提示符。</h5><p>实际上这完全就不是一个问题，因为#作为提示符只在它在开头的时候生效，在平常的写作中完全不用担心这个问题。</p>
+<h5 id="一下是我原来傻逼的做法可以不用看"><a href="#一下是我原来傻逼的做法可以不用看" class="headerlink" title="一下是我原来傻逼的做法可以不用看"></a>一下是我原来<strong>傻逼</strong>的做法<code>可以不用看</code></h5><p>可以通过<code>\</code>来实现，<code>\</code>可以使后面跟着的字符转义，使其成为一个普通的字符。<br>另外也可以通过代码块的方式来实现，在代码块段落的前后加上&#96;即可。</p>
+<p>原来的实现：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># \#的作用</span></span><br><span class="line"></span><br><span class="line"><span class="section">### 三级</span></span><br><span class="line"><span class="section">#### 四级</span></span><br><span class="line"></span><br><span class="line"><span class="code">`#`</span>代表了标题，<span class="code">`#`</span>越多，标题越小(1-6)。</span><br><span class="line"></span><br><span class="line"><span class="section">##### 但如果想要显示`#`但是又不想作为一个标题的提示符。</span></span><br><span class="line">可以通过<span class="code">`\`</span>来实现，<span class="code">`\`</span>可以使后面跟着的字符转义，使其成为一个普通的字符。</span><br><span class="line">另外也可以通过代码块的方式来实现，在代码块段落的前后加上`即可。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-的作用"><a href="#2-的作用" class="headerlink" title="2. ---的作用"></a>2. ---的作用</h4><p><strong>单独成一行</strong>作为分割线 <code>---</code>。</p>
+<h4 id="3-粗体"><a href="#3-粗体" class="headerlink" title="3. __粗体"></a>3. <code>__</code><strong>粗体</strong></h4><p><code>__粗体__</code><br>两个下划线用来标记粗体。<br>感觉标题本身就有粗体的效果emmmm。</p>
+<h4 id="4-列表"><a href="#4-列表" class="headerlink" title="4. 列表"></a>4. 列表</h4><p><code>4. 列表</code><br>用数字加.加<code> </code>来表示列表元素。<br>感觉和普通的输出也没什么区别，不懂。</p>
+<h4 id="5-代码块"><a href="#5-代码块" class="headerlink" title="5. 代码块"></a>5. 代码块</h4><ol>
+<li><p>` (我也不知道该怎么用`来显示`了)<br> <code>这是一段代码块</code> </p>
+</li>
+<li><p>``` 用法如上</p>
+</li>
+</ol>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是一大段代码</span><br></pre></td></tr></table></figure>
+
+<p>  这里需要注意一下，在```后一定要换行，不然出来的效果和第一种一样。</p>
+<h4 id="6-转义-（见第一部分）"><a href="#6-转义-（见第一部分）" class="headerlink" title="6. 转义 （见第一部分）"></a>6. 转义 （见第一部分）</h4><h4 id="7-图片"><a href="#7-图片" class="headerlink" title="7. 图片"></a>7. 图片</h4><p>​	<code>![图片名称](网络链接)</code></p>
+<p>首先需要将本地的图片上传到图床上，</p>
+<p> <img src="https://files.catbox.moe/692ef8.png" alt="随便截的图"></p>
+<p>需要左对齐只需要在图片前面加上一个空格即可。(很好，这个方法在Hexo博客上失败了)</p>
+<p>具体的上传我是通过utool实现的，这里就不具体展开了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在学习了上述这些之后就能基本进行<strong>Markdown</strong>语言的写作了，另外，推荐一下<strong>Typora</strong>，我感觉这软件写<strong>Markdown</strong>非常舒服，可以实时预览。</p>
+<p>关于这软件收费的事等我15天试用完后再说吧。</p>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000009972155?utm_source=sf-similar-question">markdown中怎么让图片靠左或靠右对齐？ - SegmentFault 思否</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ed47397774c4">Markdown 基础教程 （最全） - 简书 (jianshu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1HZ4y1o7VT/?spm_id_from=333.337.search-card.all.click&vd_source=92b6f4a65908f6aa7ab090b39f23b212">科普篇！什么是图床？会markdown必看！附图床免费资源_哔哩哔哩_bilibili</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40818172/article/details/126260661">手把手教会你使用Markdown【从入门到精通一篇就够了】_卷不动的小白的博客-CSDN博客_markdown使用教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.pcsoft.com.cn/soft/178294.html">Typora下载-Typora官方版下载-PC下载网 (pcsoft.com.cn)</a></p>
+<p>最后一个链接是正版的<strong>Typora</strong></p>
+
+    </div>
+    
+    
+    
+    
+</div>
+                        <footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2022 Hexo
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> & <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="showimg">
+                <img id="showimg-content" alt="showimg">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+<script src="/js/function.js"></script>
+<script src="/js/particlex.js"></script>
+
+
+
+    </body>
+</html>

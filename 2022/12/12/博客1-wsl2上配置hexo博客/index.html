@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>博客1:-Wsl2上配置hexo博客 | Hexo</title>
+        <meta name="author" content="John Doe">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.1/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.1/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.min.js"></script>
+        
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:2147483647;justify-content:space-between;background:#fff;transition:all 0.3s ease-out;-webkit-user-select:none;-moz-user-select:none;user-select:none"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="showpage" style="display: -not-none">
+                    <div id="menushow">
+                        <nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menushow" id="phone-menu">
+        <div class="curtain" @click="menushow = !menushow" v-show="menushow"></div>
+        <div class="title" @click="menushow = !menushow">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Hexo</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menushow">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        <div class="article">
+    <div>
+        <h1>博客1:-Wsl2上配置hexo博客 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/12/12
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h4 id="工作环境"><a href="#工作环境" class="headerlink" title="工作环境"></a>工作环境</h4><p>Windows下的wsl2，Ubuntu-20.04</p>
+<h4 id="1-安装nvm-网络不行的可以参考文献1"><a href="#1-安装nvm-网络不行的可以参考文献1" class="headerlink" title="1. 安装nvm(网络不行的可以参考文献1)"></a>1. 安装nvm(网络不行的可以参考文献1)</h4><p><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash</code></p>
+<p>或</p>
+<p><code>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash</code></p>
+<p>然后</p>
+<p>进入.nvm目录，通过install.sh来安装</p>
+<p><code>cd .nvm</code><br><code>bash install.sh</code></p>
+<p>切换到root目录下，更新.bashrc</p>
+<p><code>source .bashrc</code></p>
+<h4 id="2-安装Node-js"><a href="#2-安装Node-js" class="headerlink" title="2. 安装Node.js"></a>2. 安装Node.js</h4><p><code>nvm install --lts</code></p>
+<h4 id="3-检查nvm和Node-js是否安装成功"><a href="#3-检查nvm和Node-js是否安装成功" class="headerlink" title="3. 检查nvm和Node.js是否安装成功"></a>3. 检查nvm和Node.js是否安装成功</h4><p><code>node -v</code><br><code>nvm -v</code></p>
+<p>效果是显示node.js和nvm的版本</p>
+<h4 id="4-安装npm的镜像源"><a href="#4-安装npm的镜像源" class="headerlink" title="4. 安装npm的镜像源"></a>4. 安装npm的镜像源</h4><p><code>npm install -g cnpm --rigistry=https://registry.npm.taobao.org</code></p>
+<h4 id="5-安装hexo"><a href="#5-安装hexo" class="headerlink" title="5. 安装hexo"></a>5. 安装hexo</h4><p><code>cnpm install -g hexo-cli</code></p>
+<h4 id="6-检查hexo是否安装成功"><a href="#6-检查hexo是否安装成功" class="headerlink" title="6. 检查hexo是否安装成功"></a>6. 检查hexo是否安装成功</h4><p><code>hexo -v</code></p>
+<h4 id="7-部署hexo"><a href="#7-部署hexo" class="headerlink" title="7. 部署hexo"></a>7. 部署hexo</h4><p>进入希望部署hexo的文件夹</p>
+<p><code>cd 文件夹</code></p>
+<p>直接部署</p>
+<p><code>hexo init</code></p>
+<ul>
+<li><p><strong>错误1</strong></p>
+<p>  <code>Failed to install dependencies. Please run ...</code></p>
+</li>
+<li><p><strong>解决方案</strong></p>
+<p>  <code>cnpm install</code></p>
+</li>
+</ul>
+<h4 id="8-开启hexo"><a href="#8-开启hexo" class="headerlink" title="8. 开启hexo"></a>8. 开启hexo</h4><p><code>hexo s</code></p>
+<p>现在hexo就已经开启了</p>
+<p>shell会显示端口</p>
+<p><code>http://localhost:端口号（默认4000）/</code></p>
+<p>在浏览器中输入上面的网址，即可进入博客网页。</p>
+<ul>
+<li><p><strong>错误2</strong></p>
+<p>  网页显示无法访问</p>
+</li>
+<li><p><strong>原因</strong></p>
+<p>  端口被占用</p>
+</li>
+<li><p><strong>解决方案</strong></p>
+<p>  将开启hexo的命令改为</p>
+<p>  <code>hexo s -p 其他的端口号</code></p>
+</li>
+</ul>
+<p>可以通过Ctrl+C来关闭这一开启</p>
+<h4 id="9-新建博客"><a href="#9-新建博客" class="headerlink" title="9. 新建博客"></a>9. 新建博客</h4><p><code>hexo n &quot;博客名字&quot;</code></p>
+<p>可以通过它显示的路径找到博客的具体文件</p>
+<p>文件名是<code>博客名字.md</code></p>
+<p>里面使用<strong>Markdown</strong>格式写</p>
+<h4 id="10-更新博客"><a href="#10-更新博客" class="headerlink" title="10. 更新博客"></a>10. 更新博客</h4><p>清除原本的博客网页内容</p>
+<p><code>hexo clean</code></p>
+<p>生成新的博客网页内容</p>
+<p><code>hexo g</code></p>
+<p>然后再开启一次hexo即可</p>
+<h4 id="11-更改博客主题"><a href="#11-更改博客主题" class="headerlink" title="11. 更改博客主题"></a>11. 更改博客主题</h4><p>进入到<code>blog/themes/</code>里，在网上搜索你喜欢的主题的github地址，<code>git clone</code>到这个目录下来，将克隆的文件夹名填写到<code>blog/_config.yml</code>里的<code>theme</code>一栏</p>
+<p>再更新即可</p>
+<ul>
+<li><p><strong>错误3</strong></p>
+<p>  缺包</p>
+</li>
+<li><p><strong>解决方案</strong></p>
+<p>  <code>cnpm install 包名@版本</code></p>
+</li>
+<li><p><strong>错误4</strong></p>
+<p>  __不起作用</p>
+</li>
+<li><p><strong>解决方案</strong></p>
+<p>  改为**</p>
+</li>
+</ul>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/gandongusa/article/details/123010941">Ubuntu（WSL）中Node.js环境安装_ZHOUZAIHUI的博客-CSDN博客_wsl 安装node</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty/?vd_source=92b6f4a65908f6aa7ab090b39f23b212">手把手教你从0开始搭建自己的个人博客 |无坑版视频教程| hexo_哔哩哔哩_bilibili</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44237337/article/details/119994618">如何解决安装hexo init blog 时，出现WARN Failed to install dependencies. Please run ‘npm install‘ in “E:\tests_简朴-ocean的博客-CSDN博客</a></li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+</div>
+                        <footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2022 Hexo
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> & <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="showimg">
+                <img id="showimg-content" alt="showimg">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+<script src="/js/function.js"></script>
+<script src="/js/particlex.js"></script>
+
+
+
+    </body>
+</html>
