@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>配置Vscode C++ | Hexo</title>
+        <meta name="author" content="John Doe">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.1/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.1/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.min.js"></script>
+        
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:2147483647;justify-content:space-between;background:#fff;transition:all 0.3s ease-out;-webkit-user-select:none;-moz-user-select:none;user-select:none"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="showpage" style="display: -not-none">
+                    <div id="menushow">
+                        <nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menushow" id="phone-menu">
+        <div class="curtain" @click="menushow = !menushow" v-show="menushow"></div>
+        <div class="title" @click="menushow = !menushow">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Hexo</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menushow">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        <div class="article">
+    <div>
+        <h1>配置Vscode C++ </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/12/20
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h4 id="工作环境："><a href="#工作环境：" class="headerlink" title="工作环境："></a>工作环境：</h4><p>windows10</p>
+<h4 id="1-下载并安装"><a href="#1-下载并安装" class="headerlink" title="1. 下载并安装"></a>1. 下载并安装</h4><p>网址：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Visual Studio Code - Code Editing. Redefined</a></p>
+<p>下载后打开安装，建议以管理员身份运行，弹窗不用管。</p>
+<p>安装路径需要注意一下，默认是安装到AppData里，可以改到program files或者自己想安装的位置。</p>
+<p><img src="https://files.catbox.moe/1t8ens.png"></p>
+<p>建议将上图中的其他中的四个全部勾选</p>
+<p>接下来等待安装即可。</p>
+<h4 id="2-配置中文"><a href="#2-配置中文" class="headerlink" title="2. 配置中文"></a>2. 配置中文</h4><p>Ctrl+Shift+P</p>
+<p><img src="https://files.catbox.moe/degdbo.png"></p>
+<p>输入Configure Display Language, Enter</p>
+<p><img src="https://files.catbox.moe/n73emv.png"></p>
+<p>选择中文，Enter，重启软件即可</p>
+<h4 id="完全卸载"><a href="#完全卸载" class="headerlink" title="*.完全卸载"></a>*.完全卸载</h4><p>删除C:\Users\用户名\.vscode文件夹</p>
+<p>删除C:\Users\用户名\AppData\Roaming\Code文件夹（这个我不知道需不需要，并未试验过）</p>
+<h4 id="3-配置C"><a href="#3-配置C" class="headerlink" title="3. 配置C++"></a>3. 配置C++</h4><p>选择一个配置c++的文件夹，vscode会在配置后在此文件夹中生成一些文件。若是以后仍需要c++环境，复制该文件夹即可。</p>
+<p> 在该文件夹右击选择在code中打开。</p>
+<p><img src="https://files.catbox.moe/s4ojtd.png"></p>
+<h5 id="3-1-安装c-编译器"><a href="#3-1-安装c-编译器" class="headerlink" title="3.1 安装c++编译器"></a>3.1 安装c++编译器</h5><p>下载安装<a target="_blank" rel="noopener" href="https://www.msys2.org/">MSYS2</a></p>
+<p>原网站下载可能需要开个vpn</p>
+<p>网盘链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1oKfC7J2733VNMZvgJwYt9g?pwd=g0xs">https://pan.baidu.com/s/1oKfC7J2733VNMZvgJwYt9g?pwd=g0xs</a><br>提取码：g0xs</p>
+<ul>
+<li><p><strong>问题</strong></p>
+<p>  若是安装卡在中间不动了，点击详细信息，显示Updating trust database…</p>
+</li>
+<li><p><strong>解决</strong></p>
+<p>  点击取消并重新安装即可，注意不要管该文件夹不是空的的警告</p>
+</li>
+</ul>
+<p>打开刚刚安装的msys2，输入<code>pacman -Sy</code>更新msys2，再输入<code>pacman -Su gcc</code>安装gcc</p>
+<p>对于<code>Proceed with installation? [Y/n]</code>输入<code>y</code>即可</p>
+<ul>
+<li><p><strong>问题</strong></p>
+<p>  <code>fork:Resource temporarily unavailable</code></p>
+<p>  原因是对进程的数量进行了限制，可以通过</p>
+<p>  <code>ulimit -u</code>来查看最大进程数，若是小于1000，估摸应该会很容易出现这个错误</p>
+</li>
+<li><p><strong>解决</strong></p>
+<p>  通过<code>ulimit -u 数字(建议65535)</code>来修改最大进程数</p>
+<p>  但我由于好像不是root权限失败了</p>
+<p>  最终通过重启msys2来清楚所有进程来空出进程来安装，再次运行上述安装命令即可</p>
+</li>
+</ul>
+<h5 id="3-2-验证是否安装成功"><a href="#3-2-验证是否安装成功" class="headerlink" title="3.2 验证是否安装成功"></a>3.2 验证是否安装成功</h5><p><code>gcc -v</code></p>
+<p>输出版本号</p>
+<h5 id="3-3-在vscode中继续配置"><a href="#3-3-在vscode中继续配置" class="headerlink" title="3.3 在vscode中继续配置"></a>3.3 在vscode中继续配置</h5><p>在vscode中打开前面创建的文件夹</p>
+<p>在扩展<code>左侧栏第6个按钮(四个方块的图标)</code>中安装<code>c/c++</code></p>
+<p>新建<code>hello.cpp</code>文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello\n&quot;</span>);</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>Ctrl+</code>`来新建一个终端<code>Terminal</code></p>
+<ul>
+<li><p><strong>问题</strong></p>
+<p>  无法打开，error code:740</p>
+</li>
+<li><p><strong>解决</strong></p>
+<p>  在<strong>设置</strong>里的<strong>终端</strong>里<code>Intergrated &gt; default profile: windows</code>设置终端使用<code>powershell</code>或<code>cmd</code></p>
+<p>  最后在<code>Reload Window</code>一下</p>
+</li>
+</ul>
+<h5 id="3-4-测试是否配置成功"><a href="#3-4-测试是否配置成功" class="headerlink" title="3.4 测试是否配置成功"></a>3.4 测试是否配置成功</h5><p><code>g++ hello.cpp</code></p>
+<p>此时该文件夹下会出现一个<code>a.exe</code>文件</p>
+<p><code>./a.exe</code></p>
+<p>输出两行都是<code>hello</code></p>
+<p>似乎好像就成功运行了<code>emmmm</code></p>
+<p>但是又没有太成功，因为我安装过<code>vs2019</code>使得它已经装过编译器了<code>emmm</code></p>
+<h4 id="4-官方方式"><a href="#4-官方方式" class="headerlink" title="4. 官方方式"></a>4. 官方方式</h4><p>调用命令面板，输入<code>c/c++</code>选择<code>Edit configurations(UI)</code>更改编译器路径，选择安装的编译器的路径</p>
+<p>发现在文件夹下多出一个<code>.vscode</code>文件夹，里面有一个配置文件，即成功</p>
+<p>重复上述验证步骤即可</p>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><ol>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43331089/article/details/123221633">(1条消息) VSCode配置C&#x2F;C++环境_伐尘的博客-CSDN博客_vscode配置c&#x2F;c++环境</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014552102/article/details/104400885">(1条消息) windows下使用msys2编译FFmpeg源码_cuijiecheng2018的博客-CSDN博客_msys2编译</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43331089/article/details/127910399?csdn_share_tail=%7B%22type%22:%22blog%22,%22rType%22:%22article%22,%22rId%22:%22127910399%22,%22source%22:%22qq_43331089%22%7D">(1条消息) 【VSCode】【msys2】VS Code + msys2配置Windows下C&#x2F;C++开发环境_伐尘的博客-CSDN博客_msys2 vscode</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/konglongaa/article/details/80935639">(1条消息) “BASH: FORK: RESOURCE TEMPORARILY UNAVAILABLE”的解决方案_高尔夫golf的博客-CSDN博客</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.modb.pro/db/131935">系统报错“Resource temporarily unavailable” - 墨天轮 (modb.pro)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/welisa/article/details/118108832?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromBaidu~Rate-1-118108832-blog-125276257.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromBaidu~Rate-1-118108832-blog-125276257.pc_relevant_recovery_v2&utm_relevant_index=1">(1条消息) ulimit命令用法详解_小和尚下山学运维的博客-CSDN博客_ulimit</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://events.jianshu.io/p/f15dd9404321">Vscode 打开终端提示 a native exception occurred during launch(unable to start terminal process: createp… - 简书 (jianshu.io)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Mr_Pierre_Zhu/article/details/120811644">(1条消息) 终端进程启动失败: A native exception occurred during launch (Cannot create process, error code: 740)。_悟言一室parrhesia的博客-CSDN博客_终端进程启动失败</a></p>
+</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+</div>
+                        <footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2022 Hexo
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> & <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="showimg">
+                <img id="showimg-content" alt="showimg">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+<script src="/js/function.js"></script>
+<script src="/js/particlex.js"></script>
+
+
+
+    </body>
+</html>
