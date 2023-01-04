@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Archives | Hexo</title>
+        <title>FFT的精髓 | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -117,162 +117,63 @@
 </nav>
                     </div>
                     <div id="main">
-                        <div id="archives">
-    
-    
-    <div class="timeline" path="/2023/01/04/FFT%E7%9A%84%E7%B2%BE%E9%AB%93/" style="z-index: 11">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/1/4</div>
-            <a href="/2023/01/04/FFT%E7%9A%84%E7%B2%BE%E9%AB%93/">
-                <h3>FFT的精髓</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
+                        <div class="article">
+    <div>
+        <h1>FFT的精髓 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/1/4
+        </span>
+        
+        
     </div>
     
-    <div class="timeline" path="/2023/01/04/Tailscale%E7%BB%84%E6%88%90%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%88%E4%BB%A5%E6%96%87%E6%98%8E6%E8%81%94%E6%9C%BA%E4%B8%BA%E4%BE%8B%EF%BC%89/" style="z-index: 10">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/1/4</div>
-            <a href="/2023/01/04/Tailscale%E7%BB%84%E6%88%90%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%88%E4%BB%A5%E6%96%87%E6%98%8E6%E8%81%94%E6%9C%BA%E4%B8%BA%E4%BE%8B%EF%BC%89/">
-                <h3>Tailscale组成局域网（以文明6联机为例）</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <p>以下过程无数学证明过程，有兴趣的可以去自行查找资料</p>
+<h4 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h4><p>求一个多项式在一定数量的x对应的y值，及知道这么多<code>(x,y)</code>后求得多项式，即其系数。</p>
+<h4 id="2-具体"><a href="#2-具体" class="headerlink" title="2. 具体"></a>2. 具体</h4><p>假设这一个多项式的最高次数为n，那么我们只需要<code>n+1</code>个<code>(x,y)</code>即可确定唯一的多项式。<code>可以用线性代数证明</code></p>
+<p>目标中的两个操作的最简单的数学方法的时间复杂度都是<code>O(n^2)</code>，目标中的第一个很好求，第二个可以通过拉格朗日插值公式求得。</p>
+<p>但是这个时间复杂度仍然不让人满意，因此FFT出现，以<code>O(nlogn)</code>的时间复杂度完虐上述两个。</p>
+<h4 id="3-核心"><a href="#3-核心" class="headerlink" title="3. 核心"></a>3. 核心</h4><p>FFT的核心就是通过特殊的取值来使计算中出现重复的值而减少运算量。</p>
+<p>一个最简单的例子就是<code>y=x^2</code>。这是一个偶函数，因此当我求得<code>f(x)</code>后，<code>f(-x)</code>就仅需将<code>f(x)</code>取负即可。</p>
+<h4 id="4-取值"><a href="#4-取值" class="headerlink" title="4. 取值"></a>4. 取值</h4><p>FFT的取值也是如此，为了使这一性质推广，最终选择了<code>ω^n=1</code>的解，这个方程有<code>n</code>个解，但我们在此处仅讨论<code>n</code>为2的幂时的情况。</p>
+<p>若是将其在一复平面上表示出来，位置就是单位圆的n等分点的位置。</p>
+<p><img src="https://files.catbox.moe/qa2e3a.png"></p>
+<p>上图为<code>n=8</code>时的情况。</p>
+<p>这样的取值的原因是因为它有如下几个性质。</p>
+<p><img src="https://files.catbox.moe/1hsu9w.png"></p>
+<p>由上述这一结论，可推出下面一个推论。</p>
+<p><img src="https://files.catbox.moe/vgipgd.png"></p>
+<p>这一推论就是后面一切简化的基石。</p>
+<h4 id="5-求值"><a href="#5-求值" class="headerlink" title="5. 求值"></a>5. 求值</h4><p>一个多项式可以写成<img src="https://files.catbox.moe/7768ss.png">，将其奇数项与偶数项分开，即</p>
+<p><img src="https://files.catbox.moe/bwa4pf.png"></p>
+<p><img src="https://files.catbox.moe/s5gy3w.png"></p>
+<p>假设我们已经知道了这两个新的函数的点值（这两个函数只有n&#x2F;2个点值）</p>
+<p>那么</p>
+<p><img src="https://files.catbox.moe/u9hrvu.png"></p>
+<p>此处<code>ω</code>指<code>xk</code>，<code>yk</code>即为点值。</p>
+<p>这一公式可由上述推导而来。</p>
+<p>最终通过递归，即可求得所有点值。</p>
+<p>递归的终点为<code>n=1</code>时，此时其值为本身。</p>
+<h4 id="6-求逆"><a href="#6-求逆" class="headerlink" title="6. 求逆"></a>6. 求逆</h4><p>一个n元n次的有唯一解的方程组可以表示成两个矩阵的乘积。</p>
+<p><img src="https://files.catbox.moe/af5swl.png"></p>
+<p>因此当我们想要逆求a的值时，我们仅需要将左边乘上一个逆阵即可<code>(线性代数)</code>，而这个矩阵的逆阵的每一个元素正好是它本身的倒数，因此我们也就是他们按顺时针的顺序<code>（原本是逆时针）</code>。</p>
+<p>因此上述的方法可以再度使用。</p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
+<li>算法导论(第三版)</li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gY411d7Z1/?vd_source=92b6f4a65908f6aa7ab090b39f23b212">超硬核FFT快速傅里叶变换讲解，高效进行高精度乘法运算！_哔哩哔哩_bilibili</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/RabbitHu/p/FFT.html">小学生都能看懂的FFT！！！ - 胡小兔 - 博客园 (cnblogs.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1za411F76U/?vd_source=92b6f4a65908f6aa7ab090b39f23b212">快速傅里叶变换(FFT)——有史以来最巧妙的算法？_哔哩哔哩_bilibili</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1CY411R7bA/?vd_source=92b6f4a65908f6aa7ab090b39f23b212">这个算法改变了世界_哔哩哔哩_bilibili</a></li>
+</ol>
+
     </div>
     
-    <div class="timeline" path="/2023/01/03/c-%E5%A5%87%E6%80%AA%E7%9A%84%E9%94%99%E8%AF%AF/" style="z-index: 9">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/1/3</div>
-            <a href="/2023/01/03/c-%E5%A5%87%E6%80%AA%E7%9A%84%E9%94%99%E8%AF%AF/">
-                <h3>c++奇怪的错误</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
     
-    <div class="timeline" path="/2022/12/21/c-c-%E4%B8%89%E5%A4%A7%E7%BC%96%E8%AF%91%E5%99%A8%E5%88%9D%E4%BA%86%E8%A7%A3/" style="z-index: 8">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/21</div>
-            <a href="/2022/12/21/c-c-%E4%B8%89%E5%A4%A7%E7%BC%96%E8%AF%91%E5%99%A8%E5%88%9D%E4%BA%86%E8%A7%A3/">
-                <h3>c/c++ 三大编译器初了解</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/12/20/%E9%85%8D%E7%BD%AEvscode-c/" style="z-index: 7">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/20</div>
-            <a href="/2022/12/20/%E9%85%8D%E7%BD%AEvscode-c/">
-                <h3>配置vscode c++</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/12/15/error-code-Wsl-Service-0x8007273d/" style="z-index: 6">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/15</div>
-            <a href="/2022/12/15/error-code-Wsl-Service-0x8007273d/">
-                <h3>error code:Wsl/Service/0x8007273d</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/12/14/%E9%94%99%E8%AF%AF%EF%BC%9Asystemd-but-is-to-be-installed%EF%BC%88%E6%97%A0%E6%95%88%EF%BC%89/" style="z-index: 5">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/14</div>
-            <a href="/2022/12/14/%E9%94%99%E8%AF%AF%EF%BC%9Asystemd-but-is-to-be-installed%EF%BC%88%E6%97%A0%E6%95%88%EF%BC%89/">
-                <h3>错误：systemd ... but is to be installed（无效）</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/12/14/Docker1-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85/" style="z-index: 4">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/14</div>
-            <a href="/2022/12/14/Docker1-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85/">
-                <h3>Docker1:入门与安装</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/12/12/Markdown1-%E5%88%9D%E6%AD%A5%E5%85%A5%E9%97%A8/" style="z-index: 3">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/12</div>
-            <a href="/2022/12/12/Markdown1-%E5%88%9D%E6%AD%A5%E5%85%A5%E9%97%A8/">
-                <h3>Markdown1:初步入门</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/12/12/%E5%8D%9A%E5%AE%A21-wsl2%E4%B8%8A%E9%85%8D%E7%BD%AEhexo%E5%8D%9A%E5%AE%A2/" style="z-index: 2">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/12</div>
-            <a href="/2022/12/12/%E5%8D%9A%E5%AE%A21-wsl2%E4%B8%8A%E9%85%8D%E7%BD%AEhexo%E5%8D%9A%E5%AE%A2/">
-                <h3>博客1:-wsl2上配置hexo博客</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/12/12/hello-world/" style="z-index: 1">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/12</div>
-            <a href="/2022/12/12/hello-world/">
-                <h3>Hello World</h3>
-            </a>
-            <div class="info">
-                
-                
-            </div>
-        </div>
-    </div>
     
     
 </div>
