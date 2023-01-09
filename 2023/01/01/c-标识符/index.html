@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Hexo</title>
+        <title>C++标识符 | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -117,202 +117,32 @@
 </nav>
                     </div>
                     <div id="main">
-                        <div id="home-background" style="background-image: url()"></div>
-<div id="home-head">
-    
-    <div id="home-info" class="home-info" @click="homeclick">
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="info">
-            <div class="wrap">
-                <h1>Hexo</h1>
-                <h3></h3>
-                <h5></h5>
-            </div>
+                        <div class="article">
+    <div>
+        <h1>C++标识符 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/1/1
         </span>
+        
+        
     </div>
     
-</div>
-<div id="home-posts-wrap" class="">
-    <div id="home-posts">
-        <div id="posts">
-            
+    <div class="content" v-pre>
+        <h4 id="1-nodiscard"><a href="#1-nodiscard" class="headerlink" title="1. [[nodiscard]]"></a>1. [[nodiscard]]</h4><p>表示这个函数并没有对任何东西进行更改，仅是用来获取一个返回值，因此这个返回值不应该被舍弃。</p>
+<h4 id="2-static对于成员函数"><a href="#2-static对于成员函数" class="headerlink" title="2. static对于成员函数"></a>2. static对于成员函数</h4><p>表示这个函数并不是针对于这个类的成员的，无论这个类的成员的变量怎么变，它们的返回值和结果都不会改变，因此不需要依靠实例化的类来使用。同时也就是表明这个函数使共享的，也只能访问其他的static函数与成员变量。</p>
+<h4 id="3-noreturn"><a href="#3-noreturn" class="headerlink" title="3. [[noreturn]]"></a>3. [[noreturn]]</h4><p>表示这个函数在被调用后就不会再返回到调用它的地方，即死循环或者程序会结束。</p>
+<h4 id="4-const函数"><a href="#4-const函数" class="headerlink" title="4. const函数"></a>4. const函数</h4><p>在这个函数并不改变类本身的成员变量的时候来用这个函数来保证不因为内存而出问题。</p>
+<p>运算符重载时所有的other的类型应该都为const的引用变量。</p>
 
-<div class="post">
-    <a href="/2022/12/14/Docker1-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85/">
-        <h2 class="post-title">Docker1:入门与安装</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/14
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/12/14/Docker1-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/12/Markdown1-%E5%88%9D%E6%AD%A5%E5%85%A5%E9%97%A8/">
-        <h2 class="post-title">Markdown1:初步入门</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/12
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/12/12/Markdown1-%E5%88%9D%E6%AD%A5%E5%85%A5%E9%97%A8/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/12/%E5%8D%9A%E5%AE%A21-wsl2%E4%B8%8A%E9%85%8D%E7%BD%AEhexo%E5%8D%9A%E5%AE%A2/">
-        <h2 class="post-title">博客1:-Wsl2上配置hexo博客</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/12
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/12/12/%E5%8D%9A%E5%AE%A21-wsl2%E4%B8%8A%E9%85%8D%E7%BD%AEhexo%E5%8D%9A%E5%AE%A2/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/12/hello-world/">
-        <h2 class="post-title">Hello World</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/12
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/12/12/hello-world/" class="go-post">阅读全文</a>
-</div>
-
-            <div class="page-current">
-    <div class="prev">
-        
-        <a href="/">
-            <span class="page-num">
-                <i class="fa-solid fa-caret-left fa-fw"></i>
-            </span>
-        </a>
-        
-    </div>
-    <div class="page-index">
-        
-        <span>
-            
-            
-            <a href="/">
-                <span class="page-num">
-                    1
-                </span>
-            </a>
-        </span>
-        
-        <span class="current">
-            2
-        </span>
-        
-    </div>
-    <div class="next">
-        
-    </div>
-</div>
-        </div>
     </div>
     
-    <div id="home-card">
-        <div id="card-div">
-    <div class="card-style" style="width: 300px">
-        <div class="avatar">
-            <img src="" alt="avatar">
-        </div>
-        <div class="name">
-            John Doe
-        </div>
-        <div class="descriptions">
-            
-            <div class="description">
-                <p>Description</p>
-
-            </div>
-            
-            <div class="description">
-                <p>…</p>
-
-            </div>
-            
-        </div>
-        <div class="icon-links">
-            
-        </div>
-        <div class="friend-links">
-            
-        </div>
-    </div>
-</div>
-    </div>
+    
+    
     
 </div>
                         <footer id="footer">

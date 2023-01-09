@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Hexo</title>
+        <title>C++的一些有趣的题目 | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -117,202 +117,29 @@
 </nav>
                     </div>
                     <div id="main">
-                        <div id="home-background" style="background-image: url()"></div>
-<div id="home-head">
-    
-    <div id="home-info" class="home-info" @click="homeclick">
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="info">
-            <div class="wrap">
-                <h1>Hexo</h1>
-                <h3></h3>
-                <h5></h5>
-            </div>
+                        <div class="article">
+    <div>
+        <h1>C++的一些有趣的题目 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/1/8
         </span>
+        
+        
     </div>
     
-</div>
-<div id="home-posts-wrap" class="">
-    <div id="home-posts">
-        <div id="posts">
-            
+    <div class="content" v-pre>
+        <h4 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">char</span> * &amp; <span class="title">funA</span><span class="params">(<span class="type">char</span> ** &amp; now)</span></span>&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">char</span> * d;</span><br><span class="line">    now=&amp;d;</span><br><span class="line">    <span class="keyword">return</span> *now;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> a[<span class="number">100</span>], b[<span class="number">100</span>];</span><br><span class="line">    <span class="type">char</span> **p;</span><br><span class="line">    cin &gt;&gt; a;</span><br><span class="line">    <span class="built_in">funA</span>(p) = a;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<div class="post">
-    <a href="/2022/12/14/Docker1-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85/">
-        <h2 class="post-title">Docker1:入门与安装</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/14
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/12/14/Docker1-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85/" class="go-post">阅读全文</a>
-</div>
 
-<div class="post">
-    <a href="/2022/12/12/Markdown1-%E5%88%9D%E6%AD%A5%E5%85%A5%E9%97%A8/">
-        <h2 class="post-title">Markdown1:初步入门</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/12
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/12/12/Markdown1-%E5%88%9D%E6%AD%A5%E5%85%A5%E9%97%A8/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/12/%E5%8D%9A%E5%AE%A21-wsl2%E4%B8%8A%E9%85%8D%E7%BD%AEhexo%E5%8D%9A%E5%AE%A2/">
-        <h2 class="post-title">博客1:-Wsl2上配置hexo博客</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/12
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/12/12/%E5%8D%9A%E5%AE%A21-wsl2%E4%B8%8A%E9%85%8D%E7%BD%AEhexo%E5%8D%9A%E5%AE%A2/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/12/hello-world/">
-        <h2 class="post-title">Hello World</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/12
-        </span>
-    </div>
-    <div class="excerpt">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-    </div>
-    <a href="/2022/12/12/hello-world/" class="go-post">阅读全文</a>
-</div>
-
-            <div class="page-current">
-    <div class="prev">
-        
-        <a href="/">
-            <span class="page-num">
-                <i class="fa-solid fa-caret-left fa-fw"></i>
-            </span>
-        </a>
-        
-    </div>
-    <div class="page-index">
-        
-        <span>
-            
-            
-            <a href="/">
-                <span class="page-num">
-                    1
-                </span>
-            </a>
-        </span>
-        
-        <span class="current">
-            2
-        </span>
-        
-    </div>
-    <div class="next">
-        
-    </div>
-</div>
-        </div>
     </div>
     
-    <div id="home-card">
-        <div id="card-div">
-    <div class="card-style" style="width: 300px">
-        <div class="avatar">
-            <img src="" alt="avatar">
-        </div>
-        <div class="name">
-            John Doe
-        </div>
-        <div class="descriptions">
-            
-            <div class="description">
-                <p>Description</p>
-
-            </div>
-            
-            <div class="description">
-                <p>…</p>
-
-            </div>
-            
-        </div>
-        <div class="icon-links">
-            
-        </div>
-        <div class="friend-links">
-            
-        </div>
-    </div>
-</div>
-    </div>
+    
+    
     
 </div>
                         <footer id="footer">
