@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>C++模板特化 | Hexo</title>
+        <meta name="author" content="John Doe">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.1/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.1/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.min.js"></script>
+        
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:2147483647;justify-content:space-between;background:#fff;transition:all 0.3s ease-out;-webkit-user-select:none;-moz-user-select:none;user-select:none"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="showpage" style="display: -not-none">
+                    <div id="menushow">
+                        <nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menushow" id="phone-menu">
+        <div class="curtain" @click="menushow = !menushow" v-show="menushow"></div>
+        <div class="title" @click="menushow = !menushow">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Hexo</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menushow">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        <div class="article">
+    <div>
+        <h1>C++模板特化 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/1/12
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="模板的特化"><a href="#模板的特化" class="headerlink" title="模板的特化"></a>模板的特化</h1><p>一般情况下的模板，比如<code>template&lt;class Ty&gt;</code> <code>class myclass&#123;&#125;</code>，是对于任意的类型都适用的。</p>
+<p>但是有时候我们希望它其中的某个函数针对某个特定的类型要实现与其他不同的功能，甚至于对于整一个类都要这样，这时，我们就需要模板的特化。</p>
+<p>首先，需要声明的是，你得首先有一个主模板才能进行特化。</p>
+<h4 id="1-完全特化"><a href="#1-完全特化" class="headerlink" title="1. 完全特化"></a>1. 完全特化</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Ty</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">myclass</span>&#123;</span><br><span class="line">	<span class="comment">//一部分函数省略</span></span><br><span class="line">    Ty me;</span><br><span class="line">	<span class="function">Ty <span class="title">getmyself</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> me;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//特化int</span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;<span class="comment">//特化前需声明这一句话</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">myclass</span>&lt;<span class="type">int</span>&gt;&#123;</span><br><span class="line">    <span class="type">int</span> me;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getmyself</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> me<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//在完全特化中就不应该再出现Ty这种模糊的类型表述了</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，在完全特化的时候虽然可以不对主模板的全部函数进行特化，但建议上还是全部写。</p>
+<h4 id="2-偏特化"><a href="#2-偏特化" class="headerlink" title="2. 偏特化"></a>2. 偏特化</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Ty</span>,<span class="keyword">class</span> <span class="title class_">Tx</span>&gt;<span class="comment">//当模板有两个以上的参数的时候</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">myclass</span>&#123;</span><br><span class="line">	<span class="comment">//一部分函数省略</span></span><br><span class="line">    Ty me;</span><br><span class="line">    Tx me1;</span><br><span class="line">	<span class="function">Ty <span class="title">getmyself</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> me;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Tx <span class="title">getme</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> me1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//对Tx偏特化</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Ty</span>&gt;<span class="comment">//没有特化的类型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">myclass</span>&lt;Ty,<span class="type">int</span>&gt;&#123;<span class="comment">//特化完后的形式</span></span><br><span class="line">    Ty me;</span><br><span class="line">    <span class="type">int</span> me1;</span><br><span class="line">	<span class="function">Ty <span class="title">getmyself</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> me;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getme</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> me1<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-局部特化"><a href="#3-局部特化" class="headerlink" title="3. 局部特化"></a>3. 局部特化</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Ty</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">myclass</span>&#123;</span><br><span class="line">	<span class="comment">//一部分函数省略</span></span><br><span class="line">    Ty me;</span><br><span class="line">	<span class="function">Ty <span class="title">getmyself</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> me;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Ty</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">myclass</span>&lt;Ty*&gt;&#123;<span class="comment">//例如对指针特化</span></span><br><span class="line">	<span class="comment">//一部分函数省略</span></span><br><span class="line">    Ty me;</span><br><span class="line">	<span class="function">Ty <span class="title">getmyself</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> *me;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-函数特化"><a href="#4-函数特化" class="headerlink" title="4. 函数特化"></a>4. 函数特化</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Ty</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">myclass</span>&#123;</span><br><span class="line">	<span class="comment">//一部分函数省略</span></span><br><span class="line">    Ty me;</span><br><span class="line">	<span class="function">Ty <span class="title">getmyself</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> me;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;&gt;<span class="comment">//对getmyself特化</span></span><br><span class="line"><span class="type">int</span> myclass&lt;<span class="type">int</span>&gt;::<span class="built_in">getmyself</span>()&#123;</span><br><span class="line">    <span class="keyword">return</span> me<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/371669822">C++中VS2019下STL的string剖析 - 知乎 (zhihu.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/390672992">2.6 偏特化 - 知乎 (zhihu.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzyzxb/article/details/124936579">15.6 模板全特化与偏特化(局部特化)_zzyzxb的博客-CSDN博客_模板全特化</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/K346K346/article/details/82179205">C++ 模板特化与偏特化_恋喵大鲤鱼的博客-CSDN博客_偏特化</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU2NzI5MjQzMQ==&mid=2247484011&idx=1&sn=28396d55ece2aceac3107b50da7fef93&chksm=fc9e250bcbe9ac1de5478398507082ede8597a50970a10fed015c77b62724ff430db78fb2a2f&scene=27">学习经验 | C++ 类型萃取 (qq.com)</a></li>
+<li>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/lucky52529/article/details/104127705">c++]——什么是类型萃取_lucky52529的博客-CSDN博客_类型萃取</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37964547/article/details/81412507">类型萃取_Shining-LY的博客-CSDN博客_类型萃取</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.xiuzhanwang.com/a1/Cyuyan/2577.html">解读C++编程中类模板的三种特化_脚本教程网 (xiuzhanwang.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/5iedu/p/12709028.html">第2章 类模板：2.5 类模板的特化 - 浅墨浓香 - 博客园 (cnblogs.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012333003/article/details/18355403">类模板的特化_云梦泽1989的博客-CSDN博客_类模板的特化</a></li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+</div>
+                        <footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2023 Hexo
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> & <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="showimg">
+                <img id="showimg-content" alt="showimg">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+<script src="/js/function.js"></script>
+<script src="/js/particlex.js"></script>
+
+
+
+    </body>
+</html>

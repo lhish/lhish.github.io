@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>FFT的精髓 | Hexo</title>
+        <title>C++多态 | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -119,60 +119,24 @@
                     <div id="main">
                         <div class="article">
     <div>
-        <h1>FFT的精髓 </h1>
+        <h1>C++多态 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2023/1/4
+            2023/1/10
         </span>
         
         
     </div>
     
     <div class="content" v-pre>
-        <p>以下过程无数学证明过程，有兴趣的可以去自行查找资料</p>
-<h4 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h4><p>求一个多项式在一定数量的x对应的y值，及知道这么多<code>(x,y)</code>后求得多项式，即其系数。</p>
-<h4 id="2-具体"><a href="#2-具体" class="headerlink" title="2. 具体"></a>2. 具体</h4><p>假设这一个多项式的最高次数为n，那么我们只需要<code>n+1</code>个<code>(x,y)</code>即可确定唯一的多项式。<code>可以用线性代数证明</code></p>
-<p>目标中的两个操作的最简单的数学方法的时间复杂度都是<code>O(n^2)</code>，目标中的第一个很好求，第二个可以通过拉格朗日插值公式求得。</p>
-<p>但是这个时间复杂度仍然不让人满意，因此FFT出现，以<code>O(nlogn)</code>的时间复杂度完虐上述两个。</p>
-<h4 id="3-核心"><a href="#3-核心" class="headerlink" title="3. 核心"></a>3. 核心</h4><p>FFT的核心就是通过特殊的取值来使计算中出现重复的值而减少运算量。</p>
-<p>一个最简单的例子就是<code>y=x^2</code>。这是一个偶函数，因此当我求得<code>f(x)</code>后，<code>f(-x)</code>就仅需将<code>f(x)</code>取负即可。</p>
-<h4 id="4-取值"><a href="#4-取值" class="headerlink" title="4. 取值"></a>4. 取值</h4><p>FFT的取值也是如此，为了使这一性质推广，最终选择了<code>ω^n=1</code>的解，这个方程有<code>n</code>个解，但我们在此处仅讨论<code>n</code>为2的幂时的情况。</p>
-<p>若是将其在一复平面上表示出来，位置就是单位圆的n等分点的位置。</p>
-<p><img src="https://files.catbox.moe/qa2e3a.png"></p>
-<p>上图为<code>n=8</code>时的情况。</p>
-<p>这样的取值的原因是因为它有如下几个性质。</p>
-<p><img src="https://files.catbox.moe/1hsu9w.png"></p>
-<p>由上述这一结论，可推出下面一个推论。</p>
-<p><img src="https://files.catbox.moe/vgipgd.png"></p>
-<p>这一推论就是后面一切简化的基石。</p>
-<h4 id="5-求值"><a href="#5-求值" class="headerlink" title="5. 求值"></a>5. 求值</h4><p>一个多项式可以写成<img src="https://files.catbox.moe/7768ss.png">，将其奇数项与偶数项分开，即</p>
-<p><img src="https://files.catbox.moe/bwa4pf.png"></p>
-<p><img src="https://files.catbox.moe/s5gy3w.png"></p>
-<p>假设我们已经知道了这两个新的函数的点值（这两个函数只有n&#x2F;2个点值）</p>
-<p>那么</p>
-<p><img src="https://files.catbox.moe/u9hrvu.png"></p>
-<p>此处<code>ω</code>指<code>xk</code>，<code>yk</code>即为点值。</p>
-<p>这一公式可由上述推导而来。</p>
-<p>最终通过递归，即可求得所有点值。</p>
-<p>递归的终点为<code>n=1</code>时，此时其值为本身。</p>
-<h4 id="6-求逆"><a href="#6-求逆" class="headerlink" title="6. 求逆"></a>6. 求逆</h4><p>一个n元n次的有唯一解的方程组可以表示成两个矩阵的乘积。</p>
-<p><img src="https://files.catbox.moe/af5swl.png"></p>
-<p>因此当我们想要逆求a的值时，我们仅需要将左边乘上一个逆阵即可<code>(线性代数)</code>，而这个矩阵的逆阵的每一个元素正好是它本身的倒数，因此我们也就是他们按顺时针的顺序<code>（原本是逆时针）</code>。</p>
-<p>因此上述的方法可以再度使用。</p>
-<h4 id="7-非递归实现"><a href="#7-非递归实现" class="headerlink" title="7. 非递归实现"></a>7. 非递归实现</h4><p>若是将递归里面的每一行都画出来，对于最后一行的顺序我们会很惊奇地发现是原下标取反的结果。</p>
-<p><img src="https://files.catbox.moe/k84ag0.png"></p>
-<p>即可实现非递归fft</p>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
-<li>算法导论(第三版)</li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gY411d7Z1/?vd_source=92b6f4a65908f6aa7ab090b39f23b212">超硬核FFT快速傅里叶变换讲解，高效进行高精度乘法运算！_哔哩哔哩_bilibili</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/RabbitHu/p/FFT.html">小学生都能看懂的FFT！！！ - 胡小兔 - 博客园 (cnblogs.com)</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1za411F76U/?vd_source=92b6f4a65908f6aa7ab090b39f23b212">快速傅里叶变换(FFT)——有史以来最巧妙的算法？_哔哩哔哩_bilibili</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1CY411R7bA/?vd_source=92b6f4a65908f6aa7ab090b39f23b212">这个算法改变了世界_哔哩哔哩_bilibili</a></li>
-</ol>
+        <h4 id="1-当派生类中出现与基类完全一致的函数时（函数名相同，形参类型相同），就会产生多态。"><a href="#1-当派生类中出现与基类完全一致的函数时（函数名相同，形参类型相同），就会产生多态。" class="headerlink" title="1. 当派生类中出现与基类完全一致的函数时（函数名相同，形参类型相同），就会产生多态。"></a>1. 当派生类中出现与基类完全一致的函数时（函数名相同，形参类型相同），就会产生多态。</h4><p>即当你使用派生类调用这个函数的时候不会调用基类的函数，而是调用派生类中重写的函数。</p>
+<h4 id="2-若是你希望用基类的指针来操作派生类实例（比如说我想向一个函数中输入一个图形，这个图形可能是正方形，三角形，五边形等等，我们会使用基类的指针来操作它的派生类），这些重写的函数只会调用基类的函数。"><a href="#2-若是你希望用基类的指针来操作派生类实例（比如说我想向一个函数中输入一个图形，这个图形可能是正方形，三角形，五边形等等，我们会使用基类的指针来操作它的派生类），这些重写的函数只会调用基类的函数。" class="headerlink" title="2. 若是你希望用基类的指针来操作派生类实例（比如说我想向一个函数中输入一个图形，这个图形可能是正方形，三角形，五边形等等，我们会使用基类的指针来操作它的派生类），这些重写的函数只会调用基类的函数。"></a>2. 若是你希望用基类的指针来操作派生类实例（比如说我想向一个函数中输入一个图形，这个图形可能是正方形，三角形，五边形等等，我们会使用基类的指针来操作它的派生类），这些重写的函数只会调用基类的函数。</h4><p>因为是静态链接的，在程序编译的时候就已经决定了的。</p>
+<h4 id="3-解决方案"><a href="#3-解决方案" class="headerlink" title="3. 解决方案"></a>3. 解决方案</h4><p>将基类的这个函数定义为虚函数，即在前面加上修饰词virtual。此时就变成动态链接了。当你使用这个基类的指针来调用函数的时候，会因为其指向的变量是不同的派生类这个函数本身也会改变为派生类的函数。<strong>（折构函数最好为virtual）</strong></p>
+<h4 id="4-纯虚函数"><a href="#4-纯虚函数" class="headerlink" title="4. 纯虚函数"></a>4. 纯虚函数</h4><p>当我们对于基类的这个要声明的虚函数没有什么实质性的内容的话，可以<code>virtual 返回类型 函数名()=0;</code>来声明一个纯虚函数来告诉编译器这个虚函数无实质内容。</p>
 
     </div>
     

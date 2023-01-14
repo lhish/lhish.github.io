@@ -138,6 +138,9 @@
 <h4 id="3-noreturn"><a href="#3-noreturn" class="headerlink" title="3. [[noreturn]]"></a>3. [[noreturn]]</h4><p>表示这个函数在被调用后就不会再返回到调用它的地方，即死循环或者程序会结束。</p>
 <h4 id="4-const函数"><a href="#4-const函数" class="headerlink" title="4. const函数"></a>4. const函数</h4><p>在这个函数并不改变类本身的成员变量的时候来用这个函数来保证不因为内存而出问题。</p>
 <p>运算符重载时所有的other的类型应该都为const的引用变量。</p>
+<h4 id="5-explicit"><a href="#5-explicit" class="headerlink" title="5. explicit"></a>5. explicit</h4><p>在构造函数只有一个参数时可以使用，避免在class a&#x3D;x的时候直接被隐式转换为class a(x)。</p>
+<h4 id="6-virtual"><a href="#6-virtual" class="headerlink" title="6. virtual"></a>6. virtual</h4><p>声明这个函数为虚函数</p>
+<h4 id="7-override"><a href="#7-override" class="headerlink" title="7. override"></a>7. override</h4><p>在派生类中使用，声明这个函数必须要重写，若是在派生类中没有重写，就报错。</p>
 
     </div>
     

@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>FFT的精髓 | Hexo</title>
+        <title>C++类型萃取 | Hexo</title>
         <meta name="author" content="John Doe">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -119,59 +119,33 @@
                     <div id="main">
                         <div class="article">
     <div>
-        <h1>FFT的精髓 </h1>
+        <h1>C++类型萃取 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2023/1/4
+            2023/1/12
         </span>
         
         
     </div>
     
     <div class="content" v-pre>
-        <p>以下过程无数学证明过程，有兴趣的可以去自行查找资料</p>
-<h4 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h4><p>求一个多项式在一定数量的x对应的y值，及知道这么多<code>(x,y)</code>后求得多项式，即其系数。</p>
-<h4 id="2-具体"><a href="#2-具体" class="headerlink" title="2. 具体"></a>2. 具体</h4><p>假设这一个多项式的最高次数为n，那么我们只需要<code>n+1</code>个<code>(x,y)</code>即可确定唯一的多项式。<code>可以用线性代数证明</code></p>
-<p>目标中的两个操作的最简单的数学方法的时间复杂度都是<code>O(n^2)</code>，目标中的第一个很好求，第二个可以通过拉格朗日插值公式求得。</p>
-<p>但是这个时间复杂度仍然不让人满意，因此FFT出现，以<code>O(nlogn)</code>的时间复杂度完虐上述两个。</p>
-<h4 id="3-核心"><a href="#3-核心" class="headerlink" title="3. 核心"></a>3. 核心</h4><p>FFT的核心就是通过特殊的取值来使计算中出现重复的值而减少运算量。</p>
-<p>一个最简单的例子就是<code>y=x^2</code>。这是一个偶函数，因此当我求得<code>f(x)</code>后，<code>f(-x)</code>就仅需将<code>f(x)</code>取负即可。</p>
-<h4 id="4-取值"><a href="#4-取值" class="headerlink" title="4. 取值"></a>4. 取值</h4><p>FFT的取值也是如此，为了使这一性质推广，最终选择了<code>ω^n=1</code>的解，这个方程有<code>n</code>个解，但我们在此处仅讨论<code>n</code>为2的幂时的情况。</p>
-<p>若是将其在一复平面上表示出来，位置就是单位圆的n等分点的位置。</p>
-<p><img src="https://files.catbox.moe/qa2e3a.png"></p>
-<p>上图为<code>n=8</code>时的情况。</p>
-<p>这样的取值的原因是因为它有如下几个性质。</p>
-<p><img src="https://files.catbox.moe/1hsu9w.png"></p>
-<p>由上述这一结论，可推出下面一个推论。</p>
-<p><img src="https://files.catbox.moe/vgipgd.png"></p>
-<p>这一推论就是后面一切简化的基石。</p>
-<h4 id="5-求值"><a href="#5-求值" class="headerlink" title="5. 求值"></a>5. 求值</h4><p>一个多项式可以写成<img src="https://files.catbox.moe/7768ss.png">，将其奇数项与偶数项分开，即</p>
-<p><img src="https://files.catbox.moe/bwa4pf.png"></p>
-<p><img src="https://files.catbox.moe/s5gy3w.png"></p>
-<p>假设我们已经知道了这两个新的函数的点值（这两个函数只有n&#x2F;2个点值）</p>
-<p>那么</p>
-<p><img src="https://files.catbox.moe/u9hrvu.png"></p>
-<p>此处<code>ω</code>指<code>xk</code>，<code>yk</code>即为点值。</p>
-<p>这一公式可由上述推导而来。</p>
-<p>最终通过递归，即可求得所有点值。</p>
-<p>递归的终点为<code>n=1</code>时，此时其值为本身。</p>
-<h4 id="6-求逆"><a href="#6-求逆" class="headerlink" title="6. 求逆"></a>6. 求逆</h4><p>一个n元n次的有唯一解的方程组可以表示成两个矩阵的乘积。</p>
-<p><img src="https://files.catbox.moe/af5swl.png"></p>
-<p>因此当我们想要逆求a的值时，我们仅需要将左边乘上一个逆阵即可<code>(线性代数)</code>，而这个矩阵的逆阵的每一个元素正好是它本身的倒数，因此我们也就是他们按顺时针的顺序<code>（原本是逆时针）</code>。</p>
-<p>因此上述的方法可以再度使用。</p>
-<h4 id="7-非递归实现"><a href="#7-非递归实现" class="headerlink" title="7. 非递归实现"></a>7. 非递归实现</h4><p>若是将递归里面的每一行都画出来，对于最后一行的顺序我们会很惊奇地发现是原下标取反的结果。</p>
-<p><img src="https://files.catbox.moe/k84ag0.png"></p>
-<p>即可实现非递归fft</p>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
-<li>算法导论(第三版)</li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gY411d7Z1/?vd_source=92b6f4a65908f6aa7ab090b39f23b212">超硬核FFT快速傅里叶变换讲解，高效进行高精度乘法运算！_哔哩哔哩_bilibili</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/RabbitHu/p/FFT.html">小学生都能看懂的FFT！！！ - 胡小兔 - 博客园 (cnblogs.com)</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1za411F76U/?vd_source=92b6f4a65908f6aa7ab090b39f23b212">快速傅里叶变换(FFT)——有史以来最巧妙的算法？_哔哩哔哩_bilibili</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1CY411R7bA/?vd_source=92b6f4a65908f6aa7ab090b39f23b212">这个算法改变了世界_哔哩哔哩_bilibili</a></li>
+        <h1 id="类型萃取"><a href="#类型萃取" class="headerlink" title="类型萃取"></a>类型萃取</h1><p>如果不了解模板特化的可以先去了解一下，我也有一篇关于这个的博客。</p>
+<p>类型萃取从我个人来看实际上也是一种模板特化，模板特化是对于一种类型的特化，而类型萃取是将一部分的类型聚集起来，一起特化，可以相当于是一种泛型（这个词可能不太对）的模板特化。</p>
+<p>所谓类型萃取其实就是获取这些类型中的一些特性，然后进行分类，以使得既能有针对性的特化但同时保持着泛化的简短。</p>
+<p>网上大部分的例子都是以<code>memcpy</code> 缺点来举例的，我这里就不就这个例子展开了，大家可以自己去看看参考中的网址。</p>
+<p>这里只讲一下原理。</p>
+<p>首先，对于一个类，建立一个结构体用来萃取类型，里面只包含一句定义<code>typedef A B</code>。接着对于这个结构体对于所有的每一个类型都进行特化，特化的方式是A代表这个类型的类别，B全部都一样，符合命名规则即可。接着对于每一个A都所谓一个结构体的名称，并在其中建立一个<code>get</code>函数，不同的A返回不同的值，最终在使用的时候只需要调用<code>B.get()</code>判断一下值即可对于不同类别的类型进行不同的操作了。</p>
+<p>但是其用法不止于此，STL中用别的方式使用了它。在上述所说的A中声明静态成员，即可用B调用对应的静态函数和静态成员。</p>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><ol>
+<li>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/lucky52529/article/details/104127705">c++]——什么是类型萃取_lucky52529的博客-CSDN博客_类型萃取</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU2NzI5MjQzMQ==&mid=2247484011&idx=1&sn=28396d55ece2aceac3107b50da7fef93&chksm=fc9e250bcbe9ac1de5478398507082ede8597a50970a10fed015c77b62724ff430db78fb2a2f&scene=27">学习经验 | C++ 类型萃取 (qq.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoxiaoguailou/article/details/123414933">【C++】类型萃取_c++ 类型萃取_code-016的博客-CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37964547/article/details/81412507">类型萃取_Shining-LY的博客-CSDN博客_类型萃取</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/371669822">C++中VS2019下STL的string剖析 - 知乎 (zhihu.com)</a></li>
 </ol>
 
     </div>
