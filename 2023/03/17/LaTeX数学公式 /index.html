@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>Hexo</title>
+        <meta name="author" content="John Doe">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.1/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.1/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.min.js"></script>
+        
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:2147483647;justify-content:space-between;background:#fff;transition:all 0.3s ease-out;-webkit-user-select:none;-moz-user-select:none;user-select:none"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="showpage" style="display: -not-none">
+                    <div id="menushow">
+                        <nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Hexo</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menushow" id="phone-menu">
+        <div class="curtain" @click="menushow = !menushow" v-show="menushow"></div>
+        <div class="title" @click="menushow = !menushow">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Hexo</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menushow">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        <div class="article">
+    <div>
+        <h1> </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/3/17
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="LaTeX数学公式"><a href="#LaTeX数学公式" class="headerlink" title="LaTeX数学公式"></a>LaTeX数学公式</h1><p>$$<br>x_{2*1}^{21\cdot\sqrt{\theta\alpha}}\int_0^xb\mathrm{d(正)}b\sum_{i&#x3D;1}^{100}\overbrace{x\cdots x}^{i个}\prod_jj^2_1lim^{(k&#x3D;1,\ldots,n)}_{x \to\infty}\overline{0.1^x&#x2F;\vec{a}}\overleftarrow{AB}\frac{\overrightarrow{\beta d}^{\begin{vmatrix}\begin{bmatrix}\begin{pmatrix}1&amp;\cdots&amp;5\ \vdots&amp;\ddots&amp;\vdots \5&amp;\cdots&amp;7 \\end{pmatrix}\end{bmatrix}\end{vmatrix}}}{\bar{x}+\hat{x}-\tilde{x}}<br>$$</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">x<span class="built_in">_</span>&#123;2*1&#125;<span class="built_in">^</span>&#123;//<span class="built_in">_</span>下标，&#123;&#125;当内容为不止一个字符时<span class="built_in">^</span>上标</span><br><span class="line">	21<span class="keyword">\cdot</span>//点×</span><br><span class="line">	<span class="keyword">\sqrt</span>&#123;<span class="keyword">\theta</span><span class="keyword">\alpha</span>&#125;//根号 <span class="keyword">\罗</span>马读音:罗马字</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\int</span><span class="built_in">_</span>0<span class="built_in">^</span>xb<span class="keyword">\mathrm</span>&#123;d(正)&#125;b//int积分,mathrm正体</span><br><span class="line"></span><br><span class="line"><span class="keyword">\sum</span><span class="built_in">_</span>&#123;i=1&#125;<span class="built_in">^</span>&#123;100&#125; <span class="keyword">\overbrace</span>&#123;x<span class="keyword">\cdots</span> x&#125;<span class="built_in">^</span>&#123;i个&#125;//sum和 overbrace上括号 cdots横省略号</span><br><span class="line"></span><br><span class="line"><span class="keyword">\prod</span><span class="built_in">_</span>j j<span class="built_in">^</span>2<span class="built_in">_</span>1//prod×</span><br><span class="line"></span><br><span class="line">lim<span class="built_in">^</span>&#123;</span><br><span class="line">	(k=1,<span class="keyword">\ldots</span>,n)//ldots底省略号</span><br><span class="line">&#125;<span class="built_in">_</span>&#123;</span><br><span class="line">	x <span class="keyword">\to</span> <span class="keyword">\infty</span>//to箭头，infty无限</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">\overline</span>&#123;//上划线</span><br><span class="line">	0.1<span class="built_in">^</span>x/<span class="keyword">\vec</span>&#123;a&#125;//vec向量</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">\overleftarrow</span>&#123;AB&#125;//overleftarrow上左箭头</span><br><span class="line"></span><br><span class="line"><span class="keyword">\frac</span>//frac分数</span><br><span class="line">	&#123;//上部</span><br><span class="line">		<span class="keyword">\overrightarrow</span>&#123;//overrightarror上右箭头</span><br><span class="line">			<span class="keyword">\beta</span> d</span><br><span class="line">		&#125;<span class="built_in">^</span></span><br><span class="line">		&#123;<span class="keyword">\begin</span>&#123;vmatrix&#125;//||</span><br><span class="line">			<span class="keyword">\begin</span>&#123;bmatrix&#125;//[]</span><br><span class="line">				<span class="keyword">\begin</span>&#123;pmatrix&#125;//()</span><br><span class="line">					1<span class="built_in">&amp;</span><span class="keyword">\cdots</span><span class="built_in">&amp;</span>5<span class="keyword">\\</span></span><br><span class="line">					<span class="keyword">\vdots</span><span class="built_in">&amp;</span><span class="keyword">\ddots</span><span class="built_in">&amp;</span><span class="keyword">\vdots</span><span class="keyword">\\</span>//vdots列省略号，ddots斜省略号</span><br><span class="line">					5<span class="built_in">&amp;</span><span class="keyword">\cdots</span><span class="built_in">&amp;</span>7 <span class="keyword">\\</span></span><br><span class="line">				<span class="keyword">\end</span>&#123;pmatrix&#125;</span><br><span class="line">			<span class="keyword">\end</span>&#123;bmatrix&#125;</span><br><span class="line">		<span class="keyword">\end</span>&#123;vmatrix&#125;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#123;//下部</span><br><span class="line">		<span class="keyword">\bar</span>&#123;x&#125;+<span class="keyword">\hat</span>&#123;x&#125;-<span class="keyword">\tilde</span>&#123;x&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    
+    
+    
+    
+</div>
+                        <footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2023 Hexo
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @John Doe
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> & <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="showimg">
+                <img id="showimg-content" alt="showimg">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+<script src="/js/function.js"></script>
+<script src="/js/particlex.js"></script>
+
+
+
+    </body>
+</html>
