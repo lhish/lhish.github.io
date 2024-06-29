@@ -16,21 +16,21 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="多重继承与虚继承多重继承多重继承就是从多个直接基类继承。继承要求与普通继承一样。 构造当不使用某个基类的继承构造函数初始化该部分时，就会使用该基类的默认构造函数。 另外，构造函数的顺序与我们写的顺序无关，是根据派生列表的顺序，派生树dfs的顺序。 当使用using继承了基类中同名同参的构造函数时，必须自行定义一个接受同样参数的构造函数来覆盖掉。 向基类的转换对于编译器来说，只要是基类，那么转换都是">
+    <meta name="description" content="多重继承 多重继承就是从多个直接基类继承。继承要求与普通继承一样。 构造 当不使用某个基类的继承构造函数初始化该部分时，就会使用该基类的默认构造函数。 另外，构造函数的顺序与我们写的顺序无关，是根据派生列表的顺序，派生树dfs的顺序。 当使用using继承了基类中同名同参的构造函数时，必须自行定义一个接受同样参数的构造函数来覆盖掉。 向基类的转换 对于编译器来说，只要是基类，那么转换都是一样好的，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多重继承与虚继承 ">
+<meta property="og:title" content="多重继承与虚继承">
 <meta property="og:url" content="https://lhish.github.io/project/hide/%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF%E4%B8%8E%E8%99%9A%E7%BB%A7%E6%89%BF/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="多重继承与虚继承多重继承多重继承就是从多个直接基类继承。继承要求与普通继承一样。 构造当不使用某个基类的继承构造函数初始化该部分时，就会使用该基类的默认构造函数。 另外，构造函数的顺序与我们写的顺序无关，是根据派生列表的顺序，派生树dfs的顺序。 当使用using继承了基类中同名同参的构造函数时，必须自行定义一个接受同样参数的构造函数来覆盖掉。 向基类的转换对于编译器来说，只要是基类，那么转换都是">
+<meta property="og:description" content="多重继承 多重继承就是从多个直接基类继承。继承要求与普通继承一样。 构造 当不使用某个基类的继承构造函数初始化该部分时，就会使用该基类的默认构造函数。 另外，构造函数的顺序与我们写的顺序无关，是根据派生列表的顺序，派生树dfs的顺序。 当使用using继承了基类中同名同参的构造函数时，必须自行定义一个接受同样参数的构造函数来覆盖掉。 向基类的转换 对于编译器来说，只要是基类，那么转换都是一样好的，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-29T18:04:57.525Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.622Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.858Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>多重继承与虚继承  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>多重继承与虚继承 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -41,6 +41,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -225,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多重继承与虚继承 "></span>
+            <span id="subtitle" data-typed-text="多重继承与虚继承"></span>
           
         </div>
 
@@ -236,7 +238,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -248,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          675 字
+          666 字
         
       </span>
     
@@ -304,22 +306,28 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">多重继承与虚继承 </h1>
+            <h1 id="seo-header">多重继承与虚继承</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="多重继承与虚继承"><a href="#多重继承与虚继承" class="headerlink" title="多重继承与虚继承"></a>多重继承与虚继承</h1><h2 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h2><p>多重继承就是从多个直接基类继承。继承要求与普通继承一样。</p>
-<h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><p>当不使用某个基类的继承构造函数初始化该部分时，就会使用该基类的默认构造函数。</p>
+                <h2 id="多重继承">多重继承</h2>
+<p>多重继承就是从多个直接基类继承。继承要求与普通继承一样。</p>
+<h3 id="构造">构造</h3>
+<p>当不使用某个基类的继承构造函数初始化该部分时，就会使用该基类的默认构造函数。</p>
 <p>另外，构造函数的顺序与我们写的顺序无关，是根据派生列表的顺序，派生树dfs的顺序。</p>
 <p>当使用using继承了基类中同名同参的构造函数时，必须自行定义一个接受同样参数的构造函数来覆盖掉。</p>
-<h3 id="向基类的转换"><a href="#向基类的转换" class="headerlink" title="向基类的转换"></a>向基类的转换</h3><p>对于编译器来说，只要是基类，那么转换都是一样好的，因此如果有函数重载内是基类，那么可能会出现二义性错误。</p>
+<h3 id="向基类的转换">向基类的转换</h3>
+<p>对于编译器来说，只要是基类，那么转换都是一样好的，因此如果有函数重载内是基类，那么可能会出现二义性错误。</p>
 <p>基类指针指向派生类对象时，只能使用自己基类部分的成员。</p>
-<h3 id="作用域（派生类的名字会覆盖基类的名字，因为更局部）"><a href="#作用域（派生类的名字会覆盖基类的名字，因为更局部）" class="headerlink" title="作用域（派生类的名字会覆盖基类的名字，因为更局部）"></a>作用域（派生类的名字会覆盖基类的名字，因为更局部）</h3><p>当使用基类中的名字的时候，会同时在继承的所有基类中查找，很容易就会找到相同的。在继承的不同基类中有相同的名字并没有什么问题，这只是潜在的二义性问题而已，使用时必须指出作用域，或者一种更好的方式是自己定义并覆盖。</p>
-<h2 id="虚继承"><a href="#虚继承" class="headerlink" title="虚继承"></a>虚继承</h2><p>有的时候，在整一个继承体系中会出现对某一个基类的多次继承（当存在多重继承的时候），此时就会有多个同样基类的实例，这是我们所不希望的。我们可以使用虚继承来让某个类同意共享它的某个基类，在这种情况下，无论出现多少次基类，使用的都是同一个实例。</p>
-<p>通过class derived:virtual public&#x2F;… base就可以虚继承，并不会对本类造成任何影响，而表示本类的派生类都将共享本基类的base这个基类。</p>
+<h3 id="作用域（派生类的名字会覆盖基类的名字，因为更局部）">作用域（派生类的名字会覆盖基类的名字，因为更局部）</h3>
+<p>当使用基类中的名字的时候，会同时在继承的所有基类中查找，很容易就会找到相同的。在继承的不同基类中有相同的名字并没有什么问题，这只是潜在的二义性问题而已，使用时必须指出作用域，或者一种更好的方式是自己定义并覆盖。</p>
+<h2 id="虚继承">虚继承</h2>
+<p>有的时候，在整一个继承体系中会出现对某一个基类的多次继承（当存在多重继承的时候），此时就会有多个同样基类的实例，这是我们所不希望的。我们可以使用虚继承来让某个类同意共享它的某个基类，在这种情况下，无论出现多少次基类，使用的都是同一个实例。</p>
+<p>通过class derived:virtual public/… base就可以虚继承，并不会对本类造成任何影响，而表示本类的派生类都将共享本基类的base这个基类。</p>
 <p>对于基类的成员，首先，派生类会覆盖基类的成员，当多重继承时，如果同一级的基类下有同名，则会二义性。</p>
-<h3 id="构造-1"><a href="#构造-1" class="headerlink" title="构造"></a>构造</h3><p>由于虚基类可能会被多次构造，因此，若是存在虚基类，则必须由最底层的派生类来负责初始化，也就是在初始化列表中调用虚基类的构造函数。</p>
+<h3 id="构造-2">构造</h3>
+<p>由于虚基类可能会被多次构造，因此，若是存在虚基类，则必须由最底层的派生类来负责初始化，也就是在初始化列表中调用虚基类的构造函数。</p>
 <p>如果最底层的派生类没有显式化构造虚基类，则虚基类的默认构造函数会被调用。</p>
 <p>整体的构造顺序虚基类总是先于非虚基类。</p>
 <p>折构的顺序正好相反。</p>
@@ -340,7 +348,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>多重继承与虚继承 </div>
+      <div>多重继承与虚继承</div>
       <div>https://lhish.github.io/project/hide/多重继承与虚继承/</div>
     </div>
     <div class="license-meta">
@@ -476,7 +484,6 @@
 
   
   
-
 
 
 
@@ -696,49 +703,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

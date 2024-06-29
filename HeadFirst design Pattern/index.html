@@ -16,21 +16,21 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="HeadFirst design Pattern面向接口编程，上对下要有抽象中间层，上面自己也需要抽象顶层。 策略模式继承会导致在添加新的行为的时候不够灵活，要们需要在每个子类中实现，如果在基类中实现那么即便是不需要这个行为的子类也会继承这个行为。 此时我们可以使用策略模式。 实际上就是一种将继承改为组合的例子。 将拥有行为者和行为分开，总共包括四个类，通过让行为者使用不同的行为就达成了行为改变的">
+    <meta name="description" content="面向接口编程，上对下要有抽象中间层，上面自己也需要抽象顶层。 策略模式 继承会导致在添加新的行为的时候不够灵活，要们需要在每个子类中实现，如果在基类中实现那么即便是不需要这个行为的子类也会继承这个行为。 此时我们可以使用策略模式。 实际上就是一种将继承改为组合的例子。 将拥有行为者和行为分开，总共包括四个类，通过让行为者使用不同的行为就达成了行为改变的结果。  抽象拥有者：拥有着抽象行为，和使用抽">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HeadFirst design Pattern ">
+<meta property="og:title" content="HeadFirst design Pattern">
 <meta property="og:url" content="https://lhish.github.io/project/HeadFirst%20design%20Pattern/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="HeadFirst design Pattern面向接口编程，上对下要有抽象中间层，上面自己也需要抽象顶层。 策略模式继承会导致在添加新的行为的时候不够灵活，要们需要在每个子类中实现，如果在基类中实现那么即便是不需要这个行为的子类也会继承这个行为。 此时我们可以使用策略模式。 实际上就是一种将继承改为组合的例子。 将拥有行为者和行为分开，总共包括四个类，通过让行为者使用不同的行为就达成了行为改变的">
+<meta property="og:description" content="面向接口编程，上对下要有抽象中间层，上面自己也需要抽象顶层。 策略模式 继承会导致在添加新的行为的时候不够灵活，要们需要在每个子类中实现，如果在基类中实现那么即便是不需要这个行为的子类也会继承这个行为。 此时我们可以使用策略模式。 实际上就是一种将继承改为组合的例子。 将拥有行为者和行为分开，总共包括四个类，通过让行为者使用不同的行为就达成了行为改变的结果。  抽象拥有者：拥有着抽象行为，和使用抽">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-29T18:04:57.521Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.598Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.146Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.830Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>HeadFirst design Pattern  - lhish&#39;s blog</title>
+  <title>HeadFirst design Pattern - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -41,6 +41,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -225,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="HeadFirst design Pattern "></span>
+            <span id="subtitle" data-typed-text="HeadFirst design Pattern"></span>
           
         </div>
 
@@ -236,7 +238,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -304,13 +306,14 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">HeadFirst design Pattern </h1>
+            <h1 id="seo-header">HeadFirst design Pattern</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="HeadFirst-design-Pattern"><a href="#HeadFirst-design-Pattern" class="headerlink" title="HeadFirst design Pattern"></a>HeadFirst design Pattern</h1><p>面向接口编程，上对下要有抽象中间层，上面自己也需要抽象顶层。</p>
-<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>继承会导致在添加新的行为的时候不够灵活，要们需要在每个子类中实现，如果在基类中实现那么即便是不需要这个行为的子类也会继承这个行为。</p>
+                <p>面向接口编程，上对下要有抽象中间层，上面自己也需要抽象顶层。</p>
+<h2 id="策略模式">策略模式</h2>
+<p>继承会导致在添加新的行为的时候不够灵活，要们需要在每个子类中实现，如果在基类中实现那么即便是不需要这个行为的子类也会继承这个行为。</p>
 <p>此时我们可以使用策略模式。</p>
 <p>实际上就是一种将继承改为组合的例子。</p>
 <p>将拥有行为者和行为分开，总共包括四个类，通过让行为者使用不同的行为就达成了行为改变的结果。</p>
@@ -320,7 +323,8 @@
 <li>具体拥有者：构造时指定其基类的抽象行为的具体行为，在调用抽象拥有者的行为的时候就可以调用对应的具体行为了</li>
 <li>具体行为：实现抽象行为的行为接口</li>
 </ol>
-<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>实际上就是广播一些消息，只不过，这里的广播是调用观察者的成员函数罢了。</p>
+<h2 id="观察者模式">观察者模式</h2>
+<p>实际上就是广播一些消息，只不过，这里的广播是调用观察者的成员函数罢了。</p>
 <p>主要就是两大接口：</p>
 <ol>
 <li>被观察者接口：提供一个notify和存储订阅了本被观察者的列表（要附带一个订阅和取消订阅的成员函数来操作），如果可以的话可以在更新数据的时候进行setchange，来判断时候需要真正的进行notify，来控制notify的更新频率。通过notify来调用订阅了本被观察者的所有观察者的update函数。</li>
@@ -332,52 +336,67 @@
 <li>拉模式：被观察者在调用update的时候，不提供任何获取的数据（也不能说任何，也可以提供一些都需要的数据），而是通过设一些getter来供给观察者来使用（而为了让观察者能够使用这些getter，在调用update的时候得要把自身传入其中），在update中观察者直接根据需求来使用getter来获取想要的数据。</li>
 </ol>
 <p>一般来说，推模式优于拉模式。</p>
-<h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><p>正如其名，装饰模式就是在一个类的外部进行装饰。装饰的方法是使这个类或者不止一个类和他(们)的装饰器有一个共同的基类。</p>
+<h2 id="装饰模式">装饰模式</h2>
+<p>正如其名，装饰模式就是在一个类的外部进行装饰。装饰的方法是使这个类或者不止一个类和他(们)的装饰器有一个共同的基类。</p>
 <p>装饰器其中会存储一个基类指针来表示其装饰的对象，并通过于这个基类指针来互动来重写基类的方法。</p>
 <p>通过这样的方式，可以对一个类进行多次的装饰，而使用者对于一个接收到的东西即便使一个装饰器但也可以把它当成一个普通的产品。</p>
 <p>装饰器的构造函数就是传入一个基类指针。</p>
 <p>官方的讲：可以动态地讲责任附加到对象上。想要扩展功能，装饰者提供有别于继承的另一种选择。</p>
-<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>将构造和new和具体构造函数解耦，将构造函数的部分与对其的基础的构造后续的部分包装进工厂中，使用者只需要面对工厂提供的构造接口，通过传入字符串或者其他的能够决定的参数来获取一个指向实际产品的基类指针，工厂会根据参数来选择对的子类的构造器。</p>
+<h2 id="工厂模式">工厂模式</h2>
+<p>将构造和new和具体构造函数解耦，将构造函数的部分与对其的基础的构造后续的部分包装进工厂中，使用者只需要面对工厂提供的构造接口，通过传入字符串或者其他的能够决定的参数来获取一个指向实际产品的基类指针，工厂会根据参数来选择对的子类的构造器。</p>
 <p>而上层也应该去依赖基类而非具体类，就解耦了。</p>
 <p>不同的使用者可以使用不同工厂。</p>
-<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>抽象工厂抽象了工厂，工厂基类定义了一系列的方法来提供一组产品，而子类工厂分别定义这些具体提供什么样的产品，而这可以使用工厂模式来实现。最终使用者将会接收一个抽象工厂的指针来使用对应的工厂来创造要使用的产品。</p>
+<h2 id="抽象工厂">抽象工厂</h2>
+<p>抽象工厂抽象了工厂，工厂基类定义了一系列的方法来提供一组产品，而子类工厂分别定义这些具体提供什么样的产品，而这可以使用工厂模式来实现。最终使用者将会接收一个抽象工厂的指针来使用对应的工厂来创造要使用的产品。</p>
 <p>实现上，所有的产品都各自有基类，工厂使用这些产品，使用者使用抽象工厂。</p>
 <p>通过传入的抽象工厂的不同，达成获得不同的一组产品。</p>
-<h2 id="单件模式"><a href="#单件模式" class="headerlink" title="单件模式"></a>单件模式</h2><p>全局变量在一开始定义的时候就会创建，而单例模式则是能将其延迟到使用的时候。并且仍然会保持它的单一性。</p>
+<h2 id="单件模式">单件模式</h2>
+<p>全局变量在一开始定义的时候就会创建，而单例模式则是能将其延迟到使用的时候。并且仍然会保持它的单一性。</p>
 <p>实现上就是将构造函数实现为private并提供另一个“构造函数”来提供实例，并且在类中还有一个自身的静态指针来存储这个唯一的单例，并且“构造函数”会根据当前时候创建了来决定是返回当前还是创建。</p>
 <p>如果多线程要使用单例模式，可能需要加上线程锁。</p>
 <p>不仅使用的时候需要使用atomic类的或者线程锁之类的东西，在创建的时候也需要注意多线程可能会创建多个“单例”。</p>
 <p>一种处理方式，加锁。第二种，在一开始static那个实际单例的时候就初始化。</p>
-<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><p>通过将请求分装成对象通过中介交与执行者，请求者就与执行者解耦了。</p>
+<h2 id="命令模式">命令模式</h2>
+<p>通过将请求分装成对象通过中介交与执行者，请求者就与执行者解耦了。</p>
 <p>通过这样，可以实现线程调度，日志记录，遥控器等等类似的要求。</p>
 <ol>
 <li>抽象请求：有一个执行接口，如果要支持撤销操作，还需有一个undo接口。</li>
 <li>具体请求：通过工厂或生成器或用户生成具体的请求，实现接口。</li>
 <li>执行者：通过调用抽象请求的执行或undo来处理请求。</li>
 </ol>
-<h2 id="适配器"><a href="#适配器" class="headerlink" title="适配器"></a>适配器</h2><p>对象的适配器：使适配器以要转变(适配)为的对象为基类，组合一个被适配者(传入被适配者)，重新实现基类的所有虚函数即完成了适配。</p>
+<h2 id="适配器">适配器</h2>
+<p>对象的适配器：使适配器以要转变(适配)为的对象为基类，组合一个被适配者(传入被适配者)，重新实现基类的所有虚函数即完成了适配。</p>
 <p>类的适配器：适配器多重继承适配者和被适配者的类，重写其中的函数即可。</p>
 <p>对象的适配器可以对适配者的所有子类都有效，而类适配器则完全不需要一个被适配者。</p>
-<h2 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h2><p>通过给一个外观对象组合其管理的对象简化管理的对象的接口。实际上就是封装。</p>
+<h2 id="外观模式">外观模式</h2>
+<p>通过给一个外观对象组合其管理的对象简化管理的对象的接口。实际上就是封装。</p>
 <p>通过这种方式让使用者和底层组件解耦。</p>
-<h2 id="模板方法"><a href="#模板方法" class="headerlink" title="模板方法"></a>模板方法</h2><p>将一类子类的某一个虚函数的共同的部分抽象出来到基类中，不同的部分再分别在子类中实现(纯虚函数)。对于有些子类有，有些子类没有的部分，可以使用钩子(虚函数)，钩子本身在基类中为空实现或者有默认实现，子类可以重写钩子来在特定的地方添加一些行为。</p>
+<h2 id="模板方法">模板方法</h2>
+<p>将一类子类的某一个虚函数的共同的部分抽象出来到基类中，不同的部分再分别在子类中实现(纯虚函数)。对于有些子类有，有些子类没有的部分，可以使用钩子(虚函数)，钩子本身在基类中为空实现或者有默认实现，子类可以重写钩子来在特定的地方添加一些行为。</p>
 <p>（泛化函数）</p>
-<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p>iterator</p>
-<h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><p>对于所有可能作为一颗树的结构都可以使用组合模式。</p>
+<h2 id="迭代器">迭代器</h2>
+<p>iterator</p>
+<h2 id="组合模式">组合模式</h2>
+<p>对于所有可能作为一颗树的结构都可以使用组合模式。</p>
 <p>组件基类：接口类，实现获取孩子，等接口</p>
 <p>让非叶子节点和叶子节点都实现基层这个组件基类，而对于整体这颗树进行处理的时候就可以遍历过程的所有节点都当作使组件基类来调用他的方法。而无需区分叶节点和非叶节点，即用一样的方法来处理整体和部分。</p>
-<p>对于叶节点来说实际上就是非叶节点但孩子&#x3D;0。</p>
+<p>对于叶节点来说实际上就是非叶节点但孩子=0。</p>
 <p>例如窗口就是一个很经典的可以使用组合模式的例子。</p>
-<h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><p>使一个对象的行为全部取决于其状态。即，对象持有一个状态基类指针。指向各种具体状态派生类。对象的行为也会因为实际持有的状态不同而去使用不同状态的虚函数，也就实现了不同状态有不同的行为。</p>
+<h2 id="状态模式">状态模式</h2>
+<p>使一个对象的行为全部取决于其状态。即，对象持有一个状态基类指针。指向各种具体状态派生类。对象的行为也会因为实际持有的状态不同而去使用不同状态的虚函数，也就实现了不同状态有不同的行为。</p>
 <p>而基类状态中可以实现一些非常基本的所有状态所同有的行为。</p>
 <p>而状态也应该持有对象的指针，来改变对象的状态，当然，对象自身也可以主动改变自身的状态。</p>
-<h3 id="策略模式是用户主观改变其使用的行为，而状态模式则是被动地使其随着状态的改变而改变行为。"><a href="#策略模式是用户主观改变其使用的行为，而状态模式则是被动地使其随着状态的改变而改变行为。" class="headerlink" title="策略模式是用户主观改变其使用的行为，而状态模式则是被动地使其随着状态的改变而改变行为。"></a>策略模式是用户主观改变其使用的行为，而状态模式则是被动地使其随着状态的改变而改变行为。</h3><h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>代理继承于被代理对象，实现被代理对象的所有功能，用于控制被代理对象的访问。</p>
+<h3 id="策略模式是用户主观改变其使用的行为，而状态模式则是被动地使其随着状态的改变而改变行为。">策略模式是用户主观改变其使用的行为，而状态模式则是被动地使其随着状态的改变而改变行为。</h3>
+<h2 id="代理模式">代理模式</h2>
+<p>代理继承于被代理对象，实现被代理对象的所有功能，用于控制被代理对象的访问。</p>
 <p>远程代理，控制访问远程的被代理对象。</p>
 <p>虚拟代理，用于帮助创建时间久的对象有一个替身。</p>
 <p>权限代理，用于控制访问者的权限。</p>
 <p>代理并没有给被代理对象添加新的行为，仅仅只是替代其作为被访问对象而已。</p>
-<h2 id="复合模式"><a href="#复合模式" class="headerlink" title="复合模式"></a>复合模式</h2><p>将各种模式一起使用。</p>
-<h3 id="Model-View-Controller模式"><a href="#Model-View-Controller模式" class="headerlink" title="Model-View-Controller模式"></a>Model-View-Controller模式</h3><p>视图：用户所看到的界面，所能操控的东西，所有用户的行为都将会发送给控制器来处理。界面的改变由模型和控制器来notify。其显示的信息来源与模型。</p>
+<h2 id="复合模式">复合模式</h2>
+<p>将各种模式一起使用。</p>
+<h3 id="Model-View-Controller模式">Model-View-Controller模式</h3>
+<p>视图：用户所看到的界面，所能操控的东西，所有用户的行为都将会发送给控制器来处理。界面的改变由模型和控制器来notify。其显示的信息来源与模型。</p>
 <p>控制器：将用户的操作转化为实际可以操控模型的行为，具体来控制到底如何控制模型。并且notify视图的改变。</p>
 <p>模型：真正的底层。实现所有的内容，并将信息发送给视图。</p>
 <p>三者都是解耦的，可以随意进行更换。</p>
@@ -398,7 +417,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>HeadFirst design Pattern </div>
+      <div>HeadFirst design Pattern</div>
       <div>https://lhish.github.io/project/HeadFirst design Pattern/</div>
     </div>
     <div class="license-meta">
@@ -443,9 +462,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/cmake/" title="cmake ">
+                      <a href="/%E7%BD%91%E7%BB%9C%E6%B5%81/" title="网络流">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">cmake </span>
+                        <span class="hidden-mobile">网络流</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -453,8 +472,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/gcc_std/" title="gcc_std ">
-                        <span class="hidden-mobile">gcc_std </span>
+                      <a href="/gcc_std/" title="gcc_std">
+                        <span class="hidden-mobile">gcc_std</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -546,7 +565,6 @@
 
   
   
-
 
 
 
@@ -766,49 +784,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

@@ -16,27 +16,27 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="字符串、向量和数组using通过using namespace::name；的方式来直接使用命名空间的名称。如cin就是using std::cin; 头文件不应该包含using，避免在引用头文件时对程序的内容进行误判。 stringstring定义在std命名空间中。 拷贝初始化：初始化中包含＝。 直接初始化：初始化中不包含&#x3D;。 getline(is,var) size()返回的类型是">
+    <meta name="description" content="using 通过using namespace::name；的方式来直接使用命名空间的名称。如cin就是using std::cin; 头文件不应该包含using，避免在引用头文件时对程序的内容进行误判。 string string定义在std命名空间中。 拷贝初始化：初始化中包含＝。 直接初始化：初始化中不包含&#x3D;。 getline(is,var) size()返回的类型是string::size">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串、向量和数组 ">
+<meta property="og:title" content="字符串、向量和数组">
 <meta property="og:url" content="https://lhish.github.io/project/hide/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="字符串、向量和数组using通过using namespace::name；的方式来直接使用命名空间的名称。如cin就是using std::cin; 头文件不应该包含using，避免在引用头文件时对程序的内容进行误判。 stringstring定义在std命名空间中。 拷贝初始化：初始化中包含＝。 直接初始化：初始化中不包含&#x3D;。 getline(is,var) size()返回的类型是">
+<meta property="og:description" content="using 通过using namespace::name；的方式来直接使用命名空间的名称。如cin就是using std::cin; 头文件不应该包含using，避免在引用头文件时对程序的内容进行误判。 string string定义在std命名空间中。 拷贝初始化：初始化中包含＝。 直接初始化：初始化中不包含&#x3D;。 getline(is,var) size()返回的类型是string::size">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%201.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%202.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%203.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%204.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.521Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.626Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.862Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled.png">
   
   
   
-  <title>字符串、向量和数组  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>字符串、向量和数组 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -47,6 +47,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -231,7 +233,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="字符串、向量和数组 "></span>
+            <span id="subtitle" data-typed-text="字符串、向量和数组"></span>
           
         </div>
 
@@ -242,7 +244,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -310,16 +312,18 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">字符串、向量和数组 </h1>
+            <h1 id="seo-header">字符串、向量和数组</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="字符串、向量和数组"><a href="#字符串、向量和数组" class="headerlink" title="字符串、向量和数组"></a>字符串、向量和数组</h1><h3 id="using"><a href="#using" class="headerlink" title="using"></a>using</h3><p>通过using namespace::name；的方式来直接使用命名空间的名称。如cin就是using std::cin;</p>
+                <h3 id="using">using</h3>
+<p>通过using namespace::name；的方式来直接使用命名空间的名称。如cin就是using std::cin;</p>
 <p>头文件不应该包含using，避免在引用头文件时对程序的内容进行误判。</p>
-<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>string定义在std命名空间中。</p>
+<h3 id="string">string</h3>
+<p>string定义在std命名空间中。</p>
 <p>拷贝初始化：初始化中包含＝。</p>
-<p>直接初始化：初始化中不包含&#x3D;。</p>
+<p>直接初始化：初始化中不包含=。</p>
 <p>getline(is,var)</p>
 <p>size()返回的类型是string::size_type。且返回值是一个无符号整数。</p>
 <p>当进行相加时，加号左右必须有一个为string类型（不是字符串字面值，字面值与string不是同一种类型）(从左到右)。</p>
@@ -328,10 +332,11 @@
 <p>for( auto i:序列)来遍历序列，如python中for item in list。</p>
 <p>使用auto &amp;i来用引用来改变序列中的值。</p>
 <p>当使用&amp;&amp;时，若第一个条件为假，就不再继续判断下去。</p>
-<h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p>模板通过提供的信息来实例化。</p>
+<h3 id="vector">vector</h3>
+<p>模板通过提供的信息来实例化。</p>
 <p>引用不是对象，不能作为模板的元素。</p>
-<p>在c++11中，$vector&lt;vector<int>&gt;$无需再写成$vector&lt;vector<int>\ \ &gt;$。</p>
-<p>可以通过&#x3D;或者()来对vector进行复制赋值。vec2(vec1)</p>
+<p>在c++11中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mi>e</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi><mo>&lt;</mo><mi>v</mi><mi>e</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi><mo>&lt;</mo><mi>i</mi><mi>n</mi><mi>t</mi><mo>&gt;</mo><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">vector&lt;vector&lt;int&gt;&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">ec</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">or</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">ec</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">or</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6986em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">in</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;&gt;</span></span></span></span>无需再写成<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mi>e</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi><mo>&lt;</mo><mi>v</mi><mi>e</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi><mo>&lt;</mo><mi>i</mi><mi>n</mi><mi>t</mi><mo>&gt;</mo><mtext>  </mtext><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">vector&lt;vector&lt;int&gt;\ \ &gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">ec</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">or</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">ec</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">or</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6986em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">in</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace"> </span><span class="mspace"> </span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span></span></span></span>。</p>
+<p>可以通过=或者()来对vector进行复制赋值。vec2(vec1)</p>
 <p>对vector进行列表初始化vector&lt;…&gt; name{ele1,ele2,…}</p>
 <p>vec(个数,ele(可省略))，当省略时会默认初始化。</p>
 <p>()与{}的初始化方式是不同的，当且仅当提供的参数不能用来初始化，会考虑其他初始化的方式。</p>
@@ -345,7 +350,8 @@
 <blockquote>
 <p>确保下标合法的一种有效手段就是尽可能使用范围for语句。</p>
 </blockquote>
-<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p><em><strong>begin()<em><strong>返回指向第一个元素的</strong></em>迭代器</strong></em></p>
+<h3 id="迭代器">迭代器</h3>
+<p><em><strong>begin()<em><strong>返回指向第一个元素的</strong></em>迭代器</strong></em></p>
 <p><em><strong>end()<em><strong>返回指向最后一个元素后面一个位置的</strong></em>迭代器</strong></em>（<em><strong>尾后迭代器</strong></em>）</p>
 <p>当容器为空，<em><strong>begin()<em><strong>返回的也是</strong></em>尾后迭代器</strong></em>。</p>
 <p>由于很多的<em><strong>标准库</strong></em>都不支持&lt;或者下标，因此最好多用≠与迭代器。</p>
@@ -353,16 +359,17 @@
 <p>可以通过<em><strong>cbegin()<em><strong>和</strong></em>cend()<em><strong>来固定获取</strong></em>常量迭代器</strong></em>。</p>
 <p><em><strong>(<em>t).num</em></strong>和</em><strong>t→num</strong>*是完全一致的，没有区别。</p>
 <p>两个<em><strong>迭代器</strong></em>相减所得的类型是<em><strong>difference_type</strong></em>，是<em><strong>带符号整数</strong></em>。</p>
-<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p><em><strong>数组</strong></em>在定义时的大小必须为<em><strong>常量表达式</strong></em>。</p>
+<h3 id="数组">数组</h3>
+<p><em><strong>数组</strong></em>在定义时的大小必须为<em><strong>常量表达式</strong></em>。</p>
 <p>不能使用<em><strong>auto</strong></em>来推断。</p>
 <p>*<em><strong>p[10]   一个存放指针的数组</strong></em></p>
 <p><em><strong>&amp;p[10]   不存在</strong></em></p>
-<p>***(<em>p)[10]      一个指向数组的指针</em>**</p>
+<p>*<strong>(<em>p)[10]      一个指向数组的指针</em></strong></p>
 <p><em><strong>(&amp;p)[10]     一个对数组的引用</strong></em></p>
 <p><em><strong>数组</strong></em>从内向外看类型。</p>
 <p><img src="/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p><em><strong>数组</strong></em>的下标最好使用<em><strong>size_t</strong></em>类型（一种足够大的类型），被定义在<em><strong>cstddef</strong></em>。</p>
-<p>**&#x3D;{}<strong>与</strong>&#x3D;{0}**等价。</p>
+<p>**={}<strong>与</strong>={0}**等价。</p>
 <p><img src="/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>当使用<em><strong>auto</strong></em>来推断一个以<em><strong>数组</strong></em>来赋值的<em><strong>数组</strong></em>时，会判断出一个<em><strong>指针</strong></em>，指向首元素。</p>
 <p>而<em><strong>decltype</strong></em>就没有这个问题。</p>
@@ -370,13 +377,15 @@
 <p>为了防止误获取地址，可以使用<em><strong>begin(arr)<em><strong>和</strong></em>end(arr)<em><strong>两个</strong></em>标准库</strong></em>函数来获取<em><strong>头</strong></em>与<em><strong>尾后指针</strong></em>。</p>
 <p>但这两个<em><strong>指针</strong></em>相减的类型是<em><strong>ptrdiff_t</strong></em>类型，是<em><strong>带符号整数</strong></em>。</p>
 <p>当以<em><strong>数组</strong></em>中的某个元素的地址作为指针时，也可以将它当做<em><strong>数组</strong></em>来使用，只不过<em><strong>下标</strong></em>就是从当前位置作加减了。</p>
-<h3 id="C风格字符串"><a href="#C风格字符串" class="headerlink" title="C风格字符串"></a>C风格字符串</h3><p>以<em><strong>’\0’</strong></em>(<em><strong>空字符</strong></em>)作为结尾的字符串。</p>
+<h3 id="C风格字符串">C风格字符串</h3>
+<p>以***’\0’***(<em><strong>空字符</strong></em>)作为结尾的字符串。</p>
 <p><img src="/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p><em><strong>C风格字符串</strong></em>的<em><strong>函数</strong></em>必须传入<em><strong>C风格字符串</strong></em>。</p>
-<p>将<em><strong>string</strong></em>转为<em><strong>C风格字符串</strong></em>，<em><strong>str.c_str()<em><strong>，返回值为一个</strong></em>常量字符指针</strong></em>。</p>
+<p>将<em><strong>string</strong></em>转为<em><strong>C风格字符串</strong></em>，<em><strong>str.c_str()</strong></em>，返回值为一个<em><strong>常量字符指针</strong></em>。</p>
 <p>但在使用后最好重新拷贝一份结果。</p>
 <p>可以用<em><strong>数组</strong></em>来初始化<em><strong>vector</strong></em>，<em><strong>vec</strong></em>(<em><strong>头指针</strong></em>，<em><strong>尾后指针</strong></em>)，可以只是<em><strong>数组</strong></em>的一部分。</p>
-<h3 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h3><p>因为<em><strong>引用</strong></em>也可以<em><strong>引用数组</strong></em>，因此<em><strong>多维数组</strong></em>也可以通过<em><strong>range for</strong></em>来遍历，用<em><strong>auto</strong></em>来写对<em><strong>数组引用</strong></em>的类型。但是除了最内层的<em><strong>循环</strong></em>以外，所有的<em><strong>循环</strong></em>都应该是<em><strong>引用</strong></em>，不然会将其判断为<em><strong>指针</strong></em>而非<em><strong>数组</strong></em>。</p>
+<h3 id="多维数组">多维数组</h3>
+<p>因为<em><strong>引用</strong></em>也可以<em><strong>引用数组</strong></em>，因此<em><strong>多维数组</strong></em>也可以通过<em><strong>range for</strong></em>来遍历，用<em><strong>auto</strong></em>来写对<em><strong>数组引用</strong></em>的类型。但是除了最内层的<em><strong>循环</strong></em>以外，所有的<em><strong>循环</strong></em>都应该是<em><strong>引用</strong></em>，不然会将其判断为<em><strong>指针</strong></em>而非<em><strong>数组</strong></em>。</p>
 <p>虽然可以把<em><strong>多维数组</strong></em>看做一个很长的换行的<em><strong>数组</strong></em>，但是，当我们说它的<em><strong>声明符</strong></em>的时候，是一个指向<em><strong>数组</strong></em>的<em><strong>高维指针</strong></em>，而非指向<em><strong>首元素</strong></em>的<em><strong>一级指针</strong></em>，虽然它们的<em><strong>地址</strong></em>完全相同。当对于这个<em><strong>声明符</strong></em>＋1的时候，它并非指向第二个<em><strong>元素</strong></em>，而是指向第二行<em><strong>数组</strong></em>。</p>
 <p>当使用<em><strong>begin()<em><strong>或</strong></em>end()<em><strong>时，获取的得到的也并非是</strong></em>指向变量的指针</strong></em>，而是<em><strong>指向数组的指针</strong></em>。</p>
 <!-- flag of hidden posts -->
@@ -396,7 +405,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>字符串、向量和数组 </div>
+      <div>字符串、向量和数组</div>
       <div>https://lhish.github.io/project/hide/字符串、向量和数组/</div>
     </div>
     <div class="license-meta">
@@ -532,7 +541,6 @@
 
   
   
-
 
 
 
@@ -752,49 +760,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

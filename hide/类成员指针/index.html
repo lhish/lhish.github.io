@@ -16,21 +16,21 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="类成员指针类成员指针就是指向类成员的指针。 类成员指针即便是在赋值后也并不指向一个特定对象的成员，它是一个很宽泛的代表，相当于类成员有了一个别名一样。使用时需要在*前加上作用域符，但是大部分情况都是私有的，所以一般会定义一个函数返回类成员指针。而如果是成员函数指针，那么得要加括号，因为调用运算符的优先度更高，并且类型成员函数指针和类型成员函数对象不像不同函数能互相转换。 此外，假如说a是一个类成员">
+    <meta name="description" content="类成员指针就是指向类成员的指针。 类成员指针即便是在赋值后也并不指向一个特定对象的成员，它是一个很宽泛的代表，相当于类成员有了一个别名一样。使用时需要在*前加上作用域符，但是大部分情况都是私有的，所以一般会定义一个函数返回类成员指针。而如果是成员函数指针，那么得要加括号，因为调用运算符的优先度更高，并且类型成员函数指针和类型成员函数对象不像不同函数能互相转换。 此外，假如说a是一个类成员指针，调用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类成员指针 ">
+<meta property="og:title" content="类成员指针">
 <meta property="og:url" content="https://lhish.github.io/project/hide/%E7%B1%BB%E6%88%90%E5%91%98%E6%8C%87%E9%92%88/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="类成员指针类成员指针就是指向类成员的指针。 类成员指针即便是在赋值后也并不指向一个特定对象的成员，它是一个很宽泛的代表，相当于类成员有了一个别名一样。使用时需要在*前加上作用域符，但是大部分情况都是私有的，所以一般会定义一个函数返回类成员指针。而如果是成员函数指针，那么得要加括号，因为调用运算符的优先度更高，并且类型成员函数指针和类型成员函数对象不像不同函数能互相转换。 此外，假如说a是一个类成员">
+<meta property="og:description" content="类成员指针就是指向类成员的指针。 类成员指针即便是在赋值后也并不指向一个特定对象的成员，它是一个很宽泛的代表，相当于类成员有了一个别名一样。使用时需要在*前加上作用域符，但是大部分情况都是私有的，所以一般会定义一个函数返回类成员指针。而如果是成员函数指针，那么得要加括号，因为调用运算符的优先度更高，并且类型成员函数指针和类型成员函数对象不像不同函数能互相转换。 此外，假如说a是一个类成员指针，调用">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-29T18:04:57.525Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.626Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.154Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.858Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>类成员指针  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>类成员指针 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -41,6 +41,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -225,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="类成员指针 "></span>
+            <span id="subtitle" data-typed-text="类成员指针"></span>
           
         </div>
 
@@ -236,7 +238,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -248,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          477 字
+          471 字
         
       </span>
     
@@ -304,17 +306,18 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">类成员指针 </h1>
+            <h1 id="seo-header">类成员指针</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="类成员指针"><a href="#类成员指针" class="headerlink" title="类成员指针"></a>类成员指针</h1><p>类成员指针就是指向类成员的指针。</p>
+                <p>类成员指针就是指向类成员的指针。</p>
 <p>类成员指针即便是在赋值后也并不指向一个特定对象的成员，它是一个很宽泛的代表，相当于类成员有了一个别名一样。使用时需要在*前加上作用域符，但是大部分情况都是私有的，所以一般会定义一个函数返回类成员指针。而如果是成员函数指针，那么得要加括号，因为调用运算符的优先度更高，并且类型成员函数指针和类型成员函数对象不像不同函数能互相转换。</p>
-<p>此外，假如说a是一个类成员指针，调用的时候就是b.a&#x2F;b→a，这个时候它才真正有了实际的含义。</p>
+<p>此外，假如说a是一个类成员指针，调用的时候就是b.a/b→a，这个时候它才真正有了实际的含义。</p>
 <p>这类型写起来很麻烦，所以最好还是使用auto或者using来解决。</p>
 <p>有的时候可以配合enum实现函数表。</p>
-<h3 id="可调用对象"><a href="#可调用对象" class="headerlink" title="可调用对象"></a>可调用对象</h3><p>类成员指针不是一个可调用对象，因此泛型算法不能使用。</p>
+<h3 id="可调用对象">可调用对象</h3>
+<p>类成员指针不是一个可调用对象，因此泛型算法不能使用。</p>
 <p>但我们只需要将类成员的地址绑到一个function类型上即可，并且将类型本身显式化，也就是this要显式化作为形参。它就变为一个可调用对象了，隐式传入this作为参数。但是至于是使用.还是→来调用根据形参来判断。</p>
 <p>为了避免.和→的问题，可以使用mem_fn(成员指针地址)函数来生成一个function对象，类型直接auto就可以了，这就对于任何无论是指针还是对象都可用了。</p>
 <p>除了function，也可以使用bind(成员函数指针地址，_1)来将其变为一个可调用对象，实际上就是强制将this本身传进去。可以达到与mem_fn一样的效果。</p>
@@ -335,7 +338,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>类成员指针 </div>
+      <div>类成员指针</div>
       <div>https://lhish.github.io/project/hide/类成员指针/</div>
     </div>
     <div class="license-meta">
@@ -471,7 +474,6 @@
 
   
   
-
 
 
 
@@ -691,49 +693,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

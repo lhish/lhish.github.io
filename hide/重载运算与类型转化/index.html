@@ -16,26 +16,26 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重载运算与类型转化重载运算符的名称是operator+运算符。 重载运算符的参数个数与其作用的运算对象数量一样多。除了operator()之外其他的重载运算符都不允许有默认参数。 当一个重载运算符是成员函数时，this会被绑定到第一个参数上，因此成员函数的重载运算符会少一个参数。 不能对内置类型进行重载，但是若是同时对内置类型和非内置类型进行操作，这是可行的。 +，-，*，&amp;四种操作同时是">
+    <meta name="description" content="重载运算符的名称是operator+运算符。 重载运算符的参数个数与其作用的运算对象数量一样多。除了operator()之外其他的重载运算符都不允许有默认参数。 当一个重载运算符是成员函数时，this会被绑定到第一个参数上，因此成员函数的重载运算符会少一个参数。 不能对内置类型进行重载，但是若是同时对内置类型和非内置类型进行操作，这是可行的。 +，-，*，&amp;四种操作同时是一元和二元。  +">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重载运算与类型转化 ">
+<meta property="og:title" content="重载运算与类型转化">
 <meta property="og:url" content="https://lhish.github.io/project/hide/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="重载运算与类型转化重载运算符的名称是operator+运算符。 重载运算符的参数个数与其作用的运算对象数量一样多。除了operator()之外其他的重载运算符都不允许有默认参数。 当一个重载运算符是成员函数时，this会被绑定到第一个参数上，因此成员函数的重载运算符会少一个参数。 不能对内置类型进行重载，但是若是同时对内置类型和非内置类型进行操作，这是可行的。 +，-，*，&amp;四种操作同时是">
+<meta property="og:description" content="重载运算符的名称是operator+运算符。 重载运算符的参数个数与其作用的运算对象数量一样多。除了operator()之外其他的重载运算符都不允许有默认参数。 当一个重载运算符是成员函数时，this会被绑定到第一个参数上，因此成员函数的重载运算符会少一个参数。 不能对内置类型进行重载，但是若是同时对内置类型和非内置类型进行操作，这是可行的。 +，-，*，&amp;四种操作同时是一元和二元。  +">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96Untitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96Untitled%201.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96Untitled%202.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96Untitled%203.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.525Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.630Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.866Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96Untitled.png">
   
   
   
-  <title>重载运算与类型转化  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>重载运算与类型转化 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -46,6 +46,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -230,7 +232,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="重载运算与类型转化 "></span>
+            <span id="subtitle" data-typed-text="重载运算与类型转化"></span>
           
         </div>
 
@@ -241,7 +243,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -309,12 +311,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">重载运算与类型转化 </h1>
+            <h1 id="seo-header">重载运算与类型转化</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="重载运算与类型转化"><a href="#重载运算与类型转化" class="headerlink" title="重载运算与类型转化"></a>重载运算与类型转化</h1><p>重载运算符的名称是operator+运算符。</p>
+                <p>重载运算符的名称是operator+运算符。</p>
 <p>重载运算符的参数个数与其作用的运算对象数量一样多。除了operator()之外其他的重载运算符都不允许有默认参数。</p>
 <p>当一个重载运算符是成员函数时，this会被绑定到第一个参数上，因此成员函数的重载运算符会少一个参数。</p>
 <p>不能对内置类型进行重载，但是若是同时对内置类型和非内置类型进行操作，这是可行的。</p>
@@ -328,14 +330,18 @@
 <p>这些重载的运算符的优先级与结合律会和内置运算符一致。</p>
 <p><img src="/image/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>虽然可以直接使用运算符来调用，但也可以像函数调用一样调用。要注意的是，函数的名称是有operator的，且成员函数要用点运算符来调用。</p>
-<h3 id="不重载的运算符"><a href="#不重载的运算符" class="headerlink" title="不重载的运算符"></a>不重载的运算符</h3><p>一般情况下，不应该重载逗号，取地址，逻辑与和逻辑或运算符。逗号和取地址c++已经定义了其作用于类的特殊含义。逻辑与和逻辑或无法保留求值顺序和短路求值属性。</p>
+<h3 id="不重载的运算符">不重载的运算符</h3>
+<p>一般情况下，不应该重载逗号，取地址，逻辑与和逻辑或运算符。逗号和取地址c++已经定义了其作用于类的特殊含义。逻辑与和逻辑或无法保留求值顺序和短路求值属性。</p>
 <p>算术运算符返回右值，赋值运算符返回左值。</p>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>一般只有操作的含义对于使用者非常明了的时候才使用重载运算符。</p>
-<h3 id="成员函数与非成员函数"><a href="#成员函数与非成员函数" class="headerlink" title="成员函数与非成员函数"></a>成员函数与非成员函数</h3><p>一般来说，</p>
-<p>成员函数：&#x3D;,[],(),→,复合赋值,递增,递减,解引用。</p>
+<h3 id="使用场景">使用场景</h3>
+<p>一般只有操作的含义对于使用者非常明了的时候才使用重载运算符。</p>
+<h3 id="成员函数与非成员函数">成员函数与非成员函数</h3>
+<p>一般来说，</p>
+<p>成员函数：=,[],(),→,复合赋值,递增,递减,解引用。</p>
 <p>非成员函数：算术，相关性，关系，位运算符。</p>
 <p>具有对称性，也就是即便左右变量互换也要成立，的函数用非成员函数。</p>
-<h3 id="输出运算符"><a href="#输出运算符" class="headerlink" title="输出运算符&lt;&lt;"></a>输出运算符&lt;&lt;</h3><p>非成员函数，由于首参不是类对象。一般要被声明为友元。</p>
+<h3 id="输出运算符">输出运算符&lt;&lt;</h3>
+<p>非成员函数，由于首参不是类对象。一般要被声明为友元。</p>
 <p>形参：</p>
 <ol>
 <li>ostream引用</li>
@@ -343,7 +349,8 @@
 </ol>
 <p>返回值：ostream引用</p>
 <p>输出运算符不应该控制格式，要给予用户自由度，如不应该输出换行。</p>
-<h3 id="输入运算符"><a href="#输入运算符" class="headerlink" title="输入运算符&gt;&gt;"></a>输入运算符&gt;&gt;</h3><p>非成员函数，由于首参不是类对象。一般要被声明为友元。</p>
+<h3 id="输入运算符">输入运算符&gt;&gt;</h3>
+<p>非成员函数，由于首参不是类对象。一般要被声明为友元。</p>
 <p>形参：</p>
 <ol>
 <li>istream引用</li>
@@ -353,23 +360,28 @@
 <p>相较于输出运算符不需要检查错误，输入需要检查是否发生IO错误，当发生错误时需要将读入对象设为默认状态，保证其正确性，因为在发生错误时可能已经读入了一部分了。</p>
 <p>一般在所有数据读入完成后，数据使用之前检查istream来判断是否发生IO错误，因为我们并不在意哪一个出了问题。</p>
 <p>即便IO没有发生错误，但读入格式或者其他出错了也可以通过标识istream的状态来标示错误。</p>
-<h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><p>非成员函数，允许对左侧和右侧对象进行转换。</p>
+<h3 id="算术运算符">算术运算符</h3>
+<p>非成员函数，允许对左侧和右侧对象进行转换。</p>
 <p>形参：常量引用</p>
 <p>返回值：局部变量的副本</p>
 <p>一般使用复合赋值运算符来实现算术运算符，而非相反。</p>
-<h3 id="关系运算符（一般要const）"><a href="#关系运算符（一般要const）" class="headerlink" title="关系运算符（一般要const）"></a>关系运算符（一般要const）</h3><p>非成员函数，允许对左侧和右侧对象进行转换。</p>
+<h3 id="关系运算符（一般要const）">关系运算符（一般要const）</h3>
+<p>非成员函数，允许对左侧和右侧对象进行转换。</p>
 <p>形参：常量引用</p>
 <p>返回值：bool类型</p>
 <p>相等运算符应该具有传递性。在实现上，可以return一个判断等于的&amp;&amp;长表达式。</p>
-<p>一般来说实现小于运算符，其他调用即可。需要保证当两个对象不相等时一个应该小于另一个，错误的情况比如多个数据成员而小于运算符只比较其中一两个，而&#x3D;&#x3D;运算符保证全部成员相等。</p>
-<p>当且仅当有唯一一种逻辑可靠的小于定义且小于运算符与&#x3D;&#x3D;运算符相符时定义小于运算符。</p>
-<h3 id="赋值运算符-（复合赋值运算符）"><a href="#赋值运算符-（复合赋值运算符）" class="headerlink" title="赋值运算符&#x3D;（复合赋值运算符）"></a>赋值运算符&#x3D;（复合赋值运算符）</h3><p>成员函数（复合赋值运算符有时候会被定义为非成员函数）。除去移动与拷贝赋值运算符，还有其他的赋值运算符。如参数时initializer_list的列表赋值。</p>
+<p>一般来说实现小于运算符，其他调用即可。需要保证当两个对象不相等时一个应该小于另一个，错误的情况比如多个数据成员而小于运算符只比较其中一两个，而==运算符保证全部成员相等。</p>
+<p>当且仅当有唯一一种逻辑可靠的小于定义且小于运算符与==运算符相符时定义小于运算符。</p>
+<h3 id="赋值运算符-（复合赋值运算符）">赋值运算符=（复合赋值运算符）</h3>
+<p>成员函数（复合赋值运算符有时候会被定义为非成员函数）。除去移动与拷贝赋值运算符，还有其他的赋值运算符。如参数时initializer_list的列表赋值。</p>
 <p>形参：常量引用</p>
 <p>返回值：自身的引用</p>
-<h3 id="下标运算符"><a href="#下标运算符" class="headerlink" title="下标运算符[]"></a>下标运算符[]</h3><p>成员函数。一般会定义一个常量版本和一个非常量版本。</p>
+<h3 id="下标运算符">下标运算符[]</h3>
+<p>成员函数。一般会定义一个常量版本和一个非常量版本。</p>
 <p>形参：std::size_t(int)</p>
 <p>返回值：(常量)引用</p>
-<h3 id="递增递减运算符"><a href="#递增递减运算符" class="headerlink" title="递增递减运算符"></a>递增递减运算符</h3><p>成员函数（虽然允许是非成员函数）。</p>
+<h3 id="递增递减运算符">递增递减运算符</h3>
+<p>成员函数（虽然允许是非成员函数）。</p>
 <p>前置</p>
 <ul>
 <li>形参：无</li>
@@ -380,7 +392,8 @@
 <li>形参：<strong>一个无用的int</strong>，用于区分前置和后置，由于无需用到，因此一般不用命名。</li>
 <li>返回值：自身改变前的值</li>
 </ul>
-<h3 id="成员访问运算符（const）"><a href="#成员访问运算符（const）" class="headerlink" title="成员访问运算符（const）"></a>成员访问运算符（const）</h3><p>成员函数。</p>
+<h3 id="成员访问运算符（const）">成员访问运算符（const）</h3>
+<p>成员函数。</p>
 <p>解引用（允许是非成员函数）</p>
 <ul>
 <li>形参：无</li>
@@ -392,40 +405,47 @@
 <li>返回值：指针</li>
 </ul>
 <p>箭头运算符不管怎么重载，只能改变其是从哪个对象中获取成员，但其获取成员这个本质属性不会变。</p>
-<h3 id="函数调用运算符"><a href="#函数调用运算符" class="headerlink" title="函数调用运算符()"></a>函数调用运算符()</h3><p>成员函数。</p>
+<h3 id="函数调用运算符">函数调用运算符()</h3>
+<p>成员函数。</p>
 <p>形参：任意</p>
 <p>返回值：任意</p>
 <p>当一个类定义了调用运算符，那么类的成员被称为函数对象。在定义对象后可以像函数一样调用。</p>
 <p>其与函数的最大区别就在于其能存储变量。在初始化时或是后续修改能定制它的行为。</p>
 <p>一般作为泛型算法的实参对象。如</p>
 <p><img src="/image/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<h3 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h3><p>lambda生成了一个未命名(内部命名)的类，这个类只有一个函数，即调用运算符重载。</p>
+<h3 id="lambda">lambda</h3>
+<p>lambda生成了一个未命名(内部命名)的类，这个类只有一个函数，即调用运算符重载。</p>
 <p>而对于捕获参数，如果有值传递，就相当于这个类有一个构造函数，这个构造函数的参数就是值传递的参数，初始化其中的局部变量，即便。若是引用传递，那么程序会保证lambda使用时其存在性。</p>
-<p>其不会含有默认构造函数、赋值运算符及折构函数。但拷贝&#x2F;移动构造函数不一定。</p>
-<h3 id="标准库中的函数对象"><a href="#标准库中的函数对象" class="headerlink" title="标准库中的函数对象"></a>标准库中的函数对象</h3><p>在<functional>中定义了一些重载了调用运算符的函数对象。</p>
+<p>其不会含有默认构造函数、赋值运算符及折构函数。但拷贝/移动构造函数不一定。</p>
+<h3 id="标准库中的函数对象">标准库中的函数对象</h3>
+<p>在<functional>中定义了一些重载了调用运算符的函数对象。</p>
 <p><img src="/image/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>虽然比较指针是不合法的，但是这些函数对象会对指针所指向的对象进行操作。</p>
-<h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><p>可调用对象包括：函数、函数指针、lambda、bind、重载了函数调用运算符的类</p>
+<h3 id="function">function</h3>
+<p>可调用对象包括：函数、函数指针、lambda、bind、重载了函数调用运算符的类</p>
 <p>这些对象的类型不一而定，所以即便他们享有着同样的调用形式（即形参相同，返回值相同），他们的类型名也会不同。因此我们不能把它们放在同一个容器中，并通过轻松的方式进行选取调用，如一个计算器中几种运算分别使用了不同的可调用对象实现，但却希望放在同一个函数表中。</p>
 <p>在<functional>中function被定义。</p>
 <p><img src="/image/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96Untitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>function的类型就是调用形式(return type(param_list type) )，可以使用直接初始化也可以拷贝赋值。</p>
 <p>当存在重载函数时，虽然其调用形式是不同的，但通过函数名是判断不出来的，因此可以通过函数指针的方式来间接特指。</p>
-<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>一种是通过隐式调用构造函数的方式进行类型转换。</p>
+<h3 id="类型转换">类型转换</h3>
+<p>一种是通过隐式调用构造函数的方式进行类型转换。</p>
 <p>另一种是通过定义类型转换运算符，是将自定义类型转换为另一种类型，与构造函数的转换正好相反。</p>
 <p>形式：operator type() const;</p>
 <p>这里的type只要是能返回的类型就是可行的。</p>
 <p>除非两个类型之间存在明确的一一对应关系，不然最好不要定义类型转换，而是通过非成员函数从中提取信息。</p>
 <p>另外，如果定义了一些类型转换，其可能会在不知情的情况下隐式发生，发生意想不到的情况。</p>
 <p>因此可以通过explicit限定其必须显式执行。但若是该表达式用作条件判断，其必然会被隐式转换为bool而不管是否explicit。也正是因此，由于bool转换一般用于条件中，因此一般会explicit。</p>
-<h3 id="二义性"><a href="#二义性" class="headerlink" title="二义性"></a>二义性</h3><ol>
+<h3 id="二义性">二义性</h3>
+<ol>
 <li>若是在两个类中都定义了互相的类型转换运算符和转换构造函数，那么当从一个类转为另一个类的时候既可以调用A的类型转换运算符也可以使用B的转换构造函数，产生了二义性。</li>
 <li>当类定义了多个转换规则（无论是类型转换运算符还是转换构造函数），若是其转得的类型是平级的，例如double和int，那么若是其再次需要转换为另一种类型，例如说long，则会产生二义性，不知道该先转换为哪种类型。</li>
 </ol>
 <p>类型转换设计很麻烦。为了避免上述的二义性，要</p>
 <ol>
 <li>不要令两个类执行相同的类型转换</li>
-<li>若是定义了目标是内置算术类型的类型转换<ol>
+<li>若是定义了目标是内置算术类型的类型转换
+<ol>
 <li>不要定义接受算术类型的类型转换，让这个算数类型转换为本类型再操作</li>
 <li>不要定义多种到算术运算符的类型转换，让标准类型转换来执行这个过程</li>
 </ol>
@@ -434,7 +454,8 @@
 <p>当两个重载函数的参数类型都定义了某个类型到其的转换，那么也会发生二义性。可以通过显式转换来消除二义性。但这也表示了程序的设计不足。</p>
 <p>但即便其定义的转换类型是不同的，double和int，也会由于存在标准类型转换而使得两个重载都是可以的，产生二义性。</p>
 <p>由于重载运算符也是重载函数，其在匹配时会和标准的运算符或者非成员函数可能会产生二义性。如A定义了与int的双向类型转换，但是，同样重载了运算符+，那么此时使A+1就会发生二义性，不知道该调用int+int还是A+A。</p>
-<h3 id="自定义运算符重载"><a href="#自定义运算符重载" class="headerlink" title="自定义运算符重载"></a>自定义运算符重载</h3><p>格式：$return_type\ operator””\ operator_name(){}$</p>
+<h3 id="自定义运算符重载">自定义运算符重载</h3>
+<p>格式：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mi>e</mi><mi>t</mi><mi>u</mi><mi>r</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>y</mi><mi>p</mi><mi>e</mi><mtext> </mtext><mi>o</mi><mi>p</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>o</mi><mi>r</mi><mi mathvariant="normal">&quot;</mi><mi mathvariant="normal">&quot;</mi><mtext> </mtext><mi>o</mi><mi>p</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>o</mi><mi>r</mi><mi mathvariant="normal">_</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo stretchy="false">(</mo><mo stretchy="false">)</mo><mo stretchy="false">{</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">return\_type\ operator&quot;&quot;\ operator\_name()\{\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathnormal">re</span><span class="mord mathnormal">t</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">n</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span><span class="mspace"> </span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">or</span><span class="mord">&quot;&quot;</span><span class="mspace"> </span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">or</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">nam</span><span class="mord mathnormal">e</span><span class="mopen">(</span><span class="mclose">)</span><span class="mopen">{</span><span class="mclose">}</span></span></span></span></p>
 <!-- flag of hidden posts -->
                 
               </div>
@@ -452,7 +473,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>重载运算与类型转化 </div>
+      <div>重载运算与类型转化</div>
       <div>https://lhish.github.io/project/hide/重载运算与类型转化/</div>
     </div>
     <div class="license-meta">
@@ -588,7 +609,6 @@
 
   
   
-
 
 
 
@@ -808,49 +828,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

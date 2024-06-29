@@ -16,24 +16,24 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="modern 对齐：一个结构体中的所有元素所占的空间大小都会按其中最大的类型所占的空间大小，不到的部分空字节填充。  alignof()获取某一个类型的对齐大小  alignas(int)让某一个类型的大小对齐int大小，写在变量名前  static_assert(bool,string&#x2F;c_str)  编译时assert  变量模板  就是将一个变量的类型变为模板  1234templ">
+    <meta name="description" content="对齐：一个结构体中的所有元素所占的空间大小都会按其中最大的类型所占的空间大小，不到的部分空字节填充。 alignof()获取某一个类型的对齐大小 alignas(int)让某一个类型的大小对齐int大小，写在变量名前   static_assert(bool,string&#x2F;c_str) 编译时assert   变量模板 就是将一个变量的类型变为模板  1234template&lt;typen">
 <meta property="og:type" content="article">
-<meta property="og:title" content="modern ">
+<meta property="og:title" content="modern">
 <meta property="og:url" content="https://lhish.github.io/project/hide/modern/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="modern 对齐：一个结构体中的所有元素所占的空间大小都会按其中最大的类型所占的空间大小，不到的部分空字节填充。  alignof()获取某一个类型的对齐大小  alignas(int)让某一个类型的大小对齐int大小，写在变量名前  static_assert(bool,string&#x2F;c_str)  编译时assert  变量模板  就是将一个变量的类型变为模板  1234templ">
+<meta property="og:description" content="对齐：一个结构体中的所有元素所占的空间大小都会按其中最大的类型所占的空间大小，不到的部分空字节填充。 alignof()获取某一个类型的对齐大小 alignas(int)让某一个类型的大小对齐int大小，写在变量名前   static_assert(bool,string&#x2F;c_str) 编译时assert   变量模板 就是将一个变量的类型变为模板  1234template&lt;typen">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/modernUntitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/modernUntitled%201.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.521Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.618Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.850Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/modernUntitled.png">
   
   
   
-  <title>modern  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>modern - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -44,6 +44,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -228,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="modern "></span>
+            <span id="subtitle" data-typed-text="modern"></span>
           
         </div>
 
@@ -239,7 +241,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -307,114 +309,153 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">modern </h1>
+            <h1 id="seo-header">modern</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="modern"><a href="#modern" class="headerlink" title="modern"></a>modern</h1><ol>
-<li><p>对齐：一个结构体中的所有元素所占的空间大小都会按其中最大的类型所占的空间大小，不到的部分空字节填充。</p>
-<p> alignof()获取某一个类型的对齐大小</p>
-<p> alignas(int)让某一个类型的大小对齐int大小，写在变量名前</p>
+                <ol>
+<li>
+<p>对齐：一个结构体中的所有元素所占的空间大小都会按其中最大的类型所占的空间大小，不到的部分空字节填充。</p>
+<p>alignof()获取某一个类型的对齐大小</p>
+<p>alignas(int)让某一个类型的大小对齐int大小，写在变量名前</p>
 </li>
-<li><p>static_assert(bool,string&#x2F;c_str)</p>
-<p> 编译时assert</p>
+<li>
+<p>static_assert(bool,string/c_str)</p>
+<p>编译时assert</p>
 </li>
-<li><p>变量模板</p>
-<p> 就是将一个变量的类型变为模板</p>
+<li>
+<p>变量模板</p>
+<p>就是将一个变量的类型变为模板</p>
  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx">template&lt;typename T&gt;<br>T val;<br><span class="hljs-comment">//使用的时候</span><br>val&lt;某个type&gt;=...<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>泛型lambda</p>
-<p> 支持模板化</p>
+<li>
+<p>泛型lambda</p>
+<p>支持模板化</p>
 </li>
-<li><p>interger_sequence&lt;T,number1,number2,…&gt;</p>
-<p> 一个类型为T，值为number的整数序列，一般用于模板元编程</p>
-<p> make_interger_sequence&lt;T,number&gt;生成一个0-19的interger_sequence</p>
-<p> make_interger_index<number>类型为size_t</p>
+<li>
+<p>interger_sequence&lt;T,number1,number2,…&gt;</p>
+<p>一个类型为T，值为number的整数序列，一般用于模板元编程</p>
+<p>make_interger_sequence&lt;T,number&gt;生成一个0-19的interger_sequence</p>
+<p>make_interger_index<number>类型为size_t</p>
 </li>
-<li><p>std::exchange(obj,new_value)</p>
-<p> 以new_value替换obj的值并返回obj的旧值</p>
+<li>
+<p>std::exchange(obj,new_value)</p>
+<p>以new_value替换obj的值并返回obj的旧值</p>
 </li>
-<li><p>std::quoted(字符串)，给暂时的字符串加上””，可以用来简化生成JSON、XML等带引号的文本格式的代码。</p>
-<p> std::quoted(in, delim, escape)，delim是要加上的字符，而如果原字符串中有delim字符，那么在前面加上escape以实现转义。</p>
+<li>
+<p>std::quoted(字符串)，给暂时的字符串加上””，可以用来简化生成JSON、XML等带引号的文本格式的代码。</p>
+<p>std::quoted(in, delim, escape)，delim是要加上的字符，而如果原字符串中有delim字符，那么在前面加上escape以实现转义。</p>
 </li>
-<li><p>结构化绑定（都需要大小一致）</p>
+<li>
+<p>结构化绑定（都需要大小一致）</p>
 <ol>
 <li>绑定数组，第一个绑定a[0]….，必须要绑定的数量和数组大小一致</li>
 <li>绑定元组</li>
 <li>绑定结构体，按声明顺序一一绑定</li>
 </ol>
 </li>
-<li><p>if中初始化：if(初始化;条件){}初始化的变量的生命周期是整个if</p>
+<li>
+<p>if中初始化：if(初始化;条件){}初始化的变量的生命周期是整个if</p>
 </li>
-<li><p>复制消除</p>
+<li>
+<p>复制消除</p>
 <p>有的时候编译器会省略一些复制构造和移动构造直接使用原本的变量来作为新的变量来省去这一开销。</p>
 <p>而c++17中引入了一部分的强制复制消除的规则，原本都是非强制的。</p>
 </li>
-<li><p>折叠表达式</p>
+<li>
+<p>折叠表达式</p>
 <p>通过折叠表达式来原地展开来简化形参包的使用。</p>
 <p><img src="/image/modernUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 </li>
-<li><p>模板类型(c++20还有非类型的)推导，即有些能推导的地方就不用写&lt;&gt;了</p>
+<li>
+<p>模板类型(c++20还有非类型的)推导，即有些能推导的地方就不用写&lt;&gt;了</p>
 </li>
-<li><p>非类型模板参数的类型也可以用auto来推导了</p>
+<li>
+<p>非类型模板参数的类型也可以用auto来推导了</p>
 </li>
-<li><p>using可以一次性using多个变量了，用,隔开。</p>
+<li>
+<p>using可以一次性using多个变量了，用,隔开。</p>
 </li>
-<li><p>属性说明符列表可以将命名空间提前。</p>
+<li>
+<p>属性说明符列表可以将命名空间提前。</p>
 <p><img src="/image/modernUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 </li>
-<li><p>[[fallthrough]]</p>
+<li>
+<p>[[fallthrough]]</p>
 <p>在一个case结束时不break不会警告</p>
 </li>
-<li><p>std::any，一个可以为任何类型的类型，但是要获取对应值的时候要进行any_cast转为特定的类型后才能访问。</p>
+<li>
+<p>std::any，一个可以为任何类型的类型，但是要获取对应值的时候要进行any_cast转为特定的类型后才能访问。</p>
 </li>
-<li><p>charconv：from_chars(char*,char*,数字&amp;,chars_format)和to_chars(char*,char*,数字,char_format)，from_chars返回值通过引用传递，提供了更好的字符串和数字转换(可以调整格式)</p>
+<li>
+<p>charconv：from_chars(char*,char*,数字&amp;,chars_format)和to_chars(char*,char*,数字,char_format)，from_chars返回值通过引用传递，提供了更好的字符串和数字转换(可以调整格式)</p>
 </li>
-<li><p>excution：提供seq顺序,par按顺序并行,par_unseq乱序并行,unseq乱序四种方法。一般用于for_each(策略,iter,iter,函数)，表示以什么样的策略对iter范围的数据执行这个函数。</p>
+<li>
+<p>excution：提供seq顺序,par按顺序并行,par_unseq乱序并行,unseq乱序四种方法。一般用于for_each(策略,iter,iter,函数)，表示以什么样的策略对iter范围的数据执行这个函数。</p>
 </li>
-<li><p>filesystem：提供filesystem和path来处理文件系统和路径。</p>
+<li>
+<p>filesystem：提供filesystem和path来处理文件系统和路径。</p>
 </li>
-<li><p>optional:提供一种可选值类型，当被默认初始化或者另一个空的optional赋值时为空。可以通过reset来清空值。当转换为bool或者调用has_value的时候返回是否含有值的bool。</p>
+<li>
+<p>optional:提供一种可选值类型，当被默认初始化或者另一个空的optional赋值时为空。可以通过reset来清空值。当转换为bool或者调用has_value的时候返回是否含有值的bool。</p>
 </li>
-<li><p>string_view:一个只读的只持有指针和大小不持有空间的字符串。</p>
+<li>
+<p>string_view:一个只读的只持有指针和大小不持有空间的字符串。</p>
 <p>字符串视图有两个主要的应用：</p>
 <p>你可能已经分配或者映射了字符序列或者字符串的数据，并且想在不分配更多内存的情况下使用这些数据。典型的例子是内存映射文件或者处理长文本的子串。</p>
-<p>你可能想提升接收字符串为参数并以只读方式使用它们的函数&#x2F;操作的性能，且这些函数&#x2F;操作不需要结尾有空字符。</p>
+<p>你可能想提升接收字符串为参数并以只读方式使用它们的函数/操作的性能，且这些函数/操作不需要结尾有空字符。</p>
 </li>
-<li><p>variant：通过get<T>(变量)来获取值，通过holds_alternative<T>(变量)或者变量.index()来判断持有类型。比union更加安全，自动内存管理，取错误的类型会报错。</p>
+<li>
+<p>variant：通过get<T>(变量)来获取值，通过holds_alternative<T>(变量)或者变量.index()来判断持有类型。比union更加安全，自动内存管理，取错误的类型会报错。</p>
 </li>
-<li><p>std::apply(func,tuple)：将tuple作为形参列表给func运行</p>
+<li>
+<p>std::apply(func,tuple)：将tuple作为形参列表给func运行</p>
 </li>
-<li><p>make_from_tuple<T>(tuple)和std::apply(T(),tuple)功能差不多。</p>
+<li>
+<p>make_from_tuple<T>(tuple)和std::apply(T(),tuple)功能差不多。</p>
 </li>
-<li><p>std::search(iter,iter,iter,iter)：在区间1搜索区间2</p>
+<li>
+<p>std::search(iter,iter,iter,iter)：在区间1搜索区间2</p>
 </li>
-<li><p>std::search(iter,iter,searcher(iter,iter))：在区间1中以某种特定的搜索方法搜索区间2，有default_searcher和<strong>boyer_moore_searcher</strong></p>
+<li>
+<p>std::search(iter,iter,searcher(iter,iter))：在区间1中以某种特定的搜索方法搜索区间2，有default_searcher和<strong>boyer_moore_searcher</strong></p>
 </li>
-<li><p>as_const能够避免使用const_cast</p>
+<li>
+<p>as_const能够避免使用const_cast</p>
 </li>
-<li><p>std::not_fn(func)：将func的功能取反，一般如将返回的bool取反之类的？</p>
+<li>
+<p>std::not_fn(func)：将func的功能取反，一般如将返回的bool取反之类的？</p>
 </li>
-<li><p>std::gcd,std::lcm</p>
+<li>
+<p>std::gcd,std::lcm</p>
 </li>
-<li><p>std::launder：主要是用来帮助辅助编译器来解决一些别名的问题，如别名所指向的失效的问题，这个时候就需要实际进行访问真正的内存情况</p>
+<li>
+<p>std::launder：主要是用来帮助辅助编译器来解决一些别名的问题，如别名所指向的失效的问题，这个时候就需要实际进行访问真正的内存情况</p>
 </li>
-<li><p>功能特性测试：由于编译器可能不支持c++的所有规定的特性，因此，可以使用功能特性测试提供的一系列宏来测试，并根据结果来适配不同的版本</p>
+<li>
+<p>功能特性测试：由于编译器可能不支持c++的所有规定的特性，因此，可以使用功能特性测试提供的一系列宏来测试，并根据结果来适配不同的版本</p>
 </li>
-<li><p>&lt;&#x3D;&gt;：三路比较运算符，可重载，要求在a&lt;b时&lt;0，a&gt;b时&gt;0，a&#x3D;b时&#x3D;0.</p>
+<li>
+<p>&lt;=&gt;：三路比较运算符，可重载，要求在a&lt;b时&lt;0，a&gt;b时&gt;0，a=b时=0.</p>
 </li>
-<li><p>默认比较函数：当将三路比较运算符设为&#x3D;default时就会生成默认比较函数.</p>
+<li>
+<p>默认比较函数：当将三路比较运算符设为=default时就会生成默认比较函数.</p>
 </li>
-<li><p>struct和union的指派初始化器：{.元素&#x3D;值,…}要按声明顺序，并且union只能初始化一个</p>
+<li>
+<p>struct和union的指派初始化器：{.元素=值,…}要按声明顺序，并且union只能初始化一个</p>
 </li>
-<li><p>如if和switch一样，for(:)时也能进行初始化for(定义;<em>:</em>)，以更方便使用for。定义可以为别名声明，也可以时普通定义。</p>
+<li>
+<p>如if和switch一样，for(:)时也能进行初始化for(定义;<em>:</em>)，以更方便使用for。定义可以为别名声明，也可以时普通定义。</p>
 </li>
-<li><p>[[likely]][[unlikely]]：分支时使用，用于编译时优化</p>
+<li>
+<p>[[likely]][[unlikely]]：分支时使用，用于编译时优化</p>
 </li>
-<li><p><strong>[[no_unique_address]]：</strong>若该成员非空，则其中的任何尾随填充空间亦可复用于存储其他数据成员。</p>
+<li>
+<p>**[[no_unique_address]]：**若该成员非空，则其中的任何尾随填充空间亦可复用于存储其他数据成员。</p>
 </li>
-<li><p>consteval：只在编译期执行,必须返回常量,使用条件比constexpr更严格。</p>
+<li>
+<p>consteval：只在编译期执行,必须返回常量,使用条件比constexpr更严格。</p>
 </li>
 </ol>
 <p><a href="https://lhish.github.io/hide/module">module</a></p>
@@ -444,7 +485,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>modern </div>
+      <div>modern</div>
       <div>https://lhish.github.io/project/hide/modern/</div>
     </div>
     <div class="license-meta">
@@ -580,7 +621,6 @@
 
   
   
-
 
 
 
@@ -800,49 +840,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

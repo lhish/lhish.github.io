@@ -16,24 +16,24 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="拷贝控制拷贝：在使用一个已有的对象初始化一个新的对象，在初始化，参数传递，返回与列表初始化时会被使用，当且仅当右值的类型与左值相同时或者可以隐式转换时。 赋值：在使用一个已有的对象赋值一个已有的对象。 这两种操作分开的原因可能是因为拷贝会申请内存？ 当拷贝控制操作没有定义时，编译器会自动合成。 拷贝构造函数当一个构造函数的形参时自身类类型的引用时，且额外参数有默认值，则是拷贝构造函数。 由于常常被">
+    <meta name="description" content="拷贝：在使用一个已有的对象初始化一个新的对象，在初始化，参数传递，返回与列表初始化时会被使用，当且仅当右值的类型与左值相同时或者可以隐式转换时。 赋值：在使用一个已有的对象赋值一个已有的对象。 这两种操作分开的原因可能是因为拷贝会申请内存？ 当拷贝控制操作没有定义时，编译器会自动合成。 拷贝构造函数 当一个构造函数的形参时自身类类型的引用时，且额外参数有默认值，则是拷贝构造函数。 由于常常被隐式调">
 <meta property="og:type" content="article">
-<meta property="og:title" content="拷贝控制 ">
+<meta property="og:title" content="拷贝控制">
 <meta property="og:url" content="https://lhish.github.io/project/hide/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="拷贝控制拷贝：在使用一个已有的对象初始化一个新的对象，在初始化，参数传递，返回与列表初始化时会被使用，当且仅当右值的类型与左值相同时或者可以隐式转换时。 赋值：在使用一个已有的对象赋值一个已有的对象。 这两种操作分开的原因可能是因为拷贝会申请内存？ 当拷贝控制操作没有定义时，编译器会自动合成。 拷贝构造函数当一个构造函数的形参时自身类类型的引用时，且额外参数有默认值，则是拷贝构造函数。 由于常常被">
+<meta property="og:description" content="拷贝：在使用一个已有的对象初始化一个新的对象，在初始化，参数传递，返回与列表初始化时会被使用，当且仅当右值的类型与左值相同时或者可以隐式转换时。 赋值：在使用一个已有的对象赋值一个已有的对象。 这两种操作分开的原因可能是因为拷贝会申请内存？ 当拷贝控制操作没有定义时，编译器会自动合成。 拷贝构造函数 当一个构造函数的形参时自身类类型的引用时，且额外参数有默认值，则是拷贝构造函数。 由于常常被隐式调">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled%201.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.525Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.630Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.866Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled.png">
   
   
   
-  <title>拷贝控制  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>拷贝控制 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -44,6 +44,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -228,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="拷贝控制 "></span>
+            <span id="subtitle" data-typed-text="拷贝控制"></span>
           
         </div>
 
@@ -239,7 +241,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -307,78 +309,95 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">拷贝控制 </h1>
+            <h1 id="seo-header">拷贝控制</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="拷贝控制"><a href="#拷贝控制" class="headerlink" title="拷贝控制"></a>拷贝控制</h1><p>拷贝：在使用一个已有的对象初始化一个新的对象，在初始化，参数传递，返回与列表初始化时会被使用，当且仅当右值的类型与左值相同时或者可以隐式转换时。</p>
+                <p>拷贝：在使用一个已有的对象初始化一个新的对象，在初始化，参数传递，返回与列表初始化时会被使用，当且仅当右值的类型与左值相同时或者可以隐式转换时。</p>
 <p>赋值：在使用一个已有的对象赋值一个已有的对象。</p>
 <p>这两种操作分开的原因可能是因为拷贝会申请内存？</p>
 <p>当拷贝控制操作没有定义时，编译器会自动合成。</p>
-<h3 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h3><p>当一个构造函数的形参时自身类类型的引用时，且额外参数有默认值，则是拷贝构造函数。</p>
+<h3 id="拷贝构造函数">拷贝构造函数</h3>
+<p>当一个构造函数的形参时自身类类型的引用时，且额外参数有默认值，则是拷贝构造函数。</p>
 <p>由于常常被隐式调用并且（会进行隐式类型转换），因此通常不应是explicit的。</p>
 <p>与默认构造函数不同，即便声明了其他的构造函数，也会进行合成。</p>
 <p>合成拷贝构造函数会将所有非static成员拷贝，拷贝时要么调用类的拷贝构造函数或直接拷贝，对于数组会逐一拷贝。</p>
 <p>若是其不是引用类型，那么传入的过程也需要拷贝初始化，就套娃了，因此必须是引用。</p>
 <p>拷贝初始化对右值要求隐式转换，而直接初始化是显式转换。</p>
-<p>在编译过程中，编译器可能换将拷贝初始化改为直接初始化，但即便如此，拷贝&#x2F;移动构造函数也必须存在且可访问。</p>
-<h3 id="拷贝赋值运算符"><a href="#拷贝赋值运算符" class="headerlink" title="拷贝赋值运算符"></a>拷贝赋值运算符</h3><p>与拷贝构造函数不同，拷贝赋值运算符是对运算符&#x3D;的重载，一般返回一个左值引用。</p>
+<p>在编译过程中，编译器可能换将拷贝初始化改为直接初始化，但即便如此，拷贝/移动构造函数也必须存在且可访问。</p>
+<h3 id="拷贝赋值运算符">拷贝赋值运算符</h3>
+<p>与拷贝构造函数不同，拷贝赋值运算符是对运算符=的重载，一般返回一个左值引用。</p>
 <p>但默认拷贝赋值运算符的内部与默认拷贝构造函数差不多。</p>
-<h3 id="折构函数"><a href="#折构函数" class="headerlink" title="折构函数"></a>折构函数</h3><p>销毁对象的非static成员。</p>
+<h3 id="折构函数">折构函数</h3>
+<p>销毁对象的非static成员。</p>
 <p>折构函数包含两部分，函数体与折构部分（销毁元素的部分），其顺序与构造函数完全相反，先执行函数体，再按照声明顺序逆序销毁对象。但折构部分是隐式的。其成员到底如何折构，取决于其类型。如内置类型没有折构函数，因此无需折构。</p>
 <p>当一个引用或指针被销毁时，其对象不会被折构。但是智能指针不同。</p>
 <p>合成的折构函数的函数体实际上就是空的。</p>
-<h3 id="相互的关系"><a href="#相互的关系" class="headerlink" title="相互的关系"></a>相互的关系</h3><p>需要自定义折构函数的肯定需要两个拷贝函数。</p>
+<h3 id="相互的关系">相互的关系</h3>
+<p>需要自定义折构函数的肯定需要两个拷贝函数。</p>
 <p>需要自定义两个拷贝函数中的任何一个都一定会需要自定义另一个，但不一定需要自定义折构函数。</p>
-<h3 id="default"><a href="#default" class="headerlink" title="default"></a>default</h3><p>通过&#x3D;default可以显式指定编译器合成函数，当在类内使用时，内联，因此一般在类外使用。</p>
+<h3 id="default">default</h3>
+<p>通过=default可以显式指定编译器合成函数，当在类内使用时，内联，因此一般在类外使用。</p>
 <p>只有有合成版本的函数能使用default。</p>
-<h3 id="阻止拷贝"><a href="#阻止拷贝" class="headerlink" title="阻止拷贝"></a>阻止拷贝</h3><p>由于有一些类中拷贝控制操作没有意义，为了保证不被使用，就需要阻止它。但是当不写的时候，会自动合成，因此必须显式阻止。</p>
-<p>直接给函数加上&#x3D;delete即显式指定了删除。可以被使用于任何函数。</p>
+<h3 id="阻止拷贝">阻止拷贝</h3>
+<p>由于有一些类中拷贝控制操作没有意义，为了保证不被使用，就需要阻止它。但是当不写的时候，会自动合成，因此必须显式阻止。</p>
+<p>直接给函数加上=delete即显式指定了删除。可以被使用于任何函数。</p>
 <p>折构函数不能被删除，若是删除，该类型将不允许定义，但仍然可以动态分配该类型对象，但不能delete，主要针对private声明，const和引用。</p>
 <p>虽然编译器会自动合成默认构造函数和拷贝控制函数，但是若是其数据成员不能默认构造，拷贝，复制或销毁，则合成的函数将被声明为delete。</p>
 <p>在老标准下，通过将拷贝控制函数声明为private并且不进行定义作为删除。</p>
-<h3 id="拷贝控制函数的实现"><a href="#拷贝控制函数的实现" class="headerlink" title="拷贝控制函数的实现"></a>拷贝控制函数的实现</h3><p>拷贝总共有两种语义：</p>
+<h3 id="拷贝控制函数的实现">拷贝控制函数的实现</h3>
+<p>拷贝总共有两种语义：</p>
 <p>若是数据成员用指针来存储指向，即使用动态内存的情况下</p>
 <ol>
-<li><p>行为像值，如vector，string等，不共享，各自为独立的个体</p>
-<p> 当拷贝时，先保存右值的临时值，再释放左值内存，后将右值的临时值拷贝给左值，这样保证即便是将其赋给自身也不会出现异常，另外初始化时申请新的内存空间。</p>
-<p> 另外，需要保证异常安全。</p>
+<li>
+<p>行为像值，如vector，string等，不共享，各自为独立的个体</p>
+<p>当拷贝时，先保存右值的临时值，再释放左值内存，后将右值的临时值拷贝给左值，这样保证即便是将其赋给自身也不会出现异常，另外初始化时申请新的内存空间。</p>
+<p>另外，需要保证异常安全。</p>
 </li>
-<li><p>行为像指针，如shared_ptr，即共享</p>
-<p> 可以使用shared_ptr之类的，或者自己实现引用计数。拷贝时递增右值计数，递减本对象计数，后赋值。并且在任何减计数的情况下，判断是否等于0，若等于0则折构。</p>
+<li>
+<p>行为像指针，如shared_ptr，即共享</p>
+<p>可以使用shared_ptr之类的，或者自己实现引用计数。拷贝时递增右值计数，递减本对象计数，后赋值。并且在任何减计数的情况下，判断是否等于0，若等于0则折构。</p>
 </li>
 </ol>
-<h3 id="swap"><a href="#swap" class="headerlink" title="swap"></a>swap</h3><p>swap函数虽然不是必要的，但是却很常用。对于我们自己的类，可以使用std::swap来交换，其相当于是进行了3次拷贝。但是有时拷贝很费时间，因此我们可以自己编写swap交换指针来避免不必要的拷贝。</p>
+<h3 id="swap">swap</h3>
+<p>swap函数虽然不是必要的，但是却很常用。对于我们自己的类，可以使用std::swap来交换，其相当于是进行了3次拷贝。但是有时拷贝很费时间，因此我们可以自己编写swap交换指针来避免不必要的拷贝。</p>
 <p>当存在类型匹配的swap时，调用swap会调用专用的swap而非标准库的。</p>
 <p>swap可以用于赋值运算符。</p>
 <p><img src="/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>在swap后，rhs指向原本的this指向的内存，而this指向rhs指向的内存，由于是值传递，因此在结束作用域后rhs将被销毁，其内存被释放。非常完美的执行了赋值操作。</p>
 <p>而且这种方式自动就是异常安全的，且能正确处理自赋值。</p>
-<h3 id="拷贝控制的使用场景"><a href="#拷贝控制的使用场景" class="headerlink" title="拷贝控制的使用场景"></a>拷贝控制的使用场景</h3><ol>
+<h3 id="拷贝控制的使用场景">拷贝控制的使用场景</h3>
+<ol>
 <li>分配资源的类需要拷贝控制。</li>
 <li>拷贝控制操作中不止要进行拷贝。</li>
 </ol>
 <p>拷贝赋值运算符执行的动作常常在拷贝构造与折构函数中出现，这些公共的部分应该在private中模块化。</p>
-<h3 id="对象移动"><a href="#对象移动" class="headerlink" title="对象移动"></a>对象移动</h3><p>如在vector中，我们时常会将一块内存拷贝到另一块内存中并销毁原内存，这非常的效率低下，因此引入移动。</p>
+<h3 id="对象移动">对象移动</h3>
+<p>如在vector中，我们时常会将一块内存拷贝到另一块内存中并销毁原内存，这非常的效率低下，因此引入移动。</p>
 <p>此外，由于如IO类与unique_ptr这种存在不能被共享的资源，不允许被拷贝，但是却允许移动（移动并没有创建拷贝。</p>
-<h3 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h3><p>右值引用就是对右值的引用，使用&amp;&amp;来表示。</p>
+<h3 id="右值引用">右值引用</h3>
+<p>右值引用就是对右值的引用，使用&amp;&amp;来表示。</p>
 <p>对于一个右值，要么用一个const左值引用要么用一个右值引用来绑定。</p>
 <p>绑定的对象即将要被销毁且没有其他对象，因此可以只有接管其引用对象的资源。</p>
 <p>即便是一个右值引用，也是一个变量，是左值，故不能将右值引用变量绑定到右值变量上。</p>
-<h3 id="move"><a href="#move" class="headerlink" title="move"></a>move</h3><p>返回给定左值对象的右值引用。</p>
+<h3 id="move">move</h3>
+<p>返回给定左值对象的右值引用。</p>
 <p>对于原本的左值对象，其原本的值已经被“舍弃”了，要么销毁它，要么给它赋一个新值。</p>
 <p>move在utility中，虽然是标准库的函数，但一般不使用using，而是直接使用std::move来避免潜在的命名冲突。</p>
 <blockquote>
 <p>类似const使用的对函数的关键字noexcept，表示该函数不应该抛出异常。</p>
 </blockquote>
-<h3 id="移动构造函数"><a href="#移动构造函数" class="headerlink" title="移动构造函数"></a>移动构造函数</h3><p>移动构造函数的形参是一个右值引用。必须保证这个右值引用在函数结束时是无害的，不再指向源对象的。</p>
+<h3 id="移动构造函数">移动构造函数</h3>
+<p>移动构造函数的形参是一个右值引用。必须保证这个右值引用在函数结束时是无害的，不再指向源对象的。</p>
 <p>不抛出异常的移动构造函数与移动赋值运算符必须标记为noexcept。</p>
 <p>由于移动构造函数若是在中途出现异常，其不能回滚（原有的内存已经被新的值填入了），因此类就会去采用拷贝构造函数（因为原有的元素仍然在内存空间之中）。因此必须使用noexcept来表明其可以安全使用，而不会出现这种问题。</p>
-<h3 id="移动赋值运算符"><a href="#移动赋值运算符" class="headerlink" title="移动赋值运算符"></a>移动赋值运算符</h3><p>与拷贝赋值运算符一样，但是参数是右值引用，需要注意的是，与左值引用是const不同，右值引用不使用const。</p>
+<h3 id="移动赋值运算符">移动赋值运算符</h3>
+<p>与拷贝赋值运算符一样，但是参数是右值引用，需要注意的是，与左值引用是const不同，右值引用不使用const。</p>
 <p>必须保证自赋值，释放原有元素与右值引用的无害。</p>
 <p>自赋值时需要特判，因为若是此时释放掉原有的空间，其值就不见了。</p>
-<h3 id="移动操作"><a href="#移动操作" class="headerlink" title="移动操作"></a>移动操作</h3><p>移动操作必须保证源对象可析构且有效。</p>
+<h3 id="移动操作">移动操作</h3>
+<p>移动操作必须保证源对象可析构且有效。</p>
 <ol>
 <li>可析构需要源对象不再指向拷贝完的内存。</li>
 <li>有效需要源对象可以被安全的赋予新值，不依赖于源数据。</li>
@@ -387,14 +406,19 @@
 <p>只有移动操作被显式要求合成时，其才有可能出现delete的情况。</p>
 <p>一种是拷贝函数被定义了而移动函数仅被声明了，第二种是拷贝函数没有被定义但是移动函数不能被生成，即其有成员不能被移动。</p>
 <p>若是移动函数被定义了，那么合成的拷贝函数会被自动delete。</p>
-<h3 id="拷贝与移动"><a href="#拷贝与移动" class="headerlink" title="拷贝与移动"></a>拷贝与移动</h3><p>具体是调用拷贝还是移动函数会根据传入参数时左值还是右值而定。</p>
+<h3 id="拷贝与移动">拷贝与移动</h3>
+<p>具体是调用拷贝还是移动函数会根据传入参数时左值还是右值而定。</p>
 <p>若是一个类没有定义移动函数，那么即便是右值引用也会被转换为左值引用并调用拷贝函数。</p>
 <p>若是使用前面的拷贝并交换赋值运算符，在传入时使用拷贝初始化，此时就已经决定了移动或是拷贝，因此该赋值运算符可以既看做拷贝也可以看做是移动。</p>
-<h3 id="三-五法则"><a href="#三-五法则" class="headerlink" title="三&#x2F;五法则"></a>三&#x2F;五法则</h3><p>一般来说，要么析构函数与拷贝函数都定义，要么再多定义移动函数。</p>
-<h3 id="移动迭代器"><a href="#移动迭代器" class="headerlink" title="移动迭代器"></a>移动迭代器</h3><p>在大部分情况下，与算法配合使用迭代器都会使用拷贝的方法，因为解引用迭代器会获得一个左值。但是移动迭代器解引用将会生成一个右值引用，此时就会使用移动的方法。</p>
+<h3 id="三-五法则">三/五法则</h3>
+<p>一般来说，要么析构函数与拷贝函数都定义，要么再多定义移动函数。</p>
+<h3 id="移动迭代器">移动迭代器</h3>
+<p>在大部分情况下，与算法配合使用迭代器都会使用拷贝的方法，因为解引用迭代器会获得一个左值。但是移动迭代器解引用将会生成一个右值引用，此时就会使用移动的方法。</p>
 <p>但由于移动操作会使源对象的情况未定义，因此要谨慎使用move。虽然移动能大幅提升性能。</p>
-<h3 id="移动与拷贝重载"><a href="#移动与拷贝重载" class="headerlink" title="移动与拷贝重载"></a>移动与拷贝重载</h3><p>除去使用在拷贝控制操作上，也可以在普通的函数使用这两种版本的重载，通过传入的参数来决定。</p>
-<h3 id="限定函数的使用"><a href="#限定函数的使用" class="headerlink" title="限定函数的使用"></a>限定函数的使用</h3><p>有的时候对于成员函数，其this与所希望的不符，如赋值时this是右值等，此时可以如const一般在函数后增加&amp;或者&amp;&amp;来限定使用者是左值还是右值，当与const同时出现时，放在const后。</p>
+<h3 id="移动与拷贝重载">移动与拷贝重载</h3>
+<p>除去使用在拷贝控制操作上，也可以在普通的函数使用这两种版本的重载，通过传入的参数来决定。</p>
+<h3 id="限定函数的使用">限定函数的使用</h3>
+<p>有的时候对于成员函数，其this与所希望的不符，如赋值时this是右值等，此时可以如const一般在函数后增加&amp;或者&amp;&amp;来限定使用者是左值还是右值，当与const同时出现时，放在const后。</p>
 <p>对于重载函数，若是其中有一个限定了，那么其他的所有的重载版本都要限定。</p>
 <p>通过限定，我们可以通过this的不同而使用不同的函数，使其更加适合。</p>
 <p><img src="/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
@@ -415,7 +439,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>拷贝控制 </div>
+      <div>拷贝控制</div>
       <div>https://lhish.github.io/project/hide/拷贝控制/</div>
     </div>
     <div class="license-meta">
@@ -551,7 +575,6 @@
 
   
   
-
 
 
 
@@ -771,49 +794,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

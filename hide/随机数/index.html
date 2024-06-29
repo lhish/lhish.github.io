@@ -16,12 +16,12 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="随机数  当种子相同的时候，生成的随机数序列也是相同的。因此需要随机数种子，一般用time(0)作为随机数种子。 一个常用的随机数引擎是std::mt19937，c++默认的default_random_engine就是这个。  time(ptr)，ptr指向用于写入时间的数据结构。  但大部分情况下，我们希望生成的随机数与engine生成的分布和范围不一样。 而distribution就是将一个">
+    <meta name="description" content="当种子相同的时候，生成的随机数序列也是相同的。因此需要随机数种子，一般用time(0)作为随机数种子。 一个常用的随机数引擎是std::mt19937，c++默认的default_random_engine就是这个。  time(ptr)，ptr指向用于写入时间的数据结构。  但大部分情况下，我们希望生成的随机数与engine生成的分布和范围不一样。 而distribution就是将一个数转换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随机数 ">
+<meta property="og:title" content="随机数">
 <meta property="og:url" content="https://lhish.github.io/project/hide/%E9%9A%8F%E6%9C%BA%E6%95%B0/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="随机数  当种子相同的时候，生成的随机数序列也是相同的。因此需要随机数种子，一般用time(0)作为随机数种子。 一个常用的随机数引擎是std::mt19937，c++默认的default_random_engine就是这个。  time(ptr)，ptr指向用于写入时间的数据结构。  但大部分情况下，我们希望生成的随机数与engine生成的分布和范围不一样。 而distribution就是将一个">
+<meta property="og:description" content="当种子相同的时候，生成的随机数序列也是相同的。因此需要随机数种子，一般用time(0)作为随机数种子。 一个常用的随机数引擎是std::mt19937，c++默认的default_random_engine就是这个。  time(ptr)，ptr指向用于写入时间的数据结构。  但大部分情况下，我们希望生成的随机数与engine生成的分布和范围不一样。 而distribution就是将一个数转换">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%201.png">
@@ -30,15 +30,15 @@
 <meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%204.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%205.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%206.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.525Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.626Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.858Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled.png">
   
   
   
-  <title>随机数  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>随机数 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -49,6 +49,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -233,7 +235,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="随机数 "></span>
+            <span id="subtitle" data-typed-text="随机数"></span>
           
         </div>
 
@@ -244,7 +246,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -256,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          282 字
+          279 字
         
       </span>
     
@@ -312,12 +314,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">随机数 </h1>
+            <h1 id="seo-header">随机数</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h1><p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+                <p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>当种子相同的时候，生成的随机数序列也是相同的。因此需要随机数种子，一般用time(0)作为随机数种子。</p>
 <p>一个常用的随机数引擎是std::mt19937，c++默认的default_random_engine就是这个。</p>
@@ -329,11 +331,14 @@
 <p>一般是调用distribution(engine)来获取随机数。</p>
 <p>而通过把随机种子定下来，我们也可以在多次调试过程中获得一个相同的随机数序列。</p>
 <p>而如果有一个局部的引擎或分布，我们应该让其变为static的，否则每次调用的时候会生成相同的序列。</p>
-<h3 id="分布"><a href="#分布" class="headerlink" title="分布"></a>分布</h3><p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="分布">分布</h3>
+<p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>分布都是模板，接受一个模板参数表示生成的类型。不填这个模板参数代表使用默认类型。</p>
 <p>下面是各种各样的引擎和分布。</p>
-<h3 id="引擎"><a href="#引擎" class="headerlink" title="引擎"></a>引擎</h3><p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<h3 id="分布-1"><a href="#分布-1" class="headerlink" title="分布"></a>分布</h3><p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="引擎">引擎</h3>
+<p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="分布-2">分布</h3>
+<p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%205.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%206.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <!-- flag of hidden posts -->
@@ -353,7 +358,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>随机数 </div>
+      <div>随机数</div>
       <div>https://lhish.github.io/project/hide/随机数/</div>
     </div>
     <div class="license-meta">
@@ -489,7 +494,6 @@
 
   
   
-
 
 
 
@@ -709,49 +713,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

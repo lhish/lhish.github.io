@@ -16,12 +16,12 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="运算方法和运算器小数：IEEE754 1位符号位 8位阶码（移码）补码的最高位取反（将指数变为正数）（+127） 23位尾数（原码） 符号位是尾数的符号位 最终的结果是1.尾数*10^阶码 当尾数和阶码全0时为0，因符号位有正0和负0 当尾数位0且阶码全为1为无穷大  当阶码为0而尾数不为0时，则为0.尾数*10^（-126）  当阶码为全1且尾数不为0时，则为Nan，一种非数值 浮点数有正负上下">
+    <meta name="description" content="小数：IEEE754 1位符号位 8位阶码（移码）补码的最高位取反（将指数变为正数）（+127） 23位尾数（原码） 符号位是尾数的符号位 最终的结果是1.尾数*10^阶码 当尾数和阶码全0时为0，因符号位有正0和负0 当尾数位0且阶码全为1为无穷大  当阶码为0而尾数不为0时，则为0.尾数*10^（-126）  当阶码为全1且尾数不为0时，则为Nan，一种非数值 浮点数有正负上下溢 奇偶校验码：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="运算方法和运算器 ">
+<meta property="og:title" content="运算方法和运算器">
 <meta property="og:url" content="https://lhish.github.io/project/hide/%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="运算方法和运算器小数：IEEE754 1位符号位 8位阶码（移码）补码的最高位取反（将指数变为正数）（+127） 23位尾数（原码） 符号位是尾数的符号位 最终的结果是1.尾数*10^阶码 当尾数和阶码全0时为0，因符号位有正0和负0 当尾数位0且阶码全为1为无穷大  当阶码为0而尾数不为0时，则为0.尾数*10^（-126）  当阶码为全1且尾数不为0时，则为Nan，一种非数值 浮点数有正负上下">
+<meta property="og:description" content="小数：IEEE754 1位符号位 8位阶码（移码）补码的最高位取反（将指数变为正数）（+127） 23位尾数（原码） 符号位是尾数的符号位 最终的结果是1.尾数*10^阶码 当尾数和阶码全0时为0，因符号位有正0和负0 当尾数位0且阶码全为1为无穷大  当阶码为0而尾数不为0时，则为0.尾数*10^（-126）  当阶码为全1且尾数不为0时，则为Nan，一种非数值 浮点数有正负上下溢 奇偶校验码：">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8Untitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8Untitled%201.png">
@@ -29,15 +29,15 @@
 <meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8Untitled%203.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8Untitled%204.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8Untitled%205.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.521Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.634Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.866Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8Untitled.png">
   
   
   
-  <title>运算方法和运算器  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>运算方法和运算器 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -48,6 +48,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -232,7 +234,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="运算方法和运算器 "></span>
+            <span id="subtitle" data-typed-text="运算方法和运算器"></span>
           
         </div>
 
@@ -243,7 +245,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -255,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          934 字
+          983 字
         
       </span>
     
@@ -266,7 +268,7 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -311,12 +313,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">运算方法和运算器 </h1>
+            <h1 id="seo-header">运算方法和运算器</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="运算方法和运算器"><a href="#运算方法和运算器" class="headerlink" title="运算方法和运算器"></a>运算方法和运算器</h1><p>小数：IEEE754</p>
+                <p>小数：IEEE754</p>
 <p>1位符号位</p>
 <p>8位阶码（移码）补码的最高位取反（将指数变为正数）（+127）</p>
 <p>23位尾数（原码）</p>
@@ -333,10 +335,12 @@
 <p>补码取负：取反，末位➕1</p>
 <p>溢出判断：</p>
 <ol>
-<li><p>双符号位法，用两位表示符号位，在运算完后</p>
-<p> 负则前两位为1，否则前两位为0</p>
+<li>
+<p>双符号位法，用两位表示符号位，在运算完后</p>
+<p>负则前两位为1，否则前两位为0</p>
 </li>
-<li><p>单符号位，分别看符号位的进位和最高位的进位</p>
+<li>
+<p>单符号位，分别看符号位的进位和最高位的进位</p>
 </li>
 </ol>
 <p><img src="/image/%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
@@ -360,14 +364,15 @@
 <p>对于电路来说，遇到第一个1后，或就永远是1了，然后当E也位1时，与出来就为1，也就是要取反了</p>
 <p>除法器：</p>
 <ol>
-<li>定点原码除法，每次将除数右移，主要问题在于判断当前是商0还是1，要减一下看一下&lt;&#x3D;&gt;0，然后还要加回来</li>
+<li>定点原码除法，每次将除数右移，主要问题在于判断当前是商0还是1，要减一下看一下&lt;=&gt;0，然后还要加回来</li>
 <li>不恢复余数法，余数为正，商1，下一次右移做减法，为负，商0，下一次做加法</li>
 </ol>
 <p>并行加法器：</p>
 <p>普通的逐位加法器，被称为行波进位</p>
 <p>并行：</p>
 <p>第一种是，四位内并行，四位外行波。</p>
-<p>$$<br>G_i&#x3D;Y_{4i+3}+Y_{4i+2}X_{4i+3}+Y_{4i+1}X_{4i+2}X_{4i+3}+Y_{4i}X_{4i+1}X_{4i+2}X_{4i+3}\P_i&#x3D;X_{4i}X_{4i+1}X_{4i+2}X_{4i+3}\G_{ij}&#x3D;G_{i(j-1)}X_{j}+Y_j\P_{ij}&#x3D;P_{i(j-1)}X_j<br>$$</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>G</mi><mi>i</mi></msub><mo>=</mo><msub><mi>Y</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>3</mn></mrow></msub><mo>+</mo><msub><mi>Y</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>2</mn></mrow></msub><msub><mi>X</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>3</mn></mrow></msub><mo>+</mo><msub><mi>Y</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><msub><mi>X</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>2</mn></mrow></msub><msub><mi>X</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>3</mn></mrow></msub><mo>+</mo><msub><mi>Y</mi><mrow><mn>4</mn><mi>i</mi></mrow></msub><msub><mi>X</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><msub><mi>X</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>2</mn></mrow></msub><msub><mi>X</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>3</mn></mrow></msub><mspace linebreak="newline"></mspace><msub><mi>P</mi><mi>i</mi></msub><mo>=</mo><msub><mi>X</mi><mrow><mn>4</mn><mi>i</mi></mrow></msub><msub><mi>X</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><msub><mi>X</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>2</mn></mrow></msub><msub><mi>X</mi><mrow><mn>4</mn><mi>i</mi><mo>+</mo><mn>3</mn></mrow></msub><mspace linebreak="newline"></mspace><msub><mi>G</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><msub><mi>G</mi><mrow><mi>i</mi><mo stretchy="false">(</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msub><msub><mi>X</mi><mi>j</mi></msub><mo>+</mo><msub><mi>Y</mi><mi>j</mi></msub><mspace linebreak="newline"></mspace><msub><mi>P</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>i</mi><mo stretchy="false">(</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msub><msub><mi>X</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">G_i=Y_{4i+3}+Y_{4i+2}X_{4i+3}+Y_{4i+1}X_{4i+2}X_{4i+3}+Y_{4i}X_{4i+1}X_{4i+2}X_{4i+3}\\P_i=X_{4i}X_{4i+1}X_{4i+2}X_{4i+3}\\G_{ij}=G_{i(j-1)}X_{j}+Y_j\\P_{ij}=P_{i(j-1)}X_j
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0385em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0385em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span></p>
 <p><img src="/image/%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>每一位的Ci可以先行计算，而在计算出所有G和P后也可以由C0计算出C4,8,12,16，而可以由AB算出所有的G和P，因此就可以先行算出所有的进位。</p>
 <p>可以做到16位内并行，16位外行波。</p>
@@ -380,18 +385,24 @@
 <p><img src="/image/%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E5%92%8C%E8%BF%90%E7%AE%97%E5%99%A8Untitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>浮点数加减：</p>
 <ol>
-<li><p>判断浮点数是否为0，因为0是人为定义的。</p>
+<li>
+<p>判断浮点数是否为0，因为0是人为定义的。</p>
 </li>
-<li><p>统一指数，变为更大的指数，为了保证改变后仍然是1.M&#x2F;0.M，求和结果大概率是1.M</p>
+<li>
+<p>统一指数，变为更大的指数，为了保证改变后仍然是1.M/0.M，求和结果大概率是1.M</p>
 </li>
-<li><p>尾数求和&#x2F;减</p>
+<li>
+<p>尾数求和/减</p>
 </li>
-<li><p>结果规格化</p>
+<li>
+<p>结果规格化</p>
 </li>
-<li><p>舍入处理</p>
-<p> 1进0舍，如果是负数，则相反。</p>
-<p> 朝+∞舍入：正数结尾不全为0就进，负数相反</p>
-<p> 阶码上溢，一般将其认为是＋∞和－∞ 。<br> 阶码下溢，则数值为0。</p>
+<li>
+<p>舍入处理</p>
+<p>1进0舍，如果是负数，则相反。</p>
+<p>朝+∞舍入：正数结尾不全为0就进，负数相反</p>
+<p>阶码上溢，一般将其认为是＋∞和－∞ 。<br>
+阶码下溢，则数值为0。</p>
 </li>
 </ol>
 <p>乘除：</p>
@@ -420,7 +431,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>运算方法和运算器 </div>
+      <div>运算方法和运算器</div>
       <div>https://lhish.github.io/project/hide/运算方法和运算器/</div>
     </div>
     <div class="license-meta">
@@ -556,7 +567,6 @@
 
   
   
-
 
 
 
@@ -776,49 +786,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

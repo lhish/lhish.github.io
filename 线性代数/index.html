@@ -16,21 +16,21 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="线性代数矩阵相乘当对一个线性空间进行线性变换的时候，可以将i和j变换看做整个空间的变换，因为线性的等式在变换后仍然保持不变。 另外，假如说i和j变换为了i’和j’，那么对于一个向量的变换就相当于左乘[i’ j’]，这是一个n阶方阵。 另外，如果对一个空间连续做几次变换，将这些变换方阵相乘实际上就是总的变换，但后变换的永远都是左乘。 矩阵乘积实际就是变换相加，假设后面一个矩阵是基的i和j，然后前面的">
+    <meta name="description" content="矩阵相乘 当对一个线性空间进行线性变换的时候，可以将i和j变换看做整个空间的变换，因为线性的等式在变换后仍然保持不变。 另外，假如说i和j变换为了i’和j’，那么对于一个向量的变换就相当于左乘[i’ j’]，这是一个n阶方阵。 另外，如果对一个空间连续做几次变换，将这些变换方阵相乘实际上就是总的变换，但后变换的永远都是左乘。 矩阵乘积实际就是变换相加，假设后面一个矩阵是基的i和j，然后前面的矩阵分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线性代数 ">
+<meta property="og:title" content="线性代数">
 <meta property="og:url" content="https://lhish.github.io/project/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="线性代数矩阵相乘当对一个线性空间进行线性变换的时候，可以将i和j变换看做整个空间的变换，因为线性的等式在变换后仍然保持不变。 另外，假如说i和j变换为了i’和j’，那么对于一个向量的变换就相当于左乘[i’ j’]，这是一个n阶方阵。 另外，如果对一个空间连续做几次变换，将这些变换方阵相乘实际上就是总的变换，但后变换的永远都是左乘。 矩阵乘积实际就是变换相加，假设后面一个矩阵是基的i和j，然后前面的">
+<meta property="og:description" content="矩阵相乘 当对一个线性空间进行线性变换的时候，可以将i和j变换看做整个空间的变换，因为线性的等式在变换后仍然保持不变。 另外，假如说i和j变换为了i’和j’，那么对于一个向量的变换就相当于左乘[i’ j’]，这是一个n阶方阵。 另外，如果对一个空间连续做几次变换，将这些变换方阵相乘实际上就是总的变换，但后变换的永远都是左乘。 矩阵乘积实际就是变换相加，假设后面一个矩阵是基的i和j，然后前面的矩阵分">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-29T18:04:57.517Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.606Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.146Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.838Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>线性代数  - lhish&#39;s blog</title>
+  <title>线性代数 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -41,6 +41,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -225,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="线性代数 "></span>
+            <span id="subtitle" data-typed-text="线性代数"></span>
           
         </div>
 
@@ -236,7 +238,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -304,43 +306,53 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">线性代数 </h1>
+            <h1 id="seo-header">线性代数</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h1><h3 id="矩阵相乘"><a href="#矩阵相乘" class="headerlink" title="矩阵相乘"></a>矩阵相乘</h3><p>当对一个线性空间进行线性变换的时候，可以将i和j变换看做整个空间的变换，因为线性的等式在变换后仍然保持不变。</p>
+                <h3 id="矩阵相乘">矩阵相乘</h3>
+<p>当对一个线性空间进行线性变换的时候，可以将i和j变换看做整个空间的变换，因为线性的等式在变换后仍然保持不变。</p>
 <p>另外，假如说i和j变换为了i’和j’，那么对于一个向量的变换就相当于左乘[i’ j’]，这是一个n阶方阵。</p>
 <p>另外，如果对一个空间连续做几次变换，将这些变换方阵相乘实际上就是总的变换，但后变换的永远都是左乘。</p>
 <p>矩阵乘积实际就是变换相加，假设后面一个矩阵是基的i和j，然后前面的矩阵分别对这两个基向量进行变换得到新的i’和j’。</p>
-<h3 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h3><p>行列式的值就代表一个变换对于原线性空间里的任意面积在变换后也就是新的线性空间内的面积的比值，比如说行列式为6就代表变换后面积会变为原来的6倍。因此，如果说行列式等于零，就说明变换后面积等于0，也就是维度降低了，也就是这个变换矩阵线性相关了。</p>
+<h3 id="行列式">行列式</h3>
+<p>行列式的值就代表一个变换对于原线性空间里的任意面积在变换后也就是新的线性空间内的面积的比值，比如说行列式为6就代表变换后面积会变为原来的6倍。因此，如果说行列式等于零，就说明变换后面积等于0，也就是维度降低了，也就是这个变换矩阵线性相关了。</p>
 <p>当行列式的值为负数的时候，就说明空间整个被翻转了，比如二维平面就是另一个面朝上了。或者说，基向量的相对方向已经变了。</p>
 <p>而在三维空间就是体积了。而三维中负值就是原本是右手定则，现在变成左手定则了。</p>
-<h3 id="线性方程组"><a href="#线性方程组" class="headerlink" title="线性方程组"></a>线性方程组</h3><p>就是一个未知向量乘上一个变换矩阵得到一个特定的向量，那么一般情况下我们求这个未知向量就是将这个变换矩阵的逆左乘这个特定的向量。这个变换矩阵的逆就是逆变换，也就是反着变换，也因此正变换一次，反变换一次，就相当于没变换，也就是单位矩阵，也就是 恒等矩阵。</p>
+<h3 id="线性方程组">线性方程组</h3>
+<p>就是一个未知向量乘上一个变换矩阵得到一个特定的向量，那么一般情况下我们求这个未知向量就是将这个变换矩阵的逆左乘这个特定的向量。这个变换矩阵的逆就是逆变换，也就是反着变换，也因此正变换一次，反变换一次，就相当于没变换，也就是单位矩阵，也就是 恒等矩阵。</p>
 <p>整一个线性方程组就是未知向量能由正变换变为已知向量，那么要求未知向量就是将已知向量逆变换一下就得到了。</p>
 <p>当行列式不为0时，变换后仍然是一整个线性空间，因此有且仅有一个解。</p>
 <p>当行列式为0的时候，线性空间的维度就降低了，当且仅当我们的已知向量在这个被降低的新的线性空间上的时候，它才有可能有解。</p>
 <p>而若是当行列式为0，但是已知向量不在这个被降低的新的线性空间的时候，就会导致逆变换的时候一个输入对应多个输出的情况，这是不可能的。</p>
-<h3 id="秩与列空间"><a href="#秩与列空间" class="headerlink" title="秩与列空间"></a>秩与列空间</h3><p>秩代表了在经过这个变换矩阵的变换后线性空间的维数，比如秩为1就是变换后事一根直线。</p>
+<h3 id="秩与列空间">秩与列空间</h3>
+<p>秩代表了在经过这个变换矩阵的变换后线性空间的维数，比如秩为1就是变换后事一根直线。</p>
 <p>实际上，变换矩阵本身假设作为一个线性空间的基，那么它能伸展出的维数和别的线性空间通过它来变换延展出的维数时相同的，这很显然。</p>
 <p>因此，列空间就代表变换矩阵的每一个列作为一个向量所组成的基延展出的线性空间。</p>
 <p>而秩实际上是这个列空间的维数。</p>
 <p>而零空间就是指在经过这个变换后会落在0向量上的点所组成的线性空间，而这组成的空间也必然是一个线性空间。</p>
-<h3 id="非方阵"><a href="#非方阵" class="headerlink" title="非方阵"></a>非方阵</h3><p>一个非方阵代表底维向高维的变换或者高维向底维的变换。</p>
+<h3 id="非方阵">非方阵</h3>
+<p>一个非方阵代表底维向高维的变换或者高维向底维的变换。</p>
 <p>底维向高维的变换实际上是变换到高维中的一个底维空间中。</p>
 <p>而高维到底维就是会产生1对多的情况。</p>
-<h3 id="点积"><a href="#点积" class="headerlink" title="点积"></a>点积</h3><p>点积是两个向量之间相乘。</p>
+<h3 id="点积">点积</h3>
+<p>点积是两个向量之间相乘。</p>
 <p>但假如说，我们将其中一个向量看做是一个变换矩阵，那么代表了一个高维到一维的转换，实际上，就是一种投影。假设这个变换矩阵是单位长的，那么这个投影就是垂直的，然后在乘上这个变换矩阵的模，就是实际的投影的。</p>
-<h3 id="叉积"><a href="#叉积" class="headerlink" title="叉积"></a>叉积</h3><p>评价是挺有道理的，但是没完全理解，但不是那么的重要。</p>
-<h3 id="空间变换"><a href="#空间变换" class="headerlink" title="空间变换"></a>空间变换</h3><p>如果我们想对别的空间进行变换，那么首先先将别人的基向量换为我们的空间中的语言，对变换的基向量进行变换，然后再转回为他们空间的语言。这得出来的变换矩阵就是在对方空间实际的变换矩阵。用数学表示就是$A^{-1}MA$，A为变换为我们空间的矩阵，M为我们希望的变换矩阵。</p>
-<h3 id="特征值和特征向量"><a href="#特征值和特征向量" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h3><p>特征向量就是在一个空间中经过变换后方向仍然不会变，但是可能长度会变的向量的集合。</p>
+<h3 id="叉积">叉积</h3>
+<p>评价是挺有道理的，但是没完全理解，但不是那么的重要。</p>
+<h3 id="空间变换">空间变换</h3>
+<p>如果我们想对别的空间进行变换，那么首先先将别人的基向量换为我们的空间中的语言，对变换的基向量进行变换，然后再转回为他们空间的语言。这得出来的变换矩阵就是在对方空间实际的变换矩阵。用数学表示就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>M</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">A^{-1}MA</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">A</span></span></span></span>，A为变换为我们空间的矩阵，M为我们希望的变换矩阵。</p>
+<h3 id="特征值和特征向量">特征值和特征向量</h3>
+<p>特征向量就是在一个空间中经过变换后方向仍然不会变，但是可能长度会变的向量的集合。</p>
 <p>特征值就是这个长度变化的比例。</p>
-<p>$Av&#x3D;\lambda v$实际上就是说v经过A的变换还是v的倍数。</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>v</mi><mo>=</mo><mi>λ</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">Av=\lambda v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span>实际上就是说v经过A的变换还是v的倍数。</p>
 <p>而这一点很重要，比如在三维中，特征向量的方向实际上就是旋转轴。</p>
-<p>当将其转为$(A-\lambda I)v&#x3D;0$时，由于前面线性方程组已经说了，当且仅当降为的时候，才有非0向量变为0向量，因此$A-\lambda I$的行列式必须等于0。</p>
-<p>如果说，解出来$\lambda$是一个复数，那么就涉及到了旋转，在这里不赘述。</p>
+<p>当将其转为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>−</mo><mi>λ</mi><mi>I</mi><mo stretchy="false">)</mo><mi>v</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">(A-\lambda I)v=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">λ</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mclose">)</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>时，由于前面线性方程组已经说了，当且仅当降为的时候，才有非0向量变为0向量，因此<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>−</mo><mi>λ</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">A-\lambda I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span></span>的行列式必须等于0。</p>
+<p>如果说，解出来<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span>是一个复数，那么就涉及到了旋转，在这里不赘述。</p>
 <p>对于一个方阵来说，我们希望求以它为变换矩阵变换了n次的结果，那么首先获得它的特征向量，假如说它的特征向量能延展到整个空间，就可以继续，那么首先将这个变换矩阵变换为以它的特征向量作为基向量的变换矩阵，在以它的特征向量为基向量的空间中，这个变换并没有进行旋转，只进行了缩放操作，因为在原空间中，这两个基向量所在的方向上并没有旋转，因此在那个空间里也是。因此就很容易计算了。最后再变换回来就好了</p>
-<h3 id="抽象向量"><a href="#抽象向量" class="headerlink" title="抽象向量"></a>抽象向量</h3><p>向量是指一切满足线性也就是可加性和数乘的抽象概念。比如可以扩展到函数啊，各种其他的上面。这些“向量”也必然满足线性得出来的一些结论。</p>
+<h3 id="抽象向量">抽象向量</h3>
+<p>向量是指一切满足线性也就是可加性和数乘的抽象概念。比如可以扩展到函数啊，各种其他的上面。这些“向量”也必然满足线性得出来的一些结论。</p>
 
                 
               </div>
@@ -358,7 +370,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>线性代数 </div>
+      <div>线性代数</div>
       <div>https://lhish.github.io/project/线性代数/</div>
     </div>
     <div class="license-meta">
@@ -403,9 +415,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式 ">
+                      <a href="/%E6%9C%80%E5%B0%8F%E5%A0%86%E4%B8%8E%E6%9C%80%E5%A4%A7%E5%A0%86/" title="最小堆与最大堆">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">设计模式 </span>
+                        <span class="hidden-mobile">最小堆与最大堆</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -413,8 +425,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E7%BD%91%E7%BB%9C%E6%B5%81/" title="网络流 ">
-                        <span class="hidden-mobile">网络流 </span>
+                      <a href="/cmake/" title="cmake">
+                        <span class="hidden-mobile">cmake</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -506,7 +518,6 @@
 
   
   
-
 
 
 
@@ -726,49 +737,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

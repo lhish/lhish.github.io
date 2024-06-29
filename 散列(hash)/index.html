@@ -16,25 +16,25 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="散列(hash)在一个域(一个集合)中，其中存在着一个实际域，包含着我们所实际用到的元素，如自然数是一个域，其中我们有一个实际域，比如说{1,2,3}。这些作为关键字指向元素，这里的关键字就是指数组的下标一样的东西，根据一个关键字，我们就可以得到它所指的元素。 当全域较小的时候，我们可以之间建立一个表，一一对应。 但是当全域较大但是实际域并不大的时候，这就过于浪费存储空间了，因为很多的关键字都对应">
+    <meta name="description" content="在一个域(一个集合)中，其中存在着一个实际域，包含着我们所实际用到的元素，如自然数是一个域，其中我们有一个实际域，比如说{1,2,3}。这些作为关键字指向元素，这里的关键字就是指数组的下标一样的东西，根据一个关键字，我们就可以得到它所指的元素。 当全域较小的时候，我们可以之间建立一个表，一一对应。 但是当全域较大但是实际域并不大的时候，这就过于浪费存储空间了，因为很多的关键字都对应着NIL(空)，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="散列(hash) ">
+<meta property="og:title" content="散列(hash)">
 <meta property="og:url" content="https://lhish.github.io/project/%E6%95%A3%E5%88%97(hash)/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="散列(hash)在一个域(一个集合)中，其中存在着一个实际域，包含着我们所实际用到的元素，如自然数是一个域，其中我们有一个实际域，比如说{1,2,3}。这些作为关键字指向元素，这里的关键字就是指数组的下标一样的东西，根据一个关键字，我们就可以得到它所指的元素。 当全域较小的时候，我们可以之间建立一个表，一一对应。 但是当全域较大但是实际域并不大的时候，这就过于浪费存储空间了，因为很多的关键字都对应">
+<meta property="og:description" content="在一个域(一个集合)中，其中存在着一个实际域，包含着我们所实际用到的元素，如自然数是一个域，其中我们有一个实际域，比如说{1,2,3}。这些作为关键字指向元素，这里的关键字就是指数组的下标一样的东西，根据一个关键字，我们就可以得到它所指的元素。 当全域较小的时候，我们可以之间建立一个表，一一对应。 但是当全域较大但是实际域并不大的时候，这就过于浪费存储空间了，因为很多的关键字都对应着NIL(空)，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/lhish/picture@main/16790580823151679058081587.png">
 <meta property="og:image" content="https://files.catbox.moe/2pec7u.png">
 <meta property="og:image" content="https://files.catbox.moe/cp0gt1.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.517Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.598Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.142Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.830Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/lhish/picture@main/16790580823151679058081587.png">
   
   
   
-  <title>散列(hash)  - lhish&#39;s blog</title>
+  <title>散列(hash) - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -45,6 +45,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -229,7 +231,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="散列(hash) "></span>
+            <span id="subtitle" data-typed-text="散列(hash)"></span>
           
         </div>
 
@@ -240,7 +242,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -252,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          925 字
+          1.1k 字
         
       </span>
     
@@ -263,7 +265,7 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -308,34 +310,37 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">散列(hash) </h1>
+            <h1 id="seo-header">散列(hash)</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="散列-hash"><a href="#散列-hash" class="headerlink" title="散列(hash)"></a>散列(hash)</h1><p>在一个域(一个集合)中，其中存在着一个实际域，包含着我们所实际用到的元素，如自然数是一个域，其中我们有一个实际域，比如说{1,2,3}。这些作为关键字指向元素，这里的关键字就是指数组的下标一样的东西，根据一个关键字，我们就可以得到它所指的元素。</p>
+                <p>在一个域(一个集合)中，其中存在着一个实际域，包含着我们所实际用到的元素，如自然数是一个域，其中我们有一个实际域，比如说{1,2,3}。这些作为关键字指向元素，这里的关键字就是指数组的下标一样的东西，根据一个关键字，我们就可以得到它所指的元素。</p>
 <p>当全域较小的时候，我们可以之间建立一个表，一一对应。</p>
 <p>但是当全域较大但是实际域并不大的时候，这就过于浪费存储空间了，因为很多的关键字都对应着NIL(空)，因此，我们可以通过一个散列表来建立关系。</p>
-<p>散列表是通过一个散列函数$h(x)$来建立对应关系的。</p>
+<p>散列表是通过一个散列函数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span>来建立对应关系的。</p>
 <p>但是不管怎么样，只要我们散列表所</p>
-<h3 id="链接法"><a href="#链接法" class="headerlink" title="链接法"></a>链接法</h3><p>将散列表做成一个链表的集合，在通过散列函数$h(x)$求得值后，在其所对应的链表中进行比对寻找。</p>
+<h3 id="链接法">链接法</h3>
+<p>将散列表做成一个链表的集合，在通过散列函数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span>求得值后，在其所对应的链表中进行比对寻找。</p>
 <p><img src="https://fastly.jsdelivr.net/gh/lhish/picture@main/16790580823151679058081587.png" srcset="/img/loading.gif" lazyload alt="https://fastly.jsdelivr.net/gh/lhish/picture@main/16790580823151679058081587.png"></p>
-<p>时间复杂度为$O(a+1)(a为链表长度)$</p>
-<p>因为散列函数的时间复杂度是$O(1)$</p>
-<h3 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h3><p>散列函数就是一个很普通的数学公式，将一个数映射到另一个数，如通过$\bmod$，等等方式。</p>
+<p>时间复杂度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>a</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>a</mi><mtext>为链表长度</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(a+1)(a为链表长度)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mord cjk_fallback">为链表长度</span><span class="mclose">)</span></span></span></span></p>
+<p>因为散列函数的时间复杂度是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+<h3 id="散列函数">散列函数</h3>
+<p>散列函数就是一个很普通的数学公式，将一个数映射到另一个数，如通过<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext> </mtext><mo lspace="0.22em" rspace="0.22em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow></mo><mtext> </mtext></mrow><annotation encoding="application/x-tex">\bmod</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.0556em;"></span></span></span></span>，等等方式。</p>
 <p>但是，由于散列函数存在冲突，所以当一个散列函数被确定的时候，可以通过制造一些特定的数据，来使得散列函数的时间复杂度最劣。</p>
 <p>我们希望能够有一个散列函数对于任何数据都有着良好的时间复杂度，若专业来说就是如下。</p>
 <p><img src="https://files.catbox.moe/2pec7u.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/2pec7u.png"></p>
-<p>一个最简单的全域散列函数就是$h_{ab}(k)&#x3D;((ak+b)\bmod p)\bmod m a和b\le p-1且属于Z,p为全域,m为映射后的域$，通过一些数论的知识可以证明。</p>
-<h3 id="开放寻址法"><a href="#开放寻址法" class="headerlink" title="开放寻址法"></a>开放寻址法</h3><p>每一个散列表的槽只能放一个元素，因此散列表的大小需要大于关键字的数量。插入的方法就是按照位置的一个排列的顺序去找空位，若有空位，则插入。</p>
+<p>一个最简单的全域散列函数就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mrow><mi>a</mi><mi>b</mi></mrow></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>a</mi><mi>k</mi><mo>+</mo><mi>b</mi><mo stretchy="false">)</mo><mtext> </mtext><mo lspace="0.22em" rspace="0.22em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow></mo><mtext> </mtext><mi>p</mi><mo stretchy="false">)</mo><mtext> </mtext><mo lspace="0.22em" rspace="0.22em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow></mo><mtext> </mtext><mi>m</mi><mi>a</mi><mtext>和</mtext><mi>b</mi><mo>≤</mo><mi>p</mi><mo>−</mo><mn>1</mn><mtext>且属于</mtext><mi>Z</mi><mo separator="true">,</mo><mi>p</mi><mtext>为全域</mtext><mo separator="true">,</mo><mi>m</mi><mtext>为映射后的域</mtext></mrow><annotation encoding="application/x-tex">h_{ab}(k)=((ak+b)\bmod p)\bmod m a和b\le p-1且属于Z,p为全域,m为映射后的域</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ab</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">((</span><span class="mord mathnormal" style="margin-right:0.03148em;">ak</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord mathnormal">ma</span><span class="mord cjk_fallback">和</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord cjk_fallback">且属于</span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">p</span><span class="mord cjk_fallback">为全域</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">m</span><span class="mord cjk_fallback">为映射后的域</span></span></span></span>，通过一些数论的知识可以证明。</p>
+<h3 id="开放寻址法">开放寻址法</h3>
+<p>每一个散列表的槽只能放一个元素，因此散列表的大小需要大于关键字的数量。插入的方法就是按照位置的一个排列的顺序去找空位，若有空位，则插入。</p>
 <p>此处，为了保证这个排列是均匀散列，即探查序列的排列需要是等可能的所有排列中的任何一种，需要去设计探查的方法。</p>
-<p>所有的探查方式的探查顺序都通过一个函数来实现， $i^{‘}&#x3D;h(k,i)$。</p>
+<p>所有的探查方式的探查顺序都通过一个函数来实现， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi><msup><mrow></mrow><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></msup><mo>=</mo><mi>h</mi><mo stretchy="false">(</mo><mi>k</mi><mo separator="true">,</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i^{&#x27;}=h(k,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9425em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9425em;"><span style="top:-2.9425em;margin-right:0.05em;"><span class="pstrut" style="height:2.5795em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8278em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span></span>。</p>
 <p><strong>线性探查</strong></p>
-<p>$h(k,i)&#x3D;(h^{‘}(k)+i)\bmod m$</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>k</mi><mo separator="true">,</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><msup><mi>h</mi><msup><mrow></mrow><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></msup><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo>+</mo><mi>i</mi><mo stretchy="false">)</mo><mtext> </mtext><mo lspace="0.22em" rspace="0.22em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow></mo><mtext> </mtext><mi>m</mi></mrow><annotation encoding="application/x-tex">h(k,i)=(h^{&#x27;}(k)+i)\bmod m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1925em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9425em;"><span style="top:-2.9425em;margin-right:0.05em;"><span class="pstrut" style="height:2.5795em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8278em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span></p>
 <p><strong>二次探查</strong></p>
-<p>$h(k,i)&#x3D;(h^{‘}(k)+c_1i+c_2i^2)\bmod m$</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>k</mi><mo separator="true">,</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><msup><mi>h</mi><msup><mrow></mrow><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></msup><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo>+</mo><msub><mi>c</mi><mn>1</mn></msub><mi>i</mi><mo>+</mo><msub><mi>c</mi><mn>2</mn></msub><msup><mi>i</mi><mn>2</mn></msup><mo stretchy="false">)</mo><mtext> </mtext><mo lspace="0.22em" rspace="0.22em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow></mo><mtext> </mtext><mi>m</mi></mrow><annotation encoding="application/x-tex">h(k,i)=(h^{&#x27;}(k)+c_1i+c_2i^2)\bmod m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1925em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9425em;"><span style="top:-2.9425em;margin-right:0.05em;"><span class="pstrut" style="height:2.5795em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8278em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span></p>
 <p><strong>双重散列</strong></p>
-<p>$h(k,i)&#x3D;(h_1(k)+ih_2(k))\bmod m$</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>k</mi><mo separator="true">,</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><msub><mi>h</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo>+</mo><mi>i</mi><msub><mi>h</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mtext> </mtext><mo lspace="0.22em" rspace="0.22em"><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow></mo><mtext> </mtext><mi>m</mi></mrow><annotation encoding="application/x-tex">h(k,i)=(h_1(k)+ih_2(k))\bmod m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">))</span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span></p>
 <p><strong>优劣</strong></p>
 <p>双重散列&gt;二次探查&gt;线性探查</p>
 <p><strong>实际应用双重散列</strong></p>
@@ -344,19 +349,18 @@
 <li>取m为素数，并使h2总是产生比m小的正整数</li>
 </ol>
 <p><strong>时间复杂度分析</strong></p>
-<p>插入：$\frac{1}{1-a}$</p>
-<p>查找：$\frac{1}{a}\mathrm{ln}\frac{1}{1-a}$</p>
-<p>a为装载因数，即$\frac{插入的个数}{散列表的大小}$</p>
-<h3 id="完全散列"><a href="#完全散列" class="headerlink" title="完全散列"></a>完全散列</h3><p>将链表法的链表改为一个散列表，使其大小$m_j&#x3D;n_j^2$，即放入该槽元素个数的平方。</p>
+<p>插入：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mrow><mn>1</mn><mo>−</mo><mi>a</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{1-a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2484em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">a</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>查找：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mi>a</mi></mfrac><mrow><mi mathvariant="normal">l</mi><mi mathvariant="normal">n</mi></mrow><mfrac><mn>1</mn><mrow><mn>1</mn><mo>−</mo><mi>a</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{a}\mathrm{ln}\frac{1}{1-a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2484em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathrm">ln</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">a</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>a为装载因数，即<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mtext>插入的个数</mtext><mtext>散列表的大小</mtext></mfrac></mrow><annotation encoding="application/x-tex">\frac{插入的个数}{散列表的大小}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">散列表的大小</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">插入的个数</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<h3 id="完全散列">完全散列</h3>
+<p>将链表法的链表改为一个散列表，使其大小<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>j</mi></msub><mo>=</mo><msubsup><mi>n</mi><mi>j</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">m_j=n_j^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2089em;vertical-align:-0.3948em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.4413em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3948em;"><span></span></span></span></span></span></span></span></span></span>，即放入该槽元素个数的平方。</p>
 <p>可以证明，冲突的概率小于0.5**(定理1)**，因此可以多次随机散列函数，即可找到一个不冲突的散列函数。</p>
 <p>当n比较大的时候，可以进行第三次散列。</p>
 <aside>
 💡 我不确定是不是这个意思，下面是原话
-
 </aside>
-
 <p><img src="https://files.catbox.moe/cp0gt1.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/cp0gt1.png"></p>
-<p>还可以证明，总的空间复杂度为$O(n)$<strong>(定理2)。</strong></p>
+<p>还可以证明，总的空间复杂度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span><strong>(定理2)。</strong></p>
 <p>且，总存储空间大于4n的概率小于0.5。</p>
 <p>因此得出的结论如上。</p>
 
@@ -376,7 +380,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>散列(hash) </div>
+      <div>散列(hash)</div>
       <div>https://lhish.github.io/project/散列(hash)/</div>
     </div>
     <div class="license-meta">
@@ -421,9 +425,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/" title="强联通分量 ">
+                      <a href="/%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/" title="强联通分量">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">强联通分量 </span>
+                        <span class="hidden-mobile">强联通分量</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -431,8 +435,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E7%A6%BB%E6%95%A3/" title="离散 ">
-                        <span class="hidden-mobile">离散 </span>
+                      <a href="/%E7%A6%BB%E6%95%A3/" title="离散">
+                        <span class="hidden-mobile">离散</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -524,7 +528,6 @@
 
   
   
-
 
 
 
@@ -744,49 +747,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

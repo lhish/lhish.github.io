@@ -16,24 +16,24 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="CPU I instruction A address R register D data C counter P program S status 状态寄存器 PSW 操作控制器：建立数据通路，即从哪流向哪， 时序逻辑型：硬布线控制器，就是通过设计电路硬做 存储逻辑型：微程序控制器，像程序一样读出一个一个的开关的状态进行操作   数据通路：寄存器到寄存器，寄存器由时钟控制，而寄存器到寄存器间可能">
+    <meta name="description" content="I instruction A address R register D data C counter P program S status 状态寄存器 PSW 操作控制器：建立数据通路，即从哪流向哪，  时序逻辑型：硬布线控制器，就是通过设计电路硬做 存储逻辑型：微程序控制器，像程序一样读出一个一个的开关的状态进行操作   数据通路：寄存器到寄存器，寄存器由时钟控制，而寄存器到寄存器间可能有各">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CPU ">
+<meta property="og:title" content="CPU">
 <meta property="og:url" content="https://lhish.github.io/project/hide/CPU/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="CPU I instruction A address R register D data C counter P program S status 状态寄存器 PSW 操作控制器：建立数据通路，即从哪流向哪， 时序逻辑型：硬布线控制器，就是通过设计电路硬做 存储逻辑型：微程序控制器，像程序一样读出一个一个的开关的状态进行操作   数据通路：寄存器到寄存器，寄存器由时钟控制，而寄存器到寄存器间可能">
+<meta property="og:description" content="I instruction A address R register D data C counter P program S status 状态寄存器 PSW 操作控制器：建立数据通路，即从哪流向哪，  时序逻辑型：硬布线控制器，就是通过设计电路硬做 存储逻辑型：微程序控制器，像程序一样读出一个一个的开关的状态进行操作   数据通路：寄存器到寄存器，寄存器由时钟控制，而寄存器到寄存器间可能有各">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/CPUUntitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/CPUUntitled%201.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.521Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.634Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.870Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/CPUUntitled.png">
   
   
   
-  <title>CPU  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>CPU - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -44,6 +44,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -228,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CPU "></span>
+            <span id="subtitle" data-typed-text="CPU"></span>
           
         </div>
 
@@ -239,7 +241,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -307,12 +309,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">CPU </h1>
+            <h1 id="seo-header">CPU</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h1><ol>
+                <ol>
 <li>I instruction</li>
 <li>A address</li>
 <li>R register</li>
@@ -321,7 +323,8 @@
 <li>P program</li>
 <li>S status</li>
 <li>状态寄存器 PSW</li>
-<li>操作控制器：建立数据通路，即从哪流向哪，<ol>
+<li>操作控制器：建立数据通路，即从哪流向哪，
+<ol>
 <li>时序逻辑型：硬布线控制器，就是通过设计电路硬做</li>
 <li>存储逻辑型：微程序控制器，像程序一样读出一个一个的开关的状态进行操作</li>
 </ol>
@@ -340,11 +343,11 @@
 <li>硬布线控制器：主状态周期（指令周期）—节拍电位（CPU周期）—节拍脉冲（T周期）</li>
 <li>而微程序控制器只有：节拍电位（CPU周期）—节拍脉冲（T周期）</li>
 <li>产生很多信号，如T1,T2,T3,T4，分别在其对应时间是高电平，如T1，就在第一个T周期高电平</li>
-<li>有一个时钟源(晶振)，用来产生固定的频率，环形来产生顺序，从0-》2^n&#x2F;其他数字，译码译成对应的T，RD和WE是针对存储器的，暂时可以忽略，启停控制逻辑控制什么时候真正开始计数</li>
+<li>有一个时钟源(晶振)，用来产生固定的频率，环形来产生顺序，从0-》2^n/其他数字，译码译成对应的T，RD和WE是针对存储器的，暂时可以忽略，启停控制逻辑控制什么时候真正开始计数</li>
 </ol>
 <p><img src="/image/CPUUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <ol>
-<li>控制方式：同步控制（统一的机器周期，不定长（CPU周期不同）机器周期）&#x2F;异步控制（每个指令爱执行多久执行多久）</li>
+<li>控制方式：同步控制（统一的机器周期，不定长（CPU周期不同）机器周期）/异步控制（每个指令爱执行多久执行多久）</li>
 <li>微程序控制器：微指令存放在控制存储器中，微操作有的是相容的，有的是互斥的，即不能同时打开开关，有的是相容的，可以同时打开，必须各占一位？</li>
 <li>一般一条微指令分为两部分，操作和顺序控制字段，控制下面一条执行的微指令</li>
 <li>微命令就是一个开关的10，微操作就是对应这个微命令</li>
@@ -355,13 +358,15 @@
 <p><img src="/image/CPUUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>在微程序中可能有条件判断，就通过p2来判断，如果满足则跳到后面的地址+1否则+1</p>
 <ol>
-<li>微命令编码<ol>
+<li>微命令编码
+<ol>
 <li>直接编码：直接表示1和0，开和关，速度最快，但长度最长</li>
 <li>编码表示法：分成若干个小段，每个小段用最短表示法，每个小段里的都是互斥的，最短，但慢</li>
 <li>混合表示</li>
 </ol>
 </li>
-<li>微地址的形成方法<ol>
+<li>微地址的形成方法
+<ol>
 <li>入口地址</li>
 <li>计数器，跳转，但假如说有多条分支，就会很慢</li>
 <li>多路转移，当且仅当p1为1，直接通过状态位或寄存器来直接更改微地址寄存器的某几位</li>
@@ -401,7 +406,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CPU </div>
+      <div>CPU</div>
       <div>https://lhish.github.io/project/hide/CPU/</div>
     </div>
     <div class="license-meta">
@@ -537,7 +542,6 @@
 
   
   
-
 
 
 
@@ -757,49 +761,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

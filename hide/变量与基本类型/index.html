@@ -16,26 +16,26 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="变量与基本类型类型 char类型有三种，char，与有符号的，无符号的，但是实际上只有两种char，有符号与无符号的，char是哪一种由编译器决定。 少用float多用double。 无符号超出范围会取mod，而有符号超出范围会报错。  带符号与无符号在一起，带符号会转化为无符号。 若两个char字面值仅由空格，缩进，换行分割则视为一个整体。 开头有0为八进制，有0x为十六进制 +数字为八进制的c">
+    <meta name="description" content="类型  char类型有三种，char，与有符号的，无符号的，但是实际上只有两种char，有符号与无符号的，char是哪一种由编译器决定。 少用float多用double。 无符号超出范围会取mod，而有符号超出范围会报错。 带符号与无符号在一起，带符号会转化为无符号。 若两个char字面值仅由空格，缩进，换行分割则视为一个整体。 开头有0为八进制，有0x为十六进制 +数字为八进制的char，只管前">
 <meta property="og:type" content="article">
-<meta property="og:title" content="变量与基本类型 ">
+<meta property="og:title" content="变量与基本类型">
 <meta property="og:url" content="https://lhish.github.io/project/hide/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="变量与基本类型类型 char类型有三种，char，与有符号的，无符号的，但是实际上只有两种char，有符号与无符号的，char是哪一种由编译器决定。 少用float多用double。 无符号超出范围会取mod，而有符号超出范围会报错。  带符号与无符号在一起，带符号会转化为无符号。 若两个char字面值仅由空格，缩进，换行分割则视为一个整体。 开头有0为八进制，有0x为十六进制 +数字为八进制的c">
+<meta property="og:description" content="类型  char类型有三种，char，与有符号的，无符号的，但是实际上只有两种char，有符号与无符号的，char是哪一种由编译器决定。 少用float多用double。 无符号超出范围会取mod，而有符号超出范围会报错。 带符号与无符号在一起，带符号会转化为无符号。 若两个char字面值仅由空格，缩进，换行分割则视为一个整体。 开头有0为八进制，有0x为十六进制 +数字为八进制的char，只管前">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://files.catbox.moe/u5ptwi.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8BUntitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8BUntitled%201.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8BUntitled%202.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.521Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.626Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.862Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://files.catbox.moe/u5ptwi.png">
   
   
   
-  <title>变量与基本类型  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>变量与基本类型 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -46,6 +46,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -230,7 +232,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="变量与基本类型 "></span>
+            <span id="subtitle" data-typed-text="变量与基本类型"></span>
           
         </div>
 
@@ -241,7 +243,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -309,36 +311,40 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">变量与基本类型 </h1>
+            <h1 id="seo-header">变量与基本类型</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="变量与基本类型"><a href="#变量与基本类型" class="headerlink" title="变量与基本类型"></a>变量与基本类型</h1><h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p><img src="https://files.catbox.moe/u5ptwi.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/u5ptwi.png"></p>
+                <h3 id="类型">类型</h3>
+<p><img src="https://files.catbox.moe/u5ptwi.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/u5ptwi.png"></p>
 <p>char类型有三种，char，与有符号的，无符号的，但是实际上只有两种char，有符号与无符号的，char是哪一种由编译器决定。</p>
 <p>少用float多用double。</p>
-<p>无符号超出范围会取mod，而有符号超出范围会报错。 </p>
+<p>无符号超出范围会取mod，而有符号超出范围会报错。</p>
 <p>带符号与无符号在一起，带符号会转化为无符号。</p>
 <p>若两个char字面值仅由空格，缩进，换行分割则视为一个整体。</p>
 <p>开头有0为八进制，有0x为十六进制</p>
 <p>+数字为八进制的char，只管前3个，\x+数字为十六进制的char，管后面的所有。</p>
 <p><img src="/image/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8BUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>nullptr是指针的字面值。</p>
-<h3 id="初始化与命名"><a href="#初始化与命名" class="headerlink" title="初始化与命名"></a>初始化与命名</h3><p>事实上在C++语言中，初始化和赋值是两个完全不同的操作。</p>
+<h3 id="初始化与命名">初始化与命名</h3>
+<p>事实上在C++语言中，初始化和赋值是两个完全不同的操作。</p>
 <p>初始化不是赋值，初始化的含义是剑建变量时赋予其一个初始值，而赋值的含义是把对象的当前值擦除，而以一个新值来替代。</p>
-<p>列表初始化的表现形式为使用花括号来初始化，如&#x3D;{}或者{}，会在数据精度存在丢失可能的情况下报错。</p>
+<p>列表初始化的表现形式为使用花括号来初始化，如={}或者{}，会在数据精度存在丢失可能的情况下报错。</p>
 <p>声明：名称与类型</p>
 <p>定义：声明+实体（申请存储空间，初始化等）</p>
-<p>对于一个变量加上$extern$关键字且不以显式初始化即表示声明。</p>
+<p>对于一个变量加上<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mi>x</mi><mi>t</mi><mi>e</mi><mi>r</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">extern</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span><span class="mord mathnormal">n</span></span></span></span>关键字且不以显式初始化即表示声明。</p>
 <p><img src="/image/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8BUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>当全局变量与局部变量相同的时候，局部变量会在块域内覆盖全局变量。内层的局部变量也会覆盖较外层的局部变量，但当离开作用域后覆盖也会失效，若是要在内层访问全局变量，只需加上作用域解析运算符：：即可，但是不能访问较外层但非全局变量的变量。</p>
-<h3 id="引用与指针"><a href="#引用与指针" class="headerlink" title="引用与指针"></a>引用与指针</h3><p>引用在定义后无法换绑，因此必须初始化。当引用初始化时被赋为另一个引用时，会绑定另一个引用绑定的变量。</p>
+<h3 id="引用与指针">引用与指针</h3>
+<p>引用在定义后无法换绑，因此必须初始化。当引用初始化时被赋为另一个引用时，会绑定另一个引用绑定的变量。</p>
 <p>由于引用没有地址，所有指针无法指向引用。</p>
 <p>void*是一种特殊的指针，它能指向各种类型，但是，并不能对它所指向的对象进行操作，因为不清楚它指向的</p>
 <p>类型修饰符如*,&amp;不过是声明符的一部分。</p>
 <p>当为…*&amp;时，是一个对指针的引用。</p>
 <p>nullptr指针空值。</p>
-<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>const常量只能获取它的信息，但不能改变它。const仅在当前文件内可用，若是要使其在其他文件中可用，需要加上extern关键字。</p>
+<h3 id="const">const</h3>
+<p>const常量只能获取它的信息，但不能改变它。const仅在当前文件内可用，若是要使其在其他文件中可用，需要加上extern关键字。</p>
 <p>const … &amp;，常量引用，只能引用常量，所能做的事与const相同。</p>
 <p>常量引用可以绑定非常量变量。当类型一致时，和普通的引用没有任何区别。当并非绑定变量而是表达式或者函数时，其所绑定的值将是该表达式或函数返回值的临时量，并不会因为其内部值的改变而改变。当类型不同时，编译器会增加一句先将其转换为const类型的常量，接着将引用指向它。</p>
 <p><img src="/image/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8BUntitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
@@ -349,35 +355,42 @@
 <blockquote>
 <p>所谓指向常量的指针或引用，不过是指针或引用“自以为是”罢了，它们觉得自己指向了常量，所以自觉地不去玫变所指对象的值</p>
 </blockquote>
-<p>由于指针与其所指向的类型是完全相同的，因此指向这个指针的指针也与其最终所指向的量的类型是相同的。若是要定义一个指针为常量，将$<em>$改为$^</em>const$，当为二级指针的时候，将$**$改为$^<em>const\ ^</em>const$，如指向一个（指向int常量的常量指针）的常量指针，$const\ int\ ^<em>const\ ^</em>const$.</p>
+<p>由于指针与其所指向的类型是完全相同的，因此指向这个指针的指针也与其最终所指向的量的类型是相同的。若是要定义一个指针为常量，将<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∗</mo></mrow><annotation encoding="application/x-tex">*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">∗</span></span></span></span>改为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow></mrow><mo>∗</mo></msup><mi>c</mi><mi>o</mi><mi>n</mi><mi>s</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">^*const</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6887em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mord mathnormal">co</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span></span></span></span>，当为二级指针的时候，将<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∗</mo><mo>∗</mo></mrow><annotation encoding="application/x-tex">**</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">∗</span><span class="mord">∗</span></span></span></span>改为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow></mrow><mo>∗</mo></msup><mi>c</mi><mi>o</mi><mi>n</mi><mi>s</mi><mi>t</mi><msup><mtext> </mtext><mo>∗</mo></msup><mi>c</mi><mi>o</mi><mi>n</mi><mi>s</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">^*const\ ^*const</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6887em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mord mathnormal">co</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord"><span class="mspace"> </span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mord mathnormal">co</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span></span></span></span>，如指向一个（指向int常量的常量指针）的常量指针，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>o</mi><mi>n</mi><mi>s</mi><mi>t</mi><mtext> </mtext><mi>i</mi><mi>n</mi><mi>t</mi><msup><mtext> </mtext><mo>∗</mo></msup><mi>c</mi><mi>o</mi><mi>n</mi><mi>s</mi><mi>t</mi><msup><mtext> </mtext><mo>∗</mo></msup><mi>c</mi><mi>o</mi><mi>n</mi><mi>s</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">const\ int\ ^*const\ ^*const</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6887em;"></span><span class="mord mathnormal">co</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mspace"> </span><span class="mord mathnormal">in</span><span class="mord mathnormal">t</span><span class="mord"><span class="mspace"> </span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mord mathnormal">co</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord"><span class="mspace"> </span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mord mathnormal">co</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span></span></span></span>.</p>
 <p>对于一个指针，若它本身是常量，则为顶层const。若它指向的是一个常量，则为底层const。</p>
 <p>当为顶层const时，只能作右值。</p>
 <p>当为底层const时，需要保证左值与右值的底层一致或者左值是常量右值是非常量。</p>
-<h3 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a>constexpr</h3><p>当定义时是一个常量，且初始化为一个常量（即不运行这个值就已经确定的）时候，这就是常量表达式（const expression），可以通过constexpr关键字来确保这是一个常量表达式。此外，也可以通过对函数类型增加这一关键字来确保其可以作为常量表达式的一部分。会在编译的时候就会计算完成并替代。</p>
+<h3 id="constexpr">constexpr</h3>
+<p>当定义时是一个常量，且初始化为一个常量（即不运行这个值就已经确定的）时候，这就是常量表达式（const expression），可以通过constexpr关键字来确保这是一个常量表达式。此外，也可以通过对函数类型增加这一关键字来确保其可以作为常量表达式的一部分。会在编译的时候就会计算完成并替代。</p>
 <p>能够被声明constexpr的变量类型必须为字面值类型。引用和指针也能被声明，但是其初始化只能指向固定地址或者nullptr。此外，由于函数体内的变量不是固定地址，故constexpr指针不能指向这些变量，但可以在函数体内定义全局变量（拥有着固定的地址），可以被指向。</p>
 <p>constexpr保证为顶层const。</p>
-<h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><p>typedef A B，B是A的别名。实际上比这复杂很多，还是用using比较好。</p>
-<p>using A&#x3D;B，A是B的别名</p>
+<h3 id="类型别名">类型别名</h3>
+<p>typedef A B，B是A的别名。实际上比这复杂很多，还是用using比较好。</p>
+<p>using A=B，A是B的别名</p>
 <p>另外可以使用类型修饰来构造复合类型。</p>
 <p>可以通过替换的方式来理解，但是要注意的是要加上括号来理解。</p>
-<h3 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h3><p>通过初始化的值的类型来判断类型，因此必须初始化。</p>
+<h3 id="auto">auto</h3>
+<p>通过初始化的值的类型来判断类型，因此必须初始化。</p>
 <p>当初始值为一个引用时，会直接代换为其引用的对象。</p>
 <p>会保留底层const但会忽略顶层const。</p>
 <p>因此auto不可能推断出顶层const，需要在auto前增加const关键字使其推断为const。</p>
 <p>auto中也可以使用类型修饰符，但需保证初始值是一个类型。</p>
-<h3 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a>decltype</h3><p>decltype用在不想使用用来判断类型的表达式作为初始值的情况。decltype(表达式)代替类型关键字。decltype并不会对其表达式的类型作任何改变，而会直接传过来，引用和指针也会被传出来。</p>
+<h3 id="decltype">decltype</h3>
+<p>decltype用在不想使用用来判断类型的表达式作为初始值的情况。decltype(表达式)代替类型关键字。decltype并不会对其表达式的类型作任何改变，而会直接传过来，引用和指针也会被传出来。</p>
 <p><strong>解指针所得的是对其指向变量的一个引用，而非其指向的变量本身。</strong></p>
 <p>若是decltype中一个变量被加上了括号，那么它就会变成一个引用类型。</p>
-<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>struct在初始化时可以为其每一个成员定义一个初始值，若是没定义，将会被默认初始化。</p>
+<h3 id="类">类</h3>
+<p>struct在初始化时可以为其每一个成员定义一个初始值，若是没定义，将会被默认初始化。</p>
 <p>头文件里通常包含只能被定义一次的实体。</p>
-<h3 id="预处理器"><a href="#预处理器" class="headerlink" title="预处理器"></a>预处理器</h3><p>#include会在预处理时将其自身替换为头文件的内容。</p>
+<h3 id="预处理器">预处理器</h3>
+<p>#include会在预处理时将其自身替换为头文件的内容。</p>
 <p>#define 将一个名字设为预处理变量</p>
 <p>#ifdef 当且仅当变量已被定义时为真</p>
 <p>#ifndef 当且仅当变量未被定义时为真</p>
 <p>#endif if语句结束</p>
 <p>预处理器无视作用域。</p>
 <p>为了防止与其他实体产生名字冲突，预处理中将其大写。</p>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ol>
+<h3 id="初始化">初始化</h3>
+<ol>
 <li>默认初始化：瞎几把初始化</li>
 <li>值初始化：若为普通类型，初始化为0，否则按类定义初始化。</li>
 </ol>
@@ -398,7 +411,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>变量与基本类型 </div>
+      <div>变量与基本类型</div>
       <div>https://lhish.github.io/project/hide/变量与基本类型/</div>
     </div>
     <div class="license-meta">
@@ -534,7 +547,6 @@
 
   
   
-
 
 
 
@@ -754,49 +766,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

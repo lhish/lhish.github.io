@@ -16,12 +16,12 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="IO库格式化输入与输出标准库定义了一些操纵符来修改流的格式状态。 由于流是一个对象，操纵符实际上是修改了流的状态，因此它是持久的，比如cout就是ostream的一个实例，因此会一直保持着这种改变，因此我们最好在改变流的状态后，使用完后再改回去，因此大部分操作符都是成双成对的。而一类的操作运算符，比如进制，后一个操作符的状态会覆盖前一个操作符的状态。 实际上这些操纵符是函数，参数是一个流，通过类似">
+    <meta name="description" content="格式化输入与输出 标准库定义了一些操纵符来修改流的格式状态。 由于流是一个对象，操纵符实际上是修改了流的状态，因此它是持久的，比如cout就是ostream的一个实例，因此会一直保持着这种改变，因此我们最好在改变流的状态后，使用完后再改回去，因此大部分操作符都是成双成对的。而一类的操作运算符，比如进制，后一个操作符的状态会覆盖前一个操作符的状态。 实际上这些操纵符是函数，参数是一个流，通过类似输出">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IO库 ">
+<meta property="og:title" content="IO库">
 <meta property="og:url" content="https://lhish.github.io/project/hide/IO%E5%BA%93/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="IO库格式化输入与输出标准库定义了一些操纵符来修改流的格式状态。 由于流是一个对象，操纵符实际上是修改了流的状态，因此它是持久的，比如cout就是ostream的一个实例，因此会一直保持着这种改变，因此我们最好在改变流的状态后，使用完后再改回去，因此大部分操作符都是成双成对的。而一类的操作运算符，比如进制，后一个操作符的状态会覆盖前一个操作符的状态。 实际上这些操纵符是函数，参数是一个流，通过类似">
+<meta property="og:description" content="格式化输入与输出 标准库定义了一些操纵符来修改流的格式状态。 由于流是一个对象，操纵符实际上是修改了流的状态，因此它是持久的，比如cout就是ostream的一个实例，因此会一直保持着这种改变，因此我们最好在改变流的状态后，使用完后再改回去，因此大部分操作符都是成双成对的。而一类的操作运算符，比如进制，后一个操作符的状态会覆盖前一个操作符的状态。 实际上这些操纵符是函数，参数是一个流，通过类似输出">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/IO%E5%BA%93Untitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/IO%E5%BA%93Untitled%201.png">
@@ -30,15 +30,15 @@
 <meta property="og:image" content="https://lhish.github.io/image/IO%E5%BA%93Untitled%204.png">
 <meta property="og:image" content="https://lhish.github.io/image/IO%E5%BA%93Untitled%205.png">
 <meta property="og:image" content="https://lhish.github.io/image/IO%E5%BA%93Untitled%206.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.525Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.622Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.858Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/IO%E5%BA%93Untitled.png">
   
   
   
-  <title>IO库  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>IO库 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -49,6 +49,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -233,7 +235,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="IO库 "></span>
+            <span id="subtitle" data-typed-text="IO库"></span>
           
         </div>
 
@@ -244,7 +246,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -256,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          592 字
+          590 字
         
       </span>
     
@@ -312,25 +314,28 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">IO库 </h1>
+            <h1 id="seo-header">IO库</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="IO库"><a href="#IO库" class="headerlink" title="IO库"></a>IO库</h1><h3 id="格式化输入与输出"><a href="#格式化输入与输出" class="headerlink" title="格式化输入与输出"></a>格式化输入与输出</h3><p>标准库定义了一些操纵符来修改流的格式状态。</p>
+                <h3 id="格式化输入与输出">格式化输入与输出</h3>
+<p>标准库定义了一些操纵符来修改流的格式状态。</p>
 <p>由于流是一个对象，操纵符实际上是修改了流的状态，因此它是持久的，比如cout就是ostream的一个实例，因此会一直保持着这种改变，因此我们最好在改变流的状态后，使用完后再改回去，因此大部分操作符都是成双成对的。而一类的操作运算符，比如进制，后一个操作符的状态会覆盖前一个操作符的状态。</p>
 <p>实际上这些操纵符是函数，参数是一个流，通过类似输出的方式调用这些函数来改变流的状态。</p>
 <p><img src="/image/IO%E5%BA%93Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p><img src="/image/IO%E5%BA%93Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>当需要控制小数精度的时候，可以使用cout.precision(x)或者cout&lt;&lt;setprecision(x)的方式。</p>
-<h3 id="控制留白"><a href="#控制留白" class="headerlink" title="控制留白"></a>控制留白</h3><table>
+<h3 id="控制留白">控制留白</h3>
+<table>
 <thead>
 <tr>
 <th>left</th>
 <th>左对齐输出</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>right</td>
 <td>右对齐输出</td>
 </tr>
@@ -338,9 +343,11 @@
 <td>internal</td>
 <td>左对齐符号，右对齐值</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><img src="/image/IO%E5%BA%93Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<h3 id="未格式化的输入输出"><a href="#未格式化的输入输出" class="headerlink" title="未格式化的输入输出"></a>未格式化的输入输出</h3><p>上述的都是格式化的输入输出，也就是根据读取或写入的类型来格式化。而未格式化就是将其当做无意义的字符来处理。</p>
+<h3 id="未格式化的输入输出">未格式化的输入输出</h3>
+<p>上述的都是格式化的输入输出，也就是根据读取或写入的类型来格式化。而未格式化就是将其当做无意义的字符来处理。</p>
 <p><img src="/image/IO%E5%BA%93Untitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>时常我们需要读取一个字符才知道我们是否应该现在读取它，这可以通过后三个函数来实现。</p>
 <p>但标准库并不保证能连续调用putback或unget。</p>
@@ -351,7 +358,8 @@
 <blockquote>
 <p>少使用这些底层函数，很容易出错。比如在一台char被实现为unsigned char的机器上，cin.get()读到的EOF就永远不再是EOF了，如果用char存储的话。</p>
 </blockquote>
-<h3 id="流的随机访问"><a href="#流的随机访问" class="headerlink" title="流的随机访问"></a>流的随机访问</h3><p>虽然std中所有的流都支持随机访问，但是一般只有文件流和字符串流是真正有效的。</p>
+<h3 id="流的随机访问">流的随机访问</h3>
+<p>虽然std中所有的流都支持随机访问，但是一般只有文件流和字符串流是真正有效的。</p>
 <p><img src="/image/IO%E5%BA%93Untitled%206.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>不管在什么情况下，一个流中都只有一个标记，即便这个流有两个流在读，并且读和写共享同一个标记，因此时常需要seek来重置。</p>
 <p>off可正可负表示方向。</p>
@@ -372,7 +380,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>IO库 </div>
+      <div>IO库</div>
       <div>https://lhish.github.io/project/hide/IO库/</div>
     </div>
     <div class="license-meta">
@@ -508,7 +516,6 @@
 
   
   
-
 
 
 
@@ -728,49 +735,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

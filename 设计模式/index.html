@@ -16,23 +16,23 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="设计模式设计模式相当于是一种抽象的思路，为解决问题而生的固定化的套路思路。 面向对象抽象：将具体事物抽象 封装：隐藏接口实现 继承：提取相同部分 多态：用相同的代码调用不同但类似的对象 对象之间的关系 依赖：类A中存在类B相关的东西 关联：类A中有类B 聚合：类A与类B是包含的关系但是非单一 组合：类A完全由类B等类组成 实现：类A实现接口类B 继承：类A继承B的接口与实现，并可以拓展  面向对象">
+    <meta name="description" content="设计模式相当于是一种抽象的思路，为解决问题而生的固定化的套路思路。 面向对象 抽象：将具体事物抽象 封装：隐藏接口实现 继承：提取相同部分 多态：用相同的代码调用不同但类似的对象 对象之间的关系  依赖：类A中存在类B相关的东西 关联：类A中有类B 聚合：类A与类B是包含的关系但是非单一 组合：类A完全由类B等类组成 实现：类A实现接口类B 继承：类A继承B的接口与实现，并可以拓展  面向对象最重">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 ">
+<meta property="og:title" content="设计模式">
 <meta property="og:url" content="https://lhish.github.io/project/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="设计模式设计模式相当于是一种抽象的思路，为解决问题而生的固定化的套路思路。 面向对象抽象：将具体事物抽象 封装：隐藏接口实现 继承：提取相同部分 多态：用相同的代码调用不同但类似的对象 对象之间的关系 依赖：类A中存在类B相关的东西 关联：类A中有类B 聚合：类A与类B是包含的关系但是非单一 组合：类A完全由类B等类组成 实现：类A实现接口类B 继承：类A继承B的接口与实现，并可以拓展  面向对象">
+<meta property="og:description" content="设计模式相当于是一种抽象的思路，为解决问题而生的固定化的套路思路。 面向对象 抽象：将具体事物抽象 封装：隐藏接口实现 继承：提取相同部分 多态：用相同的代码调用不同但类似的对象 对象之间的关系  依赖：类A中存在类B相关的东西 关联：类A中有类B 聚合：类A与类B是包含的关系但是非单一 组合：类A完全由类B等类组成 实现：类A实现接口类B 继承：类A继承B的接口与实现，并可以拓展  面向对象最重">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8FUntitled.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.517Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.606Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.142Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.838Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8FUntitled.png">
   
   
   
-  <title>设计模式  - lhish&#39;s blog</title>
+  <title>设计模式 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -43,6 +43,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -227,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="设计模式 "></span>
+            <span id="subtitle" data-typed-text="设计模式"></span>
           
         </div>
 
@@ -238,7 +240,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -306,17 +308,19 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">设计模式 </h1>
+            <h1 id="seo-header">设计模式</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p>设计模式相当于是一种抽象的思路，为解决问题而生的固定化的套路思路。</p>
-<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>抽象：将具体事物抽象</p>
+                <p>设计模式相当于是一种抽象的思路，为解决问题而生的固定化的套路思路。</p>
+<h3 id="面向对象">面向对象</h3>
+<p>抽象：将具体事物抽象</p>
 <p>封装：隐藏接口实现</p>
 <p>继承：提取相同部分</p>
 <p>多态：用相同的代码调用不同但类似的对象</p>
-<h3 id="对象之间的关系"><a href="#对象之间的关系" class="headerlink" title="对象之间的关系"></a>对象之间的关系</h3><ol>
+<h3 id="对象之间的关系">对象之间的关系</h3>
+<ol>
 <li>依赖：类A中存在类B相关的东西</li>
 <li>关联：类A中有类B</li>
 <li>聚合：类A与类B是包含的关系但是非单一</li>
@@ -333,54 +337,70 @@
 <p>这个接口可以由对方来实现，也可以通过一个抽象类（接口类）作为中间层，而这个接口类表示我们所想要依赖的最本质的特性，如吃的依赖是食物等等。</p>
 <p>另外，抽象类不要特化，特化交给继承来做，来实现接口。</p>
 <p>且，有时组合是由于继承的。继承在枚举其下属属性的所有可能性，而组合就是将乘法变为加法，将无关的属性抽离出原本的类，作为一个新的类来实现，再通过对各自属性的继承来实现总体属性的枚举。</p>
-<h2 id="SOLID"><a href="#SOLID" class="headerlink" title="SOLID"></a>SOLID</h2><h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><p>将一个复杂职责的类切分为多个单职责的类，使得对于每一个类仅需关注其本身而对于整体的组合也无需关注细节实现。这一点并不仅仅是为了模块化，还是为了方便我们更加掌控代码，调整整体逻辑。</p>
+<h2 id="SOLID">SOLID</h2>
+<h3 id="单一职责原则">单一职责原则</h3>
+<p>将一个复杂职责的类切分为多个单职责的类，使得对于每一个类仅需关注其本身而对于整体的组合也无需关注细节实现。这一点并不仅仅是为了模块化，还是为了方便我们更加掌控代码，调整整体逻辑。</p>
 <p>但一般在实现上就是将实现归类，放在更关联的类中。</p>
-<h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>闭：不修改类本身与实现。保证原本的依赖类的对象仍能正常工作。</p>
+<h3 id="开闭原则">开闭原则</h3>
+<p>闭：不修改类本身与实现。保证原本的依赖类的对象仍能正常工作。</p>
 <p>开：通过继承的方式扩展其功能或进行修改，如需要重构某一个类，通过一个子类继承后重写对应方法即可。</p>
 <p>不要动屎山，而是在屎山上添砖加瓦。</p>
-<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><p>在扩展类，也就是在进行子类继承时，必须保证子类对象能够作为父类对象而进行使用。</p>
+<h3 id="里氏替换原则">里氏替换原则</h3>
+<p>在扩展类，也就是在进行子类继承时，必须保证子类对象能够作为父类对象而进行使用。</p>
 <p>在对于其他的要求上，子类必须相同或更加宽泛（在函数参数与依赖对象的要求上）。</p>
 <p>在他类对自己的要求上，子类必须相同或更加狭窄（在函数返回值与抛出异常和对他类的保证上）。</p>
-<h3 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h3><p>当继承时，不希望继承许多无用的声明，可以将其中一起的一部分抽象为一个接口类。而对于接口类，也可以通过组合的方式将其拆分为多个更小的接口类来防止无用的继承实现。</p>
+<h3 id="接口隔离原则">接口隔离原则</h3>
+<p>当继承时，不希望继承许多无用的声明，可以将其中一起的一部分抽象为一个接口类。而对于接口类，也可以通过组合的方式将其拆分为多个更小的接口类来防止无用的继承实现。</p>
 <p>可以使用多重继承来实现多个接口类。</p>
-<h3 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h3><p>当高层次的类直接依赖于低层次的类时，但我们不希望高层次的类关注低层次的实现，应该将低层次的类抽象为一个抽象类，使高层次的类依赖于它（同样高层次），但此时低层次的类就使依赖***(?)***于该抽象类了。</p>
-<h2 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h2><p>提供代码灵活性和复用性的创建对象的模式。</p>
-<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>将多种具体产品抽象为一个抽象的产品，并以一个抽象类“工厂”来创建产品，返回一个抽象产品指针，其通过继承来实现对于不同产品的创建。</p>
+<h3 id="依赖倒置原则">依赖倒置原则</h3>
+<p>当高层次的类直接依赖于低层次的类时，但我们不希望高层次的类关注低层次的实现，应该将低层次的类抽象为一个抽象类，使高层次的类依赖于它（同样高层次），但此时低层次的类就使依赖***(?)***于该抽象类了。</p>
+<h2 id="创建型模式">创建型模式</h2>
+<p>提供代码灵活性和复用性的创建对象的模式。</p>
+<h3 id="工厂模式">工厂模式</h3>
+<p>将多种具体产品抽象为一个抽象的产品，并以一个抽象类“工厂”来创建产品，返回一个抽象产品指针，其通过继承来实现对于不同产品的创建。</p>
 <p>优点：</p>
 <p>这样可以使创建与对象本身相分离，使得更加具有扩展性。</p>
 <p>不用构造函数而使用其他的函数简介创建对象能够实现更加复杂的功能，如使其变为单例。</p>
 <p><img src="/image/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8FUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<h3 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h3><p>抽象工厂实际是工厂模式的上位。工厂模式中是只有一个工厂，而抽象工厂将工厂也抽象出来，很多具体工厂继承抽象工厂，返回对应产品的抽象产品。不同的工厂生产的产品抽象为不同的抽象产品。</p>
+<h3 id="抽象工厂">抽象工厂</h3>
+<p>抽象工厂实际是工厂模式的上位。工厂模式中是只有一个工厂，而抽象工厂将工厂也抽象出来，很多具体工厂继承抽象工厂，返回对应产品的抽象产品。不同的工厂生产的产品抽象为不同的抽象产品。</p>
 <p>一般用于二维的种类情况下，多个不同系列的相关产品。</p>
 <blockquote>
 <p>如果你有一个基于一组抽象方法的类，且其主要功能因此变得不明确，那么在这种情况下可以考虑使用抽象工厂模式。</p>
 </blockquote>
-<h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><p>当一个类的种类维度很大的时候，若是通过工厂的方式，需要建立很多子类，使代码变复杂。这个时候就应该使用生成器。</p>
+<h3 id="生成器">生成器</h3>
+<p>当一个类的种类维度很大的时候，若是通过工厂的方式，需要建立很多子类，使代码变复杂。这个时候就应该使用生成器。</p>
 <p>生成器拥有一个建造者抽象类来负责具体某一维度的创建（通过多个建造者可以来实现不同情景下的类似的结构，如windows和mac），另外一个主管类来负责决定到底让建造者抽象类来创建哪一部分。最终通过主管类来获取最终产品。</p>
 <p>实现上，一般使用一个容器来装维度。另外，每一个建造者类需要创建一个获取最终产品的函数，这是由于产品可能接口不同，因此不能再基类中使用抽象接口返回。另外，在创建交付完后，需要重置建造者的产品以为下一次建造做准备。</p>
 <p>可以用于构造组合树和其他复杂对象。</p>
-<h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><p>由于类的有一部分成员是私有的，所以很难完全进行复制。为了能够进行复制，因此使用原型的方式。</p>
+<h3 id="原型">原型</h3>
+<p>由于类的有一部分成员是私有的，所以很难完全进行复制。为了能够进行复制，因此使用原型的方式。</p>
 <p>原型实际就是通过复制一个具体的类的实例来“复制”。将需要复制的原型归于一个抽象原型类，其提供一个返回指向自身的指针。另外需要一个注册表类来对应类名和类的实例，一般使用map存储即可。这个类的实例里的属性可以是任意的初值，根据情况而定。</p>
 <p>优点：</p>
 <p>一般复制使用拷贝构造或拷贝赋值，但这会和具体类的实现相关联，原型可以使复制代码独立于具体类。</p>
 <p>对于常用的一些特定的类实例，可以通过原型来去掉初始化时使用的时间，也可以使更加方便。</p>
 <p>并可以通过继承以外的方式来处理复杂对象的不同配置。</p>
-<h3 id="单例"><a href="#单例" class="headerlink" title="单例"></a>单例</h3><p>正如其名，就是永远只有一个实例。而这是构造函数所不能实现的。</p>
+<h3 id="单例">单例</h3>
+<p>正如其名，就是永远只有一个实例。而这是构造函数所不能实现的。</p>
 <p>使用单例不但是为了让某个对象共享，更是为其提供了全局变量不能提供的安全性(不懂是什么样的安全性)。</p>
 <p>实现时在单例类中创建一个该单例类的静态指针，指向实际有意义的那个实例。另外通过一个新的函数来代替构造函数来间接构造。该函数来判断是调用构造函数创建实例或者返回已有实例。</p>
 <p>若是在多线程中，需要使用线程锁来保证安全，否则可能最后因为多线程而创造了多个实例。</p>
 <p>优点：</p>
 <p>可以用作一个全局变量（用函数来调用获得）</p>
-<h1 id="下面都得重写"><a href="#下面都得重写" class="headerlink" title="下面都得重写"></a>下面都得重写</h1><h3 id="适配器"><a href="#适配器" class="headerlink" title="适配器"></a>适配器</h3><p>有时程序库提供的接口并不符合我们的希望，如数据类型不同等等，此时我们可以通过更改程序库来支持这样的一个接口。但是一般来说能不改原来已有完成的类是不好的，有的时候甚至我们并没有程序库的源代码，无法进行更改，因此，我们可以使用适配器来提供一个间接的接口。</p>
+<h1>下面都得重写</h1>
+<h3 id="适配器">适配器</h3>
+<p>有时程序库提供的接口并不符合我们的希望，如数据类型不同等等，此时我们可以通过更改程序库来支持这样的一个接口。但是一般来说能不改原来已有完成的类是不好的，有的时候甚至我们并没有程序库的源代码，无法进行更改，因此，我们可以使用适配器来提供一个间接的接口。</p>
 <p>适配器实际上很简单，就是一个类，类的构造函数传入一个要被适配的对象(调用函数库者)，继承程序库，并重写接口，使接口符合我们希望的样子。</p>
 <p>或者也可以使用多重继承，就无需传入被适配的对象。</p>
 <p>一般用于使某个接口可以使用，或者当一个继承体系下某一些类共有一些方法可以通过适配器来实现（如何实现?）。</p>
 <p>适配器一般用于更改已有接口使其适配各种各样的。</p>
-<h3 id="桥接"><a href="#桥接" class="headerlink" title="桥接"></a>桥接</h3><p>对于一个非常复杂的类，我们可以通过将其转化为一个多层的层级结构（每一个节点都是一个类）来简化它。</p>
+<h3 id="桥接">桥接</h3>
+<p>对于一个非常复杂的类，我们可以通过将其转化为一个多层的层级结构（每一个节点都是一个类）来简化它。</p>
 <p>在这种情况下，下级的具体类将作为上级抽象类的一个对象而存在，这可以使上级抽象类不用管下级具体类的实现，自己直接调用接口即可。</p>
 <p>每一层的类的修改都不影响其他类的情况，易于更改，维护。</p>
 <p>另外由于下层类仅仅是上层的一个对象，因此可以通过传入各种不同的底层实现具体类对象来轻松更改下层实现方式。</p>
-<h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><p>当对于当个对象和复合对象都有着很多很多类似的操作时，可以使用组合，如军队，窗口等等。</p>
+<h3 id="组合">组合</h3>
+<p>当对于当个对象和复合对象都有着很多很多类似的操作时，可以使用组合，如军队，窗口等等。</p>
 <p>实现上：用一个类实现所有相同的操作，再分别用叶节点和组合体继承这个类。整体实现一个树的结构。</p>
 
                 
@@ -399,7 +419,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>设计模式 </div>
+      <div>设计模式</div>
       <div>https://lhish.github.io/project/设计模式/</div>
     </div>
     <div class="license-meta">
@@ -444,9 +464,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E7%AE%97%E6%B3%95/" title="算法 ">
+                      <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="计算机组成原理">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">算法 </span>
+                        <span class="hidden-mobile">计算机组成原理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -454,8 +474,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" title="线性代数 ">
-                        <span class="hidden-mobile">线性代数 </span>
+                      <a href="/%E6%B1%87%E7%BC%96/" title="汇编">
+                        <span class="hidden-mobile">汇编</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -547,7 +567,6 @@
 
   
   
-
 
 
 
@@ -767,49 +786,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

@@ -16,25 +16,25 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="函数在调用函数的时候，会进行两步。  将形参实例化。 将控制权交给被调函数。  在调用时，形参与实参的个数必须对应，而在此过程中，若类型不同，这将进行类型转换。 形参可以不被命名，如果它在函数中不需要被使用，但是不代表程序不应该传入实参与它对应。(虽然并不知道这有什么用) 名字有作用域，对象有生命周期。 当局部变量在其自身的作用域的时候，会隐藏其外层作用域的同名变量。但是在作用域结束之后会，取消隐">
+    <meta name="description" content="在调用函数的时候，会进行两步。  将形参实例化。 将控制权交给被调函数。  在调用时，形参与实参的个数必须对应，而在此过程中，若类型不同，这将进行类型转换。 形参可以不被命名，如果它在函数中不需要被使用，但是不代表程序不应该传入实参与它对应。(虽然并不知道这有什么用) 名字有作用域，对象有生命周期。 当局部变量在其自身的作用域的时候，会隐藏其外层作用域的同名变量。但是在作用域结束之后会，取消隐藏，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="函数 ">
+<meta property="og:title" content="函数">
 <meta property="og:url" content="https://lhish.github.io/project/hide/%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="函数在调用函数的时候，会进行两步。  将形参实例化。 将控制权交给被调函数。  在调用时，形参与实参的个数必须对应，而在此过程中，若类型不同，这将进行类型转换。 形参可以不被命名，如果它在函数中不需要被使用，但是不代表程序不应该传入实参与它对应。(虽然并不知道这有什么用) 名字有作用域，对象有生命周期。 当局部变量在其自身的作用域的时候，会隐藏其外层作用域的同名变量。但是在作用域结束之后会，取消隐">
+<meta property="og:description" content="在调用函数的时候，会进行两步。  将形参实例化。 将控制权交给被调函数。  在调用时，形参与实参的个数必须对应，而在此过程中，若类型不同，这将进行类型转换。 形参可以不被命名，如果它在函数中不需要被使用，但是不代表程序不应该传入实参与它对应。(虽然并不知道这有什么用) 名字有作用域，对象有生命周期。 当局部变量在其自身的作用域的时候，会隐藏其外层作用域的同名变量。但是在作用域结束之后会，取消隐藏，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%87%BD%E6%95%B0Untitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%87%BD%E6%95%B0Untitled%201.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%87%BD%E6%95%B0Untitled%202.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.521Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.626Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.862Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/%E5%87%BD%E6%95%B0Untitled.png">
   
   
   
-  <title>函数  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>函数 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -45,6 +45,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -229,7 +231,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="函数 "></span>
+            <span id="subtitle" data-typed-text="函数"></span>
           
         </div>
 
@@ -240,7 +242,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -308,12 +310,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">函数 </h1>
+            <h1 id="seo-header">函数</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p>在<strong>调用函数</strong>的时候，会进行两步。</p>
+                <p>在<strong>调用函数</strong>的时候，会进行两步。</p>
 <ol>
 <li>将<strong>形参实例化</strong>。</li>
 <li>将控制权交给被调<strong>函数</strong>。</li>
@@ -323,13 +325,17 @@
 <p><strong>名字</strong>有<strong>作用域</strong>，<strong>对象</strong>有<strong>生命周期</strong>。</p>
 <p>当<strong>局部变量</strong>在其自身的<strong>作用域</strong>的时候，会隐藏其<strong>外层作用域</strong>的<strong>同名变量</strong>。但是在<strong>作用域</strong>结束之后会，取消隐藏，并且其<strong>值</strong>不变，就好像没有被隐藏过一样。</p>
 <p><strong>局部变量</strong>的<strong>生命周期</strong>取决于它的<strong>定义</strong>方式。</p>
-<h3 id="自动对象"><a href="#自动对象" class="headerlink" title="自动对象"></a>自动对象</h3><p>会在离开<strong>作用域</strong>之后<strong>自动销毁</strong>的<strong>对象</strong>。</p>
+<h3 id="自动对象">自动对象</h3>
+<p>会在离开<strong>作用域</strong>之后<strong>自动销毁</strong>的<strong>对象</strong>。</p>
 <p>并不是所有的<strong>局部变量</strong>都是<strong>自动对象</strong>，<strong>静态局部变量</strong>就不是，因为它出<strong>作用域</strong>并不会<strong>销毁</strong>。</p>
-<h3 id="静态局部变量"><a href="#静态局部变量" class="headerlink" title="静态局部变量"></a>静态局部变量</h3><p>使用<strong>static</strong>修饰词修饰。</p>
+<h3 id="静态局部变量">静态局部变量</h3>
+<p>使用<strong>static</strong>修饰词修饰。</p>
 <p>在离开<strong>作用域</strong>时，不会被<strong>销毁</strong>，只会在程序结束的时候被<strong>销毁</strong>。</p>
-<h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><p>没有<strong>函数体</strong>的对<strong>函数</strong>的<strong>定义</strong>就是<strong>函数声明</strong>。类似于<strong>变量</strong>。<strong>声明</strong>时<strong>形参</strong>无需名字。函数声明也被成为函数原型。</p>
+<h3 id="函数声明">函数声明</h3>
+<p>没有<strong>函数体</strong>的对<strong>函数</strong>的<strong>定义</strong>就是<strong>函数声明</strong>。类似于<strong>变量</strong>。<strong>声明</strong>时<strong>形参</strong>无需名字。函数声明也被成为函数原型。</p>
 <p><strong>函数声明</strong>应该都写在<strong>头文件</strong>中，而非<strong>源文件</strong>，并且在<strong>源文件</strong>中引用<strong>头文件</strong>。</p>
-<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><ol>
+<h3 id="参数传递">参数传递</h3>
+<ol>
 <li><strong>值传递</strong>：传递的<strong>参数</strong>是一个<strong>拷贝</strong></li>
 <li><strong>引用传递</strong>：传递的<strong>参数</strong>是对原本<strong>实参</strong>的一个<strong>引用</strong></li>
 </ol>
@@ -337,23 +343,28 @@
 <p><strong>函数</strong>只能返回一个<strong>对象</strong>，虽然可以使用<strong>结构体</strong>，但是也可以通过传入<strong>引用</strong>来作为一种返回<strong>变量</strong>的方式。</p>
 <p>除非是<strong>常量引用</strong>或者<strong>常量指针</strong>，不然<strong>常量</strong>并不能作为<strong>形参</strong>，因为不能向<strong>常量</strong>写值。</p>
 <p>使用<strong>常量引用</strong>还能扩大<strong>函数</strong>的使用范围，使其当<strong>传入参数</strong>为<strong>常量</strong>时也仍然能使用(<strong>字面值</strong>是<strong>常量</strong>)。</p>
-<h3 id="数组传参"><a href="#数组传参" class="headerlink" title="数组传参"></a>数组传参</h3><p>对于<strong>数组</strong>传参，无论<strong>形参</strong>写成什么形式，是<strong>指针</strong>亦或是<strong>数组</strong>，其所接收的是一个<strong>头指针</strong>。</p>
+<h3 id="数组传参">数组传参</h3>
+<p>对于<strong>数组</strong>传参，无论<strong>形参</strong>写成什么形式，是<strong>指针</strong>亦或是<strong>数组</strong>，其所接收的是一个<strong>头指针</strong>。</p>
 <p>为了保证<strong>数组不越界</strong>，最好传入一些表示<strong>数组</strong>大小的<strong>形参</strong>，例如在<strong>数组</strong>结尾增加标记，<strong>尾后指针</strong>，<strong>数组</strong>大小等。</p>
 <p>可以传递对<strong>数组</strong>的<strong>引用</strong>，但是也限制了<strong>数组</strong>的大小。</p>
 <p>由于<strong>多维数组</strong>实际上是一个一维的<strong>指针数组</strong>，因此可以通过传递<strong>指针数组</strong>的方式来传递<strong>多维数组</strong>。</p>
 <p><strong>多维数组</strong>也可以通过<strong>a[][大小]<strong>的方式定义，但</strong>编译器</strong>会自动省略第一个维度，将其当成是一个<strong>指针数组</strong>，因此它的<strong>第二维</strong>的大小必须定义，对于更多维并没有进行测试。</p>
-<h3 id="main"><a href="#main" class="headerlink" title="main"></a>main</h3><p><strong>main</strong>可以有两个从外部运行程序时传入的<strong>参数</strong>。</p>
+<h3 id="main">main</h3>
+<p><strong>main</strong>可以有两个从外部运行程序时传入的<strong>参数</strong>。</p>
 <ol>
 <li><strong>int argc</strong>，表示<strong>字符</strong>串的个数</li>
-<li><em>*char *argv[]<strong>，一个</strong>字符串数组**，实际</em>*参数<strong>，它的0号</strong>字符串<strong>是这个</strong>可执行文件<strong>的名字(这并非是在运行时输入的，而是在</strong>程序编译<strong>的时候就已经</strong>存储<strong>的)，从1号</strong>字符串<strong>开始才是正式的</strong>参数**。</li>
+<li><strong>char *argv[]</strong>，一个<strong>字符串数组</strong>，实际<strong>参数</strong>，它的0号<strong>字符串</strong>是这个<strong>可执行文件</strong>的名字(这并非是在运行时输入的，而是在<strong>程序编译</strong>的时候就已经<strong>存储</strong>的)，从1号<strong>字符串</strong>开始才是正式的<strong>参数</strong>。</li>
 </ol>
-<h3 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h3><p>当<strong>实参</strong>的类型相同时，可以使用<strong>initializer_list。</strong></p>
+<h3 id="可变参数">可变参数</h3>
+<p>当<strong>实参</strong>的类型相同时，可以使用<strong>initializer_list。</strong></p>
 <p>其类似于<strong>vector</strong>，但是它的元素数量无法改变，与初始化时元素数量相同，且其元素都是<strong>常量</strong>。<strong>默认初始化</strong>时元素个数为0。若进行<strong>赋值</strong>，它会与原<strong>变量</strong>共享相同的元素，而非进行<strong>拷贝</strong>，相当于是<strong>引用</strong>。</p>
 <p>一般只作为<strong>形参</strong>使用，在传入<strong>参数</strong>时使用<strong>列表初始化</strong>。</p>
-<h3 id="省略符"><a href="#省略符" class="headerlink" title="省略符"></a>省略符</h3><p>一般只用于访问<strong>特殊</strong>的<strong>C代码</strong>。</p>
-<p>用法：**(parm_list,…)<strong>或</strong>(…)**</p>
+<h3 id="省略符">省略符</h3>
+<p>一般只用于访问<strong>特殊</strong>的<strong>C代码</strong>。</p>
+<p>用法：<strong>(parm_list,…)<strong>或</strong>(…)</strong></p>
 <p>并不会对<strong>省略符</strong>内的<strong>实参</strong>进行<strong>类型检查</strong>。</p>
-<h3 id="函数返回"><a href="#函数返回" class="headerlink" title="函数返回"></a>函数返回</h3><p>当<strong>函数</strong>的返回值是<strong>void</strong>时，除了<strong>return;<strong>还可以</strong>return</strong>一个返回值是<strong>void</strong>的<strong>函数</strong>。</p>
+<h3 id="函数返回">函数返回</h3>
+<p>当<strong>函数</strong>的返回值是<strong>void</strong>时，除了<strong>return;<strong>还可以</strong>return</strong>一个返回值是<strong>void</strong>的<strong>函数</strong>。</p>
 <p>一个非<strong>void</strong>返回类型的<strong>函数</strong>的<strong>return</strong>必须有返回值，但是若是<strong>隐式</strong>返回大部分编译器并不会检查。</p>
 <p>整数类型默认返回1，小数类型<strong>dev</strong>上返回一个非常接近0的数。</p>
 <p>由于<strong>函数</strong>在结束后其所占的<strong>内存空间</strong>会被<strong>释放</strong>，因此不能返回其<strong>局部变量</strong>的<strong>引用</strong>或者<strong>指针</strong>。</p>
@@ -366,15 +377,18 @@
 <li>当类型比较繁琐麻烦的时候最好使用<strong>类型别名</strong>，如在使用<strong>指向数组</strong>的<strong>指针</strong>的时候。由于<strong>函数</strong>不能返回<strong>数组</strong>，所以通过返回<strong>指向数组</strong>的<strong>指针</strong>来间接返回<strong>数组</strong>。</li>
 <li>不使用<strong>类型别名</strong>来返回<strong>数组指针</strong>十分的麻烦，格式：</li>
 </ol>
-<p>$$<br>Type\ (*function \ (paramenter_list)\ )\ [dimension]<br>$$</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mi>y</mi><mi>p</mi><mi>e</mi><mtext> </mtext><mo stretchy="false">(</mo><mo>∗</mo><mi>f</mi><mi>u</mi><mi>n</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mtext> </mtext><mo stretchy="false">(</mo><mi>p</mi><mi>a</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>r</mi><mi mathvariant="normal">_</mi><mi>l</mi><mi>i</mi><mi>s</mi><mi>t</mi><mo stretchy="false">)</mo><mtext> </mtext><mo stretchy="false">)</mo><mtext> </mtext><mo stretchy="false">[</mo><mi>d</mi><mi>i</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">Type\ (*function \ (paramenter\_list)\ )\ [dimension]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span><span class="mspace"> </span><span class="mopen">(</span><span class="mord">∗</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mspace"> </span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">am</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace"> </span><span class="mclose">)</span><span class="mspace"> </span><span class="mopen">[</span><span class="mord mathnormal">d</span><span class="mord mathnormal">im</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mclose">]</span></span></span></span></span></p>
 <ol>
-<li>这种方式非常的复杂，因此我们可以使用<strong>尾后返回类型</strong>的方式来处理。此处的<strong>type</strong>若使用<strong>数组指针</strong>的话就是*<em>int (</em>)[10]**。</li>
+<li>这种方式非常的复杂，因此我们可以使用<strong>尾后返回类型</strong>的方式来处理。此处的<strong>type</strong>若使用<strong>数组指针</strong>的话就是<strong>int (*)[10]</strong>。</li>
 </ol>
-<p>$$<br>auto\ function\ (paramenter_list)\ -&gt;Type<br>$$</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mi>u</mi><mi>t</mi><mi>o</mi><mtext> </mtext><mi>f</mi><mi>u</mi><mi>n</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mtext> </mtext><mo stretchy="false">(</mo><mi>p</mi><mi>a</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>e</mi><msub><mi>r</mi><mi>l</mi></msub><mi>i</mi><mi>s</mi><mi>t</mi><mo stretchy="false">)</mo><mtext> </mtext><mo>−</mo><mo>&gt;</mo><mi>T</mi><mi>y</mi><mi>p</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">auto\ function\ (paramenter_list)\ -&gt;Type
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">u</span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mspace"> </span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mspace"> </span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">am</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace"> </span><span class="mord">−</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span></span></span></span></span></p>
 <ol>
 <li>也可以使用<strong>decltype</strong>来处理，但要注意的是<strong>decltype</strong>不会把<strong>数组</strong>转成<strong>指针</strong>，因此需要加上<strong>解引用号</strong>。</li>
 </ol>
-<h3 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h3><p>当使用相同的<strong>函数名</strong>而不同的<strong>形参</strong>时，就是用了<strong>函数重载</strong>。</p>
+<h3 id="函数重载">函数重载</h3>
+<p>当使用相同的<strong>函数名</strong>而不同的<strong>形参</strong>时，就是用了<strong>函数重载</strong>。</p>
 <p><strong>main函数</strong>不能被<strong>重载</strong>。</p>
 <p><strong>形参</strong>不同有以下几点要注意的：</p>
 <ol>
@@ -383,56 +397,72 @@
 </ol>
 <p>可以通过<strong>const_cast</strong>来将<strong>常量函数重载</strong>为<strong>非常量</strong>。</p>
 <p><img src="/image/%E5%87%BD%E6%95%B0Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p><strong>函数</strong>内部也可以定义<strong>函数</strong>。当在<strong>函数</strong>内部<strong>重载</strong>外部<strong>函数</strong>的时候，就并不是<strong>重载</strong>，而是<strong>覆盖隐藏</strong>，因为<strong>函数</strong>内部是<strong>局部作用域</strong>，因此会<strong>隐藏外部作用域</strong>的同名。</p>
+<h3 id="作用域">作用域</h3>
+<p><strong>函数</strong>内部也可以定义<strong>函数</strong>。当在<strong>函数</strong>内部<strong>重载</strong>外部<strong>函数</strong>的时候，就并不是<strong>重载</strong>，而是<strong>覆盖隐藏</strong>，因为<strong>函数</strong>内部是<strong>局部作用域</strong>，因此会<strong>隐藏外部作用域</strong>的同名。</p>
 <p>在这种情况下，<strong>调用函数</strong>就不能在名字查找时查找到外部的<strong>函数</strong>，即便外部有类型匹配的<strong>函数</strong>，也并不会去调用，只会调用<strong>局部作用域</strong>内的<strong>函数</strong>，即便会报错。</p>
-<h3 id="默认实参"><a href="#默认实参" class="headerlink" title="默认实参"></a>默认实参</h3><p>可以给<strong>形参</strong>指定<strong>默认参数</strong>，但是当一个<strong>形参</strong>被<strong>声明</strong>了<strong>默认形参</strong>，其右侧定义的剩下的<strong>形参</strong>也必须要<strong>声明默认形参</strong>。</p>
+<h3 id="默认实参">默认实参</h3>
+<p>可以给<strong>形参</strong>指定<strong>默认参数</strong>，但是当一个<strong>形参</strong>被<strong>声明</strong>了<strong>默认形参</strong>，其右侧定义的剩下的<strong>形参</strong>也必须要<strong>声明默认形参</strong>。</p>
 <p>在调用的时候只需从某一个<strong>形参</strong>开始省略，其右侧的所有<strong>形参</strong>也将使用<strong>默认形参</strong>。</p>
 <p>可以通过多次<strong>声明</strong>来增加<strong>默认形参</strong>，但是不允许在这一过程中更改已有的<strong>默认形参</strong>的<strong>值</strong>。</p>
 <p><strong>默认形参</strong>可以被<strong>赋值</strong>为<strong>变量</strong>或者<strong>函数</strong>。当<strong>变量</strong>或者<strong>函数</strong>的返回值改变的时候，其默认的<strong>值</strong>也会改变。</p>
 <p>但是当在<strong>内作用域</strong>内重新<strong>定义</strong>一个用作<strong>默认参数</strong>的<strong>变量</strong>或者<strong>函数</strong>时，其新<strong>赋</strong>的<strong>值</strong>并不会改变<strong>默认形参</strong>的<strong>值</strong>，它<strong>隐藏</strong>了外部的同名，但是<strong>默认形参</strong>使用的仍然是外部<strong>形参</strong>的。</p>
-<h3 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h3><p><strong>函数</strong>比普通的<strong>表达式</strong>执行的速度与消耗更慢也更大，因此当<strong>函数</strong>内容较少时可以添加<strong>关键字inline</strong>将<strong>函数</strong>转为<strong>内联函数</strong>，此时再<strong>编译</strong>时会将所有<strong>调用函数</strong>的地方替换为<strong>函数</strong>的内容，但是<strong>inline</strong>只是一个建议，而非强制，<strong>编译器</strong>可以选择忽略。</p>
-<h3 id="constexpr函数"><a href="#constexpr函数" class="headerlink" title="constexpr函数"></a>constexpr函数</h3><p>用于作为<strong>常量初始化</strong>时的一部分时，最好使用<strong>constexpr修饰</strong>。</p>
+<h3 id="内联函数">内联函数</h3>
+<p><strong>函数</strong>比普通的<strong>表达式</strong>执行的速度与消耗更慢也更大，因此当<strong>函数</strong>内容较少时可以添加<strong>关键字inline</strong>将<strong>函数</strong>转为<strong>内联函数</strong>，此时再<strong>编译</strong>时会将所有<strong>调用函数</strong>的地方替换为<strong>函数</strong>的内容，但是<strong>inline</strong>只是一个建议，而非强制，<strong>编译器</strong>可以选择忽略。</p>
+<h3 id="constexpr函数">constexpr函数</h3>
+<p>用于作为<strong>常量初始化</strong>时的一部分时，最好使用<strong>constexpr修饰</strong>。</p>
 <p><strong>函数</strong>的<strong>形参</strong>必须是<strong>常量</strong>，<strong>函数</strong>的返回值也必须是<strong>常量</strong>，但是返回值可以是一个<strong>表达式</strong>，但是要保证当<strong>形参</strong>为<strong>常量</strong>时，其返回值也必须为<strong>常量值</strong>。</p>
 <p>由于在<strong>编译</strong>时会自动将<strong>函数</strong>替换为其结果，因此<strong>constexpr函数</strong>会被<strong>隐式声明</strong>为<strong>inline</strong>。</p>
 <p>由于<strong>constexpr定义</strong>必须一致，因此一般会直接在<strong>头文件</strong>中<strong>定义</strong>，而非在<strong>源文件定义</strong>。</p>
-<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p><strong>assert</strong>是一种<strong>预处理宏</strong>，定义于<strong>cassert头文件</strong>。</p>
-<p>用法**assert(expr)**。</p>
+<h3 id="assert">assert</h3>
+<p><strong>assert</strong>是一种<strong>预处理宏</strong>，定义于<strong>cassert头文件</strong>。</p>
+<p>用法<strong>assert(expr)</strong>。</p>
 <p>当<strong>expr</strong>为假时，就会终止程序。</p>
 <p>一般用于检查“不能发生”的情况。</p>
 <p><strong>assert</strong>使用无需<strong>using声明</strong>，因为<strong>宏</strong>是<strong>预处理器</strong>处理而非<strong>编译器</strong>。</p>
-<h3 id="NDEBUG（Not-DEBUG）"><a href="#NDEBUG（Not-DEBUG）" class="headerlink" title="NDEBUG（Not DEBUG）"></a>NDEBUG（Not DEBUG）</h3><p><strong>NDEBUG</strong>是一个<strong>预处理变量</strong>。</p>
+<h3 id="NDEBUG（Not-DEBUG）">NDEBUG（Not DEBUG）</h3>
+<p><strong>NDEBUG</strong>是一个<strong>预处理变量</strong>。</p>
 <p>可以在<strong>编译</strong>程序的时候指定是否<strong>定义NDEBUG</strong>。</p>
 <p>当<strong>NDEBUG</strong>没有被<strong>定义</strong>时，<strong>assert</strong>会正常工作，并且可以通过</p>
 <p><strong>#ifndef NDEBUG</strong>在内部写一些只有在<strong>调试</strong>时需要的<strong>调试代码</strong>，例如<strong>输出</strong>程序错误等。</p>
 <p>在其中有四个非常有用用于<strong>调试</strong>的<strong>预处理变量</strong>：</p>
 <p><img src="/image/%E5%87%BD%E6%95%B0Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<h3 id="函数匹配的规则"><a href="#函数匹配的规则" class="headerlink" title="函数匹配的规则"></a>函数匹配的规则</h3><ol>
+<h3 id="函数匹配的规则">函数匹配的规则</h3>
+<ol>
 <li>寻找所有同名的可见的<strong>函数</strong>。</li>
 <li>从中去除所有不能匹配的，即即便类型转换也不能匹配的<strong>函数</strong>。</li>
 <li>在剩下的<strong>函数</strong>中进行最优匹配。</li>
 </ol>
 <p>当没有找到匹配，则会报错。</p>
-<h3 id="最优匹配"><a href="#最优匹配" class="headerlink" title="最优匹配"></a>最优匹配</h3><p>若有且仅有一个<strong>函数</strong>满足下列条件则匹配成功：</p>
+<h3 id="最优匹配">最优匹配</h3>
+<p>若有且仅有一个<strong>函数</strong>满足下列条件则匹配成功：</p>
 <p><img src="/image/%E5%87%BD%E6%95%B0Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>即在其他情况下相平的情况下有一点更优。</p>
 <p>若没有，则报<strong>二义性错</strong>。</p>
 <p>当使用<strong>重载函数</strong>的时候最好不要<strong>强制类型转换</strong>。</p>
-<h3 id="优的顺序"><a href="#优的顺序" class="headerlink" title="优的顺序"></a>优的顺序</h3><ol>
-<li><p>精确匹配</p>
-<p> 类型相同，<strong>数组</strong>&#x2F;<strong>函数</strong>转<strong>指针</strong>，对顶层<strong>const</strong>操作</p>
+<h3 id="优的顺序">优的顺序</h3>
+<ol>
+<li>
+<p>精确匹配</p>
+<p>类型相同，<strong>数组</strong>/<strong>函数</strong>转<strong>指针</strong>，对顶层<strong>const</strong>操作</p>
 </li>
-<li><p>对底层<strong>const</strong>操作</p>
+<li>
+<p>对底层<strong>const</strong>操作</p>
 </li>
-<li><p>小整数到大整数</p>
+<li>
+<p>小整数到大整数</p>
 </li>
-<li><p>算数类型转换&#x2F;<strong>指针</strong>转换</p>
+<li>
+<p>算数类型转换/<strong>指针</strong>转换</p>
 </li>
-<li><p><strong>类</strong>类型转换</p>
+<li>
+<p><strong>类</strong>类型转换</p>
 </li>
 </ol>
-<h3 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h3><p>一个<strong>函数指针</strong>的类型只由<strong>形参</strong>和返回类型决定。当要<strong>声明</strong>的时候，只需要将<strong>函数名</strong>部分改为<strong>指针</strong>即可，但必须加括号。</p>
-<p>$$<br>Type\ (*name)(param_list);<br>$$</p>
-<p>直接使用**&#x3D;<strong>进行</strong>赋值<strong>。在使用时可以直接将</strong>指针名<strong>作为</strong>函数别名**，$name(param_list)$。</p>
+<h3 id="函数指针">函数指针</h3>
+<p>一个<strong>函数指针</strong>的类型只由<strong>形参</strong>和返回类型决定。当要<strong>声明</strong>的时候，只需要将<strong>函数名</strong>部分改为<strong>指针</strong>即可，但必须加括号。</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mi>y</mi><mi>p</mi><mi>e</mi><mtext> </mtext><mo stretchy="false">(</mo><mo>∗</mo><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>p</mi><mi>a</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi mathvariant="normal">_</mi><mi>l</mi><mi>i</mi><mi>s</mi><mi>t</mi><mo stretchy="false">)</mo><mo separator="true">;</mo></mrow><annotation encoding="application/x-tex">Type\ (*name)(param\_list);
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span><span class="mspace"> </span><span class="mopen">(</span><span class="mord">∗</span><span class="mord mathnormal">nam</span><span class="mord mathnormal">e</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">am</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mpunct">;</span></span></span></span></span></p>
+<p>直接使用**=<strong>进行</strong>赋值**。在使用时可以直接将<strong>指针名</strong>作为<strong>函数别名</strong>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo stretchy="false">(</mo><mi>p</mi><mi>a</mi><mi>r</mi><mi>a</mi><msub><mi>m</mi><mi>l</mi></msub><mi>i</mi><mi>s</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">name(param_list)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">nam</span><span class="mord mathnormal">e</span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span>。</p>
 <p>当<strong>函数指针</strong>指向一个<strong>重载函数</strong>时，会根据<strong>函数指针</strong>的<strong>形参表</strong>来进行精准匹配。</p>
 <p><strong>函数</strong>可以使用<strong>函数指针</strong>来传入<strong>函数</strong>作为<strong>实参</strong>。格式与<strong>声明</strong>时相同，但最好还是使用<strong>类型别名</strong>与<strong>decltype</strong>来简化使用，也更加易于理解。</p>
 <p>与<strong>数组</strong>一样，<strong>函数</strong>也可以用<strong>指针</strong>来返回。</p>
@@ -454,7 +484,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>函数 </div>
+      <div>函数</div>
       <div>https://lhish.github.io/project/hide/函数/</div>
     </div>
     <div class="license-meta">
@@ -590,7 +620,6 @@
 
   
   
-
 
 
 
@@ -810,49 +839,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

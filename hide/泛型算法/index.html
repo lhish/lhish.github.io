@@ -16,12 +16,12 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="泛型算法能够通用于各种容器的算法。 算法的一切都是基于容器通用的迭代器与容器元素类型的自己的函数来进行的。因此能够泛化。因此，不管容器为何，算法都是能用的。但是由于只使用迭代器，算法并不能改变底层容器的大小，虽然有可以插入元素的迭代器存在。 只读算法最好使用cbegin()与cend()  find(begin,end,val)  find_if(begin,end,predicate)  对于元">
+    <meta name="description" content="能够通用于各种容器的算法。 算法的一切都是基于容器通用的迭代器与容器元素类型的自己的函数来进行的。因此能够泛化。因此，不管容器为何，算法都是能用的。但是由于只使用迭代器，算法并不能改变底层容器的大小，虽然有可以插入元素的迭代器存在。 只读算法 最好使用cbegin()与cend()   find(begin,end,val)   find_if(begin,end,predicate) 对于元素调">
 <meta property="og:type" content="article">
-<meta property="og:title" content="泛型算法 ">
+<meta property="og:title" content="泛型算法">
 <meta property="og:url" content="https://lhish.github.io/project/hide/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="泛型算法能够通用于各种容器的算法。 算法的一切都是基于容器通用的迭代器与容器元素类型的自己的函数来进行的。因此能够泛化。因此，不管容器为何，算法都是能用的。但是由于只使用迭代器，算法并不能改变底层容器的大小，虽然有可以插入元素的迭代器存在。 只读算法最好使用cbegin()与cend()  find(begin,end,val)  find_if(begin,end,predicate)  对于元">
+<meta property="og:description" content="能够通用于各种容器的算法。 算法的一切都是基于容器通用的迭代器与容器元素类型的自己的函数来进行的。因此能够泛化。因此，不管容器为何，算法都是能用的。但是由于只使用迭代器，算法并不能改变底层容器的大小，虽然有可以插入元素的迭代器存在。 只读算法 最好使用cbegin()与cend()   find(begin,end,val)   find_if(begin,end,predicate) 对于元素调">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled%201.png">
@@ -30,15 +30,15 @@
 <meta property="og:image" content="https://lhish.github.io/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled%204.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled%205.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled%206.png">
-<meta property="article:published_time" content="2024-06-29T18:04:57.521Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.630Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.862Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled.png">
   
   
   
-  <title>泛型算法  - lhish&#39;s blog</title><meta name="robots" content="noindex">
+  <title>泛型算法 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -49,6 +49,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -233,7 +235,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="泛型算法 "></span>
+            <span id="subtitle" data-typed-text="泛型算法"></span>
           
         </div>
 
@@ -244,7 +246,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -312,68 +314,87 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">泛型算法 </h1>
+            <h1 id="seo-header">泛型算法</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="泛型算法"><a href="#泛型算法" class="headerlink" title="泛型算法"></a>泛型算法</h1><p>能够通用于各种容器的算法。</p>
+                <p>能够通用于各种容器的算法。</p>
 <p>算法的一切都是基于容器通用的迭代器与容器元素类型的自己的函数来进行的。因此能够泛化。因此，不管容器为何，算法都是能用的。但是由于只使用迭代器，算法并不能改变底层容器的大小，虽然有可以插入元素的迭代器存在。</p>
-<h3 id="只读算法"><a href="#只读算法" class="headerlink" title="只读算法"></a>只读算法</h3><p>最好使用cbegin()与cend()</p>
+<h3 id="只读算法">只读算法</h3>
+<p>最好使用cbegin()与cend()</p>
 <ol>
-<li><p>find(begin,end,val)</p>
+<li>
+<p>find(begin,end,val)</p>
 </li>
-<li><p>find_if(begin,end,predicate)</p>
-<p> 对于元素调用谓词，若谓词返回为非0值则算成功。</p>
+<li>
+<p>find_if(begin,end,predicate)</p>
+<p>对于元素调用谓词，若谓词返回为非0值则算成功。</p>
 </li>
-<li><p>accumulate(begin,end,初始值)</p>
-<p> 虽然允许元素与初值的类型不同，但是必须得能够相加才行。</p>
+<li>
+<p>accumulate(begin,end,初始值)</p>
+<p>虽然允许元素与初值的类型不同，但是必须得能够相加才行。</p>
 </li>
-<li><p>equal(begin1,end1,begin2)</p>
-<p> 对于三参数迭代器参数都需要保证第二个容器的大小大于等于第一个，因为其并不会检查当前访问元素是否存在，而是直接访问，因此会访问不存在的元素，产生报错。</p>
+<li>
+<p>equal(begin1,end1,begin2)</p>
+<p>对于三参数迭代器参数都需要保证第二个容器的大小大于等于第一个，因为其并不会检查当前访问元素是否存在，而是直接访问，因此会访问不存在的元素，产生报错。</p>
 </li>
 </ol>
-<h3 id="写元素算法"><a href="#写元素算法" class="headerlink" title="写元素算法"></a>写元素算法</h3><p>需保证原大小大于写入新序列的大小。</p>
+<h3 id="写元素算法">写元素算法</h3>
+<p>需保证原大小大于写入新序列的大小。</p>
 <ol>
-<li><p>fill(begin,end,val)</p>
+<li>
+<p>fill(begin,end,val)</p>
 </li>
-<li><p>fill(begin,num,val)</p>
-<p> 需要保证num小于等于begin到容器末尾的距离</p>
+<li>
+<p>fill(begin,num,val)</p>
+<p>需要保证num小于等于begin到容器末尾的距离</p>
 </li>
-<li><p>replace(begin,end,originalnum,replacenum)</p>
+<li>
+<p>replace(begin,end,originalnum,replacenum)</p>
 </li>
 </ol>
-<h3 id="插入迭代器"><a href="#插入迭代器" class="headerlink" title="插入迭代器?"></a>插入迭代器?</h3><p>可以使用back_inserter(容器)来获取容器对应的插入迭代器。</p>
+<h3 id="插入迭代器">插入迭代器?</h3>
+<p>可以使用back_inserter(容器)来获取容器对应的插入迭代器。</p>
 <p>给插入迭代器赋值会将所赋的值作为一个新的元素插入其中。相当于调用push_back()。</p>
 <p>可以用于算法中。</p>
 <p>fill_n(back_inserter(vector),num,val)</p>
-<h3 id="拷贝"><a href="#拷贝" class="headerlink" title="拷贝"></a>拷贝</h3><p>copy(begin,end,target’sbegin)</p>
+<h3 id="拷贝">拷贝</h3>
+<p>copy(begin,end,target’sbegin)</p>
 <p>仍要注意不要越界，返回指向copy完后的一位</p>
 <p>多数算法提供了拷贝版本，将结果写入一个新的容器而非在原容器上进行更改。</p>
 <p>function_copy(begin,end,back_inserter(newvec),…)</p>
-<h3 id="重排算法"><a href="#重排算法" class="headerlink" title="重排算法"></a>重排算法</h3><ol>
-<li><p>sort(begin,end,cmp)</p>
+<h3 id="重排算法">重排算法</h3>
+<ol>
+<li>
+<p>sort(begin,end,cmp)</p>
 </li>
-<li><p>unique(begin,end)</p>
-<p> unique作为算法，并不能改变容器的元素个数，不能进行删除，因此其所做的是将不重复元素放到容器的前部，并返回一个指向不重复元素尾后迭代器，但是这之后的元素并不是重复元素，是未知的。</p>
-<p> 最后需要调用erase来真正的消除。</p>
+<li>
+<p>unique(begin,end)</p>
+<p>unique作为算法，并不能改变容器的元素个数，不能进行删除，因此其所做的是将不重复元素放到容器的前部，并返回一个指向不重复元素尾后迭代器，但是这之后的元素并不是重复元素，是未知的。</p>
+<p>最后需要调用erase来真正的消除。</p>
 </li>
 </ol>
-<h3 id="向算法传递函数"><a href="#向算法传递函数" class="headerlink" title="向算法传递函数"></a>向算法传递函数</h3><p>谓词是一个返回可用作条件的可调用的表达式，一般使用函数。</p>
+<h3 id="向算法传递函数">向算法传递函数</h3>
+<p>谓词是一个返回可用作条件的可调用的表达式，一般使用函数。</p>
 <p>有一元谓词与二元谓词。</p>
 <p>接受谓词的算法对输入序列的元素调用谓词。元素类型必须能转换为谓词的参数类型。</p>
 <p>可以给sort第三个参数一个二元谓词来指定排序顺序。</p>
 <p>stable_sort可以保证“相等”元素的顺序按照原本的顺序。</p>
-<h3 id="for-each"><a href="#for-each" class="headerlink" title="for_each"></a>for_each</h3><p>for_each(begin,end,func)</p>
+<h3 id="for-each">for_each</h3>
+<p>for_each(begin,end,func)</p>
 <p>对每一个元素执行一元谓词func。</p>
-<h3 id="可调用对象"><a href="#可调用对象" class="headerlink" title="可调用对象"></a>可调用对象</h3><ol>
+<h3 id="可调用对象">可调用对象</h3>
+<ol>
 <li>函数</li>
 <li>函数指针</li>
 <li>重载调用运算符的类</li>
 <li>lambda</li>
 </ol>
-<h3 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h3><p>可以看作一种内联函数。</p>
-<p>$$<br><a href="param_list">capture\ list</a>-&gt;return_type{function\ body}<br>$$</p>
+<h3 id="lambda">lambda</h3>
+<p>可以看作一种内联函数。</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">[</mo><mi>c</mi><mi>a</mi><mi>p</mi><mi>t</mi><mi>u</mi><mi>r</mi><mi>e</mi><mtext> </mtext><mi>l</mi><mi>i</mi><mi>s</mi><mi>t</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>p</mi><mi>a</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi mathvariant="normal">_</mi><mi>l</mi><mi>i</mi><mi>s</mi><mi>t</mi><mo stretchy="false">)</mo><mo>−</mo><mo>&gt;</mo><mi>r</mi><mi>e</mi><mi>t</mi><mi>u</mi><mi>r</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>y</mi><mi>p</mi><mi>e</mi><mo stretchy="false">{</mo><mi>f</mi><mi>u</mi><mi>n</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mtext> </mtext><mi>b</mi><mi>o</mi><mi>d</mi><mi>y</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">[capture\ list](param\_list)-&gt;return\_type\{function\ body\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mopen">[</span><span class="mord mathnormal">c</span><span class="mord mathnormal">a</span><span class="mord mathnormal">pt</span><span class="mord mathnormal">u</span><span class="mord mathnormal">re</span><span class="mspace"> </span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mclose">]</span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">am</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mord">−</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathnormal">re</span><span class="mord mathnormal">t</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">n</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span><span class="mopen">{</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mspace"> </span><span class="mord mathnormal">b</span><span class="mord mathnormal">o</span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">}</span></span></span></span></span></p>
 <p>函数体与形参表可以忽略。</p>
 <p>捕获列表表示其中定义的局部变量(通常为空)。</p>
 <p>→与return_type可以一起省略。</p>
@@ -383,62 +404,71 @@
 <p>lambda与普通函数最大的不同就是它能够不通过形参表而通过捕获列表来将作用域外部的变量传入作为局部变量，并且可以直接使用局部static变量与全局变量（cout也算是全局的）。</p>
 <p>通过这种方式能够防止某些算法只允许一元谓词或二元谓词。</p>
 <p>定义lambda实际上是定义了一个新的类。并以之创建了一个类对象。auto的类型就是这个新创建类型的名字。</p>
-<h3 id="捕获列表"><a href="#捕获列表" class="headerlink" title="捕获列表"></a>捕获列表</h3><p>当使用值传递时，其将在创建时进行拷贝。$&#x3D;name$</p>
-<p>而使用引用拷贝，其局部变量就会根据其外部引用的变量的变化而变化。$&amp;name$</p>
+<h3 id="捕获列表">捕获列表</h3>
+<p>当使用值传递时，其将在创建时进行拷贝。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">=name</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">nam</span><span class="mord mathnormal">e</span></span></span></span></p>
+<p>而使用引用拷贝，其局部变量就会根据其外部引用的变量的变化而变化。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">&amp;</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">\&amp;name</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">&amp;</span><span class="mord mathnormal">nam</span><span class="mord mathnormal">e</span></span></span></span></p>
 <p>当捕获指针或者引用时，需要保证在调用时还存在并且正确。</p>
-<p>可以使用隐式捕获。通过第一位使用&amp;或者&#x3D;来指定默认传递方式，将表示所有隐式传递的变量都是使用该方式来传递。其后可以增加显式捕获的变量，但是必须是采用不同方式传递的变量。</p>
+<p>可以使用隐式捕获。通过第一位使用&amp;或者=来指定默认传递方式，将表示所有隐式传递的变量都是使用该方式来传递。其后可以增加显式捕获的变量，但是必须是采用不同方式传递的变量。</p>
 <p>一般来说值传递的变量不在函数体中进行更改，但可以在参数列表后加上mutable来声明要改变。</p>
 <p>而通过引用传递可以改变其引用的值。</p>
 <p>当一个lambda包括return以外的语句时，若是不显式指定，return_type就会被判断为void类型，然后就报错了。</p>
 <p>建议所有捕获列表为空的lambda都用函数写。</p>
-<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p>通过bind也能实现lambda解决的问题。</p>
-<p>$$<br>auto\ newfunc&#x3D;bind(func,args_list)<br>$$</p>
+<h3 id="bind">bind</h3>
+<p>通过bind也能实现lambda解决的问题。</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mi>u</mi><mi>t</mi><mi>o</mi><mtext> </mtext><mi>n</mi><mi>e</mi><mi>w</mi><mi>f</mi><mi>u</mi><mi>n</mi><mi>c</mi><mo>=</mo><mi>b</mi><mi>i</mi><mi>n</mi><mi>d</mi><mo stretchy="false">(</mo><mi>f</mi><mi>u</mi><mi>n</mi><mi>c</mi><mo separator="true">,</mo><mi>a</mi><mi>r</mi><mi>g</mi><mi>s</mi><mi mathvariant="normal">_</mi><mi>l</mi><mi>i</mi><mi>s</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">auto\ newfunc=bind(func,args\_list)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">u</span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mspace"> </span><span class="mord mathnormal">n</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathnormal">bin</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">s</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span></p>
 <p>通过调用newfunc来间接给func传入参数并调用。</p>
-<p>newfunc所接收到的参数将会有$_n$的别名，代表newfunc接收到的第n个参数。</p>
-<p>通过在args_list使用$_n$可以指定这些参数该如何传入func，并且在args_list可以直接使用变量指定传入的参数的值。</p>
-<p>$_n$是定义在std命名空间的placeholders空间的，placeholders定义在functional头文件中。</p>
+<p>newfunc所接收到的参数将会有<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">_</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">\_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7406em;vertical-align:-0.31em;"></span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">n</span></span></span></span>的别名，代表newfunc接收到的第n个参数。</p>
+<p>通过在args_list使用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">_</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">\_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7406em;vertical-align:-0.31em;"></span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">n</span></span></span></span>可以指定这些参数该如何传入func，并且在args_list可以直接使用变量指定传入的参数的值。</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">_</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">\_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7406em;vertical-align:-0.31em;"></span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">n</span></span></span></span>是定义在std命名空间的placeholders空间的，placeholders定义在functional头文件中。</p>
 <p>bind不仅可以用来转换一元谓词，也可以更改参数的顺序。</p>
 <p>bind所做的是拷贝参数，若是要传递引用参数，则需要用ref(val)或cref(val)来获取其的一个可拷贝的引用。</p>
-<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><ol>
-<li><p>插入迭代器</p>
+<h3 id="迭代器">迭代器</h3>
+<ol>
+<li>
+<p>插入迭代器</p>
 <ol>
 <li>back_inserter调用push_back</li>
 <li>front_inserter调用push_front</li>
 <li>inserter(val,iterator)，调用insert，并使迭代器指向其原本指向的</li>
 </ol>
-<p> <img src="/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled">
- </p>
+<p><img src="/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 </li>
-<li><p>iostream迭代器</p>
-<p> istream_iterator，需要通过&lt;&gt;指定读入类型。</p>
-<p> 初始化时可以绑定到istream对象，而当istream为空或者IO错误时，与未绑定的迭代器相等。</p>
-<p> <img src="/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<p> 通过++来读入下面一个值。可以将其当做一个一次性的vector容器。以未绑定的对象来作为其结尾。</p>
-<p> 其并不是立即从流中读取值，而是可能会延迟，但是保证在解引用之前已经完成了读取。</p>
-<p> ostream_iterator，相当于一个cout，但是通过赋值来输出。</p>
-<p> <img src="/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<p> 必须绑定ostream，并且可以指定每次输出后输出一个固定的字面值。类似于python中的print的end非常相似。</p>
-<p> 当要输出一个容器时，可以通过copy的方式。</p>
-<p> 流迭代器对于任何定义了输入与输出运算符的类都可以使用。</p>
+<li>
+<p>iostream迭代器</p>
+<p>istream_iterator，需要通过&lt;&gt;指定读入类型。</p>
+<p>初始化时可以绑定到istream对象，而当istream为空或者IO错误时，与未绑定的迭代器相等。</p>
+<p><img src="/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>通过++来读入下面一个值。可以将其当做一个一次性的vector容器。以未绑定的对象来作为其结尾。</p>
+<p>其并不是立即从流中读取值，而是可能会延迟，但是保证在解引用之前已经完成了读取。</p>
+<p>ostream_iterator，相当于一个cout，但是通过赋值来输出。</p>
+<p><img src="/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>必须绑定ostream，并且可以指定每次输出后输出一个固定的字面值。类似于python中的print的end非常相似。</p>
+<p>当要输出一个容器时，可以通过copy的方式。</p>
+<p>流迭代器对于任何定义了输入与输出运算符的类都可以使用。</p>
 </li>
-<li><p>反向迭代器</p>
-<p> 通过rbegin和rend来获取容器的尾迭代器与首前迭代器。</p>
-<p> 其递增与递减是正好相反的。</p>
-<p> 若给sort传入反向迭代器，就是逆向排序了。</p>
-<p> 可以看作是将整个容器倒序后的正常迭代器，因此其所有的行为都将是逆序的。</p>
-<p> 可以点运算符调用base()来将自身转换为普通迭代器。</p>
+<li>
+<p>反向迭代器</p>
+<p>通过rbegin和rend来获取容器的尾迭代器与首前迭代器。</p>
+<p>其递增与递减是正好相反的。</p>
+<p>若给sort传入反向迭代器，就是逆向排序了。</p>
+<p>可以看作是将整个容器倒序后的正常迭代器，因此其所有的行为都将是逆序的。</p>
+<p>可以点运算符调用base()来将自身转换为普通迭代器。</p>
 </li>
 </ol>
-<h3 id="迭代器类型"><a href="#迭代器类型" class="headerlink" title="迭代器类型"></a>迭代器类型</h3><p>算法是对迭代器的操作，会对迭代器的权限有要求，也仅会对迭代器的权限有要求，其他都不重要，因此分为了5个类别。</p>
+<h3 id="迭代器类型">迭代器类型</h3>
+<p>算法是对迭代器的操作，会对迭代器的权限有要求，也仅会对迭代器的权限有要求，其他都不重要，因此分为了5个类别。</p>
 <p><img src="/image/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95Untitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>编译器不会因为给算法传入错误的迭代器而报错。</p>
 <p>算法除了传入一个迭代器范围(begin,end)外，可能会传入第二个迭代器范围，其他参数，与一个表示算法可以写入的目的位置的迭代器。</p>
-<h3 id="dest"><a href="#dest" class="headerlink" title="dest"></a>dest</h3><p>算法假定向这个位置写入无论多少个元素都是安全的。</p>
+<h3 id="dest">dest</h3>
+<p>算法假定向这个位置写入无论多少个元素都是安全的。</p>
 <ol>
 <li>若为指向容器的迭代器，会直接写入覆盖容器原本的元素。</li>
 <li>插入迭代器或ostream_iterator。</li>
 </ol>
-<h3 id="算法的命名"><a href="#算法的命名" class="headerlink" title="算法的命名"></a>算法的命名</h3><ol>
+<h3 id="算法的命名">算法的命名</h3>
+<ol>
 <li>有的算法提供重载版本，重载的版本可以传入谓词。</li>
 <li>有_if版本的算法，将比较相等改为是谓词为真。</li>
 <li>拷贝与非拷贝版本。</li>
@@ -465,7 +495,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>泛型算法 </div>
+      <div>泛型算法</div>
       <div>https://lhish.github.io/project/hide/泛型算法/</div>
     </div>
     <div class="license-meta">
@@ -601,7 +631,6 @@
 
   
   
-
 
 
 
@@ -821,49 +850,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

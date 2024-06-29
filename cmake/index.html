@@ -16,21 +16,21 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="cmake set的变量可以在程序中的宏中使用  add_library.  shared：生成.so或.dll文件，不嵌入代码，在使用时会根据.h来进行查找 static：直接将相关代码嵌入任何需要的地方，非常冗余，但很完整 interface：接口库，不单独生成库，只是作为接口给其他库使用   后面只跟随相关源文件    target_link_libraries，属性一般与target_in">
+    <meta name="description" content="set的变量可以在程序中的宏中使用   add_library.  shared：生成.so或.dll文件，不嵌入代码，在使用时会根据.h来进行查找 static：直接将相关代码嵌入任何需要的地方，非常冗余，但很完整 interface：接口库，不单独生成库，只是作为接口给其他库使用  后面只跟随相关源文件   target_link_libraries，属性一般与target_include">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cmake ">
+<meta property="og:title" content="cmake">
 <meta property="og:url" content="https://lhish.github.io/project/cmake/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="cmake set的变量可以在程序中的宏中使用  add_library.  shared：生成.so或.dll文件，不嵌入代码，在使用时会根据.h来进行查找 static：直接将相关代码嵌入任何需要的地方，非常冗余，但很完整 interface：接口库，不单独生成库，只是作为接口给其他库使用   后面只跟随相关源文件    target_link_libraries，属性一般与target_in">
+<meta property="og:description" content="set的变量可以在程序中的宏中使用   add_library.  shared：生成.so或.dll文件，不嵌入代码，在使用时会根据.h来进行查找 static：直接将相关代码嵌入任何需要的地方，非常冗余，但很完整 interface：接口库，不单独生成库，只是作为接口给其他库使用  后面只跟随相关源文件   target_link_libraries，属性一般与target_include">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-29T18:04:57.521Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.594Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.146Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.826Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>cmake  - lhish&#39;s blog</title>
+  <title>cmake - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -41,6 +41,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -225,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="cmake "></span>
+            <span id="subtitle" data-typed-text="cmake"></span>
           
         </div>
 
@@ -236,7 +238,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -248,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          441 字
+          440 字
         
       </span>
     
@@ -304,55 +306,63 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">cmake </h1>
+            <h1 id="seo-header">cmake</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h1><ol>
-<li><p>set的变量可以在程序中的宏中使用</p>
+                <ol>
+<li>
+<p>set的变量可以在程序中的宏中使用</p>
 </li>
-<li><p>add_library.</p>
+<li>
+<p>add_library.</p>
 <ol>
 <li>shared：生成.so或.dll文件，不嵌入代码，在使用时会根据.h来进行查找</li>
 <li>static：直接将相关代码嵌入任何需要的地方，非常冗余，但很完整</li>
 <li>interface：接口库，不单独生成库，只是作为接口给其他库使用</li>
 </ol>
-<p> 后面只跟随相关源文件
- </p>
+<p>后面只跟随相关源文件</p>
 </li>
-<li><p>target_link_libraries，属性一般与target_include_directories保持一致</p>
+<li>
+<p>target_link_libraries，属性一般与target_include_directories保持一致</p>
 <ol>
 <li>如果是public，则这个库可以被该库和依赖于该库的其他所有的使用</li>
 <li>如果是private，则只能被当前这个文件夹的其他文件所使用，在这种情况下也就不用提供头文件</li>
 <li>如果是interface，则当前文件夹不使用，但可以被其他的使用，一般用于设定一些设置或者全是头文件的情况下，或者该文件夹下不互相调用</li>
 </ol>
 </li>
-<li><p>target_include_directories(要被连接到的库 方式 库)（指定头文件）</p>
+<li>
+<p>target_include_directories(要被连接到的库 方式 库)（指定头文件）</p>
 <ol>
 <li>private：自身要include，依赖于该库的不需要include这些</li>
 <li>public：自身要include，依赖于该库的需要include这些</li>
 <li>interface：自身不要include，依赖于该库的需要include这些</li>
 </ol>
 </li>
-<li><p>add_subdirectory(…)</p>
-<p> 生成的时候会按这个顺序，但是编译的时候则不会，会根据依赖的关系</p>
-<p> 添加子文件夹，并处理子文件夹中的cmakelists，但是cmake中的依赖关系并不是上依赖于下的，也可以下依赖于上，也就是library是可以被子文件夹所使用的，一切看target_link_library。</p>
+<li>
+<p>add_subdirectory(…)</p>
+<p>生成的时候会按这个顺序，但是编译的时候则不会，会根据依赖的关系</p>
+<p>添加子文件夹，并处理子文件夹中的cmakelists，但是cmake中的依赖关系并不是上依赖于下的，也可以下依赖于上，也就是library是可以被子文件夹所使用的，一切看target_link_library。</p>
 </li>
-<li><p>if(…)</p>
-<p> elseif(…)</p>
-<p> endif()</p>
-<p> matches即&#x3D;</p>
+<li>
+<p>if(…)</p>
+<p>elseif(…)</p>
+<p>endif()</p>
+<p>matches即=</p>
 </li>
-<li><p>option(name description default)</p>
-<p> 和set差不多，但是可以在cmake的option中直接调整</p>
+<li>
+<p>option(name description default)</p>
+<p>和set差不多，但是可以在cmake的option中直接调整</p>
 </li>
-<li><p>include(某个cmake文件)相当于将该文件中的内容复制过来</p>
+<li>
+<p>include(某个cmake文件)相当于将该文件中的内容复制过来</p>
 </li>
-<li><p>add_custom_command相当于用命令行运行某条命令</p>
-<p> output</p>
-<p> command</p>
-<p> depends</p>
+<li>
+<p>add_custom_command相当于用命令行运行某条命令</p>
+<p>output</p>
+<p>command</p>
+<p>depends</p>
 </li>
 </ol>
 
@@ -372,7 +382,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>cmake </div>
+      <div>cmake</div>
       <div>https://lhish.github.io/project/cmake/</div>
     </div>
     <div class="license-meta">
@@ -417,9 +427,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E6%9C%80%E5%B0%8F%E5%A0%86%E4%B8%8E%E6%9C%80%E5%A4%A7%E5%A0%86/" title="最小堆与最大堆 ">
+                      <a href="/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" title="线性代数">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">最小堆与最大堆 </span>
+                        <span class="hidden-mobile">线性代数</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -427,8 +437,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/HeadFirst%20design%20Pattern/" title="HeadFirst design Pattern ">
-                        <span class="hidden-mobile">HeadFirst design Pattern </span>
+                      <a href="/%E7%BD%91%E7%BB%9C%E6%B5%81/" title="网络流">
+                        <span class="hidden-mobile">网络流</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -520,7 +530,6 @@
 
   
   
-
 
 
 
@@ -740,49 +749,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

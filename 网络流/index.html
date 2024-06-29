@@ -16,21 +16,21 @@
   <meta name="author" content="lhy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="网络流网络流是一张模拟运输或流动的图。其边的权重代表边的容量。一般我们将其看做一个水流系统。有一个源节点和一个汇点（流出点）。每一条边上的流量不能超过容量，而每一个节点也不能存储任何水量。另外，这张图不存在自循环，且不存在反平行边(一对边(u,v)与(v,u))。 而对于任意一个节点，流入量等于流出量。 如果遇到反平行边，可以将其中一条边中加入一个新的节点来避免反平行边。 而若是有多个源节点和多个">
+    <meta name="description" content="网络流是一张模拟运输或流动的图。其边的权重代表边的容量。一般我们将其看做一个水流系统。有一个源节点和一个汇点（流出点）。每一条边上的流量不能超过容量，而每一个节点也不能存储任何水量。另外，这张图不存在自循环，且不存在反平行边(一对边(u,v)与(v,u))。 而对于任意一个节点，流入量等于流出量。 如果遇到反平行边，可以将其中一条边中加入一个新的节点来避免反平行边。 而若是有多个源节点和多个汇点，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络流 ">
+<meta property="og:title" content="网络流">
 <meta property="og:url" content="https://lhish.github.io/project/%E7%BD%91%E7%BB%9C%E6%B5%81/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
-<meta property="og:description" content="网络流网络流是一张模拟运输或流动的图。其边的权重代表边的容量。一般我们将其看做一个水流系统。有一个源节点和一个汇点（流出点）。每一条边上的流量不能超过容量，而每一个节点也不能存储任何水量。另外，这张图不存在自循环，且不存在反平行边(一对边(u,v)与(v,u))。 而对于任意一个节点，流入量等于流出量。 如果遇到反平行边，可以将其中一条边中加入一个新的节点来避免反平行边。 而若是有多个源节点和多个">
+<meta property="og:description" content="网络流是一张模拟运输或流动的图。其边的权重代表边的容量。一般我们将其看做一个水流系统。有一个源节点和一个汇点（流出点）。每一条边上的流量不能超过容量，而每一个节点也不能存储任何水量。另外，这张图不存在自循环，且不存在反平行边(一对边(u,v)与(v,u))。 而对于任意一个节点，流入量等于流出量。 如果遇到反平行边，可以将其中一条边中加入一个新的节点来避免反平行边。 而若是有多个源节点和多个汇点，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-29T18:04:57.517Z">
-<meta property="article:modified_time" content="2024-06-29T18:04:41.590Z">
+<meta property="article:published_time" content="2024-06-29T18:21:09.146Z">
+<meta property="article:modified_time" content="2024-06-29T18:20:57.826Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>网络流  - lhish&#39;s blog</title>
+  <title>网络流 - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -41,6 +41,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -225,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="网络流 "></span>
+            <span id="subtitle" data-typed-text="网络流"></span>
           
         </div>
 
@@ -236,7 +238,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:04" pubdate>
+        <time datetime="2024-06-30 02:21" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -248,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          1.5k 字
         
       </span>
     
@@ -304,34 +306,40 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">网络流 </h1>
+            <h1 id="seo-header">网络流</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h1><p>网络流是一张模拟运输或流动的图。其边的权重代表边的容量。一般我们将其看做一个水流系统。有一个源节点和一个汇点（流出点）。每一条边上的流量不能超过容量，而每一个节点也不能存储任何水量。另外，这张图不存在自循环，且不存在反平行边(一对边(u,v)与(v,u))。</p>
+                <p>网络流是一张模拟运输或流动的图。其边的权重代表边的容量。一般我们将其看做一个水流系统。有一个源节点和一个汇点（流出点）。每一条边上的流量不能超过容量，而每一个节点也不能存储任何水量。另外，这张图不存在自循环，且不存在反平行边(一对边(u,v)与(v,u))。</p>
 <p>而对于任意一个节点，流入量等于流出量。</p>
 <p>如果遇到反平行边，可以将其中一条边中加入一个新的节点来避免反平行边。</p>
 <p>而若是有多个源节点和多个汇点，则可以建一个超级源节点和超级汇点，其分别指向源节点和被汇点指向，边权为无限即可。</p>
-<h2 id="Ford-Fulkerson"><a href="#Ford-Fulkerson" class="headerlink" title="Ford-Fulkerson"></a>Ford-Fulkerson</h2><p>一个流是一个从源节点到汇点的一条路径。并且这条路径有一个大小，也就是水流的大小，水流的大小必须小于路径上最小的容量。</p>
-<h3 id="残存网络"><a href="#残存网络" class="headerlink" title="残存网络"></a>残存网络</h3><p>对于一个网络流，它所有的边都是单向的。我们将其补全为双向的，顺其方向的路径上的权重表示这条路径上流的大小，而逆其方向的路径(不存在于网络流中的)权重表示这条路径上还能通过的流的大小，也就是容量减去流的大小。</p>
+<h2 id="Ford-Fulkerson">Ford-Fulkerson</h2>
+<p>一个流是一个从源节点到汇点的一条路径。并且这条路径有一个大小，也就是水流的大小，水流的大小必须小于路径上最小的容量。</p>
+<h3 id="残存网络">残存网络</h3>
+<p>对于一个网络流，它所有的边都是单向的。我们将其补全为双向的，顺其方向的路径上的权重表示这条路径上流的大小，而逆其方向的路径(不存在于网络流中的)权重表示这条路径上还能通过的流的大小，也就是容量减去流的大小。</p>
 <p>这样形成的图被称为残存网络。</p>
-<h3 id="增广路径"><a href="#增广路径" class="headerlink" title="增广路径"></a>增广路径</h3><p>残存网络中的一个流就是原网络流中的一个增加流。</p>
-<p>$(f↑f’)(u,v)&#x3D;f(u,v)+f’(u,v)-f’(v,u)$，因为残存网络中的逆向流就是减少流，正向流就是增加流。</p>
+<h3 id="增广路径">增广路径</h3>
+<p>残存网络中的一个流就是原网络流中的一个增加流。</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>↑</mo><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo><mo>+</mo><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo><mo>−</mo><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>v</mi><mo separator="true">,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(f↑f&#x27;)(u,v)=f(u,v)+f&#x27;(u,v)-f&#x27;(v,u)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">↑</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">u</span><span class="mclose">)</span></span></span></span>，因为残存网络中的逆向流就是减少流，正向流就是增加流。</p>
 <p>另外，由于该流是在残存网络中的一个流，所以最终肯定是汇入汇点的，因此汇点的流量大小是增加的，这样的流被称为增广路径。</p>
 <p>只要不断地在残存网络中找这样的增广路径并将其增加到原网络流中，汇点的流就是不断增加的，直到找不到这样的增广路径，此时就是最大流了。</p>
-<h3 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h3><p>一个割就是将所有的节点分为两个部分，源节点和汇点必须属于任意一个部分。</p>
+<h3 id="最小割">最小割</h3>
+<p>一个割就是将所有的节点分为两个部分，源节点和汇点必须属于任意一个部分。</p>
 <p>假设源节点所在的部分为S，汇点所在的部分为T。净流量的大小就等于S→T的流量减去T→S的流量。由于流量在路上是没有损失的，也就是说S和T的内部流量都是这么多，因此净流量的大小对于任何割都是一样的(这很显然)。因此净流量的大小就是网络流中流的大小。</p>
 <p>我们假定对于一个割来说，它的容量为S→T的容量和，因此它肯定是大于割的净流量的，因为净流量&lt;S→T的流量&lt;S→T的容量和，因此最大流的大小受最小割的容量限制，也就是最大流的值等于最小割的容量。</p>
 <p>这一点与不存在增广路径是等价的。这一点对于线性规划来解网络流非常关键。</p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>一般使用深搜的方法来寻找增广路径，因为只需要找到任意一个路径就可以了。不断寻找并更新网络流和残存网络，直到增广路径不存在。</p>
-<p>由于每次增广路径为整体流的贡献至少为一个单位，因此整体增广路径的次数为$O(|f^*|)$，$f^*$为最大流。而每一次寻找增广路径并更新的复杂度为$O(E)$，总体的复杂度就是$O(E|f^*|)$，这复杂度非常玄学。</p>
-<h2 id="Edmonds-Karp"><a href="#Edmonds-Karp" class="headerlink" title="Edmonds-Karp"></a>Edmonds-Karp</h2><p>选择增广路径选择从源节点到汇点的最短路，这里的最短路是指假设所有的边的权重都为1的情况下。</p>
+<h3 id="实现">实现</h3>
+<p>一般使用深搜的方法来寻找增广路径，因为只需要找到任意一个路径就可以了。不断寻找并更新网络流和残存网络，直到增广路径不存在。</p>
+<p>由于每次增广路径为整体流的贡献至少为一个单位，因此整体增广路径的次数为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi mathvariant="normal">∣</mi><msup><mi>f</mi><mo>∗</mo></msup><mi mathvariant="normal">∣</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(|f^*|)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">f^*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span>为最大流。而每一次寻找增广路径并更新的复杂度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span>，总体的复杂度就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><mi mathvariant="normal">∣</mi><msup><mi>f</mi><mo>∗</mo></msup><mi mathvariant="normal">∣</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(E|f^*|)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mclose">)</span></span></span></span>，这复杂度非常玄学。</p>
+<h2 id="Edmonds-Karp">Edmonds-Karp</h2>
+<p>选择增广路径选择从源节点到汇点的最短路，这里的最短路是指假设所有的边的权重都为1的情况下。</p>
 <p>可以证明源节点到任意节点的最短路径必然是随着操作的进行而单调递增的(算法导论引理26.7，证明没懂）。</p>
 <p>我们称一条边为关键边当且仅当这条边在增广路径上且容量最小。</p>
 <p>如果流量增加了一次，那么必然至少有一条边成为了关键边。因此流量增加次数小于等于所有边成为关键边的次数。</p>
 <p>当我们假设一条边成为了关键边，那么它残存网络上这条边就会成为0。如果希望它第二次成为关键边，那么反向边必须已经在增广路径上出现过一次。因为只有这样它的权重才不会为0了。</p>
-<p>由上述的引理26.7可知，每个循环所有节点的最短路径都不会减小。另外，假设某一条路径是源节点到汇点的最短路，那么这条路径也必然是源节点到这个节点的最短路，假设某条关键边的两边节点分别为u和v，那么第一次成为关键边时$\delta(u)+1&#x3D;\delta(v)$，而为了保证它第二次成为关键边，那么，在反向路出现在增广路径中时$\delta’(v)+1&#x3D;\delta’(u)$，而$\delta(v)’\ge\delta(v)$，因此一次成为关键边u的最短路至少增加2，但最短路径必然是少于整体节点数的（最短路径对于每一个节点最多经过一次），因此一条边最多进行节点数&#x2F;2个循环。而总共有E条边，因此最多总共$O(VE)$次循环。总体就是$O(VE^2)$。</p>
+<p>由上述的引理26.7可知，每个循环所有节点的最短路径都不会减小。另外，假设某一条路径是源节点到汇点的最短路，那么这条路径也必然是源节点到这个节点的最短路，假设某条关键边的两边节点分别为u和v，那么第一次成为关键边时<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn><mo>=</mo><mi>δ</mi><mo stretchy="false">(</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\delta(u)+1=\delta(v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mclose">)</span></span></span></span>，而为了保证它第二次成为关键边，那么，在反向路出现在增广路径中时<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>δ</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>v</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn><mo>=</mo><msup><mi>δ</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\delta&#x27;(v)+1=\delta&#x27;(u)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mclose">)</span></span></span></span>，而<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mo stretchy="false">(</mo><mi>v</mi><msup><mo stretchy="false">)</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>≥</mo><mi>δ</mi><mo stretchy="false">(</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\delta(v)&#x27;\ge\delta(v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mclose">)</span></span></span></span>，因此一次成为关键边u的最短路至少增加2，但最短路径必然是少于整体节点数的（最短路径对于每一个节点最多经过一次），因此一条边最多进行节点数/2个循环。而总共有E条边，因此最多总共<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(VE)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span>次循环。总体就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><msup><mi>E</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(VE^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
 
                 
               </div>
@@ -349,7 +357,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>网络流 </div>
+      <div>网络流</div>
       <div>https://lhish.github.io/project/网络流/</div>
     </div>
     <div class="license-meta">
@@ -394,9 +402,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" title="线性代数 ">
+                      <a href="/cmake/" title="cmake">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">线性代数 </span>
+                        <span class="hidden-mobile">cmake</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -404,8 +412,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" title="线性规划 ">
-                        <span class="hidden-mobile">线性规划 </span>
+                      <a href="/HeadFirst%20design%20Pattern/" title="HeadFirst design Pattern">
+                        <span class="hidden-mobile">HeadFirst design Pattern</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -497,7 +505,6 @@
 
   
   
-
 
 
 
@@ -717,49 +724,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 
