@@ -1,0 +1,1003 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="离散1.1无序对 无序积 &amp; 多重集 重复度 无向图G 顶点集V 无序积 边集E 有向图D 多重子集 n个定点的图被称为n阶图 无边为零图 平凡图： 1阶0图 空图：无顶点 环：两端点重合 关联，关联次数：与边相接的边数 相邻：共同点或共同边 有向图始点，终点 相邻也要遵从有向 孤立点：没边 1.2度d：连接的边数，环算2 握手定理：度和为2*边 有向图出就是出度，如就是入度 悬挂顶点：度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lhish&#39;s blog">
+<meta property="og:url" content="https://lhish.github.io/project/%E7%A6%BB%E6%95%A3/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="离散1.1无序对 无序积 &amp; 多重集 重复度 无向图G 顶点集V 无序积 边集E 有向图D 多重子集 n个定点的图被称为n阶图 无边为零图 平凡图： 1阶0图 空图：无顶点 环：两端点重合 关联，关联次数：与边相接的边数 相邻：共同点或共同边 有向图始点，终点 相邻也要遵从有向 孤立点：没边 1.2度d：连接的边数，环算2 握手定理：度和为2*边 有向图出就是出度，如就是入度 悬挂顶点：度">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/%E7%A6%BB%E6%95%A3Untitled.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E7%A6%BB%E6%95%A3Untitled%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E7%A6%BB%E6%95%A3Untitled%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E7%A6%BB%E6%95%A3Untitled%203.png">
+<meta property="article:published_time" content="2024-06-29T15:46:27.631Z">
+<meta property="article:modified_time" content="2024-06-29T15:45:49.071Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E7%A6%BB%E6%95%A3Untitled.png">
+  
+  
+  
+  <title>lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 23:46" pubdate>
+          2024年6月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="离散"><a href="#离散" class="headerlink" title="离散"></a>离散</h1><h3 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h3><p>无序对</p>
+<p>无序积 &amp;</p>
+<p>多重集</p>
+<p>重复度</p>
+<p>无向图G</p>
+<p>顶点集V 无序积</p>
+<p>边集E</p>
+<p>有向图D 多重子集</p>
+<p>n个定点的图被称为n阶图</p>
+<p>无边为零图</p>
+<p>平凡图： 1阶0图</p>
+<p>空图：无顶点</p>
+<p>环：两端点重合</p>
+<p>关联，关联次数：与边相接的边数</p>
+<p>相邻：共同点或共同边</p>
+<p>有向图始点，终点</p>
+<p>相邻也要遵从有向</p>
+<p>孤立点：没边</p>
+<h3 id="1-2"><a href="#1-2" class="headerlink" title="1.2"></a>1.2</h3><p>度d：连接的边数，环算2</p>
+<p>握手定理：度和为2*边</p>
+<p>有向图出就是出度，如就是入度</p>
+<p>悬挂顶点：度1，悬挂边</p>
+<p>最大(小)(入&#x2F;出)度△&#x2F;δ</p>
+<p>度数为奇数的顶点为偶数个</p>
+<p>有向图入度&#x3D;出度&#x3D;边数</p>
+<p>度数列：每个节点的度的数组</p>
+<h3 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h3><p>平行边：关联同一对顶点</p>
+<p>重数：平行边的数量</p>
+<p>有向平行边：简称平行边</p>
+<p>多重图：有平行边</p>
+<p>简单图：无环无平行边</p>
+<p>无K$_n$(有)向完全图：m&#x3D;n(n-1)(&#x2F;2)</p>
+<p>k-正则图：无向图且度都为k</p>
+<p>无≥3(有≥2)向圈图，无向的简称圈图</p>
+<p>轮图：≥4无向圈图加一点全连</p>
+<p>n方体图：以2进制记录每一个点，只与其只有一位不同的点相连</p>
+<h3 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h3><p>(真)子图，母图：V和E都(或真)包含于</p>
+<p>生成子图：只去边</p>
+<p>导出子图G[V’&#x2F;E’]：根据选择的V’或E‘将相关的另一个集合中的元素全部保留</p>
+<p>补图：对于无向图，补成完全图的边集所得图</p>
+<h3 id="1-5"><a href="#1-5" class="headerlink" title="1.5"></a>1.5</h3><p>同构：完全一致，可以通过调整边和点的位置来使其相同</p>
+<h3 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h3><p>通路：a→b的一条路</p>
+<p>长度：边的数量</p>
+<p>回路：a&#x3D;b</p>
+<p>简单通&#x2F;回路：边异</p>
+<p>初级通&#x2F;回路(路径&#x2F;圈)：边异且点异</p>
+<p>奇&#x2F;偶圈</p>
+<p>复杂通&#x2F;回路：一条边多次出现</p>
+<p>表示：$v_0e_0v_1\cdots v_{n-1}e_{n-1}v_n$</p>
+<p>若u能到v，那么存在通路，那么必有≤n-1</p>
+<p>若u存在简单回路，那么必有≤n</p>
+<h3 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h3><p>连通的：存在通路</p>
+<p>连通图：平凡图&#x2F;任意两点都连通</p>
+<p>连通分支：互相能到的一个部分，其R&#x3D;{&lt;x,y&gt;}为等价关系，即自反，对称，传递</p>
+<p>p(G)：连通分支的数量，&#x3D;1时为连通图</p>
+<p>短程线d(a,b)：最短路</p>
+<p>距离：短程线长度</p>
+<p>删除：G-V’或G-E’</p>
+<p>点(边)割集：这些点(边)删除正好使连通分支增加</p>
+<p>割点(边)(桥)：只有一个点(边)的点割集</p>
+<p>完全图无点割集</p>
+<p>0图都无</p>
+<p>边割集最多增加1个，而点割集≥1</p>
+<p>点(边)连通度κ(G)&#x2F;λ(G):最小的点(边)割集大小或者（或者让点数只剩1个）</p>
+<p>平凡图，都0</p>
+<p>完全图，点 n-1</p>
+<p>κ≤λ≤δ</p>
+<h3 id="2-3"><a href="#2-3" class="headerlink" title="2.3"></a>2.3</h3><p>可达：a→b</p>
+<p>相互可达：a→b，b→a</p>
+<p>短程线d&lt;a,b&gt;</p>
+<p>弱连通图：去掉方向为连通图</p>
+<p>单向连通图：任意两个顶点一个可达另一个   存在经过每个点的一条通路</p>
+<p>强联通：互相可达                                            存在经过每个点的一条回路</p>
+<h3 id="3-1"><a href="#3-1" class="headerlink" title="3.1"></a>3.1</h3><p>关联矩阵M(G)$_{n×m}$：点和边的关联次数</p>
+<p>每列和2，每行和度，总和握手</p>
+<h3 id="3-2"><a href="#3-2" class="headerlink" title="3.2"></a>3.2</h3><p>有向关联矩阵M(D)$_{n×m}$：始点1，终点-1</p>
+<p>可算入度出度，列和0</p>
+<h3 id="3-3"><a href="#3-3" class="headerlink" title="3.3"></a>3.3</h3><p>有向邻接矩阵A(D)$_{n×n}$：i到j的边数</p>
+<p>A$^l_{ij}$：i到j长度为l的通路数</p>
+<p>B$^l_{ij}$：i到j长度≤l的通路数</p>
+<h3 id="3-4"><a href="#3-4" class="headerlink" title="3.4"></a>3.4</h3><p>有向可达矩阵P(D)$<em>{n×n}$：i能不能到j    iff B$^{n-1}</em>{ij}$&gt;0</p>
+<p>无向图的可达和邻接类似</p>
+<h3 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h3><p>二部图：将图中的顶点分为两个点集，任意一条边的两个端点各属于一个点集</p>
+<p>完全二部图$K_{r,s}$：两个点集两两互联</p>
+<p>两个点集被称为互补顶点子集</p>
+<p>判定：无奇数长度回路</p>
+<p>一般判定：直接分类标记</p>
+<p>匹配：指二部图的一个子图，一个顶点的边数≤1</p>
+<p>极大匹配：多一条边就不是匹配了</p>
+<p>完备匹配：一个点集都配备了一条边</p>
+<p>完美匹配：双方都完备匹配</p>
+<p>hall定理(相异性条件)(充要)：v1中的任意k各顶点至少与v2中的任意k各顶点相邻</p>
+<p>t条件(充分)：存在整数t，使v1中每个顶点的度≥t，且v2中每个顶点的度≤t</p>
+<h3 id="4-2"><a href="#4-2" class="headerlink" title="4.2"></a>4.2</h3><p>欧拉通路：经过每条边&#x3D;1的通路</p>
+<p>欧拉回路：是回路的欧拉通路</p>
+<p>欧拉图：有欧拉回路</p>
+<p>无向图判定条件：连通图且无奇度顶点</p>
+<p>有向图判定条件：连通图且所有顶点入度&#x3D;出度</p>
+<p>有向图欧拉通路非回路判定条件：连通图且有2个不满足，一个差值为1，一个为-1</p>
+<h3 id="4-3"><a href="#4-3" class="headerlink" title="4.3"></a>4.3</h3><p>哈密顿通路：经过每个点&#x3D;1的通路</p>
+<p>哈密顿回路(必为初级)：是回路的哈密顿通路</p>
+<p>哈密顿图：有哈密顿回路</p>
+<p>删除v1个顶点，p≤v1</p>
+<p>有割点的不是哈密顿图</p>
+<p>因为是回路</p>
+<p>(充分)：n≥3无向简单图，任意一对不相邻顶点度和≥n-1存在通路，≥n为哈密顿图</p>
+<p>最小度≥$\frac{n}{2}$也是哈密顿图</p>
+<p>n≥2有向图，略去方向存在K$_n$，则存在哈密顿通路</p>
+<h3 id="4-4"><a href="#4-4" class="headerlink" title="4.4"></a>4.4</h3><p>平面图仅讨论无向图</p>
+<p>平面嵌入：画在平面上无交叉边</p>
+<p>平面图：有平面嵌入的图</p>
+<p>面R$_i$：平面图的一个区域</p>
+<p>无限面：最外侧的无线区域</p>
+<p>内部面：除无限面的其他面</p>
+<p>边界：一个面的边界</p>
+<p>次数deg(R$_i$)：边界的长度，即边界的边数</p>
+<p>面的次数之和*2&#x3D;边数，即握手定理</p>
+<p>极大平面图：加入一条边就不是平面图了</p>
+<p>性质：连通且当n≥3时每个面的次数都为3</p>
+<p>n-m+r&#x3D;k+1    k为连通分支数</p>
+<p>若为连通平面图，且min次数≥l，则$m\le \frac{l}{l-2}(n-2)$</p>
+<p>同胚：同构或反复插入或消去2度顶点后同构</p>
+<p>收缩：重合两点，删除关联边，剩下保留</p>
+<p>库拉图斯基定理(判定)：iff不含与k5或k33同胚的子图</p>
+<pre><code class="hljs">                                   iff不含可收缩到k5或k33的子图
+</code></pre>
+<p>对偶图：面作点，若有共边，则相连，经过这条边，为连通平面图</p>
+<p>点面数互换，边数不变</p>
+<p>对偶图vi的度&#x3D;ri的次数</p>
+<p>点着色：对每个顶点涂色，要求相邻颜色不同</p>
+<p>k-可着色的：能用k中颜色点着色</p>
+<p>任何平面图都是4-可着色的</p>
+<h3 id="1-1-1"><a href="#1-1-1" class="headerlink" title="1.1"></a>1.1</h3><p>无向树(树)：连通不含回路的图</p>
+<p>森林：每个连通分支都是树</p>
+<p>平凡树：平凡图</p>
+<p>树叶：d&#x3D;1</p>
+<p>分支点：d≥2</p>
+<p>非平凡树的叶子数≥2</p>
+<p>不同度数列对应的树必不同构，但同度数列对应的树也可能不同构</p>
+<h3 id="1-2-1"><a href="#1-2-1" class="headerlink" title="1.2"></a>1.2</h3><p>生成树：是树的生成子图</p>
+<p>树枝：在生成树中的边</p>
+<p>弦：非树枝</p>
+<p>余树：弦的导出子图</p>
+<p>无向连通图都存在生成树</p>
+<p>权：边上的实数</p>
+<p>带权图</p>
+<p>kruskal(避圈法)</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p>有向树：略去方向为树的有向图</p>
+<p>根树：一个顶点入度&#x3D;0，其他入度&#x3D;1</p>
+<p>树根</p>
+<p>树叶</p>
+<p>内点：除去树根和树叶的点</p>
+<p>分支点：内点和树根</p>
+<p>层数：树根到该点的通路长度，即树根为0层</p>
+<p>树高：max层</p>
+<p>根子树：其实就是子树</p>
+<p>有序树：将每一层的顶点都规定次序</p>
+<p>r元树：每个节点的孩子≤r</p>
+<p>r元正则树：每个节点的孩子&#x3D;r</p>
+<p>完全的：树叶的层数相同</p>
+<p>最优二叉树(哈夫曼树)：选最小的合并</p>
+<p>最佳前缀码：根据频率生成哈夫曼树</p>
+<p>前中后遍历</p>
+<p>周游&#x2F;行遍：每个顶点访问次数&#x3D;1</p>
+<p>前缀表示法：从右到左每个运算符对后面紧挨的两个数运算</p>
+<p>后缀：从左到右<del>对前面</del></p>
+<h3 id="1-1-2"><a href="#1-1-2" class="headerlink" title="1.1"></a>1.1</h3><p>S上的二元运算：S运算S→S</p>
+<p>封闭：S上的二元运算对S封闭</p>
+<p>S上的一元运算：运算S→S</p>
+<h3 id="1-2-2"><a href="#1-2-2" class="headerlink" title="1.2"></a>1.2</h3><p>交换律</p>
+<p>结合律</p>
+<p>幂等律$x^2&#x3D;x$</p>
+<p>分配律</p>
+<p>吸收律：在交换律的基础上，x*(x+y)&#x3D;x且x+(x*y)&#x3D;x</p>
+<p>代数常数：单位元，零元，可逆元，逆元</p>
+<p>(左&#x2F;右)单位元：ex&#x3D;x</p>
+<p>(左&#x2F;右)零元：θx&#x3D;θ</p>
+<p>(左&#x2F;右)逆元：yx&#x3D;e</p>
+<p>可逆：存在逆元</p>
+<p>若存在左右单位元，则相等且为单位元</p>
+<p>若存在左右逆元，则相等且为逆元</p>
+<p>消去律</p>
+<h3 id="2-1-1"><a href="#2-1-1" class="headerlink" title="2.1"></a>2.1</h3><p>代数系统(代数)V：非空集合S和其上的k个1&#x2F;2元运算，</p>
+<p>&lt;S,f1,f2,…&gt;一般二元运算写在前，S被称为载体，还可写上代数常数</p>
+<h3 id="2-2-1"><a href="#2-2-1" class="headerlink" title="2.2"></a>2.2</h3><p>同类型的代数系统：运算个数，对应的元数，代数常数个数都相同</p>
+<p>同种的代数系统：对应运算性质相同的同类型的代数系统</p>
+<h3 id="2-3-1"><a href="#2-3-1" class="headerlink" title="2.3"></a>2.3</h3><p>(真)子代数(同种)：S中的一个(真)子集S‘，对所有运算封闭且代数常数相同</p>
+<p>平凡子代数：V自身，其代数常数若封闭则为最小平凡子代数</p>
+<p>积代数：两个同类型代数系统&lt;A,+&gt;,&lt;B,*&gt;，&lt;a1,b1&gt;- &lt;a2,b2&gt;&#x3D;&lt;a1+a2,b1*b2&gt;，则&lt;A×B,-&gt;为两代数系统的积代数，反之两者为其因子代数</p>
+<p>特性：同类型，保留除消去律以外的所有运算性质，且保留代数常数</p>
+<h3 id="2-4"><a href="#2-4" class="headerlink" title="2.4"></a>2.4</h3><p>同态映射(同态)：f:V1→V2(同类型)，f(x+y)&#x3D;f(x)*f(y)</p>
+<p>单同态：单射</p>
+<p>满同态(同态像)：满射</p>
+<p>同构≌：双射</p>
+<p>自同态：到自身的同态</p>
+<p>零同态：f(x)&#x3D;0x，x∈Z</p>
+<p>同态：能够保留除消去律以外的大多性质和代数常数</p>
+<p>同构：拥有完全相同的性质，被认为是同一代数系统</p>
+<h3 id="3-1-1"><a href="#3-1-1" class="headerlink" title="3.1"></a>3.1</h3><p>半群：&lt;S,+&gt;，+可结合</p>
+<p>含幺半群(独异点)：有单位元的半群</p>
+<p>若可结合，$x^0&#x3D;e$</p>
+<p>子半群，子独异点(要求e要保留)</p>
+<p>独异点的同态要求$f(e_1)&#x3D;e_2$</p>
+<h3 id="3-2-1"><a href="#3-2-1" class="headerlink" title="3.2"></a>3.2</h3><p>群：每个元素都有逆元的独异点</p>
+<p>有限群：有限元素群</p>
+<p>无限群：无限元素群</p>
+<p>阶|G|：元素的个数</p>
+<p>平凡群：只有单位元</p>
+<p>交换群(阿贝尔群)：二元运算还是可交换的群</p>
+<p>有负次方：即(-1)*n</p>
+<p>元素的阶|a|：$min\ k,a^k&#x3D;e$</p>
+<p>无限阶元：不存在阶</p>
+<p>像矩阵一样,$(a_1\cdots a_n)^{-1}&#x3D;a_n^{-1}\cdots a_1^{-1}$</p>
+<p>ax&#x3D;b和ya&#x3D;b都有唯一解，$a^{-1}b和ba^{-1}$</p>
+<p>群可以使用消去律</p>
+<p>iff k是阶的整数倍的时候时$a^k&#x3D;e$</p>
+<p>逆元的阶相同</p>
+<p>$|b^{-1}ab|&#x3D;|a|$</p>
+<p>$|ab|&#x3D;|ba|$</p>
+<p>(真)子群</p>
+<p>平凡子群：G和{e}</p>
+<p>判定定理1：ab∈G且$a^{-1}$∈G</p>
+<p>判定定理2：ab$^{-1}$∈G</p>
+<p>由a生成的子群：{a$^k|k是整数$}</p>
+<p>群的中心：{a|对任意x，ax&#x3D;xa}</p>
+<p>交换群的中心就是自身</p>
+<p>子群格</p>
+<p>零同态：G1→G2,$f(x)&#x3D;e_2$</p>
+<p>内自同构：G→G,$f(x)&#x3D;axa^{-1}$</p>
+<p>循环群<a></p>
+<p>a为生成元</p>
+<p>无限循环群，只有两个生成元，生成元和它的逆元</p>
+<p>n阶循环群，与n互质的a^k</p>
+<p>n元置换σ(i)</p>
+<p><img src="/image/%E7%A6%BB%E6%95%A3Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E7%A6%BB%E6%95%A3Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E7%A6%BB%E6%95%A3Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E7%A6%BB%E6%95%A3Untitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://lhish.github.io/project/离散/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="面向对象程序设计数据抽象：将接口与实现分离。 继承：定义相似的关系并建模 动态绑定：忽略相似类型的区别，统一进行使用，可以使用基类指针或引用指向派生类对象 基类与派生类基类一般要定义一个虚折构函数。  派生类的折构函数会先调用自己的函数体，再调用基类的折构  当我们希望进行动态绑定时，就应该将函数声明为虚函数，否则在编译时就会被解析。 派生类重写的时候可以通过override来显式表示重写（写在函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lhish&#39;s blog">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="面向对象程序设计数据抽象：将接口与实现分离。 继承：定义相似的关系并建模 动态绑定：忽略相似类型的区别，统一进行使用，可以使用基类指针或引用指向派生类对象 基类与派生类基类一般要定义一个虚折构函数。  派生类的折构函数会先调用自己的函数体，再调用基类的折构  当我们希望进行动态绑定时，就应该将函数声明为虚函数，否则在编译时就会被解析。 派生类重写的时候可以通过override来显式表示重写（写在函">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%201.png">
+<meta property="article:published_time" content="2024-06-29T15:46:27.639Z">
+<meta property="article:modified_time" content="2024-06-29T15:45:49.111Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+  
+  
+  
+  <title>lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 23:46" pubdate>
+          2024年6月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="面向对象程序设计"><a href="#面向对象程序设计" class="headerlink" title="面向对象程序设计"></a>面向对象程序设计</h1><p>数据抽象：将接口与实现分离。</p>
+<p>继承：定义相似的关系并建模</p>
+<p>动态绑定：忽略相似类型的区别，统一进行使用，可以使用基类指针或引用指向派生类对象</p>
+<h3 id="基类与派生类"><a href="#基类与派生类" class="headerlink" title="基类与派生类"></a>基类与派生类</h3><p>基类一般要定义一个虚折构函数。</p>
+<blockquote>
+<p>派生类的折构函数会先调用自己的函数体，再调用基类的折构</p>
+</blockquote>
+<p>当我们希望进行动态绑定时，就应该将函数声明为虚函数，否则在编译时就会被解析。</p>
+<p>派生类重写的时候可以通过override来显式表示重写（写在函数的最后，const后）。</p>
+<p>派生类可以访问public和protected（只有自己和派生类能访问）的基类成员，而不能访问private的基类成员，但是可以通过基类的可访问成员函数类访问私有成员。</p>
+<p>通过使用派生类列表来继承。格式：</p>
+<p>class classname : 访问说明符 derivated_classname</p>
+<p>访问说明符就是public，protected和private。</p>
+<p>对于所有需要重写的成员都需要进行声明。</p>
+<p>如果某个派生类对于基类的虚函数并没有进行重写，则会直接使用基类的函数。</p>
+<p>虽然派生类继承了基类中的一部分成员，但是每个类自身控制它对应的初始化过程。在构造函数中原本是使用构造函数初始值列表来初始化，但其中属于基类的成员可以直接使用基类的构造函数来初始化。方式与其他构造函数初始值列表一致，如classname(param)。</p>
+<p>而其调用的基类构造函数由编译器决定。当初始化时，基类部分先被初始化，然后再是派生类的部分。</p>
+<p>在作用域方面，在使用派生类作用域的时候其外层就已经套了一层隐式的基类作用域，因此可以直接使用基类成员。</p>
+<blockquote>
+<p>需要注意的是基类的成员虽然可以被直接调用并赋值，但是使用的时候最好都调用基类的函数类对基类的成员进行控制与赋值，而不要直接在派生类中对基类进行控制。</p>
+</blockquote>
+<p>基类的静态成员即便被继承了也是通用的，但仍然遵循访问说明符的继承规则。</p>
+<p>派生类在声明时不需要声明继承。</p>
+<p>通过在类名后加final关键字可以防止继承的发生，也可以用在成员函数上。</p>
+<p>派生类可以作为基类继续继承，派生类的基类是派生类的派生类的间接基类，而基类是这个派生类的直接基类。</p>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>派生类对象是由多个对象组成的，派生类独有的成为组成一个对象，其继承的每一个基类对象的成员各自组成一个基类对象，这些存储是对象内的成员存储连续，而对象之间则不一定。</p>
+<p>正是由于派生类中存在基类对象，因此可以将其作为基类来使用，而且，其成员一定是大于等于基类对象成员的，这很显然。也就是派生类可以向基类进行类型转换（会隐式发生），只能转换四种：指针到指针，引用到引用，对象到引用，对象到指针。</p>
+<p>智能指针也存在这一转换。</p>
+<p>而当我们这么做的时候，我们并不在乎对象是派生类还是基类。</p>
+<p>而此时，这一类型是动态类型，有且仅有基类指针和引用可能是动态类型，而其他都是静态类型。</p>
+<p>但不存在从基类向派生类的转换，或者说不存在隐式转换，可能存在显式的，因为可能访问不存在的成员，需要注意的是，即便一个基类指针指向了派生类，也不能将其赋值给一个派生类指针，因为编译器并不知道这件事，除非使用static_cast。</p>
+<p>但上述的都是基类的指针与引用，而对象之间实际本身是不存在转换的。除非像普通的转换一样定义构造函数或赋值运算符，而其原始的合成版本会像普通的类型转换一样一一赋值并会把派生类多余的部分切掉。</p>
+<p>在类型转换中可能存在访问权限的问题。</p>
+<h3 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h3><p>由于虚函数是动态绑定的，因此并不知道会不会使用基类的虚函数本身，即便我们知道其并不会被使用，但仍然要对它进行定义。</p>
+<p>当且仅当对有派生类的指针或引用调用虚函数的时候会进行动态绑定，而且也只有在调用的时候会发生。</p>
+<p>虚函数在派生类中也将被隐式声明为虚函数。并且其形参表，返回类型都必须与原虚函数一致。<strong>除了当虚函数返回的是类本身的指针或引用</strong>，假设基类返回自己的指针，而派生类可以返回派生类自己的指针，不过这只有在派生类到基类的类型转换是可行的时候可用。</p>
+<p>由于当形参表不同时会认为不是继承，因此可以通过override说明符来显式的表示这是重写来让编译器来检查这个函数是否重写了某个函数，而不发生前面的问题。</p>
+<p>当虚函数中存在默认实参时，其调用时默认实参的值会依据<strong>静态类型</strong>（也就是基类），而非派生类的默认实参值。</p>
+<p>这一动态绑定可以被指定为静态，在调用运算符后，函数之前加上基类的作用域或其他作用域来指定调用的虚函数版本。常常用于派生类的成员函数中。若在派生类版本的虚函数中需要调用基类版本的虚函数，那么若是不指定，则会调用自身版本，造成无限循环。</p>
+<p>派生类是否能重写虚函数与虚函数访问权限无关。</p>
+<p>函数模板不能被声明为 <code>virtual</code>。</p>
+<h3 id="抽象基类"><a href="#抽象基类" class="headerlink" title="抽象基类"></a>抽象基类</h3><p>有时我们完全不希望用户使用基类或基类中的某个成员函数，这个基类是抽象的，用来方便派生类的实现的，是抽象基类。</p>
+<p>此时我们可以将这个成员函数定义为纯虚函数。定义的方式是在它最后增加&#x3D;0。</p>
+<p>虽然我们可以对纯虚函数提供定义，但必须在类外。</p>
+<p>只要一个基类含有纯虚函数，那么这个基类是抽象基类。所有的抽象基类都是不能实例对象化的。</p>
+<p>一般用于规范接口。</p>
+<p>一般用于实现接口类，当一个接口类的所有函数都是纯虚函数，那么这个类是纯接口类。</p>
+<blockquote>
+<p>重构：重新设计类的体系以便将操作和数据从一个类移动到另一个类中。</p>
+</blockquote>
+<h3 id="访问控制与继承"><a href="#访问控制与继承" class="headerlink" title="访问控制与继承"></a>访问控制与继承</h3><p>protected:基类的protected成员对于派生类与友元时可访问的。但是只能通过派生类对象来访问，也就是访问派生类对象继承的protected成员，而其他普通的与其没有任何关系的基类对象的protected成员是不可访问的。</p>
+<p>对类声明的访问说明符并不影响派生类对于基类的访问权限，这些由基类自身的访问说明符决定，其决定的是继承的部分在派生类中的访问权限。</p>
+<p>对于对类定义的访问说明符，会使得基类中大于等于它的权限缩小为其权限用于本类中。</p>
+<h3 id="派生类向基类转换的可访问性"><a href="#派生类向基类转换的可访问性" class="headerlink" title="派生类向基类转换的可访问性"></a>派生类向基类转换的可访问性</h3><p>对用户来说：当且仅当派生类是公有继承的时候可行</p>
+<p>对派生类的派生类的成员函数与友元来说：当且仅当是公有继承或者受保护继承的时候是可行的（因为如果是私有的，那么派生类与基类对于派生类的派生类就是私有的不可访问的了？）</p>
+<p>对派生类的成员函数与友元来说：是一直可行的</p>
+<p>友元是不能被继承的，但是，能够访问派生类的基类部分（如果基类声明了友元）。而友元的基类或派生类并不会因为这种关系而具有对其他类的访问权限。</p>
+<p>在派生类由类名后的访问说明符来确定访问权限后，可以通过using bassclassname::成员名 来调整其对外的访问权限。而这一访问权限由该语句处于哪一个访问运算符下来决定。但只能改变其能访问的成员的对外权限。</p>
+<p>class的默认继承是private继承，struct的默认继承则是public继承。</p>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>由于派生类的作用域包在基类的作用域之内，因此，名字查找的时候是由内而外的。派生类的同名会隐藏基类的同名（即便类型和形参可能是不同的，若都相同，就不是隐藏而是虚函数了），但派生类除了虚函数重写外不要使用基类中使用过的名字。</p>
+<p>在查找对应对象（成员）的过程中，先寻找名称再进行类型检查。从内到外寻找相同名称的对象，找到后进行类型检查，若成功则根据是不是虚函数来选择调用的函数。</p>
+<p>虚函数与普通函数的最根本的区别就是当使用指针指向一个可能非指针类型的对象的时候，虚函数会根据指向的对象而选择函数（实际上是在就相当于先找到名字相同的普通函数，然后只不过多了一步虚函数的重新选择函数），而普通函数只会根据指针的静态类型而选择函数。</p>
+<p>？可以通过using来一次性覆盖一个函数的所有版本，因为using是通过名称来匹配的，而不管类型与参数。(p551)</p>
+<h3 id="虚构折构函数"><a href="#虚构折构函数" class="headerlink" title="虚构折构函数"></a>虚构折构函数</h3><p>由于基类的指针可能指向派生类对象，而delete指针会调用其指向对象的折构函数，我们希望去调用派生类的折构函数，因此将基类的折构函数定义为虚函数。</p>
+<p>虚折构函数会阻止合成移动操作。</p>
+<p>另外，当且仅当基类的折构函数被声明为虚的了，那么派生类的折构函数才会去隐式调用基类的虚构函数。</p>
+<h3 id="合成的拷贝控制"><a href="#合成的拷贝控制" class="headerlink" title="合成的拷贝控制"></a>合成的拷贝控制</h3><p>派生类的合成的拷贝控制函数会先调用基类的拷贝控制函数来处理其自身中的基类部分，后再调用自己的函数体。合成的拷贝控制函数能成立只需要其基类的对应的可以被访问。</p>
+<p>而合成的析构函数会先删除派生类自身的成员，再删除其直接基类的成员，而这会调用直接基类的折构函数。</p>
+<p>若基类中的折构函数无法访问或者对应的拷贝控制函数无法访问，则合成的对应的拷贝控制函数会被删除（折构对应全部）。</p>
+<p>基类没有合成移动操作会使得派生类也不合成移动操作，因此基类中最好声明移动操作，以使得派生类中会自动合成移动操作（因为派生类中的折构函数不是虚的）。</p>
+<h3 id="派生类的合成拷贝"><a href="#派生类的合成拷贝" class="headerlink" title="派生类的合成拷贝"></a>派生类的合成拷贝</h3><p>折构函数会隐式销毁包括基类的所有成员，因此折构函数只用处理自己派生类独有的部分即可。</p>
+<p>而拷贝控制函数需要显式的去拷贝控制基类部分。派生类的移动或拷贝构造函数在初始化列表中调用基类对应的函数来初始化其基类部分，因为在传入参数的过程中会自动将派生类独有的部分被切掉了。</p>
+<p>派生类的移动或拷贝赋值运算符中，调用基类对应的函数来赋值其基类部分。必须通过作用域符显式指定是基类的函数$base::operator&#x3D;(variable)$，实际上可以看做是this.base::operator&#x3D;，接着再自行处理自己的部分。</p>
+<p>没懂。</p>
+<p><img src="/image/c++premierUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="继承构造函数"><a href="#继承构造函数" class="headerlink" title="继承构造函数"></a>继承构造函数</h3><p>using声明语句只是令某个名字在当前作用域可见。被using的函数往下的继承也会因为被声明时所在的访问声明符的不同而产生不同的往下继承权限。只能using能访问的函数来调整它的权限（到底能不能using private的基类函数）。就好像这个函数是在这里声明的一样。</p>
+<p>构造函数只会继承普通构造函数（非默认，拷贝与赋值）。继承的构造函数形如：</p>
+<p>$$<br>derived(params)\ :\ base(args)\ {}<br>$$</p>
+<p>这种继承方式只对构造函数有用。</p>
+<p>相当于在初始化列表中只调用了基类的构造函数，其他部分被默认初始化。</p>
+<p>但构造函数的using 并不会改变访问级别。using也不能改变函数的属性。</p>
+<p>当构造函数中含有默认实参的时候，派生类会自动生成实参数量+1个构造函数，每一个构造函数比上一个构造函数少一个默认实参。</p>
+<p><img src="/image/c++premierUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>派生类中定义的构造函数会覆盖继承的同名构造函数。</p>
+<p>通过using基类的构造函数，其名字就会自动在派生类中变为派生类的名字，相当于直接使用基类的构造函数作为自己的构造函数。</p>
+<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><p>当我们想用容器来存储多种类型（属于同一基类的底下时（可以使用间接基类的指针指向派生类的对象）），最好使用基类的指针来间接存储。</p>
+<p>在使用基础类的时候要加上std::。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://lhish.github.io/project/hide/面向对象程序设计/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/hide/%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E5%9E%8B%E8%AF%86%E5%88%ABRTTI/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/hide/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

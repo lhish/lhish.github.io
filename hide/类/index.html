@@ -1,0 +1,917 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="类类的重点在于两点：  数据抽象。 接口。用户所能使用的方法。 实现。实现接口的背后的原理。   封装。隐藏实现的部分。  成员函数成员函数就是属于类对象的函数。隶属于成员本身。通过点运算符来调用。 声明时必须在类内部。而定义可以在类之外。 非成员函数，并不是类的一部分，不能被类对象调用。但希望可以对类对象进行操作，或者对多个类对象进行操作。 可以被重载。 this所有的成员函数，都有一个隐式参数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lhish&#39;s blog">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E7%B1%BB/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="类类的重点在于两点：  数据抽象。 接口。用户所能使用的方法。 实现。实现接口的背后的原理。   封装。隐藏实现的部分。  成员函数成员函数就是属于类对象的函数。隶属于成员本身。通过点运算符来调用。 声明时必须在类内部。而定义可以在类之外。 非成员函数，并不是类的一部分，不能被类对象调用。但希望可以对类对象进行操作，或者对多个类对象进行操作。 可以被重载。 this所有的成员函数，都有一个隐式参数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%203.png">
+<meta property="article:published_time" content="2024-06-29T15:46:27.635Z">
+<meta property="article:modified_time" content="2024-06-29T15:45:49.103Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+  
+  
+  
+  <title>lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 23:46" pubdate>
+          2024年6月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><p>类的重点在于两点：</p>
+<ol>
+<li>数据抽象。<ol>
+<li>接口。用户所能使用的方法。</li>
+<li>实现。实现接口的背后的原理。</li>
+</ol>
+</li>
+<li>封装。隐藏实现的部分。</li>
+</ol>
+<h3 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h3><p>成员函数就是属于类对象的函数。隶属于成员本身。通过点运算符来调用。</p>
+<p>声明时必须在类内部。而定义可以在类之外。</p>
+<p>非成员函数，并不是类的一部分，不能被类对象调用。但希望可以对类对象进行操作，或者对多个类对象进行操作。</p>
+<p>可以被重载。</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>所有的成员函数，都有一个隐式参数this，一个常量指针指向调用这个函数的类对象。通过这种方式告诉成员函数是哪一个类对象在调用它。</p>
+<p>$$<br>a.b()\&#x3D;class_name::b(&amp;a)<br>$$</p>
+<h3 id="const成员函数"><a href="#const成员函数" class="headerlink" title="const成员函数"></a>const成员函数</h3><p>由于this是一个指向非常量的常量指针，因此常量对象不能调用普通成员函数，因为底层const不同。</p>
+<p>通过在函数的形参表后增加const关键字使得将this转为指向常量的常量指针，通过这种方式使得常量对象可以调用该函数，也就是const成员函数。</p>
+<p>const成员函数常用来获取类的数据成员。并且在此过程中不能对类成员产生更改。</p>
+<h3 id="成员与成员函数"><a href="#成员与成员函数" class="headerlink" title="成员与成员函数"></a>成员与成员函数</h3><p>在编译时，会先编译成员的声明，后编译成员函数，因此成员函数可以任意调用成员。</p>
+<h3 id="在外部定义成员函数"><a href="#在外部定义成员函数" class="headerlink" title="在外部定义成员函数"></a>在外部定义成员函数</h3><p>在外部定义成员函数需要在函数名前增加类作用域，通过这种方式将这个函数的这个块，也就是作用域声明在类的作用域内，使其能够调用类的成员函数与成员。</p>
+<h3 id="成员函数的返回值"><a href="#成员函数的返回值" class="headerlink" title="成员函数的返回值"></a>成员函数的返回值</h3><p>当成员函数的作用类似于某个内置运算符时，应该尽力去模仿这个运算符。如形参与返回值类型。</p>
+<p>当我们希望返回的是一个左值时，就应该返回一个引用类型。</p>
+<p>当我们希望通过引用返回一个右值来避免拷贝的时候，应该返回一个引用常量类型。</p>
+<h3 id="非成员函数"><a href="#非成员函数" class="headerlink" title="非成员函数"></a>非成员函数</h3><p>当非成员函数是类接口组成部分，应该将其的声明与类放在同一个头文件，但在类的外面。</p>
+<p>IO类型可以作为函数的参数，但是只能使用引用的方式传入。因为IO类型不可拷贝且在读写过程中会改变IO的内容。</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>构造函数用来初始化一个类对象。当初始化一个常量对象的时候，构造函数需要对常量对象的成员进行初始化，因此其只能在构造函数执行完成之后才能获得常量属性。</p>
+<p>但是常量，引用，与未提供默认初始化的类型必须通过构造函数初始化列表的方式进行初始化而不能使用&#x3D;赋值，没有默认初始化的类型不能完成赋值的第一步，即先默认初始化。</p>
+<p>因此最好在一般情况下构造函数使用构造函数初始化列表的方式进行初始化。</p>
+<p>若是没有在构造函数中显式初始化，则将在构造函数执行前默认初始化。</p>
+<h3 id="默认构造函数（？）"><a href="#默认构造函数（？）" class="headerlink" title="默认构造函数（？）"></a>默认构造函数（？）</h3><p>当一个构造函数不接受任何实参的时候，它就是默认构造函数。</p>
+<p>当一个构造函数的形参都有默认参数时，其也将隐式地被用作默认构造函数，但同时也可以被用作非默认构造函数。</p>
+<p><img src="/image/c++premierUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>当定义一个对象时</p>
+<p>$$<br>typename\ \ name;<br>$$</p>
+<p>此时就是默认初始化，无需在name后加括号。</p>
+<p>当在类中并没有进行显式的对构造函数的声明时，编译器会自动生成一个合成的默认构造函数来作为构造函数。</p>
+<p>其初始化的方式是：</p>
+<ul>
+<li>如果成员在类内有初始值，这用该值来初始化。</li>
+<li>如果不存在，这默认初始化。</li>
+</ul>
+<p>最好只在简单的类中使用合成的默认构造函数。</p>
+<ol>
+<li>当且仅当一个类中不存在任何的构造函数的声明，即便声明的构造函数不是默认构造函数也算是声明了，此时，编译器将不会自动生成合成的默认构造函数，此时，这个类的默认构造函数就缺失了。</li>
+<li>当类的成员中有内置类型或复合类型，其默认初始化之后将会是未定义的。</li>
+<li>当类中有其他类成员，若这个类也没有默认构造函数，当前类的默认构造函数是无法自动初始化的。</li>
+</ol>
+<p>在第一种的情况下，我们希望能写一个和合成的默认构造函数相同的默认构造函数时，可以使用</p>
+<p>$$<br>class_name()\ &#x3D;\ default;<br>$$</p>
+<p>来显式告诉编译器要生成一个合成的默认构造函数。</p>
+<p>当default在类内部声明时使用时，函数是inline的。</p>
+<p>当default在类外部定义时使用时，函数是非inline的。</p>
+<h3 id="构造函数初始值列表"><a href="#构造函数初始值列表" class="headerlink" title="构造函数初始值列表"></a>构造函数初始值列表</h3><p>$$<br>name(param_list):variable1(initnum),variable2(initnum)…{\ }<br>$$</p>
+<p>当某个数据成员在初始化时被列表忽略时，其将会被以像合成的默认构造函数中一样进行隐式初始化。</p>
+<blockquote>
+<p>构造函数最好不要覆盖类内原值。</p>
+</blockquote>
+<p>列表中对象的顺序并不是真实的初始化顺序，其真实的顺序是与对象在类中声明的顺序相同。</p>
+<h3 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h3><p>将构造函数初始值列表改为另一个构造函数的执行语句即可。</p>
+<p><img src="/image/c++premierUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/c++premierUntitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>$$<br>classname(param_list):classname(another_param_list){}<br>$$</p>
+<p>在执行委托构造函数的初始化列表时也会执行其函数体，之后才会执行该构造函数的函数体。</p>
+<h3 id="拷贝、赋值和折构"><a href="#拷贝、赋值和折构" class="headerlink" title="拷贝、赋值和折构"></a>拷贝、赋值和折构</h3><p>如构造函数一样，在这三种操作的函数没有被定义时，编译器会自动生成一个合成的版本。</p>
+<p>但当其中存在对类成员以外的(如内存)进行操作时，合成的版本就是失效的。但可以使用vector或string来避免。</p>
+<h3 id="封装的好处"><a href="#封装的好处" class="headerlink" title="封装的好处"></a>封装的好处</h3><ol>
+<li>保证用户不会破坏封装对象的情况。</li>
+<li>可以随时改变实现的细节。</li>
+</ol>
+<h3 id="访问说明符"><a href="#访问说明符" class="headerlink" title="访问说明符"></a>访问说明符</h3><p>public与private，private部分就是被封装的部分。</p>
+<p>在一个类中访问说明符可以多次被使用，即便该说明符前面已经被使用过了。</p>
+<p>每一个访问说明符的范围是其从冒号开始到下一个访问说明符或类结束。</p>
+<h3 id="class与struct的区别"><a href="#class与struct的区别" class="headerlink" title="class与struct的区别"></a>class与struct的区别</h3><p>class默认成员是private的，struct默认成员是public的。</p>
+<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><p>由于产生了封装，因此用户，其他类或者非成员函数无法访问其非公有成员。</p>
+<p>可以通过在类中声明这些函数或类为友元来使其能够访问。</p>
+<p>格式：与声明相同并在前加上friend关键字。</p>
+<blockquote>
+<p>建议集中在一起，在开头或结尾。</p>
+</blockquote>
+<p>友元声明并不是对函数或类的声明，只是对已有的已声明的函数或类进行权限的声明。最好在友元声明前先对其进行声明。</p>
+<h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><p>可以在类内定义类型别名，但必须先定义后使用。</p>
+<p>别名也存在公与非公，当为公的时候其可以被用户使用。</p>
+<h3 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h3><p>定义在类内部的函数都是隐式的inline函数。</p>
+<p>但是也可以在类外进行显式的定义。</p>
+<h3 id="可变数据成员"><a href="#可变数据成员" class="headerlink" title="可变数据成员"></a>可变数据成员</h3><p>在将一个类对象定义为const时，其所有的成员都将是const类型。或者在调用const函数时。在这两种情况下都不能对类的数据成员的值进行更改。</p>
+<p>可以通过使用mutable关键字来使这个变量不可以是const，在上述的两种情况中都可以被改值。</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>初始化与赋值是不同的，赋值是先默认初始化再赋予它一个值。</p>
+<p>当对于类对象进行初始化时。</p>
+<ol>
+<li>使用构造函数，直接初始化。</li>
+<li>使用&#x3D;，进行赋值。</li>
+</ol>
+<h3 id="返回类对象本身"><a href="#返回类对象本身" class="headerlink" title="返回类对象本身"></a>返回类对象本身</h3><p>当返回一个非引用类型的时候，不能将其作为左值继续调用类对象的其他成员，因为它是一个临时的类对象。</p>
+<p>当返回一个引用类型的时候，可以将其作为左值继续调用类的对象的其他成员。</p>
+<p>但是，若是使用const类型的成员函数，即便返回的是引用类型的类对象本身，也是底层const类型的引用，此时，其作为引用不能被当做左值调用其非常量成员函数（指会改变类对象值的成员函数）。</p>
+<p>可以通过在其外部定义一个调用其的函数来解决。</p>
+<p>这个函数有两个重载版本。</p>
+<ol>
+<li>函数是const类型且返回值是const&amp;。</li>
+<li>函数是普通类型且返回值为普通引用。</li>
+</ol>
+<p>在这种情况下，当类对象是常量时，会调用第一个，而为非常量时，会调用第二个。以此解决即便是非常量类型调用时返回值为常量的问题。</p>
+<blockquote>
+<p>此处声明一个两个函数既能保证代码的模块化与简便性，同时在类内定义使其内联保证其不会产生额外的开销。</p>
+</blockquote>
+<h3 id="不完全类型"><a href="#不完全类型" class="headerlink" title="不完全类型"></a>不完全类型</h3><p>当一个类仅仅完成了声明而没有完成定义（被称为前向声明）时，这个类就属于不完全类型。</p>
+<p>在完成声明后，这个类类型由于不知道自身的成员，也就并不知道其占有多大的存储空间。因此类的成员不能使自己。</p>
+<p>虽然不能创建它的对象，或者定义以他为参数或返回值的函数。但是可以声明以他为参数或返回值的函数并且可以创建指向它的指针或引用。</p>
+<p>因此一个类的成员可以是指向自身类型的指针或引用。</p>
+<h3 id="友元-1"><a href="#友元-1" class="headerlink" title="友元"></a>友元</h3><p>除了可将非成员函数定义为友元，还可以将别的类或其成员函数定义为友元。</p>
+<p>$$<br>friend\ \ class\ \ classname;\friend\ \ type\ \ classname::functionname(param_list);<br>$$</p>
+<p>友元不具备传递性，每个类控制自己的友元。</p>
+<p>当一个类要使用另一个类的成员时，另一个类的定义必须先于自身。</p>
+<p>当要声明重载函数为友元时，必须全部一个一个声明。</p>
+<p>当友元函数被定义在类内部时，是隐式inline的，此处的定义是指在提供被访问权限的类中定义内容时。但即便是在类中定义了，其也必须要在类的外部先进行声明。</p>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>对于定义在外的成员函数，返回值类型是声明在函数之前的，也就是说作用域并不没有包含返回值类型，因此若是返回值类型是在类内定义的，就必须在其前通过$::$作用域运算符来声明其作用域。</p>
+<p>实际上，如果在作用域外调用成员函数就是违规的。</p>
+<p>但是通过点运算符和箭头运算符与调用成员函数的类变量，使这个函数处于了作用域之内。</p>
+<h3 id="名字查找"><a href="#名字查找" class="headerlink" title="名字查找"></a>名字查找</h3><p>对于类来说，名字查找在遵守作用域从内到外与内层同名会隐藏外层同名的两条规则以外，其并不只对处于它之前的进行查找，而是整个作用域（仅作用于类这一层作用域）。</p>
+<p>为了实现这一点，类的所有定义都是在类的所有成员声明完之后才进行的。</p>
+<p>虽然被同名被隐藏了，但仍然可以通过强制指向与作用域来指定对象。</p>
+<p>这一点对于定义于类外的函数也是成立的，因为其也属于类作用域。</p>
+<p>但对于类型的定义有些许不同。其不遵守类的规则，仍然是按顺序的，且无视作用域。因此最好将类型定义写在类的开头。并且若是在类外类内都对同名进行了类型定义，就会报错。</p>
+<h1 id="初始化！！！！！"><a href="#初始化！！！！！" class="headerlink" title="初始化！！！！！"></a>初始化！！！！！</h1><h3 id="类类型转换"><a href="#类类型转换" class="headerlink" title="类类型转换"></a>类类型转换</h3><p>当构造函数的参数为一个时，就会自动作为类型转换的函数。</p>
+<p>如定义一个参数为string的构造函数，此时可以将string类型作为自定义类的类型来使用，也就是在使用时如果有需要会自动通过这个构造函数转换为类类型（通过制造一个临时变量）。</p>
+<p>但是只允许一步的类型转换。如果使用一个char数组，那么就不能了。</p>
+<p>可以使用explicit关键字来声明一个构造函数不能作为类型转换函数，只应该出现在类内声明时。</p>
+<p>而对于用了explicit关键字的构造函数，在拷贝初始化中也不能进行隐式的类型转换。</p>
+<p>但是explicit并不会阻止显式的类型转换，包括直接初始化。</p>
+<h3 id="聚合类"><a href="#聚合类" class="headerlink" title="聚合类"></a>聚合类</h3><ol>
+<li>所有的成员都是public的，使得所有成员都能被用户访问操作</li>
+<li>没有构造函数与初始值</li>
+<li>没有基类与虚函数</li>
+</ol>
+<p>可以通过列表初始化的方式初始化，其列表的顺序对应声明的顺序，故没有初始化的将列初始化。</p>
+<p>在这种情况下，类的初始化的重任完全交给了用户。</p>
+<h3 id="字面值常量类"><a href="#字面值常量类" class="headerlink" title="字面值常量类"></a>字面值常量类</h3><ol>
+<li>数据成员必须为字面值类型，初始化时要么使用constexpr构造函数或字面初始值。</li>
+<li>使用折构函数的默认定义。</li>
+</ol>
+<p>一般来说constexpr折构函数的函数体为空。</p>
+<p>作用列举：</p>
+<p><img src="/image/c++premierUntitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h3><p>对于类中的成员或成员函数，都可以将其声明为static。</p>
+<p>此时其将不属于类的任何一个实例化的一个对象，而是属于类本身，并且被其实例化的所有对象共享。不能被声明为const类型。</p>
+<p>可以使用作用域符访问。</p>
+<p>并且虽然不属于对象，但是可以被对象通过点运算符或箭头运算符访问。</p>
+<p>static和explicit一样，只能在类内使用，而不能用在类外。</p>
+<p>由于不属于对象，因此不在构造函数中定义。</p>
+<p>一般在类外进行初始化，通过作用域符。</p>
+<p>当静态成员是整型constexpr时，可以在类内初始化，但其他都不行。</p>
+<p>静态成员不但可以是不完全类型，如类本身，也可以作为默认实参。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://lhish.github.io/project/hide/类/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/hide/%E5%87%BD%E6%95%B0/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

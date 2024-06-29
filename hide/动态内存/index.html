@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="动态内存静态内存：用来存储static变量与全局变量。 栈内存：用来存储普通局部变量。 内存池（自由空间，堆）：用来存储动态分配的对象。这些动态对象的生存期由程序显式控制。  管理动态内存很棘手。  使用动态内存的原因 程序不知道自己需要使用多少对象(容器) 程序不知道所需对象的准确类型 程序需要在多个对象间共享数据  创建与销毁new，为对象分配空间并返回指向该对象的指针，使用默认初始化或默认构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lhish&#39;s blog">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="动态内存静态内存：用来存储static变量与全局变量。 栈内存：用来存储普通局部变量。 内存池（自由空间，堆）：用来存储动态分配的对象。这些动态对象的生存期由程序显式控制。  管理动态内存很棘手。  使用动态内存的原因 程序不知道自己需要使用多少对象(容器) 程序不知道所需对象的准确类型 程序需要在多个对象间共享数据  创建与销毁new，为对象分配空间并返回指向该对象的指针，使用默认初始化或默认构">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%203.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%204.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%205.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%206.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%207.png">
+<meta property="article:published_time" content="2024-06-29T15:46:27.639Z">
+<meta property="article:modified_time" content="2024-06-29T15:45:49.111Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+  
+  
+  
+  <title>lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 23:46" pubdate>
+          2024年6月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="动态内存"><a href="#动态内存" class="headerlink" title="动态内存"></a>动态内存</h1><p>静态内存：用来存储static变量与全局变量。</p>
+<p>栈内存：用来存储普通局部变量。</p>
+<p>内存池（自由空间，堆）：用来存储动态分配的对象。这些动态对象的生存期由程序显式控制。</p>
+<blockquote>
+<p>管理动态内存很棘手。</p>
+</blockquote>
+<h3 id="使用动态内存的原因"><a href="#使用动态内存的原因" class="headerlink" title="使用动态内存的原因"></a>使用动态内存的原因</h3><ol>
+<li>程序不知道自己需要使用多少对象(容器)</li>
+<li>程序不知道所需对象的准确类型</li>
+<li>程序需要在多个对象间共享数据</li>
+</ol>
+<h3 id="创建与销毁"><a href="#创建与销毁" class="headerlink" title="创建与销毁"></a>创建与销毁</h3><p>new，为对象分配空间并返回指向该对象的指针，使用默认初始化或默认构造函数。</p>
+<p>格式为new type，type后可接()或{}来调用构造函数或列表初始化。可以在有单一初始化器时使用auto。</p>
+<p>当没有只有内存时，new会抛出bad_alloc，可以使用定位new——在new后增加(nothrow)来避免throw，此时会返回空指针，二者都定义于<new>中。</p>
+<p>delete，接受一个动态对象的指针，销毁该对象，并释放其对应内存，但内存的地址仍然可能存在在其他指针中，此时要么删除该指针，要么重置nullptr使其不成为空悬指针。</p>
+<p>对象必须是动态的或者空指针且未释放过，否则行为未定义。</p>
+<p>若是没有释放一个已经不再使用的空间，并且已经没有指针指向它了(内存泄漏)，这会导致内存泄漏，也就是这一部分的内存将再也不能被释放，除非程序结束。</p>
+<p>必须显式释放。</p>
+<p>由于内置类型没有折构函数，所以一个内置类型的指针即便离开了作用域其内存空间并不会有什么变化。</p>
+<p>因此需要及时delete，但是很难，最好使用智能指针自动释放。</p>
+<h3 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h3><p>负责自动释放所指向的对象。</p>
+<h3 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a>shared_ptr</h3><p><img src="/image/c++premierUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>shared_ptr是一个类。</p>
+<p>一般使用make_shared来初始化一个shared_ptr，其参数与类型的某个构造函数相同。</p>
+<p>虽然使用make_shared初始化时其自身返回的shared_ptr已经引用计数为1，但是初始化赋值给对象时引用计数并不会增加，可能是在返回时直接被删除了。</p>
+<p>在拷贝和赋值，离开作用域或销毁时，其引用计数都会实时改变。</p>
+<p>shared_ptr的实现方式实际上是让其指向一个真正存储信息的指针，引用计数内容也保存在其中。(chat)</p>
+<p>当引用计数为0时，shared_ptr会自动调用折构函数，也就是销毁对象，释放内存。</p>
+<p>对于shared_ptr，由于只要有一个指针不销毁，那么其占用的空间就会一直存在，因此要记得销毁不再需要的shared_ptr。</p>
+<blockquote>
+<p>作用域运算符{}是不依赖于任何其他的关键字存在的，可以随时使用。</p>
+</blockquote>
+<blockquote>
+<p>列表初始化返回的实际是一个initializer_list，可以当做是常量数组。</p>
+</blockquote>
+<p>当希望一个类共用一个对象并且不因为一个类对象的销毁而使其他产生问题，即可使用shared_ptr。</p>
+<p>在这里static与shared_ptr的区别在于static可能会存在某个类对象删除了该static元素而产生未定义，而shared_ptr即便删除了也没有问题。</p>
+<h3 id="与new结合使用"><a href="#与new结合使用" class="headerlink" title="与new结合使用"></a>与new结合使用</h3><p>当希望使用new来赋值shared_ptr时，由于智能指针的构造函数是explicit的，因此不能将普通指针转为智能指针，必须显式转换，使用直接初始化。即name(new type)。当在return时使用也一样。</p>
+<p><img src="/image/c++premierUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/c++premierUntitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>但最好不要混用智能指针与普通指针。</p>
+<p>当一个普通指针被托管给shared_ptr后，不要再使用普通指针的方式访问它，因为它可能已经被shared_ptr释放了。</p>
+<p>.get()函数会返回智能指针所指向的普通指针，用于在某些只能传递普通指针的地方，但是当shared_ptr销毁时，其也会销毁。</p>
+<h3 id="智能指针与其他"><a href="#智能指针与其他" class="headerlink" title="智能指针与其他"></a>智能指针与其他</h3><p>当程序异常结束时，直接管理的内存并不会自动释放，造成内存泄漏，而shared_ptr则会由于作用域结束而自动释放，保证程序的正常运行。</p>
+<p>当使用没有折构函数的类时，也可以用智能指针来保证内存的释放。</p>
+<p>在其他情况下，如关闭连接时，也可以传入新定义的delete并使用智能指针来保证会关闭连接（在不需要的时候）。</p>
+<p>注意最好不要使用相同的内置指针来初始化或reset多个智能指针，并注意get的使用。</p>
+<h3 id="unique-ptr"><a href="#unique-ptr" class="headerlink" title="unique_ptr"></a>unique_ptr</h3><p>unique_ptr拥有对象。定义时必须将其绑定到一个new返回的指针上，但是仍然需要使用直接初始化。另外，不能对其进行拷贝与赋值，但是可以通过release与reset来拷贝，且可以拷贝或赋值一个将要销毁的unique_ptr，通过return的方式。需要传入删除器的类型是因为其会影响其类型与构造方式等。</p>
+<p><img src="/image/c++premierUntitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="weak-ptr"><a href="#weak-ptr" class="headerlink" title="weak_ptr"></a>weak_ptr</h3><p>weak_ptr也是一种shared_ptr，不过其自身并不计入引用计数。</p>
+<p><img src="/image/c++premierUntitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>由于weak_ptr可能指向为空，因此不能直接访问其指向对象，需要通过.lock()来间接访问shared_ptr来获取其访问对象。</p>
+<h3 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h3><p>在使用时用new type[num]，可以将type[num] using 一下。返回的是一个指向第一个元素的指针。</p>
+<p>动态数组并不是数组类型，因此不能for，不能begin，end，也不能使用下标运算符。</p>
+<p>初始化的方式仍然可以使用()进行值初始化或列表初始化，不同的是这里不能使用auto。</p>
+<p>有趣的是，动态数组的大小可以为0，此时将返回一个类似于数组尾后指针的指针，不能解引用。</p>
+<p>释放时使用delete[] p。p指向动态数组的第一个元素，并倒序删除。若p是指向其他元素的，则将未定义。</p>
+<p>可以使用unique_ptr来管理动态数组。由于是数组，因此其他运算符没有意义，但如release，reset等仍然可用，通过在类型后加[]来表示定义一个数组，此时它将可以用下标来访问元素。release时会自动调用delete[]。</p>
+<p><img src="/image/c++premierUntitled%205.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>shared_ptr不提供管理动态数组。但是通过传入删除器的方式仍然可以使其来管理，但很愚蠢，通过.get()来获取其首元素来访问数组，也就是原本传入shared_ptr时使用的指针。</p>
+<h3 id="allocator"><a href="#allocator" class="headerlink" title="allocator"></a>allocator</h3><p>new与delete都是将内存操作与对对象的操作绑在一起，但则会造成不灵活，且可能会造成不必要的浪费。如定义了一个string，然后读入这个string，在这个过程中string被赋值了两次。</p>
+<p>另外，更重要的是，如果一个类没有默认构造函数，那么就不能动态分配数组。</p>
+<p>allocator定义于<memory>。</p>
+<p><img src="/image/c++premierUntitled%206.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>用allocate来分配内存，会返回指向内存块首的指针，deallocate来释放内存，p与n必须与allocate时完全一致。construct构造对象，destroy销毁对象，即调用折构函数。</p>
+<p>必须先destroy再deallocate，因为deallocate之后对象仍然存在，如果此时进行destroy，那么其折构函数访问对象成员时就会出问题，因为已经释放了。</p>
+<p>只对construct了的对象进行destroy，且只有对于已经construct了的内存对象才能进行普通的操作。</p>
+<p><img src="/image/c++premierUntitled%207.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://lhish.github.io/project/hide/动态内存/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/hide/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/hide/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

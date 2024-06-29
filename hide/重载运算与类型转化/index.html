@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="重载运算与类型转化重载运算符的名称是operator+运算符。 重载运算符的参数个数与其作用的运算对象数量一样多。除了operator()之外其他的重载运算符都不允许有默认参数。 当一个重载运算符是成员函数时，this会被绑定到第一个参数上，因此成员函数的重载运算符会少一个参数。 不能对内置类型进行重载，但是若是同时对内置类型和非内置类型进行操作，这是可行的。 +，-，*，&amp;四种操作同时是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lhish&#39;s blog">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="重载运算与类型转化重载运算符的名称是operator+运算符。 重载运算符的参数个数与其作用的运算对象数量一样多。除了operator()之外其他的重载运算符都不允许有默认参数。 当一个重载运算符是成员函数时，this会被绑定到第一个参数上，因此成员函数的重载运算符会少一个参数。 不能对内置类型进行重载，但是若是同时对内置类型和非内置类型进行操作，这是可行的。 +，-，*，&amp;四种操作同时是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%203.png">
+<meta property="article:published_time" content="2024-06-29T15:46:27.639Z">
+<meta property="article:modified_time" content="2024-06-29T15:45:49.111Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+  
+  
+  
+  <title>lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-29 23:46" pubdate>
+          2024年6月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="重载运算与类型转化"><a href="#重载运算与类型转化" class="headerlink" title="重载运算与类型转化"></a>重载运算与类型转化</h1><p>重载运算符的名称是operator+运算符。</p>
+<p>重载运算符的参数个数与其作用的运算对象数量一样多。除了operator()之外其他的重载运算符都不允许有默认参数。</p>
+<p>当一个重载运算符是成员函数时，this会被绑定到第一个参数上，因此成员函数的重载运算符会少一个参数。</p>
+<p>不能对内置类型进行重载，但是若是同时对内置类型和非内置类型进行操作，这是可行的。</p>
+<p>+，-，*，&amp;四种操作同时是一元和二元。</p>
+<ol>
+<li>+一元表示正，二元表示加。</li>
+<li>-一元表示负，二元表示减。</li>
+<li>*一元表示解引用，二元表示乘。</li>
+<li>&amp;一元表示取地址，二元表示与。</li>
+</ol>
+<p>这些重载的运算符的优先级与结合律会和内置运算符一致。</p>
+<p><img src="/image/c++premierUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>虽然可以直接使用运算符来调用，但也可以像函数调用一样调用。要注意的是，函数的名称是有operator的，且成员函数要用点运算符来调用。</p>
+<h3 id="不重载的运算符"><a href="#不重载的运算符" class="headerlink" title="不重载的运算符"></a>不重载的运算符</h3><p>一般情况下，不应该重载逗号，取地址，逻辑与和逻辑或运算符。逗号和取地址c++已经定义了其作用于类的特殊含义。逻辑与和逻辑或无法保留求值顺序和短路求值属性。</p>
+<p>算术运算符返回右值，赋值运算符返回左值。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>一般只有操作的含义对于使用者非常明了的时候才使用重载运算符。</p>
+<h3 id="成员函数与非成员函数"><a href="#成员函数与非成员函数" class="headerlink" title="成员函数与非成员函数"></a>成员函数与非成员函数</h3><p>一般来说，</p>
+<p>成员函数：&#x3D;,[],(),→,复合赋值,递增,递减,解引用。</p>
+<p>非成员函数：算术，相关性，关系，位运算符。</p>
+<p>具有对称性，也就是即便左右变量互换也要成立，的函数用非成员函数。</p>
+<h3 id="输出运算符"><a href="#输出运算符" class="headerlink" title="输出运算符&lt;&lt;"></a>输出运算符&lt;&lt;</h3><p>非成员函数，由于首参不是类对象。一般要被声明为友元。</p>
+<p>形参：</p>
+<ol>
+<li>ostream引用</li>
+<li>类对象的引用常量</li>
+</ol>
+<p>返回值：ostream引用</p>
+<p>输出运算符不应该控制格式，要给予用户自由度，如不应该输出换行。</p>
+<h3 id="输入运算符"><a href="#输入运算符" class="headerlink" title="输入运算符&gt;&gt;"></a>输入运算符&gt;&gt;</h3><p>非成员函数，由于首参不是类对象。一般要被声明为友元。</p>
+<p>形参：</p>
+<ol>
+<li>istream引用</li>
+<li>类对象的引用</li>
+</ol>
+<p>返回值：istream引用</p>
+<p>相较于输出运算符不需要检查错误，输入需要检查是否发生IO错误，当发生错误时需要将读入对象设为默认状态，保证其正确性，因为在发生错误时可能已经读入了一部分了。</p>
+<p>一般在所有数据读入完成后，数据使用之前检查istream来判断是否发生IO错误，因为我们并不在意哪一个出了问题。</p>
+<p>即便IO没有发生错误，但读入格式或者其他出错了也可以通过标识istream的状态来标示错误。</p>
+<h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><p>非成员函数，允许对左侧和右侧对象进行转换。</p>
+<p>形参：常量引用</p>
+<p>返回值：局部变量的副本</p>
+<p>一般使用复合赋值运算符来实现算术运算符，而非相反。</p>
+<h3 id="关系运算符（一般要const）"><a href="#关系运算符（一般要const）" class="headerlink" title="关系运算符（一般要const）"></a>关系运算符（一般要const）</h3><p>非成员函数，允许对左侧和右侧对象进行转换。</p>
+<p>形参：常量引用</p>
+<p>返回值：bool类型</p>
+<p>相等运算符应该具有传递性。在实现上，可以return一个判断等于的&amp;&amp;长表达式。</p>
+<p>一般来说实现小于运算符，其他调用即可。需要保证当两个对象不相等时一个应该小于另一个，错误的情况比如多个数据成员而小于运算符只比较其中一两个，而&#x3D;&#x3D;运算符保证全部成员相等。</p>
+<p>当且仅当有唯一一种逻辑可靠的小于定义且小于运算符与&#x3D;&#x3D;运算符相符时定义小于运算符。</p>
+<h3 id="赋值运算符-（复合赋值运算符）"><a href="#赋值运算符-（复合赋值运算符）" class="headerlink" title="赋值运算符&#x3D;（复合赋值运算符）"></a>赋值运算符&#x3D;（复合赋值运算符）</h3><p>成员函数（复合赋值运算符有时候会被定义为非成员函数）。除去移动与拷贝赋值运算符，还有其他的赋值运算符。如参数时initializer_list的列表赋值。</p>
+<p>形参：常量引用</p>
+<p>返回值：自身的引用</p>
+<h3 id="下标运算符"><a href="#下标运算符" class="headerlink" title="下标运算符[]"></a>下标运算符[]</h3><p>成员函数。一般会定义一个常量版本和一个非常量版本。</p>
+<p>形参：std::size_t(int)</p>
+<p>返回值：(常量)引用</p>
+<h3 id="递增递减运算符"><a href="#递增递减运算符" class="headerlink" title="递增递减运算符"></a>递增递减运算符</h3><p>成员函数（虽然允许是非成员函数）。</p>
+<p>前置</p>
+<ul>
+<li>形参：无</li>
+<li>返回值：对自身的引用</li>
+</ul>
+<p>后置，一般调用前置运算符来实现</p>
+<ul>
+<li>形参：<strong>一个无用的int</strong>，用于区分前置和后置，由于无需用到，因此一般不用命名。</li>
+<li>返回值：自身改变前的值</li>
+</ul>
+<h3 id="成员访问运算符（const）"><a href="#成员访问运算符（const）" class="headerlink" title="成员访问运算符（const）"></a>成员访问运算符（const）</h3><p>成员函数。</p>
+<p>解引用（允许是非成员函数）</p>
+<ul>
+<li>形参：无</li>
+<li>返回值：引用</li>
+</ul>
+<p>箭头（调用者：指针或重载了箭头的类对象）</p>
+<ul>
+<li>形参：无</li>
+<li>返回值：指针</li>
+</ul>
+<p>箭头运算符不管怎么重载，只能改变其是从哪个对象中获取成员，但其获取成员这个本质属性不会变。</p>
+<h3 id="函数调用运算符"><a href="#函数调用运算符" class="headerlink" title="函数调用运算符()"></a>函数调用运算符()</h3><p>成员函数。</p>
+<p>形参：任意</p>
+<p>返回值：任意</p>
+<p>当一个类定义了调用运算符，那么类的成员被称为函数对象。在定义对象后可以像函数一样调用。</p>
+<p>其与函数的最大区别就在于其能存储变量。在初始化时或是后续修改能定制它的行为。</p>
+<p>一般作为泛型算法的实参对象。如</p>
+<p><img src="/image/c++premierUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h3><p>lambda生成了一个未命名(内部命名)的类，这个类只有一个函数，即调用运算符重载。</p>
+<p>而对于捕获参数，如果有值传递，就相当于这个类有一个构造函数，这个构造函数的参数就是值传递的参数，初始化其中的局部变量，即便。若是引用传递，那么程序会保证lambda使用时其存在性。</p>
+<p>其不会含有默认构造函数、赋值运算符及折构函数。但拷贝&#x2F;移动构造函数不一定。</p>
+<h3 id="标准库中的函数对象"><a href="#标准库中的函数对象" class="headerlink" title="标准库中的函数对象"></a>标准库中的函数对象</h3><p>在<functional>中定义了一些重载了调用运算符的函数对象。</p>
+<p><img src="/image/c++premierUntitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>虽然比较指针是不合法的，但是这些函数对象会对指针所指向的对象进行操作。</p>
+<h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><p>可调用对象包括：函数、函数指针、lambda、bind、重载了函数调用运算符的类</p>
+<p>这些对象的类型不一而定，所以即便他们享有着同样的调用形式（即形参相同，返回值相同），他们的类型名也会不同。因此我们不能把它们放在同一个容器中，并通过轻松的方式进行选取调用，如一个计算器中几种运算分别使用了不同的可调用对象实现，但却希望放在同一个函数表中。</p>
+<p>在<functional>中function被定义。</p>
+<p><img src="/image/c++premierUntitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p>function的类型就是调用形式(return type(param_list type) )，可以使用直接初始化也可以拷贝赋值。</p>
+<p>当存在重载函数时，虽然其调用形式是不同的，但通过函数名是判断不出来的，因此可以通过函数指针的方式来间接特指。</p>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>一种是通过隐式调用构造函数的方式进行类型转换。</p>
+<p>另一种是通过定义类型转换运算符，是将自定义类型转换为另一种类型，与构造函数的转换正好相反。</p>
+<p>形式：operator type() const;</p>
+<p>这里的type只要是能返回的类型就是可行的。</p>
+<p>除非两个类型之间存在明确的一一对应关系，不然最好不要定义类型转换，而是通过非成员函数从中提取信息。</p>
+<p>另外，如果定义了一些类型转换，其可能会在不知情的情况下隐式发生，发生意想不到的情况。</p>
+<p>因此可以通过explicit限定其必须显式执行。但若是该表达式用作条件判断，其必然会被隐式转换为bool而不管是否explicit。也正是因此，由于bool转换一般用于条件中，因此一般会explicit。</p>
+<h3 id="二义性"><a href="#二义性" class="headerlink" title="二义性"></a>二义性</h3><ol>
+<li>若是在两个类中都定义了互相的类型转换运算符和转换构造函数，那么当从一个类转为另一个类的时候既可以调用A的类型转换运算符也可以使用B的转换构造函数，产生了二义性。</li>
+<li>当类定义了多个转换规则（无论是类型转换运算符还是转换构造函数），若是其转得的类型是平级的，例如double和int，那么若是其再次需要转换为另一种类型，例如说long，则会产生二义性，不知道该先转换为哪种类型。</li>
+</ol>
+<p>类型转换设计很麻烦。为了避免上述的二义性，要</p>
+<ol>
+<li>不要令两个类执行相同的类型转换</li>
+<li>若是定义了目标是内置算术类型的类型转换<ol>
+<li>不要定义接受算术类型的类型转换，让这个算数类型转换为本类型再操作</li>
+<li>不要定义多种到算术运算符的类型转换，让标准类型转换来执行这个过程</li>
+</ol>
+</li>
+</ol>
+<p>当两个重载函数的参数类型都定义了某个类型到其的转换，那么也会发生二义性。可以通过显式转换来消除二义性。但这也表示了程序的设计不足。</p>
+<p>但即便其定义的转换类型是不同的，double和int，也会由于存在标准类型转换而使得两个重载都是可以的，产生二义性。</p>
+<p>由于重载运算符也是重载函数，其在匹配时会和标准的运算符或者非成员函数可能会产生二义性。如A定义了与int的双向类型转换，但是，同样重载了运算符+，那么此时使A+1就会发生二义性，不知道该调用int+int还是A+A。</p>
+<h3 id="自定义运算符重载"><a href="#自定义运算符重载" class="headerlink" title="自定义运算符重载"></a>自定义运算符重载</h3><p>格式：$return_type\ operator””\ operator_name(){}$</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://lhish.github.io/project/hide/重载运算与类型转化/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/hide/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/hide/%E9%9A%8F%E6%9C%BA%E6%95%B0/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
