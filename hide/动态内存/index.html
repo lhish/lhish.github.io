@@ -23,19 +23,19 @@
 <meta property="og:site_name" content="lhish&#39;s blog">
 <meta property="og:description" content="动态内存静态内存：用来存储static变量与全局变量。 栈内存：用来存储普通局部变量。 内存池（自由空间，堆）：用来存储动态分配的对象。这些动态对象的生存期由程序显式控制。  管理动态内存很棘手。  使用动态内存的原因 程序不知道自己需要使用多少对象(容器) 程序不知道所需对象的准确类型 程序需要在多个对象间共享数据  创建与销毁new，为对象分配空间并返回指向该对象的指针，使用默认初始化或默认构">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%201.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%202.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%203.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%204.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%205.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%206.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%207.png">
-<meta property="article:published_time" content="2024-06-29T15:46:27.639Z">
-<meta property="article:modified_time" content="2024-06-29T15:45:49.111Z">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%203.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%204.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%205.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%206.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%207.png">
+<meta property="article:published_time" content="2024-06-29T17:47:33.641Z">
+<meta property="article:modified_time" content="2024-06-29T17:46:46.768Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled.png">
   
   
   
@@ -245,8 +245,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-29 23:46" pubdate>
-          2024年6月29日 晚上
+        <time datetime="2024-06-30 01:47" pubdate>
+          2024年6月30日 凌晨
         </time>
       </span>
     
@@ -339,7 +339,7 @@
 <p>由于内置类型没有折构函数，所以一个内置类型的指针即便离开了作用域其内存空间并不会有什么变化。</p>
 <p>因此需要及时delete，但是很难，最好使用智能指针自动释放。</p>
 <h3 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h3><p>负责自动释放所指向的对象。</p>
-<h3 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a>shared_ptr</h3><p><img src="/image/c++premierUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a>shared_ptr</h3><p><img src="/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>shared_ptr是一个类。</p>
 <p>一般使用make_shared来初始化一个shared_ptr，其参数与类型的某个构造函数相同。</p>
 <p>虽然使用make_shared初始化时其自身返回的shared_ptr已经引用计数为1，但是初始化赋值给对象时引用计数并不会增加，可能是在返回时直接被删除了。</p>
@@ -356,8 +356,8 @@
 <p>当希望一个类共用一个对象并且不因为一个类对象的销毁而使其他产生问题，即可使用shared_ptr。</p>
 <p>在这里static与shared_ptr的区别在于static可能会存在某个类对象删除了该static元素而产生未定义，而shared_ptr即便删除了也没有问题。</p>
 <h3 id="与new结合使用"><a href="#与new结合使用" class="headerlink" title="与new结合使用"></a>与new结合使用</h3><p>当希望使用new来赋值shared_ptr时，由于智能指针的构造函数是explicit的，因此不能将普通指针转为智能指针，必须显式转换，使用直接初始化。即name(new type)。当在return时使用也一样。</p>
-<p><img src="/image/c++premierUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<p><img src="/image/c++premierUntitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>但最好不要混用智能指针与普通指针。</p>
 <p>当一个普通指针被托管给shared_ptr后，不要再使用普通指针的方式访问它，因为它可能已经被shared_ptr释放了。</p>
 <p>.get()函数会返回智能指针所指向的普通指针，用于在某些只能传递普通指针的地方，但是当shared_ptr销毁时，其也会销毁。</p>
@@ -366,9 +366,9 @@
 <p>在其他情况下，如关闭连接时，也可以传入新定义的delete并使用智能指针来保证会关闭连接（在不需要的时候）。</p>
 <p>注意最好不要使用相同的内置指针来初始化或reset多个智能指针，并注意get的使用。</p>
 <h3 id="unique-ptr"><a href="#unique-ptr" class="headerlink" title="unique_ptr"></a>unique_ptr</h3><p>unique_ptr拥有对象。定义时必须将其绑定到一个new返回的指针上，但是仍然需要使用直接初始化。另外，不能对其进行拷贝与赋值，但是可以通过release与reset来拷贝，且可以拷贝或赋值一个将要销毁的unique_ptr，通过return的方式。需要传入删除器的类型是因为其会影响其类型与构造方式等。</p>
-<p><img src="/image/c++premierUntitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <h3 id="weak-ptr"><a href="#weak-ptr" class="headerlink" title="weak_ptr"></a>weak_ptr</h3><p>weak_ptr也是一种shared_ptr，不过其自身并不计入引用计数。</p>
-<p><img src="/image/c++premierUntitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>由于weak_ptr可能指向为空，因此不能直接访问其指向对象，需要通过.lock()来间接访问shared_ptr来获取其访问对象。</p>
 <h3 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h3><p>在使用时用new type[num]，可以将type[num] using 一下。返回的是一个指向第一个元素的指针。</p>
 <p>动态数组并不是数组类型，因此不能for，不能begin，end，也不能使用下标运算符。</p>
@@ -376,16 +376,16 @@
 <p>有趣的是，动态数组的大小可以为0，此时将返回一个类似于数组尾后指针的指针，不能解引用。</p>
 <p>释放时使用delete[] p。p指向动态数组的第一个元素，并倒序删除。若p是指向其他元素的，则将未定义。</p>
 <p>可以使用unique_ptr来管理动态数组。由于是数组，因此其他运算符没有意义，但如release，reset等仍然可用，通过在类型后加[]来表示定义一个数组，此时它将可以用下标来访问元素。release时会自动调用delete[]。</p>
-<p><img src="/image/c++premierUntitled%205.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%205.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>shared_ptr不提供管理动态数组。但是通过传入删除器的方式仍然可以使其来管理，但很愚蠢，通过.get()来获取其首元素来访问数组，也就是原本传入shared_ptr时使用的指针。</p>
 <h3 id="allocator"><a href="#allocator" class="headerlink" title="allocator"></a>allocator</h3><p>new与delete都是将内存操作与对对象的操作绑在一起，但则会造成不灵活，且可能会造成不必要的浪费。如定义了一个string，然后读入这个string，在这个过程中string被赋值了两次。</p>
 <p>另外，更重要的是，如果一个类没有默认构造函数，那么就不能动态分配数组。</p>
 <p>allocator定义于<memory>。</p>
-<p><img src="/image/c++premierUntitled%206.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%206.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>用allocate来分配内存，会返回指向内存块首的指针，deallocate来释放内存，p与n必须与allocate时完全一致。construct构造对象，destroy销毁对象，即调用折构函数。</p>
 <p>必须先destroy再deallocate，因为deallocate之后对象仍然存在，如果此时进行destroy，那么其折构函数访问对象成员时就会出问题，因为已经释放了。</p>
 <p>只对construct了的对象进行destroy，且只有对于已经construct了的内存对象才能进行普通的操作。</p>
-<p><img src="/image/c++premierUntitled%207.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98Untitled%207.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 
                 
               </div>
@@ -416,7 +416,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月29日</div>
+          <div>2024年6月30日</div>
         </div>
       
       
@@ -448,7 +448,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/hide/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" title="">
+                      <a href="/hide/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" title="">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
@@ -458,7 +458,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/hide/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" title="">
+                      <a href="/hide/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="">
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>

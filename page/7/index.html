@@ -253,15 +253,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/c++premier/" target="_self">
+        <a href="/%E6%B1%87%E7%BC%96/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/c++premier/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/%E6%B1%87%E7%BC%96/" target="_self">
         <div>
-          c++premier开始 c++基础 标准库 类设计者的工具 高级主题 modern
+          汇编 编译  nasm -f elf 文件名  -f：指定输出文件格式，elf：linux格式下的可执行文件  ld -m elf_i386 -s -o 目标文件名 原可执行文件名  ld：调用ld链接器 -m：指定格式(elf_i386) -s：去除所有符号表和重定位信息,生成更小的可执行文件 -o：指定输出名  代码部分（section后面都有空格）  section .data：常量 sec
         </div>
       </a>
 
@@ -269,272 +269,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/cmake/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/cmake/" target="_self">
-        <div>
-          cmake set的变量可以在程序中的宏中使用  add_library.  shared：生成.so或.dll文件，不嵌入代码，在使用时会根据.h来进行查找 static：直接将相关代码嵌入任何需要的地方，非常冗余，但很完整 interface：接口库，不单独生成库，只是作为接口给其他库使用   后面只跟随相关源文件    target_link_libraries，属性一般与target_in
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/%E6%9C%80%E5%B0%8F%E5%A0%86%E4%B8%8E%E6%9C%80%E5%A4%A7%E5%A0%86/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/%E6%9C%80%E5%B0%8F%E5%A0%86%E4%B8%8E%E6%9C%80%E5%A4%A7%E5%A0%86/" target="_self">
-        <div>
-          最小堆与最大堆priority_queue的底层是vector queue的底层是deque 堆是完全二叉树。 最小堆就是父节点小于子节点。 插入时每次加到最后，再从底向上更新一次。 删除时删除根，并将最后一个元素取代掉根，从底向上更新一次。 更新时是对于每一个节点所对应的堆进行更新。 插入就是加到最后，向上更新 删除就是交换根和最后一个元素，然后删掉“根”，向下更新 priority_queue
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/gcc_std/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/gcc_std/" target="_self">
-        <div>
-          gcc_stdtype_traits
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/HeadFirst%20design%20Pattern/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/HeadFirst%20design%20Pattern/" target="_self">
-        <div>
-          HeadFirst design Pattern面向接口编程，上对下要有抽象中间层，上面自己也需要抽象顶层。 策略模式继承会导致在添加新的行为的时候不够灵活，要们需要在每个子类中实现，如果在基类中实现那么即便是不需要这个行为的子类也会继承这个行为。 此时我们可以使用策略模式。 实际上就是一种将继承改为组合的例子。 将拥有行为者和行为分开，总共包括四个类，通过让行为者使用不同的行为就达成了行为改变的
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/git/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/git/" target="_self">
-        <div>
-          git保存的是基于上面一个节点变更的内容 每一个节点都是一个版本。 git commit：在原本的节点下添加一个新的节点，也就是更新版本，于HEAD所在的位置 git branch name: 新建一个分支，于HEAD所在的位置 git checkout name: 切换当前所在分支，但最好使用git switch name来切换 git checkout -b name: 新建分支并切换到这个分
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/hide/%E8%AF%AD%E5%8F%A5/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E8%AF%AD%E5%8F%A5/" target="_self">
-        <div>
-          语句空语句用一个；作为一个语句，用来占位。 多出的空语句并不会有语法上的错误，但可能会产生逻辑上的错误。如在循环后加一个；。 当花括号内不存在语句时被称为空块，与空语句作用一致。 作用域条件语句也有作用域。 条件当不使用花括号时，else会和最近的if相匹配，而非根据缩进。 if的条件括号中定义的变量只在if和else中时有效的。 switch用法： 12345678switch(变量)&#123
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/hide/%E5%87%BD%E6%95%B0/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%87%BD%E6%95%B0/" target="_self">
-        <div>
-          函数在调用函数的时候，会进行两步。  将形参实例化。 将控制权交给被调函数。  在调用时，形参与实参的个数必须对应，而在此过程中，若类型不同，这将进行类型转换。 形参可以不被命名，如果它在函数中不需要被使用，但是不代表程序不应该传入实参与它对应。(虽然并不知道这有什么用) 名字有作用域，对象有生命周期。 当局部变量在其自身的作用域的时候，会隐藏其外层作用域的同名变量。但是在作用域结束之后会，取消隐
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/hide/%E7%B1%BB/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E7%B1%BB/" target="_self">
-        <div>
-          类类的重点在于两点：  数据抽象。 接口。用户所能使用的方法。 实现。实现接口的背后的原理。   封装。隐藏实现的部分。  成员函数成员函数就是属于类对象的函数。隶属于成员本身。通过点运算符来调用。 声明时必须在类内部。而定义可以在类之外。 非成员函数，并不是类的一部分，不能被类对象调用。但希望可以对类对象进行操作，或者对多个类对象进行操作。 可以被重载。 this所有的成员函数，都有一个隐式参数
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -566,8 +302,272 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E7%BA%A2%E9%BB%91%E6%A0%91/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E7%BA%A2%E9%BB%91%E6%A0%91/" target="_self">
+        <div>
+          红黑树性质  旋转 插入插入的新节点或者需要调整的节点必然是红色的 当该节点的父亲是红色的时候，就需要调整。 情况一：叔节点是红色，将爷节点的黑色下放  情况二：叔节点是黑色，当父节点是左节点时，本节点是左节点就右旋，右节点就左旋，有节点则相反，当与叔节点是异边节点时调整颜色 操作完成之后要么循环结束，要么矛盾节点上移产生新的矛盾 仍然没有搞懂为啥左节点的时候就不能左旋，虽然确实会不平衡，但为什么
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/" target="_self">
+        <div>
+          强联通分量强联通分量指的是一个有向图中的一部分节点，而任意两个其中的节点互相的路径是相通的，既能从一个节点到另一个节点，也可以从另一个节点到这个节点。 一个图必然能够被分为几个强联通分量的组合，而若是将这几个强联通分量的节点聚合为一个节点，就会得到一个有向无环图，称为分量图。 求出强联通分量的方法如下： 首先对图进行深搜，对于每一个节点记录到达顺序和离开顺序，离开顺序和到达顺序共用一个顺序。 根据
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E6%95%A3%E5%88%97(hash)/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E6%95%A3%E5%88%97(hash)/" target="_self">
+        <div>
+          散列(hash)在一个域(一个集合)中，其中存在着一个实际域，包含着我们所实际用到的元素，如自然数是一个域，其中我们有一个实际域，比如说{1,2,3}。这些作为关键字指向元素，这里的关键字就是指数组的下标一样的东西，根据一个关键字，我们就可以得到它所指的元素。 当全域较小的时候，我们可以之间建立一个表，一一对应。 但是当全域较大但是实际域并不大的时候，这就过于浪费存储空间了，因为很多的关键字都对应
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E7%A6%BB%E6%95%A3/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E7%A6%BB%E6%95%A3/" target="_self">
+        <div>
+          离散1.1无序对 无序积 &amp; 多重集 重复度 无向图G 顶点集V 无序积 边集E 有向图D 多重子集 n个定点的图被称为n阶图 无边为零图 平凡图： 1阶0图 空图：无顶点 环：两端点重合 关联，关联次数：与边相接的边数 相邻：共同点或共同边 有向图始点，终点 相邻也要遵从有向 孤立点：没边 1.2度d：连接的边数，环算2 握手定理：度和为2*边 有向图出就是出度，如就是入度 悬挂顶点：度
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" target="_self">
+        <div>
+          数学建模流程 问题假设（要全面）   模型建立 模型求解 模型评价  问题类型 预测类  用以往的数据来预测将来的数据  评价类  通过建立评价指标体系来评价一个东西  机理分析  优化类  最优化理论，目标函数，变量，约束   Matlab   [] 矩阵，其中的数值可以是矩阵    ； 换行   ，或者直接空格 分列   while condition    end 循环   if condi
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" target="_self">
+        <div>
+          计算机组成原理计算机系统概论 运算方法和运算器 指令系统 CPU
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E7%AE%97%E6%B3%95/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E7%AE%97%E6%B3%95/" target="_self">
+        <div>
+          算法内省排序 三路排序 nth_element 希尔排序 timsort A* 字符串哈希相关
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_self">
+          
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_self">
+        <div>
+          设计模式设计模式相当于是一种抽象的思路，为解决问题而生的固定化的套路思路。 面向对象抽象：将具体事物抽象 封装：隐藏接口实现 继承：提取相同部分 多态：用相同的代码调用不同但类似的对象 对象之间的关系 依赖：类A中存在类B相关的东西 关联：类A中有类B 聚合：类A与类B是包含的关系但是非单一 组合：类A完全由类B等类组成 实现：类A实现接口类B 继承：类A继承B的接口与实现，并可以拓展  面向对象
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         

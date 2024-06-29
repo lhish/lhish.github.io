@@ -253,15 +253,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E6%8E%A7%E5%88%B6%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" target="_self">
+        <a href="/hide/%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E6%8E%A7%E5%88%B6%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E7%B1%BB%E8%AE%BE%E8%AE%A1%E8%80%85%E7%9A%84%E5%B7%A5%E5%85%B7/" target="_self">
         <div>
-          控制内存分配重载new和deletenew和delete实际上是opeartor new和operator delete，我们可以去重载这两个运算符。我们既可以在全局重载，也可以在类内重载。当我们new一个对象，首先会查找类内有没有实现，然后全局，最后才是使用标准库。  这里delete的返回类型都错了，是void而不是void*。 前四个可能会抛出bad_alloc异常。nothrow_t是ne
+          类设计者的工具拷贝控制 重载运算与类型转化 面向对象程序设计 模板与泛型编程
         </div>
       </a>
 
@@ -269,8 +269,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -286,15 +286,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6/" target="_self">
+        <a href="/hide/%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
         <div>
-          拷贝控制拷贝：在使用一个已有的对象初始化一个新的对象，在初始化，参数传递，返回与列表初始化时会被使用，当且仅当右值的类型与左值相同时或者可以隐式转换时。 赋值：在使用一个已有的对象赋值一个已有的对象。 这两种操作分开的原因可能是因为拷贝会申请内存？ 当拷贝控制操作没有定义时，编译器会自动合成。 拷贝构造函数当一个构造函数的形参时自身类类型的引用时，且额外参数有默认值，则是拷贝构造函数。 由于常常被
+          表达式左值与右值左值可以用作右值，但右值不能用作左值。左值用的是对象的身份，即内存地址，而右值用的是对象的内容，即值。 因此，左值不能为常量。 除取地址符返回的指针是右值，其他的运算符返回的基本都是左值。 对于decltype来说，如果是左值，则为引用，如果是右值，则为指针。 求值顺序对于运算符所操作的对象，并没有定义运算顺序，也并非是从左到右的，如果出现了这种情况，且会由于顺序而对结果造成影响，
         </div>
       </a>
 
@@ -302,8 +302,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -319,15 +319,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8Benumeration/" target="_self">
+        <a href="/hide/%E8%AF%AD%E5%8F%A5/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8Benumeration/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E8%AF%AD%E5%8F%A5/" target="_self">
         <div>
-          枚举类型enumerationenum是整形常量的一个集合，定义出一个类型，这个类型的对象只能取枚举成员这些值，并且该类型对象是常量。 总共有两种枚举，限定作用域和不限定作用域的。 非限定使用方法 enum name{整形常量的名字，用,隔开}。name可以省略，但若是省略就必须在定义时初始化它的对象。 限定就是在enum后name前加上class。 在进行赋值的时候，只能使用类型内成员的名字进行
+          语句空语句用一个；作为一个语句，用来占位。 多出的空语句并不会有语法上的错误，但可能会产生逻辑上的错误。如在循环后加一个；。 当花括号内不存在语句时被称为空块，与空语句作用一致。 作用域条件语句也有作用域。 条件当不使用花括号时，else会和最近的if相匹配，而非根据缩进。 if的条件括号中定义的变量只在if和else中时有效的。 switch用法： 12345678switch(变量)&#123
         </div>
       </a>
 
@@ -335,8 +335,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -352,15 +352,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E6%A0%87%E5%87%86%E5%BA%93%E7%89%B9%E6%AE%8A%E8%AE%BE%E6%96%BD/" target="_self">
+        <a href="/hide/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E6%A0%87%E5%87%86%E5%BA%93%E7%89%B9%E6%AE%8A%E8%AE%BE%E6%96%BD/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/" target="_self">
         <div>
-          标准库特殊设施tupletuple bitsetbitset 正则表达式正则 随机数随机数 IO库IO库
+          顺序容器string是类似vector的，但更适用于字符。 deque，双端队列，但不是用list实现的。 queue，单端队列，使用deque或者list实现。在默认情况下使用deque实现。 array不是内置数组，是一种数据结构，优于内置数组。 有的时候容器会需要更多的参数。如对于一个没有默认构造函数的类型定义一个定长度的vector时，需要提供初始化器。    c.emplace(init
         </div>
       </a>
 
@@ -368,8 +368,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -385,15 +385,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" target="_self">
+        <a href="/hide/%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E6%A8%A1%E6%9D%BF%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/" target="_self">
         <div>
-          模板与泛型编程泛型编程是在编译时将类型确定，而OOP是在程序运行之前都不知道类型。 函数模板有两种模板变量。 方式都是在函数前增加$template\ &lt;模板参数列表&gt;$。 类型参数。用typename来声明。template &lt;typename name1,typename name2,…&gt; 非类型参数。就是一个在模板中使用的常量。类型只能是整型或者引用或指针。定义与普通
+          高级主题标准库特殊设施 用于大型程序的工具 特殊工具与技术
         </div>
       </a>
 
@@ -401,8 +401,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -418,15 +418,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E6%AD%A3%E5%88%99/" target="_self">
+        <a href="/hide/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E6%AD%A3%E5%88%99/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" target="_self">
         <div>
-          正则include   smatch和ssub_match一般传入regex_match和regex_search记录匹配到的东西。 使用的正则表达式语言是ECMAScript。  正则表达式在运行时也会出现错误，抛出异常。  另外，尽量避免少的创建或拷贝正则表达式，这很费时间。 根据输入序列类型的不同，需要使用不同正则表达式类。  可以通过迭代器来遍历所有找到的字符串。   一般用一个空的迭代器
+          关联容器元素按关键字来保存和访问。  map类型通常被称为关联数组。以关键字作为下标。 set就是关键字的简单集合。 multi就是一个关键字可以对应多个值。 map当对一个map中还没有的关键字对应的元素进行操作时，mao会自动创建一个新元素，其值值初始化。 其内部是通过pair来存储键值对的。 map和set都支持容器操作。 关联容器的迭代器都是双向的。 有序容器的关键字必须是可比较大小的。通
         </div>
       </a>
 
@@ -434,8 +434,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -451,15 +451,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/" target="_self">
+        <a href="/hide/bitset/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/bitset/" target="_self">
         <div>
-          泛型算法能够通用于各种容器的算法。 算法的一切都是基于容器通用的迭代器与容器元素类型的自己的函数来进行的。因此能够泛化。因此，不管容器为何，算法都是能用的。但是由于只使用迭代器，算法并不能改变底层容器的大小，虽然有可以插入元素的迭代器存在。 只读算法最好使用cbegin()与cend()  find(begin,end,val)  find_if(begin,end,predicate)  对于元
+          bitsetbitset一般用来处理01字符串。除了下述操作还可以互相进行位运算。拥有非常高的常数级优化。
         </div>
       </a>
 
@@ -467,8 +467,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -484,15 +484,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E7%89%B9%E6%AE%8A%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%8A%80%E6%9C%AF/" target="_self">
+        <a href="/hide/IO%E5%BA%93/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E7%89%B9%E6%AE%8A%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%8A%80%E6%9C%AF/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/IO%E5%BA%93/" target="_self">
         <div>
-          特殊工具与技术控制内存分配 运行时类型识别RTTI 枚举类型enumeration 类成员指针 嵌套类 union 局部类 固有的不可移植的特性
+          IO库格式化输入与输出标准库定义了一些操纵符来修改流的格式状态。 由于流是一个对象，操纵符实际上是修改了流的状态，因此它是持久的，比如cout就是ostream的一个实例，因此会一直保持着这种改变，因此我们最好在改变流的状态后，使用完后再改回去，因此大部分操作符都是成双成对的。而一类的操作运算符，比如进制，后一个操作符的状态会覆盖前一个操作符的状态。 实际上这些操纵符是函数，参数是一个流，通过类似
         </div>
       </a>
 
@@ -500,8 +500,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -517,15 +517,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E7%94%A8%E4%BA%8E%E5%A4%A7%E5%9E%8B%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%B7%A5%E5%85%B7/" target="_self">
+        <a href="/hide/concept/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E7%94%A8%E4%BA%8E%E5%A4%A7%E5%9E%8B%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%B7%A5%E5%85%B7/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/concept/" target="_self">
         <div>
-          用于大型程序的工具异常处理 命名空间 多重继承与虚继承
+          conceptconcept实际上就是一种类型萃取，只不过更加便捷。在定义完一个concept后，任何一个concept就是一个bool值，0就是不满足，1就是满足，而当将其作为模板类型参数的类型的时候，就会只允许满足的进行匹配这个T。 在定义的时候可以直接用以前的类型萃取来进行赋值，或者使用stl里面定义的一些concept，另外，还可以执行定义这个concept。 如 1234template
         </div>
       </a>
 
@@ -533,8 +533,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -550,15 +550,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E7%B1%BB%E6%88%90%E5%91%98%E6%8C%87%E9%92%88/" target="_self">
+        <a href="/hide/module/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E7%B1%BB%E6%88%90%E5%91%98%E6%8C%87%E9%92%88/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/module/" target="_self">
         <div>
-          类成员指针类成员指针就是指向类成员的指针。 类成员指针即便是在赋值后也并不指向一个特定对象的成员，它是一个很宽泛的代表，相当于类成员有了一个别名一样。使用时需要在*前加上作用域符，但是大部分情况都是私有的，所以一般会定义一个函数返回类成员指针。而如果是成员函数指针，那么得要加括号，因为调用运算符的优先度更高，并且类型成员函数指针和类型成员函数对象不像不同函数能互相转换。 此外，假如说a是一个类成员
+          modulemodule是一个管理整体隔离和联系的概念。 当要引入系统库的时候，应该要使用import &lt;库&gt;; 如果使用include，那么需要写在全局模块之后，即module;后和私有模块之前。 后接私有模块module 模块名; 而模块名后面随便写就好了。 其中，为了让其他的模块能使用，首先需要将私有模块export并将其中想要export的部分export，可以通过export
         </div>
       </a>
 
@@ -566,8 +566,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         

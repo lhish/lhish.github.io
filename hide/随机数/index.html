@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="lhish&#39;s blog">
 <meta property="og:description" content="随机数  当种子相同的时候，生成的随机数序列也是相同的。因此需要随机数种子，一般用time(0)作为随机数种子。 一个常用的随机数引擎是std::mt19937，c++默认的default_random_engine就是这个。  time(ptr)，ptr指向用于写入时间的数据结构。  但大部分情况下，我们希望生成的随机数与engine生成的分布和范围不一样。 而distribution就是将一个">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%201.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%202.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%203.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%204.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%205.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%206.png">
-<meta property="article:published_time" content="2024-06-29T15:46:27.639Z">
-<meta property="article:modified_time" content="2024-06-29T15:45:49.103Z">
+<meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%203.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%204.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%205.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%206.png">
+<meta property="article:published_time" content="2024-06-29T17:47:33.641Z">
+<meta property="article:modified_time" content="2024-06-29T17:46:46.760Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled.png">
   
   
   
@@ -244,8 +244,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-29 23:46" pubdate>
-          2024年6月29日 晚上
+        <time datetime="2024-06-30 01:47" pubdate>
+          2024年6月30日 凌晨
         </time>
       </span>
     
@@ -317,8 +317,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h1><p><img src="/image/c++premierUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<p><img src="/image/c++premierUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+                <h1 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h1><p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>当种子相同的时候，生成的随机数序列也是相同的。因此需要随机数种子，一般用time(0)作为随机数种子。</p>
 <p>一个常用的随机数引擎是std::mt19937，c++默认的default_random_engine就是这个。</p>
 <blockquote>
@@ -329,13 +329,13 @@
 <p>一般是调用distribution(engine)来获取随机数。</p>
 <p>而通过把随机种子定下来，我们也可以在多次调试过程中获得一个相同的随机数序列。</p>
 <p>而如果有一个局部的引擎或分布，我们应该让其变为static的，否则每次调用的时候会生成相同的序列。</p>
-<h3 id="分布"><a href="#分布" class="headerlink" title="分布"></a>分布</h3><p><img src="/image/c++premierUntitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="分布"><a href="#分布" class="headerlink" title="分布"></a>分布</h3><p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>分布都是模板，接受一个模板参数表示生成的类型。不填这个模板参数代表使用默认类型。</p>
 <p>下面是各种各样的引擎和分布。</p>
-<h3 id="引擎"><a href="#引擎" class="headerlink" title="引擎"></a>引擎</h3><p><img src="/image/c++premierUntitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<h3 id="分布-1"><a href="#分布-1" class="headerlink" title="分布"></a>分布</h3><p><img src="/image/c++premierUntitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<p><img src="/image/c++premierUntitled%205.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<p><img src="/image/c++premierUntitled%206.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="引擎"><a href="#引擎" class="headerlink" title="引擎"></a>引擎</h3><p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="分布-1"><a href="#分布-1" class="headerlink" title="分布"></a>分布</h3><p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%205.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E9%9A%8F%E6%9C%BA%E6%95%B0Untitled%206.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 
                 
               </div>
@@ -366,7 +366,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月29日</div>
+          <div>2024年6月30日</div>
         </div>
       
       
@@ -408,7 +408,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/hide/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/" title="">
+                      <a href="/hide/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="">
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>

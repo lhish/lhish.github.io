@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="lhish&#39;s blog">
 <meta property="og:description" content="面向对象程序设计数据抽象：将接口与实现分离。 继承：定义相似的关系并建模 动态绑定：忽略相似类型的区别，统一进行使用，可以使用基类指针或引用指向派生类对象 基类与派生类基类一般要定义一个虚折构函数。  派生类的折构函数会先调用自己的函数体，再调用基类的折构  当我们希望进行动态绑定时，就应该将函数声明为虚函数，否则在编译时就会被解析。 派生类重写的时候可以通过override来显式表示重写（写在函">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%201.png">
-<meta property="article:published_time" content="2024-06-29T15:46:27.639Z">
-<meta property="article:modified_time" content="2024-06-29T15:45:49.111Z">
+<meta property="og:image" content="https://lhish.github.io/image/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1Untitled.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1Untitled%201.png">
+<meta property="article:published_time" content="2024-06-29T17:47:33.641Z">
+<meta property="article:modified_time" content="2024-06-29T17:46:46.772Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1Untitled.png">
   
   
   
@@ -239,8 +239,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-29 23:46" pubdate>
-          2024年6月29日 晚上
+        <time datetime="2024-06-30 01:47" pubdate>
+          2024年6月30日 凌晨
         </time>
       </span>
     
@@ -386,7 +386,7 @@
 <p>而拷贝控制函数需要显式的去拷贝控制基类部分。派生类的移动或拷贝构造函数在初始化列表中调用基类对应的函数来初始化其基类部分，因为在传入参数的过程中会自动将派生类独有的部分被切掉了。</p>
 <p>派生类的移动或拷贝赋值运算符中，调用基类对应的函数来赋值其基类部分。必须通过作用域符显式指定是基类的函数$base::operator&#x3D;(variable)$，实际上可以看做是this.base::operator&#x3D;，接着再自行处理自己的部分。</p>
 <p>没懂。</p>
-<p><img src="/image/c++premierUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <h3 id="继承构造函数"><a href="#继承构造函数" class="headerlink" title="继承构造函数"></a>继承构造函数</h3><p>using声明语句只是令某个名字在当前作用域可见。被using的函数往下的继承也会因为被声明时所在的访问声明符的不同而产生不同的往下继承权限。只能using能访问的函数来调整它的权限（到底能不能using private的基类函数）。就好像这个函数是在这里声明的一样。</p>
 <p>构造函数只会继承普通构造函数（非默认，拷贝与赋值）。继承的构造函数形如：</p>
 <p>$$<br>derived(params)\ :\ base(args)\ {}<br>$$</p>
@@ -394,7 +394,7 @@
 <p>相当于在初始化列表中只调用了基类的构造函数，其他部分被默认初始化。</p>
 <p>但构造函数的using 并不会改变访问级别。using也不能改变函数的属性。</p>
 <p>当构造函数中含有默认实参的时候，派生类会自动生成实参数量+1个构造函数，每一个构造函数比上一个构造函数少一个默认实参。</p>
-<p><img src="/image/c++premierUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>派生类中定义的构造函数会覆盖继承的同名构造函数。</p>
 <p>通过using基类的构造函数，其名字就会自动在派生类中变为派生类的名字，相当于直接使用基类的构造函数作为自己的构造函数。</p>
 <h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><p>当我们想用容器来存储多种类型（属于同一基类的底下时（可以使用间接基类的指针指向派生类的对象）），最好使用基类的指针来间接存储。</p>
@@ -429,7 +429,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月29日</div>
+          <div>2024年6月30日</div>
         </div>
       
       
@@ -461,7 +461,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/hide/%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E5%9E%8B%E8%AF%86%E5%88%ABRTTI/" title="">
+                      <a href="/hide/%E9%9A%8F%E6%9C%BA%E6%95%B0/" title="">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
@@ -471,7 +471,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/hide/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96/" title="">
+                      <a href="/hide/%E5%B5%8C%E5%A5%97%E7%B1%BB/" title="">
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>

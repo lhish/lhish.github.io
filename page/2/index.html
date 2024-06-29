@@ -253,15 +253,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/IO%E5%BA%93/" target="_self">
+        <a href="/hide/modern/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/IO%E5%BA%93/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/modern/" target="_self">
         <div>
-          IO库格式化输入与输出标准库定义了一些操纵符来修改流的格式状态。 由于流是一个对象，操纵符实际上是修改了流的状态，因此它是持久的，比如cout就是ostream的一个实例，因此会一直保持着这种改变，因此我们最好在改变流的状态后，使用完后再改回去，因此大部分操作符都是成双成对的。而一类的操作运算符，比如进制，后一个操作符的状态会覆盖前一个操作符的状态。 实际上这些操纵符是函数，参数是一个流，通过类似
+          modern 对齐：一个结构体中的所有元素所占的空间大小都会按其中最大的类型所占的空间大小，不到的部分空字节填充。  alignof()获取某一个类型的对齐大小  alignas(int)让某一个类型的大小对齐int大小，写在变量名前  static_assert(bool,string&#x2F;c_str)  编译时assert  变量模板  就是将一个变量的类型变为模板  1234templ
         </div>
       </a>
 
@@ -269,8 +269,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -286,15 +286,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/tuple/" target="_self">
+        <a href="/hide/type_traits/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/tuple/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/type_traits/" target="_self">
         <div>
-          tupletuple是类似pair的一种模板，只不过它可以包含任意多个变量，类似于结构体，不过这个结构体没名字，其中的每一个部分也没有名字。 不像pair不需要头文件，tuple必须include。 tuple的成员的数目在定义的时候就固定了。
+          type_traits 通过传入非类型模板参数，定义了整型常量这种类型 以此为基础定义了true和false这两种常量类型，及其模板版本，即bool_constant&lt;…&gt; 实现了conditional_t&lt;bool,type1,type2&gt;，其成员类型type根据bool来等于type1或type2 实现了__type_identity_t来返回T这一类型，来实现更加复杂
         </div>
       </a>
 
@@ -302,8 +302,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -319,15 +319,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" target="_self">
+        <a href="/hide/%E5%87%BD%E6%95%B0/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%87%BD%E6%95%B0/" target="_self">
         <div>
-          关联容器元素按关键字来保存和访问。  map类型通常被称为关联数组。以关键字作为下标。 set就是关键字的简单集合。 multi就是一个关键字可以对应多个值。 map当对一个map中还没有的关键字对应的元素进行操作时，mao会自动创建一个新元素，其值值初始化。 其内部是通过pair来存储键值对的。 map和set都支持容器操作。 关联容器的迭代器都是双向的。 有序容器的关键字必须是可比较大小的。通
+          函数在调用函数的时候，会进行两步。  将形参实例化。 将控制权交给被调函数。  在调用时，形参与实参的个数必须对应，而在此过程中，若类型不同，这将进行类型转换。 形参可以不被命名，如果它在函数中不需要被使用，但是不代表程序不应该传入实参与它对应。(虽然并不知道这有什么用) 名字有作用域，对象有生命周期。 当局部变量在其自身的作用域的时候，会隐藏其外层作用域的同名变量。但是在作用域结束之后会，取消隐
         </div>
       </a>
 
@@ -335,8 +335,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -352,15 +352,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98/" target="_self">
+        <a href="/hide/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/" target="_self">
         <div>
-          动态内存静态内存：用来存储static变量与全局变量。 栈内存：用来存储普通局部变量。 内存池（自由空间，堆）：用来存储动态分配的对象。这些动态对象的生存期由程序显式控制。  管理动态内存很棘手。  使用动态内存的原因 程序不知道自己需要使用多少对象(容器) 程序不知道所需对象的准确类型 程序需要在多个对象间共享数据  创建与销毁new，为对象分配空间并返回指向该对象的指针，使用默认初始化或默认构
+          变量与基本类型类型 char类型有三种，char，与有符号的，无符号的，但是实际上只有两种char，有符号与无符号的，char是哪一种由编译器决定。 少用float多用double。 无符号超出范围会取mod，而有符号超出范围会报错。  带符号与无符号在一起，带符号会转化为无符号。 若两个char字面值仅由空格，缩进，换行分割则视为一个整体。 开头有0为八进制，有0x为十六进制 +数字为八进制的c
         </div>
       </a>
 
@@ -368,8 +368,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -385,15 +385,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" target="_self">
+        <a href="/hide/%E5%9B%BE%E7%81%B5%E5%AE%8C%E5%A4%87/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%9B%BE%E7%81%B5%E5%AE%8C%E5%A4%87/" target="_self">
         <div>
-          命名空间每个库会定义大量的全局名字，而这不可避免的会发生冲突，放在全局命名空间中会造成命名空间污染。 而这时候就可以使用命名空间，来给每一个部分的名字加一个前缀来避免冲突。 定义使用namespace name{}定义命名空间。可以定义于全局或者其他命名空间里，但不能再函数和类的内部。 每一个namespace就代表了一个作用域。 namespace可以被分开来几个部分定义，但只要声明了该name
+          图灵完备 当前字节数+-1 向前后移动一个字节 输入输出当前字节的内容 循环的开始与结束
         </div>
       </a>
 
@@ -401,8 +401,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -418,15 +418,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%9B%BA%E6%9C%89%E7%9A%84%E4%B8%8D%E5%8F%AF%E7%A7%BB%E6%A4%8D%E7%9A%84%E7%89%B9%E6%80%A7/" target="_self">
+        <a href="/hide/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%9B%BA%E6%9C%89%E7%9A%84%E4%B8%8D%E5%8F%AF%E7%A7%BB%E6%A4%8D%E7%9A%84%E7%89%B9%E6%80%A7/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" target="_self">
         <div>
-          固有的不可移植的特性不可移植的特性是指因机器而异的特性，当将具有这种特性的程序迁移到不同的机器上时需要重新编写。 位域类可以将非静态成员定义为位域，一个位域中含有指定数量的二进制位，一般用无符号类型来保存一个位域。$unsigned\ type\ name:位域的二进位数;$类中连续定义的位域会被压缩在同一整数的相邻位来压缩存储。 取地址符不能用于位域，因此指针无法指向位域。另外，最好使用无符号类
+          字符串、向量和数组using通过using namespace::name；的方式来直接使用命名空间的名称。如cin就是using std::cin; 头文件不应该包含using，避免在引用头文件时对程序的内容进行误判。 stringstring定义在std命名空间中。 拷贝初始化：初始化中包含＝。 直接初始化：初始化中不包含&#x3D;。 getline(is,var) size()返回的类型是
         </div>
       </a>
 
@@ -434,8 +434,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -451,15 +451,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF%E4%B8%8E%E8%99%9A%E7%BB%A7%E6%89%BF/" target="_self">
+        <a href="/hide/%E5%BC%80%E5%A7%8B/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF%E4%B8%8E%E8%99%9A%E7%BB%A7%E6%89%BF/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%BC%80%E5%A7%8B/" target="_self">
         <div>
-          多重继承与虚继承多重继承多重继承就是从多个直接基类继承。继承要求与普通继承一样。 构造当不使用某个基类的继承构造函数初始化该部分时，就会使用该基类的默认构造函数。 另外，构造函数的顺序与我们写的顺序无关，是根据派生列表的顺序，派生树dfs的顺序。 当使用using继承了基类中同名同参的构造函数时，必须自行定义一个接受同样参数的构造函数来覆盖掉。 向基类的转换对于编译器来说，只要是基类，那么转换都是
+          开始当istream (istream) 对象输入的数据类型错误或者输入了文件结束符，其自身会返回false，但并不会报错。 Ctrl+Z可以输入文件结束符。其他系统中是Ctrl+D。 return 后可以跟任意数，其在终端中也会在程序结束时显示出来，如1就是1，2就是2，0就是0，但当数字超过unsigned int的范围的时候，其返回值会因为系统的不同而不同。 缓冲区(buffer)个存储区域
         </div>
       </a>
 
@@ -467,8 +467,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -484,15 +484,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%B1%80%E9%83%A8%E7%B1%BB/" target="_self">
+        <a href="/hide/%E6%A0%87%E5%87%86%E5%BA%93/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%B1%80%E9%83%A8%E7%B1%BB/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E6%A0%87%E5%87%86%E5%BA%93/" target="_self">
         <div>
-          局部类局部类和嵌套类不同，嵌套类是在类中的，而局部类是在函数中的，嵌套类可以使用外层类的成员，而局部类定义的类型只在它的作用域可见，并且所有的成员都必须完整的定义在类的内部。 另外，局部类中不允许声明静态数据成员。 局部类只能访问外层作用于定义的类型名静态变量和枚举成员。 另外，由于局部类已经被封装在了函数作用域内，所以一般就直接所有成员直接都public了。 局部类里可以继续定义一个嵌套类，但是
+          标准库IO 顺序容器 泛型算法 关联容器 动态内存
         </div>
       </a>
 
@@ -500,8 +500,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -517,15 +517,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%B5%8C%E5%A5%97%E7%B1%BB/" target="_self">
+        <a href="/hide/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%B5%8C%E5%A5%97%E7%B1%BB/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/" target="_self">
         <div>
-          嵌套类更加封装也更加有逻辑和可读性。 正如其名，在类里面定义的类是嵌套类。但是嵌套类和外层类是互相独立的。 嵌套类就相当于外层类的一个普通的成员一样，也是具有着限定控制的。只不过嵌套类可以随意访问自己和外层类的所有成员，名字查找时是从内到外的，而外层类要访问嵌套类却要遵守限定。 在定义内部类的时候前面也要加上外层的作用域符。
+          泛型算法能够通用于各种容器的算法。 算法的一切都是基于容器通用的迭代器与容器元素类型的自己的函数来进行的。因此能够泛化。因此，不管容器为何，算法都是能用的。但是由于只使用迭代器，算法并不能改变底层容器的大小，虽然有可以插入元素的迭代器存在。 只读算法最好使用cbegin()与cend()  find(begin,end,val)  find_if(begin,end,predicate)  对于元
         </div>
       </a>
 
@@ -533,8 +533,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         
@@ -550,15 +550,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" target="_self">
+        <a href="/hide/%E7%B1%BB/" target="_self">
           
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E7%B1%BB/" target="_self">
         <div>
-          异常处理对于一个被throw出的异常，根据调用链一层层向外返回(栈展开)找处理代码，也就是寻找try对应的catch，并将控制权交予这个catch对应的处理代码。当找到最外层也未找到时，直接调用std::terminate()（执行的挺慢的）终止程序。 由于可能提早退出函数，函数中创建的局部存在的对象需要被销毁，而此时折构函数与其他等等会自动被调用，但如果涉及到了构造函数内部或者动态内存，则需要我
+          类类的重点在于两点：  数据抽象。 接口。用户所能使用的方法。 实现。实现接口的背后的原理。   封装。隐藏实现的部分。  成员函数成员函数就是属于类对象的函数。隶属于成员本身。通过点运算符来调用。 声明时必须在类内部。而定义可以在类之外。 非成员函数，并不是类的一部分，不能被类对象调用。但希望可以对类对象进行操作，或者对多个类对象进行操作。 可以被重载。 this所有的成员函数，都有一个隐式参数
         </div>
       </a>
 
@@ -566,8 +566,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-29 23:46" pubdate>
-              2024-06-29
+            <time datetime="2024-06-30 01:47" pubdate>
+              2024-06-30
             </time>
           </div>
         

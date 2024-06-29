@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="lhish&#39;s blog">
 <meta property="og:description" content="字符串、向量和数组using通过using namespace::name；的方式来直接使用命名空间的名称。如cin就是using std::cin; 头文件不应该包含using，避免在引用头文件时对程序的内容进行误判。 stringstring定义在std命名空间中。 拷贝初始化：初始化中包含＝。 直接初始化：初始化中不包含&#x3D;。 getline(is,var) size()返回的类型是">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%201.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%202.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%203.png">
-<meta property="og:image" content="https://lhish.github.io/image/c++premierUntitled%204.png">
-<meta property="article:published_time" content="2024-06-29T15:46:27.635Z">
-<meta property="article:modified_time" content="2024-06-29T15:45:49.107Z">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%203.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%204.png">
+<meta property="article:published_time" content="2024-06-29T17:47:33.641Z">
+<meta property="article:modified_time" content="2024-06-29T17:46:46.764Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lhish.github.io/image/c++premierUntitled.png">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled.png">
   
   
   
@@ -242,8 +242,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-29 23:46" pubdate>
-          2024年6月29日 晚上
+        <time datetime="2024-06-30 01:47" pubdate>
+          2024年6月30日 凌晨
         </time>
       </span>
     
@@ -323,7 +323,7 @@
 <p>getline(is,var)</p>
 <p>size()返回的类型是string::size_type。且返回值是一个无符号整数。</p>
 <p>当进行相加时，加号左右必须有一个为string类型（不是字符串字面值，字面值与string不是同一种类型）(从左到右)。</p>
-<p><img src="/image/c++premierUntitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>使用for-range来遍历序列。</p>
 <p>for( auto i:序列)来遍历序列，如python中for item in list。</p>
 <p>使用auto &amp;i来用引用来改变序列中的值。</p>
@@ -335,7 +335,7 @@
 <p>对vector进行列表初始化vector&lt;…&gt; name{ele1,ele2,…}</p>
 <p>vec(个数,ele(可省略))，当省略时会默认初始化。</p>
 <p>()与{}的初始化方式是不同的，当且仅当提供的参数不能用来初始化，会考虑其他初始化的方式。</p>
-<p><img src="/image/c++premierUntitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>当且仅当其中的所有元素相同时，初始化的效率优于建立一个空的vector。</p>
 <blockquote>
 <p>范围for语句体内不应改变其所遍历序列的大小。</p>
@@ -360,10 +360,10 @@
 <p>***(<em>p)[10]      一个指向数组的指针</em>**</p>
 <p><em><strong>(&amp;p)[10]     一个对数组的引用</strong></em></p>
 <p><em><strong>数组</strong></em>从内向外看类型。</p>
-<p><img src="/image/c++premierUntitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p><em><strong>数组</strong></em>的下标最好使用<em><strong>size_t</strong></em>类型（一种足够大的类型），被定义在<em><strong>cstddef</strong></em>。</p>
 <p>**&#x3D;{}<strong>与</strong>&#x3D;{0}**等价。</p>
-<p><img src="/image/c++premierUntitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%203.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>当使用<em><strong>auto</strong></em>来推断一个以<em><strong>数组</strong></em>来赋值的<em><strong>数组</strong></em>时，会判断出一个<em><strong>指针</strong></em>，指向首元素。</p>
 <p>而<em><strong>decltype</strong></em>就没有这个问题。</p>
 <p>虽然对于<em><strong>尾后迭代器</strong></em>不能<em><strong>解引用</strong></em>，但我们仍然可以去获取它的地址。</p>
@@ -371,7 +371,7 @@
 <p>但这两个<em><strong>指针</strong></em>相减的类型是<em><strong>ptrdiff_t</strong></em>类型，是<em><strong>带符号整数</strong></em>。</p>
 <p>当以<em><strong>数组</strong></em>中的某个元素的地址作为指针时，也可以将它当做<em><strong>数组</strong></em>来使用，只不过<em><strong>下标</strong></em>就是从当前位置作加减了。</p>
 <h3 id="C风格字符串"><a href="#C风格字符串" class="headerlink" title="C风格字符串"></a>C风格字符串</h3><p>以<em><strong>’\0’</strong></em>(<em><strong>空字符</strong></em>)作为结尾的字符串。</p>
-<p><img src="/image/c++premierUntitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84Untitled%204.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p><em><strong>C风格字符串</strong></em>的<em><strong>函数</strong></em>必须传入<em><strong>C风格字符串</strong></em>。</p>
 <p>将<em><strong>string</strong></em>转为<em><strong>C风格字符串</strong></em>，<em><strong>str.c_str()<em><strong>，返回值为一个</strong></em>常量字符指针</strong></em>。</p>
 <p>但在使用后最好重新拷贝一份结果。</p>
@@ -409,7 +409,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月29日</div>
+          <div>2024年6月30日</div>
         </div>
       
       
@@ -451,7 +451,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/hide/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C%E7%9B%B8%E5%85%B3/" title="">
+                      <a href="/hide/%E5%BC%80%E5%A7%8B/" title="">
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
