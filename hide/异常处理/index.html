@@ -24,8 +24,8 @@
 <meta property="og:description" content="对于一个被throw出的异常，根据调用链一层层向外返回(栈展开)找处理代码，也就是寻找try对应的catch，并将控制权交予这个catch对应的处理代码。当找到最外层也未找到时，直接调用std::terminate()（执行的挺慢的）终止程序。 由于可能提早退出函数，函数中创建的局部存在的对象需要被销毁，而此时折构函数与其他等等会自动被调用，但如果涉及到了构造函数内部或者动态内存，则需要我们手动进">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86Untitled.png">
-<meta property="article:published_time" content="2024-06-29T18:21:09.150Z">
-<meta property="article:modified_time" content="2024-06-29T18:20:57.858Z">
+<meta property="article:published_time" content="2024-06-29T18:39:21.853Z">
+<meta property="article:modified_time" content="2024-06-29T18:38:50.077Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86Untitled.png">
@@ -240,7 +240,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:21" pubdate>
+        <time datetime="2024-06-30 02:39" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -347,7 +347,7 @@
 <p><img src="/image/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
 <p>一般情况下我们都会继承这些异常类来实现自己的异常类。</p>
 <p>标准库的异常类仅仅定义了拷贝构造函数、拷贝赋值运算符、徐折构函数和一个名为what的虚成员函数，what返回一个const char*(表示异常的一些信息，也就是throw的时候写的字符串)。</p>
-<!-- flag of hidden posts -->
+
                 
               </div>
             
@@ -404,17 +404,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                  </article>
-                </div>
               
             </div>
 

@@ -253,15 +253,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E7%B1%BB%E6%88%90%E5%91%98%E6%8C%87%E9%92%88/" target="_self">
-          类成员指针
+        <a href="/c++%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" target="_self">
+          c++代码规范
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E7%B1%BB%E6%88%90%E5%91%98%E6%8C%87%E9%92%88/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/c++%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" target="_self">
         <div>
-          类成员指针就是指向类成员的指针。 类成员指针即便是在赋值后也并不指向一个特定对象的成员，它是一个很宽泛的代表，相当于类成员有了一个别名一样。使用时需要在*前加上作用域符，但是大部分情况都是私有的，所以一般会定义一个函数返回类成员指针。而如果是成员函数指针，那么得要加括号，因为调用运算符的优先度更高，并且类型成员函数指针和类型成员函数对象不像不同函数能互相转换。 此外，假如说a是一个类成员指针，调用
+          文件后缀名 实现：.cc 声明：.h（模板声明和定义都写在.h里） 内联：.inc（不允许有-inl.h，也就是声明和定义写在一起）或者用于插入文本 实现和声明一一对应，除非如单元测试和只包含main函数的可以只有.cc。 目录 头文件 一个.h文件应该自给自足，其自身就应该include所有其他依赖头文件，并不要求定义任何特别symbols。 除了为模板提供实例化的模板函数需要定义在实例化改模板
         </div>
       </a>
 
@@ -286,15 +286,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/CPU/" target="_self">
-          CPU
+        <a href="/%E6%9C%80%E5%B0%8F%E5%A0%86%E4%B8%8E%E6%9C%80%E5%A4%A7%E5%A0%86/" target="_self">
+          最小堆与最大堆
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/CPU/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/%E6%9C%80%E5%B0%8F%E5%A0%86%E4%B8%8E%E6%9C%80%E5%A4%A7%E5%A0%86/" target="_self">
         <div>
-          I instruction A address R register D data C counter P program S status 状态寄存器 PSW 操作控制器：建立数据通路，即从哪流向哪，  时序逻辑型：硬布线控制器，就是通过设计电路硬做 存储逻辑型：微程序控制器，像程序一样读出一个一个的开关的状态进行操作   数据通路：寄存器到寄存器，寄存器由时钟控制，而寄存器到寄存器间可能有各
+          priority_queue的底层是vector queue的底层是deque 堆是完全二叉树。 最小堆就是父节点小于子节点。 插入时每次加到最后，再从底向上更新一次。 删除时删除根，并将最后一个元素取代掉根，从底向上更新一次。 更新时是对于每一个节点所对应的堆进行更新。 插入就是加到最后，向上更新 删除就是交换根和最后一个元素，然后删掉“根”，向下更新 priority_queue传入的比较函数
         </div>
       </a>
 
@@ -319,15 +319,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/IO/" target="_self">
-          IO
+        <a href="/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" target="_self">
+          线性代数
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/IO/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" target="_self">
         <div>
-          w代表宽字符，f代表file，s代表string，但指的是内存string对象。 其类型的不同并不会影响使用，通过继承机制，我们可以像如普通操作iostream一样操作fstream和sstream。 IO对象无初始化参数，无法拷贝也无法赋值。 由于在输入或输出时会改变状态，因此返回的是非const引用。   cin&gt;&gt;acin&gt;&gt;acin&gt;&gt;a返回的实际是!
+          矩阵相乘 当对一个线性空间进行线性变换的时候，可以将i和j变换看做整个空间的变换，因为线性的等式在变换后仍然保持不变。 另外，假如说i和j变换为了i’和j’，那么对于一个向量的变换就相当于左乘[i’ j’]，这是一个n阶方阵。 另外，如果对一个空间连续做几次变换，将这些变换方阵相乘实际上就是总的变换，但后变换的永远都是左乘。 矩阵乘积实际就是变换相加，假设后面一个矩阵是基的i和j，然后前面的矩阵分
         </div>
       </a>
 
@@ -352,15 +352,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/c++%E5%9F%BA%E7%A1%80/" target="_self">
-          c++基础
+        <a href="/cmake/" target="_self">
+          cmake
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/c++%E5%9F%BA%E7%A1%80/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/cmake/" target="_self">
         <div>
-          变量与基本类型 字符串、向量和数组 表达式 语句 函数 类
+          set的变量可以在程序中的宏中使用   add_library.  shared：生成.so或.dll文件，不嵌入代码，在使用时会根据.h来进行查找 static：直接将相关代码嵌入任何需要的地方，非常冗余，但很完整 interface：接口库，不单独生成库，只是作为接口给其他库使用  后面只跟随相关源文件   target_link_libraries，属性一般与target_include
         </div>
       </a>
 
@@ -385,15 +385,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/modern/" target="_self">
-          modern
+        <a href="/%E7%BD%91%E7%BB%9C%E6%B5%81/" target="_self">
+          网络流
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/modern/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/%E7%BD%91%E7%BB%9C%E6%B5%81/" target="_self">
         <div>
-          对齐：一个结构体中的所有元素所占的空间大小都会按其中最大的类型所占的空间大小，不到的部分空字节填充。 alignof()获取某一个类型的对齐大小 alignas(int)让某一个类型的大小对齐int大小，写在变量名前   static_assert(bool,string/c_str) 编译时assert   变量模板 就是将一个变量的类型变为模板  1234template&lt;typen
+          网络流是一张模拟运输或流动的图。其边的权重代表边的容量。一般我们将其看做一个水流系统。有一个源节点和一个汇点（流出点）。每一条边上的流量不能超过容量，而每一个节点也不能存储任何水量。另外，这张图不存在自循环，且不存在反平行边(一对边(u,v)与(v,u))。 而对于任意一个节点，流入量等于流出量。 如果遇到反平行边，可以将其中一条边中加入一个新的节点来避免反平行边。 而若是有多个源节点和多个汇点，
         </div>
       </a>
 
@@ -418,15 +418,48 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/type_traits/" target="_self">
+        <a href="/HeadFirst%20design%20Pattern/" target="_self">
+          HeadFirst design Pattern
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/HeadFirst%20design%20Pattern/" target="_self">
+        <div>
+          面向接口编程，上对下要有抽象中间层，上面自己也需要抽象顶层。 策略模式 继承会导致在添加新的行为的时候不够灵活，要们需要在每个子类中实现，如果在基类中实现那么即便是不需要这个行为的子类也会继承这个行为。 此时我们可以使用策略模式。 实际上就是一种将继承改为组合的例子。 将拥有行为者和行为分开，总共包括四个类，通过让行为者使用不同的行为就达成了行为改变的结果。  抽象拥有者：拥有着抽象行为，和使用抽
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-30 02:21" pubdate>
+              2024-06-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/gcc_std/" target="_self">
+          gcc_std
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/gcc_std/" target="_self">
+        <div>
           type_traits
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/type_traits/" target="_self">
-        <div>
-          通过传入非类型模板参数，定义了整型常量这种类型 以此为基础定义了true和false这两种常量类型，及其模板版本，即bool_constant&lt;…&gt; 实现了conditional_t&lt;bool,type1,type2&gt;，其成员类型type根据bool来等于type1或type2 实现了__type_identity_t来返回T这一类型，来实现更加复杂的类型运算，为了更容易
         </div>
       </a>
 
@@ -451,15 +484,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%87%BD%E6%95%B0/" target="_self">
-          函数
+        <a href="/git/" target="_self">
+          git
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%87%BD%E6%95%B0/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/git/" target="_self">
         <div>
-          在调用函数的时候，会进行两步。  将形参实例化。 将控制权交给被调函数。  在调用时，形参与实参的个数必须对应，而在此过程中，若类型不同，这将进行类型转换。 形参可以不被命名，如果它在函数中不需要被使用，但是不代表程序不应该传入实参与它对应。(虽然并不知道这有什么用) 名字有作用域，对象有生命周期。 当局部变量在其自身的作用域的时候，会隐藏其外层作用域的同名变量。但是在作用域结束之后会，取消隐藏，
+          保存的是基于上面一个节点变更的内容 每一个节点都是一个版本。 git commit：在原本的节点下添加一个新的节点，也就是更新版本，于HEAD所在的位置 git branch name: 新建一个分支，于HEAD所在的位置 git checkout name: 切换当前所在分支，但最好使用git switch name来切换 git checkout -b name: 新建分支并切换到这个分支上
         </div>
       </a>
 
@@ -484,15 +517,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/" target="_self">
-          变量与基本类型
+        <a href="/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" target="_self">
+          线性规划
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" target="_self">
         <div>
-          类型  char类型有三种，char，与有符号的，无符号的，但是实际上只有两种char，有符号与无符号的，char是哪一种由编译器决定。 少用float多用double。 无符号超出范围会取mod，而有符号超出范围会报错。 带符号与无符号在一起，带符号会转化为无符号。 若两个char字面值仅由空格，缩进，换行分割则视为一个整体。 开头有0为八进制，有0x为十六进制 +数字为八进制的char，只管前
+          线性规划有两种形式：   标准型： maxmize ∑j=1ncjxj∑j=1naijxj≤bi , i=1,2,…,m           xj≥0 , j=1,2,…,nmaxmize\ \sum_{j=1}^nc_jx_j\\\sum^n_{j=1}a_{ij}x_j\le b_i\ ,\ i=1,2,\dots,m\\\ \ \ \ \ \ \ \ \ \ \ x_j\ge0\ ,\ j=
         </div>
       </a>
 
@@ -517,48 +550,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/hide/%E5%9B%BE%E7%81%B5%E5%AE%8C%E5%A4%87/" target="_self">
-          图灵完备
+        <a href="/%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/" target="_self">
+          强联通分量
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%9B%BE%E7%81%B5%E5%AE%8C%E5%A4%87/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/" target="_self">
         <div>
-          当前字节数±1 向前后移动一个字节 输入输出当前字节的内容 循环的开始与结束
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-30 02:21" pubdate>
-              2024-06-30
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/hide/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" target="_self">
-          字符串、向量和数组
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/hide/%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/" target="_self">
-        <div>
-          using 通过using namespace::name；的方式来直接使用命名空间的名称。如cin就是using std::cin; 头文件不应该包含using，避免在引用头文件时对程序的内容进行误判。 string string定义在std命名空间中。 拷贝初始化：初始化中包含＝。 直接初始化：初始化中不包含=。 getline(is,var) size()返回的类型是string::size
+          强联通分量指的是一个有向图中的一部分节点，而任意两个其中的节点互相的路径是相通的，既能从一个节点到另一个节点，也可以从另一个节点到这个节点。 一个图必然能够被分为几个强联通分量的组合，而若是将这几个强联通分量的节点聚合为一个节点，就会得到一个有向无环图，称为分量图。 求出强联通分量的方法如下： 首先对图进行深搜，对于每一个节点记录到达顺序和离开顺序，离开顺序和到达顺序共用一个顺序。 根据这个离开顺
         </div>
       </a>
 
@@ -581,7 +581,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#board">9</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
