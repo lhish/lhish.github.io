@@ -25,8 +25,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhish.github.io/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled.png">
 <meta property="og:image" content="https://lhish.github.io/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled%201.png">
-<meta property="article:published_time" content="2024-06-29T18:39:21.853Z">
-<meta property="article:modified_time" content="2024-06-29T18:38:50.085Z">
+<meta property="article:published_time" content="2024-06-29T19:12:24.220Z">
+<meta property="article:modified_time" content="2024-06-29T19:12:24.220Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lhish.github.io/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled.png">
@@ -241,7 +241,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 02:39" pubdate>
+        <time datetime="2024-06-30 03:12" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -364,7 +364,7 @@
 <p>swap函数虽然不是必要的，但是却很常用。对于我们自己的类，可以使用std::swap来交换，其相当于是进行了3次拷贝。但是有时拷贝很费时间，因此我们可以自己编写swap交换指针来避免不必要的拷贝。</p>
 <p>当存在类型匹配的swap时，调用swap会调用专用的swap而非标准库的。</p>
 <p>swap可以用于赋值运算符。</p>
-<p><img src="/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>在swap后，rhs指向原本的this指向的内存，而this指向rhs指向的内存，由于是值传递，因此在结束作用域后rhs将被销毁，其内存被释放。非常完美的执行了赋值操作。</p>
 <p>而且这种方式自动就是异常安全的，且能正确处理自赋值。</p>
 <h3 id="拷贝控制的使用场景">拷贝控制的使用场景</h3>
@@ -421,7 +421,7 @@
 <p>有的时候对于成员函数，其this与所希望的不符，如赋值时this是右值等，此时可以如const一般在函数后增加&amp;或者&amp;&amp;来限定使用者是左值还是右值，当与const同时出现时，放在const后。</p>
 <p>对于重载函数，若是其中有一个限定了，那么其他的所有的重载版本都要限定。</p>
 <p>通过限定，我们可以通过this的不同而使用不同的函数，使其更加适合。</p>
-<p><img src="/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/image/%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6Untitled%201.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
