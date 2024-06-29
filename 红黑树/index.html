@@ -18,25 +18,25 @@
   
     <meta name="description" content="红黑树性质  旋转 插入插入的新节点或者需要调整的节点必然是红色的 当该节点的父亲是红色的时候，就需要调整。 情况一：叔节点是红色，将爷节点的黑色下放  情况二：叔节点是黑色，当父节点是左节点时，本节点是左节点就右旋，右节点就左旋，有节点则相反，当与叔节点是异边节点时调整颜色 操作完成之后要么循环结束，要么矛盾节点上移产生新的矛盾 仍然没有搞懂为啥左节点的时候就不能左旋，虽然确实会不平衡，但为什么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lhish&#39;s blog">
+<meta property="og:title" content="红黑树 ">
 <meta property="og:url" content="https://lhish.github.io/project/%E7%BA%A2%E9%BB%91%E6%A0%91/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
 <meta property="og:description" content="红黑树性质  旋转 插入插入的新节点或者需要调整的节点必然是红色的 当该节点的父亲是红色的时候，就需要调整。 情况一：叔节点是红色，将爷节点的黑色下放  情况二：叔节点是黑色，当父节点是左节点时，本节点是左节点就右旋，右节点就左旋，有节点则相反，当与叔节点是异边节点时调整颜色 操作完成之后要么循环结束，要么矛盾节点上移产生新的矛盾 仍然没有搞懂为啥左节点的时候就不能左旋，虽然确实会不平衡，但为什么">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lhish.github.io/image/%E7%BA%A2%E9%BB%91%E6%A0%9154xclr.png">
-<meta property="og:image" content="https://lhish.github.io/image/%E7%BA%A2%E9%BB%91%E6%A0%91krcb5i.png">
-<meta property="og:image" content="https://lhish.github.io/image/%E7%BA%A2%E9%BB%91%E6%A0%91rcl4yj.png">
-<meta property="og:image" content="https://lhish.github.io/image/%E7%BA%A2%E9%BB%91%E6%A0%91c62w8n.png">
-<meta property="og:image" content="https://lhish.github.io/image/%E7%BA%A2%E9%BB%91%E6%A0%913wbhvn.png">
-<meta property="article:published_time" content="2024-06-29T17:47:33.637Z">
-<meta property="article:modified_time" content="2024-06-29T17:46:46.728Z">
+<meta property="og:image" content="https://files.catbox.moe/54xclr.png">
+<meta property="og:image" content="https://files.catbox.moe/krcb5i.png">
+<meta property="og:image" content="https://files.catbox.moe/rcl4yj.png">
+<meta property="og:image" content="https://files.catbox.moe/c62w8n.png">
+<meta property="og:image" content="https://files.catbox.moe/3wbhvn.png">
+<meta property="article:published_time" content="2024-06-29T18:04:57.517Z">
+<meta property="article:modified_time" content="2024-06-29T18:04:41.590Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lhish.github.io/image/%E7%BA%A2%E9%BB%91%E6%A0%9154xclr.png">
+<meta name="twitter:image" content="https://files.catbox.moe/54xclr.png">
   
   
   
-  <title>lhish&#39;s blog</title>
+  <title>红黑树  - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -231,7 +231,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="红黑树 "></span>
           
         </div>
 
@@ -242,7 +242,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 01:47" pubdate>
+        <time datetime="2024-06-30 02:04" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -310,25 +310,25 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">红黑树 </h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p><img src="/image/%E7%BA%A2%E9%BB%91%E6%A0%9154xclr.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/54xclr.png"></p>
-<p><img src="/image/%E7%BA%A2%E9%BB%91%E6%A0%91krcb5i.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/krcb5i.png"></p>
-<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><p><img src="/image/%E7%BA%A2%E9%BB%91%E6%A0%91rcl4yj.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/rcl4yj.png"></p>
+                <h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p><img src="https://files.catbox.moe/54xclr.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/54xclr.png"></p>
+<p><img src="https://files.catbox.moe/krcb5i.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/krcb5i.png"></p>
+<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><p><img src="https://files.catbox.moe/rcl4yj.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/rcl4yj.png"></p>
 <h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入的新节点或者需要调整的节点必然是红色的</p>
 <p>当该节点的父亲是红色的时候，就需要调整。</p>
 <p>情况一：叔节点是红色，将爷节点的黑色下放</p>
-<p><img src="/image/%E7%BA%A2%E9%BB%91%E6%A0%91c62w8n.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/c62w8n.png"></p>
+<p><img src="https://files.catbox.moe/c62w8n.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/c62w8n.png"></p>
 <p>情况二：叔节点是黑色，当父节点是左节点时，本节点是左节点就右旋，右节点就左旋，有节点则相反，当与叔节点是异边节点时调整颜色</p>
 <p>操作完成之后要么循环结束，要么矛盾节点上移产生新的矛盾</p>
 <p>仍然没有搞懂为啥左节点的时候就不能左旋，虽然确实会不平衡，但为什么这样就会不平衡呢</p>
 <h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p><strong>二叉搜索树的删除</strong></p>
 <p>情况一：要删除的节点有一个子节点不存在，将子节点替换掉本节点即可</p>
 <p>情况二：两个子节点都存在，在右子树上找到第一个没有左节点的节点，将它替换掉本节点，其右子树直接上升</p>
-<p><img src="/image/%E7%BA%A2%E9%BB%91%E6%A0%913wbhvn.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/3wbhvn.png"></p>
+<p><img src="https://files.catbox.moe/3wbhvn.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/3wbhvn.png"></p>
 <p>实现方法：tranplant函数，即用某节点替换某节点</p>
 <p><strong>红黑树的删除</strong></p>
 <p>无论是情况一还是情况二中，唯一会影响红黑树的正确性的就是y的移动，因此需要记录y的原始颜色。</p>
@@ -364,7 +364,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>红黑树 </div>
       <div>https://lhish.github.io/project/红黑树/</div>
     </div>
     <div class="license-meta">
@@ -409,9 +409,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" title="">
+                      <a href="/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" title="差分约束 ">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">差分约束 </span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -419,8 +419,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/" title="强联通分量 ">
+                        <span class="hidden-mobile">强联通分量 </span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

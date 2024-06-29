@@ -18,19 +18,19 @@
   
     <meta name="description" content="unionunion实际是一种用来节省空间的存储方式。有的时候一个东西有多种存储方式，比如string,int,double等等，但任何时候的任何一种就能代表一整个整体，因此我们任何时候只需要其中的一种存在即可，也就是说这几种是互斥的存在，有一个，其他的就不会存在，并且占用同一块空间来节省空间。 本身仍然是一个类，但是是类似struct的，可以有折构，构造等等，以及各种不同类型的变量各一个。使用的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lhish&#39;s blog">
+<meta property="og:title" content="union ">
 <meta property="og:url" content="https://lhish.github.io/project/hide/union/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
 <meta property="og:description" content="unionunion实际是一种用来节省空间的存储方式。有的时候一个东西有多种存储方式，比如string,int,double等等，但任何时候的任何一种就能代表一整个整体，因此我们任何时候只需要其中的一种存在即可，也就是说这几种是互斥的存在，有一个，其他的就不会存在，并且占用同一块空间来节省空间。 本身仍然是一个类，但是是类似struct的，可以有折构，构造等等，以及各种不同类型的变量各一个。使用的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-29T17:47:33.645Z">
-<meta property="article:modified_time" content="2024-06-29T17:46:46.764Z">
+<meta property="article:published_time" content="2024-06-29T18:04:57.525Z">
+<meta property="article:modified_time" content="2024-06-29T18:04:41.626Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>lhish&#39;s blog</title>
+  <title>union  - lhish&#39;s blog</title><meta name="robots" content="noindex">
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +225,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="union "></span>
           
         </div>
 
@@ -236,7 +236,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 01:47" pubdate>
+        <time datetime="2024-06-30 02:04" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -304,7 +304,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">union </h1>
             
             
               <div class="markdown-body">
@@ -316,7 +316,7 @@
 <p>因此一般管理存储类类型的union都会给这个union套一个类来控制它的行为。一般要实现构造，拷贝构造，拷贝赋值和折构函数。并且另外通过创建一个enum对象来存储当前存储的类型。</p>
 <p>另外，要注意的是，在构造的时候需要在原本的内存位置来构造来节省空间，因此要用到定位new的方式。</p>
 <p>c++17提供了variant来替代union，它可以自行处理类对象，并自动存储当前保存的类型。但是效率比union略低。</p>
-
+<!-- flag of hidden posts -->
                 
               </div>
             
@@ -333,7 +333,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>union </div>
       <div>https://lhish.github.io/project/hide/union/</div>
     </div>
     <div class="license-meta">
@@ -378,21 +378,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/vim/" title="">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/hide/%E5%9B%BA%E6%9C%89%E7%9A%84%E4%B8%8D%E5%8F%AF%E7%A7%BB%E6%A4%8D%E7%9A%84%E7%89%B9%E6%80%A7/" title="">
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>

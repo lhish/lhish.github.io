@@ -18,23 +18,23 @@
   
     <meta name="description" content="散列(hash)在一个域(一个集合)中，其中存在着一个实际域，包含着我们所实际用到的元素，如自然数是一个域，其中我们有一个实际域，比如说{1,2,3}。这些作为关键字指向元素，这里的关键字就是指数组的下标一样的东西，根据一个关键字，我们就可以得到它所指的元素。 当全域较小的时候，我们可以之间建立一个表，一一对应。 但是当全域较大但是实际域并不大的时候，这就过于浪费存储空间了，因为很多的关键字都对应">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lhish&#39;s blog">
+<meta property="og:title" content="散列(hash) ">
 <meta property="og:url" content="https://lhish.github.io/project/%E6%95%A3%E5%88%97(hash)/index.html">
 <meta property="og:site_name" content="lhish&#39;s blog">
 <meta property="og:description" content="散列(hash)在一个域(一个集合)中，其中存在着一个实际域，包含着我们所实际用到的元素，如自然数是一个域，其中我们有一个实际域，比如说{1,2,3}。这些作为关键字指向元素，这里的关键字就是指数组的下标一样的东西，根据一个关键字，我们就可以得到它所指的元素。 当全域较小的时候，我们可以之间建立一个表，一一对应。 但是当全域较大但是实际域并不大的时候，这就过于浪费存储空间了，因为很多的关键字都对应">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lhish.github.io/image/%E6%95%A3%E5%88%97(hash)16790580823151679058081587.png">
-<meta property="og:image" content="https://lhish.github.io/image/%E6%95%A3%E5%88%97(hash)2pec7u.png">
-<meta property="og:image" content="https://lhish.github.io/image/%E6%95%A3%E5%88%97(hash)cp0gt1.png">
-<meta property="article:published_time" content="2024-06-29T17:47:33.637Z">
-<meta property="article:modified_time" content="2024-06-29T17:46:46.736Z">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/lhish/picture@main/16790580823151679058081587.png">
+<meta property="og:image" content="https://files.catbox.moe/2pec7u.png">
+<meta property="og:image" content="https://files.catbox.moe/cp0gt1.png">
+<meta property="article:published_time" content="2024-06-29T18:04:57.517Z">
+<meta property="article:modified_time" content="2024-06-29T18:04:41.598Z">
 <meta property="article:author" content="lhy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lhish.github.io/image/%E6%95%A3%E5%88%97(hash)16790580823151679058081587.png">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/lhish/picture@main/16790580823151679058081587.png">
   
   
   
-  <title>lhish&#39;s blog</title>
+  <title>散列(hash)  - lhish&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="散列(hash) "></span>
           
         </div>
 
@@ -240,7 +240,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-30 01:47" pubdate>
+        <time datetime="2024-06-30 02:04" pubdate>
           2024年6月30日 凌晨
         </time>
       </span>
@@ -308,7 +308,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">散列(hash) </h1>
             
             
               <div class="markdown-body">
@@ -319,13 +319,13 @@
 <p>散列表是通过一个散列函数$h(x)$来建立对应关系的。</p>
 <p>但是不管怎么样，只要我们散列表所</p>
 <h3 id="链接法"><a href="#链接法" class="headerlink" title="链接法"></a>链接法</h3><p>将散列表做成一个链表的集合，在通过散列函数$h(x)$求得值后，在其所对应的链表中进行比对寻找。</p>
-<p><img src="/image/%E6%95%A3%E5%88%97(hash)16790580823151679058081587.png" srcset="/img/loading.gif" lazyload alt="https://fastly.jsdelivr.net/gh/lhish/picture@main/16790580823151679058081587.png"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/lhish/picture@main/16790580823151679058081587.png" srcset="/img/loading.gif" lazyload alt="https://fastly.jsdelivr.net/gh/lhish/picture@main/16790580823151679058081587.png"></p>
 <p>时间复杂度为$O(a+1)(a为链表长度)$</p>
 <p>因为散列函数的时间复杂度是$O(1)$</p>
 <h3 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h3><p>散列函数就是一个很普通的数学公式，将一个数映射到另一个数，如通过$\bmod$，等等方式。</p>
 <p>但是，由于散列函数存在冲突，所以当一个散列函数被确定的时候，可以通过制造一些特定的数据，来使得散列函数的时间复杂度最劣。</p>
 <p>我们希望能够有一个散列函数对于任何数据都有着良好的时间复杂度，若专业来说就是如下。</p>
-<p><img src="/image/%E6%95%A3%E5%88%97(hash)2pec7u.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/2pec7u.png"></p>
+<p><img src="https://files.catbox.moe/2pec7u.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/2pec7u.png"></p>
 <p>一个最简单的全域散列函数就是$h_{ab}(k)&#x3D;((ak+b)\bmod p)\bmod m a和b\le p-1且属于Z,p为全域,m为映射后的域$，通过一些数论的知识可以证明。</p>
 <h3 id="开放寻址法"><a href="#开放寻址法" class="headerlink" title="开放寻址法"></a>开放寻址法</h3><p>每一个散列表的槽只能放一个元素，因此散列表的大小需要大于关键字的数量。插入的方法就是按照位置的一个排列的顺序去找空位，若有空位，则插入。</p>
 <p>此处，为了保证这个排列是均匀散列，即探查序列的排列需要是等可能的所有排列中的任何一种，需要去设计探查的方法。</p>
@@ -355,7 +355,7 @@
 
 </aside>
 
-<p><img src="/image/%E6%95%A3%E5%88%97(hash)cp0gt1.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/cp0gt1.png"></p>
+<p><img src="https://files.catbox.moe/cp0gt1.png" srcset="/img/loading.gif" lazyload alt="https://files.catbox.moe/cp0gt1.png"></p>
 <p>还可以证明，总的空间复杂度为$O(n)$<strong>(定理2)。</strong></p>
 <p>且，总存储空间大于4n的概率小于0.5。</p>
 <p>因此得出的结论如上。</p>
@@ -376,7 +376,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>散列(hash) </div>
       <div>https://lhish.github.io/project/散列(hash)/</div>
     </div>
     <div class="license-meta">
@@ -421,9 +421,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/" title="">
+                      <a href="/%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/" title="强联通分量 ">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">强联通分量 </span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -431,8 +431,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E7%A6%BB%E6%95%A3/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/%E7%A6%BB%E6%95%A3/" title="离散 ">
+                        <span class="hidden-mobile">离散 </span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
