@@ -1,0 +1,911 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="内涵是对数据的定义以及数据完整性约束的定义。对数据的定义包括对关系、属性、域的定义和说明。对数据完整性约束的定义涉及面较广，主要包括以下两个方面。 静态约束：涉及数据之间的联系（称为“数据依赖”（Data Dependences））、主键和值域的 设计。 动态约束：定义各种操作（插入、删除、修改）对关系值的影响。一般，把内涵称为关系 模式，所以关系模式应包括这些内容。 这样的关系模式和关系一般称为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库2">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E6%95%B0%E6%8D%AE%E5%BA%932/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="内涵是对数据的定义以及数据完整性约束的定义。对数据的定义包括对关系、属性、域的定义和说明。对数据完整性约束的定义涉及面较广，主要包括以下两个方面。 静态约束：涉及数据之间的联系（称为“数据依赖”（Data Dependences））、主键和值域的 设计。 动态约束：定义各种操作（插入、删除、修改）对关系值的影响。一般，把内涵称为关系 模式，所以关系模式应包括这些内容。 这样的关系模式和关系一般称为">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.53.31.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.56.36.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.56.48.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.57.38.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.57.59.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.59.19.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.59.30.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.04.05.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.06.15.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.06.20.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.06.26.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.06.33.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.06.37.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.07.09.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.08.06.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.08.26.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.12.52.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.18.28.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.19.31.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.19.42.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.19.47.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.21.03.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.25.09.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.33.18.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.38.03.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.40.57.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_15.25.05.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.44.06.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.45.17.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.51.43.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_15.36.27.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_15.39.02.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_19.12.01.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_19.13.06.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_19.13.10.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_19.52.37.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_19.54.03.png">
+<meta property="article:published_time" content="2025-08-15T16:11:49.987Z">
+<meta property="article:modified_time" content="2025-08-15T16:11:49.987Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.53.31.png">
+  
+  
+  
+  <title>数据库2 - lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据库2"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-16 00:11" pubdate>
+          2025年8月16日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">数据库2</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>内涵是对数据的定义以及数据完整性约束的定义。对数据的定义包括对关系、属性、域的定义和说明。对数据完整性约束的定义涉及面较广，主要包括以下两个方面。<br>
+静态约束：涉及数据之间的联系（称为“数据依赖”（Data Dependences））、主键和值域的<br>
+设计。<br>
+动态约束：定义各种操作（插入、删除、修改）对关系值的影响。一般，把内涵称为关系<br>
+模式，所以关系模式应包括这些内容。</p>
+<p>这样的关系模式和关系一般称为泛关系模式和泛关系。</p>
+<p>即原来的关系就是一张完整的大表，而数据库中可能会用多张表去存储它</p>
+<p>数据冗余</p>
+<p>操作异常。由于数据的冗余，在对数据操作时会引起各种异常。</p>
+<p>修改异常。</p>
+<p>插人异常</p>
+<p>删除异常</p>
+<p>但是将R 分解成 R1 和 R2两个模式是否是最佳分解，也不是绝对的。</p>
+<p>对两个关系做连接操作，连接的代价是很大的</p>
+<p>把数据之间存在的联系称为“数据依赖”，函数依赖是基本的一种依赖，它是关键码概念的推广。</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.53.31.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.56.36.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.56.48.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>子集必成立，附加必成立，传递必成立</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.57.38.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>！！！</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.57.59.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.59.19.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_00.59.30.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>从F求F+ 是一个复杂且困难的问题， 可以使用属性集然后用类似于最短路的方式求出？</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.04.05.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.06.15.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.06.20.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.06.26.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.06.33.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.06.37.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.07.09.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="无损分解">无损分解</h2>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.08.06.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.08.26.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.12.52.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>1:真包含表示有损分解，s是重构出来的r，对于重构所得的r再次进行一样的分解一定是无损的</p>
+<p>模式分解能消除数据冗余和操作异常现象，并能使数据库中存储悬挂元组，即存储泛关系中无法存储的信息。</p>
+<p>前提是r是R的一个关系，先不提泛关系r的存在性，则会出现悬挂问题：</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.18.28.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>！！！</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.19.31.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.19.42.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.19.47.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>无损分解充分必要，即不包含公共属性集？：</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.21.03.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="保持函数依赖">保持函数依赖</h2>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.25.09.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>其分解前后的函数依赖的闭包相等。</p>
+<p>对于不同的函数依赖集，同样的划分可能是无损分解的，也可能是保持FD集的，但也可能都不。</p>
+<h2 id="范式">范式</h2>
+<p>模式的范式这个标准衡量关系模式的好与坏</p>
+<p>1NF:关系模式 R的每个关系r的属性值都是不可分的原子值</p>
+<p>2NF:1NF且不存在局部依赖：每个非主属性（非候选键（候选键可能多个））完全函数依赖于候选键</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.33.18.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>也就是分解后一张表中的候选键就必须是唯一确定这张表中的任意一列属性的。</p>
+<p>这一点要通过实际的情况来判断，比如课程编号就已经完全推断出课程名了，但是却又课程编号+学生编号推出课程名</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.38.03.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>3NF:1NF且每个非主属性都不传递依赖于 R 的候选键</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.40.57.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>关系的规范化处理：将它们变换成3NF 或更高级的范式</p>
+<p>分解为3NF：</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_15.25.05.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>A→B,A→C,D→E,F</p>
+<p>1)A→BC</p>
+<p>2){ABC,DE}</p>
+<p>3)候选键：ADF</p>
+<p>4)答案：{ABC,DE,ADF}</p>
+<p>！！！</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.44.06.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.45.17.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>BCNF:1NF且每个属性都不传递依赖于 R 的候选键？</p>
+<p>例如，书名+作者，书号+作者都是候选键，但是书名依赖于书号，就不是BCNF了。</p>
+<p>！！！</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_01.51.43.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>X是超键就保证了没有传递依赖？</p>
+<p>分解为BCNF：既然不是BCNF，则必然存在x→y，x不包含超键，那么就将它分解为xy和r_i-y两个模式，但不一定能保持FD</p>
+<p>分解为x→y后x就变成超键了。</p>
+<p>三原则：表达性、分离性和最小冗余性</p>
+<p>表达性涉及两个数据库模式的等价问题</p>
+<p>分离性是指在关系中只存储有直接联系的属性值</p>
+<p>最小冗余性要求分解后的模式个数和模式中属性总效应最少，但带点冗余对提高查询速度是有好处的。</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_15.36.27.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>5NF:</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_15.39.02.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1>数据库设计概述</h1>
+<p>确切地说，数据库设计是指对于一个给定的应用环境，提供一个确定最优数据模型与处理模式的逻辑设计，以及一个确定数据库存储结构与存取方法的物理设计，建立起既能反映现实世界信息和信息联系，满足用户数据要求和加工要求，又能被某个数据库管理系统所接受，同时能实现系统目标，并有效地存取数据的数据库。</p>
+<p>规划、需求分析(信息，处理，安全与完整）、概念设计(概念模式)、逻辑设计(ddl和应用程序)、物理设计(物理结构和程序设计每个接口)、实现和运行维护阶段</p>
+<p>输入：总体信息需求、处理需求、DBMS的特征、硬件和OS特征</p>
+<p>输出 ：完整的数据库结构、基于数据库结构和处理需求的应用程序的设计原则</p>
+<p>分析需求：分析用户活动，产生用户活动图，确定系统范围，产生系统范围图，分析用户活动所涉及的数据，产生数据流图，分析系统数据，产生数据字典</p>
+<p>数据字典：数据项、数据结构、数据流、数据存储和处理过程</p>
+<p>概念模型是对现实世界的抽象和概括，应简洁、明晰、独立于机器、容易理解，应易于变动，应很容易向关系、层次或网状等各种数据模型转换。</p>
+<p>流程：设计局部，综合成全局，评审</p>
+<p>ER分割：垂直分割(对属性分割，键必须都出现)，水平分割(对实体类型分割)，合并，联系分割，联系合并(必须是定义在相同的实体类型）</p>
+<p>流程：设计局部(确定范围，确定实体定义，确定联系定义，确定属性分配)，设计全局(确定公共实体，局部合并，消除冲突)，全局优化(实体类型合并，冗余属性消除，冗余联系消除)</p>
+<p>逻辑设计流程：初始模式的形成，子模式设计，应用程序设计梗概，模式评价，修正模式</p>
+<p>ER转关系模型：联系：N端加入1端的键作为外键，用波浪线，N：M则新增加一个关系用来中转</p>
+<p>物理设计：存储记录结构设计，确定数据存放位置，存取方法的设计，完𤨣性和安全性考虑，程序设计。</p>
+<p>实现：建立，装入数据并测试，实际运行测试</p>
+<p>维护：维护安全与完整，检测并改善性能，根据用户需求调整，修bug。</p>
+<h2 id="数据库管理">数据库管理</h2>
+<p>定义 8.1 事务（Transaction）是构成单一逻辑工作单元的操作集合。不论发生何种情况，DBS必须保证事务能正确、完整地执行。</p>
+<p>begin transaction开始一个事务，commit提交，rollback回初始状态</p>
+<p>ACID：原子性，一致性，隔离性，持久性</p>
+<p>定义8.2 系统能把数据库从被破坏、不正确的状态，恢复到最近一个正确的状态，DBMS 的这种能力称为数据库的可恢复性（Recovery）。</p>
+<p>转储和建立日志，用redo和undo进行恢复</p>
+<p>事务故障：可以预期的事务故障undo，非预期的事务故障undo</p>
+<p>系统故障：对未完成事务进行 UNDO 处理，对已提交事务但更新还留在缓冲区的事务进行 REDO 处理。</p>
+<p>介质故障：重装转储的后备副本到新的磁盘，使数据库恢复到转储时的正确状态，redo所有已提交的事务。<br>
+在检查点时刻才真正做到把对 DB 的修改写到磁盘，并在日志文件写人一条检查点记录。</p>
+<p>对于在检查点之前已经完成的不用管，在检查点后故障点前做完的要redo，其他undo。</p>
+<p>操作方式：根据日志建立事务重做队列和事务撤销队列，并作undo和redo。</p>
+<p>运行记录优先原则：先记录后运行</p>
+<p>sql开始就是事务的开始。</p>
+<p>并发问题：丢失更新问题、读脏数据问题、不一致分析问题。</p>
+<p>通过封锁（上锁，lock:X锁，PX协议:使用X锁的协议,通过XFIND R来获取锁,PXC:为了保证不读未commit的数据，解锁合并到commit中，shared_lock：S锁，PS，通过SFIND R来获取锁，UPDX R来升级为X锁来写，PSC）和时标解决。</p>
+<p>活锁：永远上不了锁（FCFS解决/动态优先级）</p>
+<p>饿死：永远有S锁在占用，上不了X（要求在加S锁的时候前方还有其他等待加锁的人）</p>
+<p>死锁</p>
+<p>调度：事务的执行顺序，如果依次执行就是串行调度，如果是分时同时执行，就是并行调度</p>
+<p>如果一个并行调度是可串行化的，那么就是正确的，即这个并行调度是否可以有一种串行调度和它结果一样，即便可能不同的串行调度得到的结果可能不同。</p>
+<p>使用两段封锁法（在使用前先获取锁，不允许在释放锁后再获取锁）的并行调度必然是可串行的。</p>
+<p>SQL-2的事务存取模式：READ ONLY和READ WRITE（set transaction …)</p>
+<p>隔离级别：serializable(可串行化)，repeatable read(在两次读中不能不同)，read committed(不要求可重复读)， read uncommitted(可以读未提交数据)(set transaction isolation level …)</p>
+<p>完整性：正确性（合法性）、有效性（定义的有效范围内）和相容性（同一事实的两个数据应相同）</p>
+<p>完鳖性子系统：DMBS中执行完整性检查的子系统（检查违规和后处理）</p>
+<p>完整性规则三部分：触发条件，检查错误类型(谓词)，后处理行为(ELSE子句)</p>
+<p>域约束（对特定类型约束）：create domain name default … constraint constraint_name 约束子句</p>
+<p>基本表约束：候选键定义(unique(列名)不默认非空，primary key(列名)默认非空)，外键定义(foreign key(列名) reference 参照表 [列名序列] [ON delete动作][on update动作]，检查约束check(条件表达式)，只对他定义的无效</p>
+<p>动作：no action，cascade所有外键一起删除，restrict没有外键才能删除，set null删除时置为空，set default，删除时设置为默认值。</p>
+<p>断言：create assertion name check(条件)/drop assertion name，优于检查子句</p>
+<p>SQL-3触发器：但触发<strong>事件</strong>，若<strong>条件</strong>成立则执行<strong>动作</strong></p>
+<p>create trigger name after/before/instead of(触发事件时如果满足则用这个语句替换越来的语句) update of 属性名/delete/insert on 表 referencing[创建别名] old ad oldtuple\n new as newtuple (只有update的时候用，用来判断变化情况)when (条件) 动作语句 [for each row];</p>
+<p>drop trigger name</p>
+<p>如果有for each row就是对事件执行时改变的每行进行动作，否则就是对事件执行完后的整张表进行操作</p>
+<p>五种级别的安全措施：环境级，职员级，OS级，网络级，DBS级</p>
+<p>权限：数据权限：增(insert)删(delete)查(read)改(update)；结构权限：增(resource创建新关系)删(drop)查(创建删除索引)改(alteration增删属性)</p>
+<p>视图三优点：数据安全性、逻辑数据独立性和操作简便性。</p>
+<p>sql-2中的权限：select，insert，delete，update，references，usage(使用已定义的域)</p>
+<p>grant 权限(具体属性)/all previleges on 关系/视图/domain 域 to sb. (with grant option)(是否可传递)</p>
+<p>可以添加具体属性来具体范围，如grant insert(P,J) on SPJ什么</p>
+<p>回收：revoke 权限 on … from sb. (restrict/cascade)</p>
+<p>可以通过把revoke改成revoke grant option for来回收转让权限</p>
+<p>加密：有一个加密键，对于要加密的内容，将其分割与加密键相同长度，每一段和加密键模27加然后最后组合。</p>
+<h2 id="分布式数据库DDBS">分布式数据库DDBS</h2>
+<p>定义9.1 DDBS 是物理上分散逻辑上集中的数据库系统，系统中的数据分布存放在计算机网络的不同场地的计算机中，每一场地都有自治处理（即独立处理）能力并能完成局部应用，而每一场地也参与（至少一种）全局应用，程序通过网络通信子系统执行全局应用。</p>
+<p>DDBS 中有两个重要的组成部分：分布式数据库（DDB）和分布式数据库管理系统（DDBMS）。</p>
+<p>定义9.2 DDB 是计算机网络环境中各场地上数据库的逻辑集合。换言之，DDB 是组结构化的数据集合，逻辑上属于同一系统，而物理上分布在计算机网络的各个不同场地。DDB具有<strong>数据分布性</strong>和<strong>逻辑整体性</strong>两个特点。</p>
+<p>场地自治性，场地之间协作性，数据独立性，分布透明性，集中与自治相结合的控制机制，适当增加数据冗余度，事务管理的分布性</p>
+<p>数据分片：垂直/水平/导出/混合，完备性条件，可重构条件，不相交条件</p>
+<p>数据分配：集中式，分割式，全复制式，混合式（有相交的分割）</p>
+<p>分层：全局外模式，全局概念模式（逻辑数据独立性），分片模式（分片透明性，不必考虑分片），分配模式（位置透明性，不需考虑位置），局部概念模式（局部数据模型透明性，不需考虑存储不同），局部内模式</p>
+<p>用户和系统都有全局和局部两种。</p>
+<p>功能：接受用户请求，并判定把它送到哪里；访问网络数据字典；进行分布式处理；通信接口功能；异构型中提供数据和进程移植的支持</p>
+<p>查询，完整性，调度，可靠性四大处理模块</p>
+<p>整个过程中性能的最大代价是：传输，因此如果要进行连接，可以先让少的先过来进行半连接，筛选一下需要的数据，然后再传递过去。</p>
+<p>对于局部连接，可以n^2复杂度匹配能连接的元素，也可以先排序然后使用双指针法</p>
+<p>而如果在不同场地，那么第一种就可以传输内层的，也可以传输外层的，而第二种则只需传输需要的数据，但需要互相通信</p>
+<h2 id="对象关系数据库ORDB">对象关系数据库ORDB</h2>
+<p>平面关系模型：1NF</p>
+<p>嵌套关系模型：允许关系的属性值又可以是一个关系，而且可以出现多次嵌套</p>
+<p>复合对象模型：放宽在关系的定义上集合与元组必须严格交替出现的限制，</p>
+<p>可采用“引用”（Reference）的技术解决类型定义中的递归问题</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_19.12.01.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_19.13.06.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_19.13.10.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>复合类型：行类型(tuple)，数组(array)，列表(list)，包(multiset)，集合(set)</p>
+<p>引用ref(关系)</p>
+<p>setof,multiset,[],type(每一个类型和名字)</p>
+<p>create type name (每一个类型和名字)/setof()/multiset()/type[] (under type)(继承);</p>
+<p>超表中每个元组最多可以与每个子表中的一个元组对应,子表中每个元组在超表中恰有一个元组对应，并在继承的属性上有相同的值。</p>
+<p>sql-3中创建表的时候可以为元组定义对象标识符，便可以通过ref来引用元组。</p>
+<p>结构体中的变量也用.来使用，但是如果是set或者之类的就必须用一个中间变量来，因为他也是一个表</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_19.52.37.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>通过select的属性上加括号查询一个嵌套关系</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E5%BA%932CleanShot_2025-05-28_at_19.54.03.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>create function name(param) returns name as 动作语句;</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据库2</div>
+      <div>https://lhish.github.io/project/hide/数据库2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

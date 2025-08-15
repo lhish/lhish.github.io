@@ -1,0 +1,1003 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="文件和文件系统 文件系统的管理功能是将其管理的程序和数据通过组织为一系列文件的方式实现的。而文件这是指具有文件名的若干相关元素的集合。   数据项、记录和文件  数据项：最低级的数据组织形式，分为基本数据项（描述一个对象的某种属性的字符集，即字段）和组合数据项（基本数据项组合而成）。数据项不但包括数据名，也包括数据类型，而表征一个实体在数据项上的数据为值。 记录：一组相关数据项的集合，用于描述对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件管理">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="文件和文件系统 文件系统的管理功能是将其管理的程序和数据通过组织为一系列文件的方式实现的。而文件这是指具有文件名的若干相关元素的集合。   数据项、记录和文件  数据项：最低级的数据组织形式，分为基本数据项（描述一个对象的某种属性的字符集，即字段）和组合数据项（基本数据项组合而成）。数据项不但包括数据名，也包括数据类型，而表征一个实体在数据项上的数据为值。 记录：一组相关数据项的集合，用于描述对象">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image%203.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%865c40c1d2-3659-49fa-8962-1abcc2b6a287.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image%204.png">
+<meta property="article:published_time" content="2025-08-15T16:11:50.002Z">
+<meta property="article:modified_time" content="2025-08-15T16:11:50.002Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image.png">
+  
+  
+  
+  <title>文件管理 - lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="文件管理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-16 00:11" pubdate>
+          2025年8月16日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">文件管理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="文件和文件系统">文件和文件系统</h2>
+<p>文件系统的管理功能是将其管理的程序和数据通过组织为一系列文件的方式实现的。而文件这是指具有文件名的若干相关元素的集合。</p>
+<ol>
+<li>
+<p>数据项、记录和文件</p>
+<ol>
+<li>数据项：最低级的数据组织形式，分为基本数据项（描述一个对象的某种属性的字符集，即字段）和组合数据项（基本数据项组合而成）。数据项不但包括数据名，也包括数据类型，而表征一个实体在数据项上的数据为值。</li>
+<li>记录：一组相关数据项的集合，用于描述对象在某方面的属性。</li>
+<li>关键字：能够唯一标识一个记录的数据项，有的时候找不到这样的数据项，就用好几个数据项一起作为关键字。</li>
+<li>文件：创建者做定义具有文件名的一组相关元素的集合，分为有结构文件和无结构文件。有结构文件由若干记录组成，无结构则可看作字符流。一个文件有很多属性。</li>
+</ol>
+</li>
+<li>
+<p>文件名和类型</p>
+<ol>
+<li>文件名：在不同的系统中对文件名的要求是不同的，有的区分大小写，有的不能用特殊字符等等。</li>
+<li>扩展名（后缀名）：添加在文件名后的若干个附加字符，指示文件的类型。一般用.分隔，长度1-4字符。</li>
+<li>文件类型
+<ol>
+<li>用途：系统文件，用户文件，库文件（由标准子例程和常用例程构成的文件）</li>
+<li>文件中数据的形式：源文件（由汉字和ASCII组成），目标文件（后缀为.obj，编译了但还未链接），可执行文件</li>
+<li>存取控制属性：只执行文件，只读文件，读写文件</li>
+<li>组织形式和处理方式：普通文件，目录文件，特殊文件（为了便于管理将IO设备视为文件）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>文件系统的层次结构</p>
+<p>分为三层。</p>
+<p><img src="/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol>
+<li>
+<p>对象及其属性：文件，目录（方便用户和提高存取）和磁盘存储空间（管理以高效存取和提高利用率）</p>
+</li>
+<li>
+<p>对对象操纵和管理的软件的集合</p>
+<p>功能：对文件存储空间，文件目录，文件读写的管理，对文件的逻辑地址的转换和文件的共享与保护</p>
+<p>4层结构：IO控制层（由磁盘驱动组成），基本文件系统层（内存与磁盘的数据交换），基本IO管理程序（与磁盘IO相关的部分），逻辑文件系统（处理和记录文件相关的操作）</p>
+</li>
+<li>
+<p>文件系统的接口：命令接口（用户和文件系统直接交付的接口），程序接口（程序和文件系统的接口）</p>
+</li>
+</ol>
+</li>
+<li>
+<p>文件操作</p>
+<ol>
+<li>最基本的文件操作：创建，删除，读，写，设置读写指针在文件中的位置</li>
+<li>文件的打开和关闭操作：如果不打开，则每次对文件操作都要进行一次目录检索，通过打开，将文件的路径拷贝到内存中的打开文件表中，将表目的编号返回给用户，让文件和用户之间建立一个链接，后续就不用进行目录检索，主要根据这个编号去文件表中查找即可。不再需要就删除这一表目即可。</li>
+<li>其他文件操作：对文件操作的系统调用，如对文件属性进行更改和获取。和与目录相关的操作，以及实现文件共享，对文件系统进行操作等的系统调用。</li>
+</ol>
+</li>
+</ol>
+<h2 id="文件的逻辑结构">文件的逻辑结构</h2>
+<p>系统中的所有文件都存在着文件的逻辑结构（文件组织）和文件的物理结构。</p>
+<p>这两者结构都会影响文件的检索速度。</p>
+<ol>
+<li>
+<p>文件逻辑结构的类型</p>
+<p>文件逻辑结构设计的主要目的是提高文件的检索速度，并且易于修改，并降低文件在外存上的存储费用。</p>
+<ol>
+<li>
+<p>文件是否有结构</p>
+<p>有结构文件中，每个记录都用于描述实体集中的一个实体，记录可分为定长和不定长。</p>
+<p>定长则所有的记录的长度都是相同的，各数据在记录中的位置相同，能提高检索速度和效率，并方便修改文件。</p>
+<p>变长则所有的记录的长度不先共通，但检索速度慢，不便修改，用于商业领域。</p>
+<p>有结构文件也就在数据库和信息管理中大量出现，平常的文件都是无结构文件，即流式文件，长度以直接为单位，利用读写指针来访问，可看作一种特殊的有结构文件，一个记录仅有一个字节。</p>
+</li>
+<li>
+<p>文件的组织方式</p>
+<p>顺序文件：一系列记录按某种顺序排列</p>
+<p>索引文件：为可变长文件记录的索引表</p>
+<p>索引顺序文件：为每一组中的第一个记录建立索引表项而非每一个，首先先找到记录是在哪一组的，然后再在组内进行顺序查找，这样索引表就不会很大</p>
+</li>
+</ol>
+</li>
+<li>
+<p>顺序文件</p>
+<ol>
+<li>
+<p>顺序文件的排列方式</p>
+<p>串结构：按存入时间先后排序，每次检索从头开始一一查找</p>
+<p>顺序结构：选择一个字段作为关键字，按关键字排序，就可以使用各种查找算法</p>
+</li>
+<li>
+<p>顺序文件的优点：批量存取效率最高，对于顺序存储设备只有顺序文件才能工作。</p>
+</li>
+<li>
+<p>顺序文件的缺点：增删查的效率都很低，限制了顺序文件的长度，为了解决增删慢的问题，可以将更改放在另一个文件中，每个一段时间合并延迟更新，也要更新关键字。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>记录寻址</p>
+<p>为了访问顺序文件中的一条记录，需要找到其地址。</p>
+<ol>
+<li>
+<p>隐式寻址方式</p>
+<p>读写分别对应读写指针，为了到下一条记录，定长文件只需要加上记录的长度即可，而不定长文件则需要先读出当前记录的长度，然后在加上对应的长度就能到达下一条记录了，访问较慢。</p>
+</li>
+<li>
+<p>显式寻址方式</p>
+<p>很显然，定长可以直接算出记录的位置，将其按0-n-1标号，地址就是i*L。</p>
+<p>而变长则不能，因为需要知道前面每一个记录的长度。</p>
+<p>另一种方式是关键字，利用该关键字顺序的从第一个开始进行一个一个比对来查找。是不能通过排序的方式来快速查找的，因为是变长，根本不知道中间在哪里。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>索引文件</p>
+<p>效率变高，但增加了存储成本。</p>
+<ol>
+<li>
+<p>按关键字建立索引</p>
+<p>对于变长的文件，可以建立对应的索引表，三列分别是索引号（关键字），长度和指向该表项地址的指针，就将变长文件转变成了定长文件，就能使用折半查找了。</p>
+</li>
+<li>
+<p>具有多个索引表的索引文件</p>
+<p>但是这只能按关键字进行查找，但实际情况下可能有其他查找需求，因此可以创建很多索引表。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>索引顺序文件</p>
+<p>结合了顺序文件和索引文件的有点，并且增加了溢出文件，用他来记录新增删改的记录。</p>
+<p>另外，当文件内容多的时候，可以不止采用一级索引顺序文件，而是多级索引结构。</p>
+</li>
+<li>
+<p>直接文件</p>
+<p>前几种在获得键值后都需要进行查询才能找到。而直接文件，可以直接将关键字转化为对应的物理地址，称为键值转化。</p>
+</li>
+<li>
+<p>哈希文件</p>
+<p>也是直接文件，是目前最广泛的一种直接文件，可以通过哈希函数进行键值转换。但是为了动态分配，转换所得的不是记录的地址，而是其目录表表项的地址，再由目录表表项所存储的地址得到最终的记录的地址。</p>
+</li>
+</ol>
+<h2 id="文件目录">文件目录</h2>
+<p>目录管理需要实现：按名存取，提高对目录的检索速度，文件共享和允许文件重名。</p>
+<ol>
+<li>
+<p>文件控制块和索引节点</p>
+<ol>
+<li>
+<p>文件控制块FCB（File Control Block）</p>
+<p>每一个文件对应一个文件控制块，用于对文件操作，FCB的有序集合就是文件目录。</p>
+<p>一般包括三种信息：基本信息（文件名，文件物理位置，文件逻辑结构，文件物理结构），存取控制信息（权限），使用信息（文件时间信息，使用信息等等）</p>
+</li>
+<li>
+<p>索引节点</p>
+<p>目录一般放在磁盘上，为了查找文件，就必须查看这些目录，但如果文件很多，而每次只能调入一盘块的目录项，则就需要启动磁盘很多次。但实际上，这些目录项中，与此时查找相关的只有文件的文件名，因此可以将文件名和文件描述信息分开，将文件描述信息单独形成一个索引节点，并建立一个目录表，第一列是用于查找的关键字，第二列是指向这个索引节点。就能减少启动磁盘的次数。</p>
+<p>索引节点包括文件主标识符，文件类型，文件存取权限，文件物理地址，文件长度，文件连接计数，文件存取时间。</p>
+<p>而当文件被打开时，索引节点也将被拷贝到内存中，并增加了索引节点编号，状态（上锁或修改），访问计数，文件所属文件系统的逻辑设备号，链接指针。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>简单的文件目录</p>
+<ol>
+<li>
+<p>单级文件目录</p>
+<p>在整个文件系统中只建立一张目录表，每个表项包括各种文件属性和状态位（为了表名该目录项是否空闲，即是否有文件）。</p>
+<p>建立新文件时检索所有目录项的文件名保证文件名唯一，接着找一个空白项填入并置状态位为1。删除时找到目录项，回收存储空间，再清楚目录项。</p>
+<p>只完成了按名存取，但查找速度慢，不允许重名，且不便于文件共享（要求按同以名称来访问）。</p>
+</li>
+<li>
+<p>两级文件目录</p>
+<p>最外层是主文件目录MFD（Master File Directory），而每个用户也有一个用户文件目录UFD（User File Directory）。每个UFD占据MFD中的一个目录项，目录项包括用户名和指向子目录的指针。UFD内部与单级文件目录类似。</p>
+<p>相较于前者，提高了检索目录的速度，只需检索UFD即可；在不同的用户目录中可以使用相同的文件名；不同用户可以使用不同的文件名来访问系统中的同一个共享文件。</p>
+<p>但用户的完全隔离会导致用户之间的共享文件，合作变得困难。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>树形结构目录</p>
+<p>是最通用和最实用的。有一个根目录，数据文件是树叶，其他目录为树的节点。</p>
+<p>为了提高文件系统的灵活性，目录文件中的目录项既作为目录文件的FCB，也作为数据文件的FCB，并可以用目录项中的一位来只是其分类。</p>
+<p><img src="/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image%201.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在2号节点中，A是目录文件的FCB，而B和D是数据文件的FCB。</p>
+<p>树形结构查询速度更快，且结构更加清晰，也容易进行权限管理。但查找时需要逐个访问中间节点，增加了磁盘访问次数，影响了查询速度。</p>
+<ol>
+<li>
+<p>路径名</p>
+<p>任何数据文件的路径都是唯一的，把所有目录文件名和数据文件名用/连接。</p>
+</li>
+<li>
+<p>当前目录</p>
+<p>对于程序来说，所有路径都是相对路径。</p>
+</li>
+<li>
+<p>目录操作</p>
+<p>创建目录，删除目录（有两种，一种连带其中的文件一起删掉，一种不允许里面存在文件，需要先将其中的文件删除，前者方便但危险），改变目录，移动目录，链接操作（可以让指定文件拥有多个父目录，方便文件共享），查找。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>目录查询技术</p>
+<ol>
+<li>
+<p>线性检索法（顺序检索法）</p>
+<p>对于单级目录，就直接顺序查找到指定文件的目录项。</p>
+<p>对于树形目录，根据文件名从第一个分量开始从根目录开始查找，找到第一个文件分量名对应的索引节点，从磁盘中读出这个目录的信息，接着循环查找即可，直到无法匹配或者找到。</p>
+</li>
+<li>
+<p>Hash方法</p>
+<p>可以将文件名转成索引值来在每个目录下方便查找，但如果使用了模式匹配文件名，就不能使用Hash了。</p>
+<p>但是在实际情况中，可能出现多个文件名转成同一个Hash的情况。因此查找要遵循一些规则，如果这个索引对应的目录项为空，则文件不存在；如果匹配，则找到；如果文件名不匹配，就发生了冲突，就将索引值加上一个常数，继续查找。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="文件共享">文件共享</h2>
+<p>通过共享，能够方便合作，也能极大节省存储空间。</p>
+<ol>
+<li>
+<p>基于有向无(循)环图实现文件共享</p>
+<ol>
+<li>
+<p>DAG(Directed Acyclic Graph)</p>
+<p>树是不对称的，一个父目录可以有多个子节点，但是一个子节点只能有一个父目录。因此，需要破坏其树形结构，变为DAG，让一个节点能有多个父节点。</p>
+<p><img src="/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image%202.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>但是共享时直接存储文件的物理地址是行不通的，因为，在对文件进行操作的时候，其物理地址和相关文件信息也都会被变化，但是却不能让共享文件的另一方知晓，因此行不通。</p>
+</li>
+<li>
+<p>利用索引节点</p>
+<p>因此不再直接存储物理地址，而是存储一个指向索引节点的指针，这个索引节点包含文件物理地址和其他文件属性，这样更改对于其他共享者也是可见的了。</p>
+<p>索引节点除了信息外还会额外存储两个信息，一个是owner，即创建者是谁，在文件创建后直到删除都不会再改变，即便拥有者已经删除了这个文件（不再共享这个文件），这个属性也不会变化。另一个是counter，记录现在还有多少个共享该文件的目录，用于管理其生命周期。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>利用符号链接实现文件共享</p>
+<ol>
+<li>
+<p>利用符号链接(Symbolic Linking)的基本思想</p>
+<p>相较于DAG，符号链接并没有创建真正的额外链接。仅仅是符号链接，类似于weak_ptr，在图上为虚线。只有唯一一个主父目录，用实线，这样属主结构仍然是树，各种对目录文件的操作更加方便。</p>
+<p><img src="/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image%203.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>实现共享</p>
+<p>实现上，符号链接创建了一个文件，文件中仅保存被链接文件的文件路径。当访问这个符号链接的时候，就不会将其当成一个真实存在的文件，而是根据其中的路径名(符号链)访问真正的文件，进行操作。</p>
+</li>
+<li>
+<p>优点</p>
+<p>当删除后，不会再留下一坨悬空指针，其他符号链接当发现访问对象不存在，访问失败并将符号链删除。</p>
+</li>
+<li>
+<p>存在的问题</p>
+<p>每个共享用户的符号链虽然不大，但也仍然会占据一定存储空间。而且为了寻到真正的文件位置，就需要不断访问磁盘，访问文件的开销更大。</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>并且，上述的两种共享文件的方式实际上就是在不同的用户空间下用不同文件名存储了统一文件，因此在拷贝的时候就可能会产生重复拷贝。</p>
+<h2 id="文件保护">文件保护</h2>
+<p>由于人为因素，系统因素，自然因素等各种原因文件可能会不安全，即产生毁坏或丢失，因此需要采取一些措施。其中一方面就是存取控制机制来防止人为因素。</p>
+<ol>
+<li>
+<p>保护域</p>
+<p>每一个进程仅能在保护域执行操作，且只应允许进程访问他们具有访问权的对象。</p>
+<ol>
+<li>访问权：系统控制进程对对象的访问，对象可以是硬件也可以是软件，每个访问权都是一个键值对(对象，权集），权集中包括读写执行等。</li>
+<li>保护域：进程对一组对象访问权的集合，进程只能在指定域内执行操作。</li>
+</ol>
+<p>静态域：进程和域可以一一对应，这代表进程在整个生命周期可用资源都是固定的。但实际上进程不是时时刻刻都需要域内的所有资源，因此实际上是冗余的。</p>
+<p>动态域：进程和域是一对多关系。进程在不同的阶段与不同的域有联系，这样就可以很好地控制进程在运行时每一个阶段的权限，但则需要系统有保护域切换功能。</p>
+</li>
+<li>
+<p>访问矩阵</p>
+<p>可以用一个矩阵来描述一个系统中的所有保护域，列是对象，行是保护域，Access[i,j]中的权限集代表了第i个保护域中对第j个对象允许的权限。</p>
+<p><img src="/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%865c40c1d2-3659-49fa-8962-1abcc2b6a287.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>而一般情况下这些权限的定义是有文件的创建者来设定的。</p>
+<p>而对于能动态切换保护域的系统，也同时可以对保护域的切换进行限制，如什么保护域可以切换到什么保护域等。这可以通过将保护域看作对象来做到，在访问列表中增加保护域列，若该项为S(Switch)则表示可以从第i个保护域切换到第j个保护域。</p>
+<p><img src="/image/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86image%204.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>访问矩阵的修改</p>
+<p>除了创建者能够对访问列表进行修改，总共有三种办法也能进行修改。</p>
+<ol>
+<li>拷贝权：对于字母右上角带<em>的权限代表其具有拷贝权，能够将这一属性拷贝到同一列的其他行去，即同一进程的任何域上，但拷贝的结果不带</em>，即不存在扩散性。</li>
+<li>所有权：如果某个保护域对某个对象具有O权限，则如果有进程处于这个保护域中，则可以更改这一列上的任意权限，无论增删，即能够更改该对象在任意保护域下的权限。</li>
+<li>控制权：如果第i个保护域对第j个保护域有控制权(access[i,j]=control)，那么这个保护域就能更改第j个保护域对应的这一行的任何权限，无论增删，即第i个保护域能对第j个保护域任意更改。</li>
+</ol>
+</li>
+<li>
+<p>访问矩阵的实现</p>
+<p>但实际上的实现上，对象很多，保护域也很多，因此表占用的存储空间很大，但更重要的是实际上一个进程根本用不了多少对象，因此，这是一个非常稀疏的矩阵。</p>
+<ol>
+<li>
+<p>访问控制表</p>
+<p>一种简化的方式就是按列划分，每一列作为一张表（{域，权集}有序对组成的集合）。并将其中的空缺部分去掉，有的时候会放在FCB中。</p>
+</li>
+<li>
+<p>访问权限表</p>
+<p>按行划分，可以用来描述用户或进程对于每一个文件所能执行的一组操作。</p>
+<p>一般只有访问权限表是安全的，其保护的对象才是安全的，因此一般放在系统区中的一个专用区中。</p>
+</li>
+</ol>
+<p>大部分系统会同时采用这两种表，当一个进程第一次访问一个对象时，先检查访问控制表，查看时候有权限，如果没有就拒绝并报异常，否则就给他创建一个访问权限并连接到进程，后续就靠这把(key)，不用再查询了。</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>文件管理</div>
+      <div>https://lhish.github.io/project/hide/文件管理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

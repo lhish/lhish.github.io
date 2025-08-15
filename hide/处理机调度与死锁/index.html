@@ -1,0 +1,995 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="通过中断才能执行调度，否则，就会一直运行这一个程序直到完成。     处理机调度的层次和调度算法的目标   处理机调度的层次   高级调度（长程调度&#x2F;作业调度），频率较低，因此可以用花费时间长的算法 调度对象：作业 用处：将外存上的作业调度到内存上 适用：多道批处理 不适用：实时分时   中级调度（内存调度） 调度对象：进程 用处：将暂时不能运行的进程调度到外存上   低级调度（进程调度&#x2F;短程调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="处理机调度与死锁">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="通过中断才能执行调度，否则，就会一直运行这一个程序直到完成。     处理机调度的层次和调度算法的目标   处理机调度的层次   高级调度（长程调度&#x2F;作业调度），频率较低，因此可以用花费时间长的算法 调度对象：作业 用处：将外存上的作业调度到内存上 适用：多道批处理 不适用：实时分时   中级调度（内存调度） 调度对象：进程 用处：将暂时不能运行的进程调度到外存上   低级调度（进程调度&#x2F;短程调">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%203.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%204.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%205.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%206.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%207.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%208.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%209.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%2010.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%2011.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%2012.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%2013.png">
+<meta property="article:published_time" content="2025-08-15T16:11:49.974Z">
+<meta property="article:modified_time" content="2025-08-15T16:11:49.974Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image.png">
+  
+  
+  
+  <title>处理机调度与死锁 - lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="处理机调度与死锁"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-16 00:11" pubdate>
+          2025年8月16日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">处理机调度与死锁</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>通过中断才能执行调度，否则，就会一直运行这一个程序直到完成。</p>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%201.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%202.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%203.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%204.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="处理机调度的层次和调度算法的目标">处理机调度的层次和调度算法的目标</h2>
+<ol>
+<li>
+<p>处理机调度的层次</p>
+<ol>
+<li>
+<p>高级调度（长程调度/作业调度），频率较低，因此可以用花费时间长的算法</p>
+<p>调度对象：作业</p>
+<p>用处：将外存上的作业调度到内存上</p>
+<p>适用：多道批处理</p>
+<p>不适用：实时分时</p>
+</li>
+<li>
+<p>中级调度（内存调度）</p>
+<p>调度对象：进程</p>
+<p>用处：将暂时不能运行的进程调度到外存上</p>
+</li>
+<li>
+<p>低级调度（进程调度/短程调度），频率高，所以要简单快</p>
+<p>调度对象：进程</p>
+<p>用处：给就绪队列中的任务分配处理机</p>
+<p>适用：所有</p>
+</li>
+</ol>
+</li>
+<li>
+<p>处理机调度算法的目标</p>
+<ol>
+<li>共同目标：资源利用率，公平性，平衡性，策略强制执行（必须按指定的策略执行）</li>
+<li>批处理系统：平均周转时间短（一般用带权周转时间来衡量<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mfrac><mrow><msub><mi>T</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mtext>作业周转时长）</mtext></mrow><mrow><msub><mi>T</mi><mi>s</mi></msub><mo stretchy="false">(</mo><mtext>系统提供服务时间</mtext><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">W=\frac{1}{n}\sum_{i=1}^{n}\frac{T_i(作业周转时长）}{T_s(系统提供服务时间)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord cjk_fallback mtight">系统提供服务时间</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord cjk_fallback mtight">作业周转时长）</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，系统吞吐量高，利用率高。</li>
+<li>分时系统：响应速度快，均衡性</li>
+<li>实时系统：截止时间的保证，可预测性</li>
+</ol>
+</li>
+</ol>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%205.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="作业与作业调度">作业与作业调度</h2>
+<ol>
+<li>
+<p>批处理系统中的作业</p>
+<p>作业：包含程序，数据，和一个说明书，在批处理系统中是以作业为单位从外存调到内存。实际上就是一个宏观上的任务。</p>
+<p>作业步：实际上就是每一步</p>
+<p>作业控制块：为了调度作业，在作业进入系统的时候，给每一个作业设置一个控制块JCB。通过JCB来控制作业。</p>
+<p>三个阶段和三个状态：收容阶段（输入）→后备状态（放在后备序列中）→运行阶段(运行状态)→完成阶段(完成状态)</p>
+</li>
+<li>
+<p>作业调度的主要任务：接纳多少个作业(利用率和配置上的抉择)和接纳哪些作业（策略）</p>
+</li>
+<li>
+<p>先来先服务FCFS：选择队列中等的最久的调入内存。但现在已经很少使用FCFS，一般都是混合使用。</p>
+</li>
+<li>
+<p>短作业优先SJF：根据作业运行时长进行判断，越短优先级就越高。</p>
+<p>缺点：必须预估运行时间；对长作业不利；人机无法交互；未考虑作业紧迫程度</p>
+</li>
+<li>
+<p>优先级调度算法PSA：根据作业的紧迫程度，由外界赋予优先级，优先级高的先运行。</p>
+</li>
+<li>
+<p>高响应比优先调度算法HRRN：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>优先权</mtext><mo>=</mo><mfrac><mrow><mtext>等待时间</mtext><mo>+</mo><mtext>要求服务时间</mtext></mrow><mtext>要求服务时间</mtext></mfrac></mrow><annotation encoding="application/x-tex">优先权=\frac{等待时间+要求服务时间}{要求服务时间}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">优先权</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">要求服务时间</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">等待时间</span><span class="mbin mtight">+</span><span class="mord cjk_fallback mtight">要求服务时间</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，即考虑了等待时间也考虑了作业长短，当等待时间相同，则跟短作业一致，要求服务时间相同，则更FCFS相同。</p>
+</li>
+</ol>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%206.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="进程调度">进程调度</h2>
+<p>进程调度的任务有三：保留现场信息，选取新进程，分配给该进程。</p>
+<p>一般由3个部分组成：</p>
+<ol>
+<li>排队器：按一定策略排队，以便分配器快速拿到要使用的进程</li>
+<li>分派器：将进程从排队器中取出，然后交与上下文切换器。</li>
+<li>上下文切换器：首先保存当前进程，然后将新选的装入处理器的寄存器。</li>
+</ol>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%207.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>调度方式：</p>
+<ol>
+<li>非抢占模式：直到程序运行完，才切换；或者产生了阻塞。实现简单，适用于批处理系统，但不适合分时和实时。</li>
+<li>抢占模式：允许随时暂停一个正在运行的程序；能够实现人机交互，满足实时性任务，也能避免长任务长时间占用。但需要按照优先权，短进程优先和时间片原则。</li>
+</ol>
+<p>各种调度算法：</p>
+<ol>
+<li>
+<p>轮转调度算法：按照就绪队列的顺序，每次给队首一个时间片的时间执行，若时间片用完，则扔至末尾，或者任务已经完成，就切换下一个队首。能够保证在一个确定的时间内就能进行一次CPU执行。</p>
+<p>但是时间片很难确认：时间片太短，切换的太频繁。时间太长，就变成FCFS了。</p>
+</li>
+<li>
+<p>优先级调度算法：</p>
+<p>非抢占式：每次分配给最高优先级的完成，直到完成之后，才能选择下一个优先级最高的</p>
+<p>抢占式：每次进来一个新的，如果优先级比在运行的更高，就立即打断，开始执行新的</p>
+<p>优先级的确定：</p>
+<p>静态优先级：用一个某一范围内的一个整数来表示。一般用进程类型，进程对资源的需求和用户要求来确定这个整数的大小，但这种方法可能不够精确，可能会发生优先级低的进程永远不被调用。</p>
+<p>动态优先级：在一开始赋予一个数值后。随着时间的进行，可以逐渐升高，或者如果随着占用CPU时间越来越久，逐渐降低等。</p>
+</li>
+<li>
+<p>多队列调度算法</p>
+<p>设置多个队列，每个队列采用不同的策略，而每个队列使用一个处理机，就很完美。</p>
+</li>
+<li>
+<p>多级反馈队列调度算法</p>
+<p>无需知道各种进程所需执行时间，是一种当前较好的进程调度算法。</p>
+<p>设置多个就绪队列，按优先级设置为队列1-n。越小越高。</p>
+<p>第i个就绪队列的时间片为第i-1个的2被。</p>
+<p>所有队列采用FCFS算法，从高到低执行轮转法，但是当一个时间片结束但任务没完成的，就扔到次一级的就绪队列的队尾，而对于第i个队列，只有前面所有队列都没任务了，才运行本队列。</p>
+<p>但如果在为第i队中的某个进程服务，但是突然来了一个更高的，就直接扔回队尾，去执行更高的。</p>
+</li>
+<li>
+<p>基于公平原则的调度算法</p>
+<p>保证调度算法：保证每个进程从创建开始分配到的时间是平均的。</p>
+<p>实现方法：每次计算所有进程实际执行时间和应当执行时间的比例，选择比例最小的执行，直到他不是最小的。</p>
+<p>公平分享调度算法：如果每个用户所拥有的进程数不同，就会对用户不公平。这种调度算法就是要使每一个用户的获得的</p>
+</li>
+</ol>
+<h2 id="实时调度">实时调度</h2>
+<ol>
+<li>
+<p>为了实现实时调度，需要：（HRT，硬实时任务，SRT，软实时任务）</p>
+<p>就绪时间；开始和完成截止时间；处理事件；资源需求；优先级</p>
+<p>高性能：因为对于实时调度，对性能是有一个硬性指标的，只要低于某一个量就必然完成不了</p>
+<p>采用抢占式调度：满足HRT对截止时间的要求。但如果是对于小一点的系统，非抢占式也问题不大，但是要所有的实时任务都较小，并能及时释放处理器。</p>
+<p>能够快速切换：快速响应中断和快速任务分配（切换）</p>
+</li>
+<li>
+<p>非抢占式轮转调度算法：为每一个对象创建一个实时任务，建立一个轮转队列，当任务完成后，就挂到轮转队列的末尾等待，继续选择下一个执行，会产生数秒到数十秒的延迟。</p>
+</li>
+<li>
+<p>非抢占式优先调度算法：如果其中具有一些有一定要求的实时任务，可以为这些赋予比较高的优先级，将他们放在队首，在完成当前任务后，就可以执行这些优先级高的任务。响应时间减少到数秒至数百毫秒。</p>
+</li>
+<li>
+<p>基于时钟中断的抢占式优先级调度算法：当时钟中断的时候，才根据优先级进行抢断，可降至几十到几毫秒。</p>
+</li>
+<li>
+<p>立即抢占的优先级调度算法：立即剥夺抢占。</p>
+</li>
+</ol>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%208.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol>
+<li>
+<p>最早截止时间优先EDF</p>
+<ol>
+<li>非抢占式用于非周期实时任务：根据当前所有任务中截止时间最早的确定下一个任务</li>
+<li>抢占式用于周期实时任务：实时根据截止时间最早的抢占，相较于固定优先度是更优的。</li>
+</ol>
+</li>
+<li>
+<p>最低松弛度优先LLF</p>
+<p>依据的标准是松弛度：松弛度就是距离最晚开始时间（截止时间-任务时长）的时长。</p>
+</li>
+<li>
+<p>优先级倒置</p>
+<p>按理来说，不管是抢占式还是是非抢占式，都应该是优先级高的优先，但是，如果优先级高的P1来晚了，而与其共享资源的P3是一个优先级低的进程，而在运行到与其共享资源占用资源后却被另一个进程抢占了，就会导致P1的延迟运行。</p>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%209.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>方法1:进程在进入临界区后不允许被抢占。这在临界区不长的时候问题不大，但如果很长的话就也要等待很长时间。</p>
+<p>方法2:当一个更高优先级的使用相同临界资源的进入队列并因为临界资源发生阻塞，就将其优先级在临界区结束前都赋值给占用临界资源的进程，避免被抢占。这种方法可能在更加复杂的情况下更优？</p>
+</li>
+</ol>
+<h2 id="死锁概述">死锁概述</h2>
+<ol>
+<li>
+<p>对于计算机中的资源可以从两方面分类。</p>
+<p>一方面是：可重用性上来说</p>
+<ol>
+<li>可重用性资源：一般在运行时总数固定，在一个进程使用完后就会归还</li>
+<li>可消耗性资源：在运行时由进程动态创建，因此一直是在变化的，如进程通信的消息</li>
+</ol>
+<p>另一方面是：从可抢占性上来说</p>
+<ol>
+<li>可抢占性资源：指某进程获得该资源后会被其他进程或系统抢占，如CPU和内存</li>
+<li>不可抢占性：当资源被分配后，不能强行回收，必须等待进程使用完后自动释放，如磁盘</li>
+</ol>
+</li>
+<li>
+<p>引起死锁的三种情况</p>
+<ol>
+<li>
+<p>竞争不可抢占性资源</p>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%2010.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>当出现类似这种情况的时候，就会发生死锁。如果用资源分配图描述：</p>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%2011.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>当形成一个环的时候就是死锁。</p>
+</li>
+<li>
+<p>竞争可消耗性资源</p>
+<p>当三个进程按照一个圈的形状互相发送消息，如果先都进行receive的等待，就会产生死锁，如果用资源分配图也会新城一个环。</p>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%2012.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>进程推进顺序不当</p>
+<p>当有两个进程和两个共享资源时，推进方式有多种可能，但如果进入了阴影区域，就是不安全区，就会产生死锁，但实际上我感觉就是上面的两个的总结。</p>
+<p><img src="/image/%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E4%B8%8E%E6%AD%BB%E9%94%81image%2013.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+</li>
+<li>
+<p>死锁：如果一组进程中的每一个进程都在等待仅由改组进程中的其他进程才能引发的时间，那么这组线程是死锁的。</p>
+</li>
+<li>
+<p>产生死锁的4个必要条件：互斥条件；请求和保持条件（在持有不可抢占资源的情况下去请求新资源）；不可抢占；循环等待条件。</p>
+</li>
+<li>
+<p>处理死锁的方法：预防死锁（通过各种限制条件来破坏四大条件），避免死锁（在资源分配的过程中，防止进入不安全去），检测死锁（检测到之后强制脱离），解出死锁。</p>
+</li>
+</ol>
+<h2 id="预防死锁">预防死锁</h2>
+<p>一般破坏的都是后三个条件。</p>
+<ol>
+<li>
+<p>破坏请求和保持</p>
+<p>有两种协议实现。</p>
+<ol>
+<li>
+<p>要求进程一开始就将所有资源都请求到，这样就不会再发生请求了，也就破坏了请求和保持。</p>
+<p>但是资源被严重浪费并且可能发生饥饿现象（所需的所有资源可能得过很久才能被其他进程释放掉）</p>
+</li>
+<li>
+<p>允许一开始并不请求所有资源，但每次要请求新的资源的时候都要将持有的所有不可抢占资源全部释放。把第一种方式的两个弊端都避免了。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>破坏不可抢占</p>
+<p>相较于前一种，是在程序中进行逐步的合理的释放逻辑，而这个这是要强硬地破坏掉不可抢占。当要请求新的资源的时候，直接将不可抢占的释放掉，直到需要的时候再拿回来。</p>
+<p>但这种方法不仅实现复杂，并且要付出很大代价，不仅延长了进程的周转时间，加大了开销还降低了吞吐量。</p>
+</li>
+<li>
+<p>破坏循环等待条件</p>
+<p>将所有的不可抢占资源都进行排序并标号，要求所有的进程都必须按顺序从小到大请求资源。如果要请求一个比已经持有的更小的资源，就必须先释放更大的，然后，再从小重新请求。</p>
+<p>这时候序号的设定的合理性就很关乎性能了。这种方法的资源利用率和系统吞吐量都有改善。</p>
+<p>但是，限制了新设备的增加；当进程使用顺序不是顺序的时候就会造成对资源的浪费；限制了编程的自由度。</p>
+</li>
+</ol>
+<h2 id="避免死锁">避免死锁</h2>
+<ol>
+<li>
+<p>安全状态：系统能按照某种进程推进顺序为每个进程分配其所需资源，直至其最大需求，是每个进程都可顺利完成。</p>
+<p>而只要一进入不安全状态，就可能导致死锁。</p>
+<p>因此需要在每一次请求的时候都判断这一次请求时候会导致自己进入不安全状态。</p>
+</li>
+<li>
+<p>银行家算法：对于每一次请求，都要记录当前可用资源数量Available，最大需求矩阵Max，分配矩阵Allocation，和需求矩阵Need(=Max-Allocation)。</p>
+<p>每一次在请求的时候，假设请求大小为Req。</p>
+<p>首先判断Req≤Need，不成立则说明请求非法。</p>
+<p>判断Req≤Available，不成立说明暂时资源不够，需要等待。</p>
+<p>进行实际分配，Allocation+=Req，Need-=Req，Available-=Req。</p>
+<p>进行安全性检验。</p>
+<p>在检验的每一轮中都要记录截止当前完成的进程为止有多少Avai的资源Work，和是否完成Finish.</p>
+<p>每一轮寻找一个未完成(Finish=false)并且资源需求量Need≤当前Avai的资源Work的进程（能按照某种进程推进顺序为每个进程分配其所需资源，直至其最大需求，是每个进程都可顺利完成），如果找不到，则不安全。</p>
+<p>如果找到，则分配，Work+=Allocation(假设这个进程被分配资源后并且运行完了)，Finish=true。</p>
+<p>当能够找到一个序列包含所有进程，则安全。</p>
+</li>
+</ol>
+<h2 id="死锁的检测与解除">死锁的检测与解除</h2>
+<ol>
+<li>
+<p>死锁的检测</p>
+<p>需要一直记录所有资源的状态，可以使用资源分配图来记录。</p>
+<p>资源分配图中，由资源指向进程的一根线就代表分配一个资源给这个进程，由进程指向资源的一根线表示进程请求一个这个资源。</p>
+<p>死锁检测的方法：找到一个不阻塞也不独立且能够在当前资源分配图下满足其所有Req边的进程（所有的Req≤Work），消去他的所有边，不断重复，如果能消去所有边，则不死锁，否则死锁。</p>
+</li>
+<li>
+<p>死锁的解除</p>
+<p>一种是人工来解除</p>
+<p>另一种是用死锁解除算法</p>
+<ol>
+<li>
+<p>抢占资源。从其他进程里面抢一点资源给死锁进程。</p>
+</li>
+<li>
+<p>停止进程。直接停止死锁进程，直到循环不成立，不再死锁。</p>
+<ol>
+<li>终止所有死锁进程，但代价很高</li>
+<li>按照代价最低的策略逐个释放死锁进程，但需要每一次释放都要计算一次当前时候仍然处在死锁的状态。但这个“代价最低”很难衡量。</li>
+</ol>
+</li>
+<li>
+<p>付出代价最小的死锁 解除算法</p>
+<p>一种方式就是暴力所有解除的顺序，但代价很高。</p>
+<p>另一种方式就是对于每一次的所有能够选择进行解除的进程，找到其中代价最小的一个进行解除。直到不死锁。但这并不是最优的。</p>
+</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>处理机调度与死锁</div>
+      <div>https://lhish.github.io/project/hide/处理机调度与死锁/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

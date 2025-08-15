@@ -1,0 +1,1021 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="用户接口 总共有三种用户接口：字符显示式联机用户接口、图形化联机用户接口、脱机用户接口   字符显示式联机用户接口 通过命令语言（以命令为基本单位指示操作系统完成特定功能）对作业进行控制并取得操作系统的服务。   命令行方式 以Command arg1…argn的格式。一般是串行处理，但是如果需要并行处理，可以在命令结尾加入特定标记让其在后台运行来进行并行。   批命令方式（Shell或Bat脚本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统接口">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="用户接口 总共有三种用户接口：字符显示式联机用户接口、图形化联机用户接口、脱机用户接口   字符显示式联机用户接口 通过命令语言（以命令为基本单位指示操作系统完成特定功能）对作业进行控制并取得操作系统的服务。   命令行方式 以Command arg1…argn的格式。一般是串行处理，但是如果需要并行处理，可以在命令结尾加入特定标记让其在后台运行来进行并行。   批命令方式（Shell或Bat脚本">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image%203.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image%204.png">
+<meta property="article:published_time" content="2025-08-15T16:11:49.984Z">
+<meta property="article:modified_time" content="2025-08-15T16:11:49.984Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image.png">
+  
+  
+  
+  <title>操作系统接口 - lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="操作系统接口"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-16 00:11" pubdate>
+          2025年8月16日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">操作系统接口</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="用户接口">用户接口</h2>
+<p>总共有三种用户接口：字符显示式联机用户接口、图形化联机用户接口、脱机用户接口</p>
+<ol>
+<li>
+<p>字符显示式联机用户接口</p>
+<p>通过命令语言（以命令为基本单位指示操作系统完成特定功能）对作业进行控制并取得操作系统的服务。</p>
+<ol>
+<li>
+<p>命令行方式</p>
+<p>以Command arg1…argn的格式。一般是串行处理，但是如果需要并行处理，可以在命令结尾加入特定标记让其在后台运行来进行并行。</p>
+</li>
+<li>
+<p>批命令方式（Shell或Bat脚本）</p>
+<p>允许用户现将一系列命令组织在批命令文件中，方便一次执行，避免出错，还提供了控制流语句。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>图形化联机用户接口</p>
+<p>为了避免记忆庞大的命令语法，推出了图形化界面。</p>
+<p>使用WIMP（Window,Icon,Menu,Pointing device)技术，让GUI变得直观，易用。</p>
+<p>Windows就是以explorer作为一开始的进程，当点击程序，就是产生一个新的进程。而点击键盘都是一个事件，实际上就是给应用发送了一个消息，达到控制的效果。</p>
+</li>
+<li>
+<p>联机命令类型</p>
+<p>一般分为系统访问类(登录)，磁盘操作类，文件操作类(拷贝，输出，重命名等），目录操作类（创建文件夹，显示目录，删除等），通信类，及其他命令（输入输出重定向命令，管道连接，过滤命令，批命令）。</p>
+<p>输入输出重定向：标准情况下是从键盘输入，终端输出，通过重定向就可以改变来源和去向</p>
+<p>管道连接：将上一个命令的结果作为下一个命令的输入</p>
+<p>过滤命令：grep</p>
+</li>
+</ol>
+<h2 id="Shell命令语言">Shell命令语言</h2>
+<p>Shell：命令语言，命令解释器和程序设计语言的统称。</p>
+<p>有着自己的命令集，并且支持大多数高级语言中支持的语言特性，且可对输入的命令解释执行。</p>
+<ol>
+<li>
+<p>简单命令</p>
+<p>格式：Command -option argmentlist</p>
+<p>分类：</p>
+<ol>
+<li>可以分为系统提供的标准命令和用户自定义的命令。</li>
+<li>也可以分为内部命令(cd等)与外部命令(cp等）。内部命令的程序是常住内存的，而外部命令则是常住外存区，当他被使用的时候才会暂时进入内存。这样能极大节省内存。但这个分类由于shell的处理对用户是透明的。</li>
+</ol>
+<p>种类：</p>
+<ol>
+<li>Borune Shell(B sh)，用$作为提示符，交互较差，但是性能高。其常见版本为Bourne Again Shell(Bash)</li>
+<li>C shell，是标准BSD命令解释，用%作为提示符，大多数Unix都同时支持B和C，提供比Bsh更多的功能，如!和!!。</li>
+<li>Korn shell(K sh)，支持对任务控制。</li>
+</ol>
+</li>
+<li>
+<p>简单命令的类型</p>
+<ol>
+<li>
+<p>进入和退出系统</p>
+<p>进入系统：输入用户名和口令(密码)，通过调用Login(sudo login)程序完成</p>
+<p>退出系统：ctrl+D，通过调用Logout程序完成</p>
+</li>
+<li>
+<p>文件操作命令</p>
+<p>cat mv cp rm file(用来查看一个文件是什么类型，不是通过后缀来判断的）</p>
+</li>
+<li>
+<p>目录操作命令</p>
+<p>mkdir rmdir cd</p>
+</li>
+<li>
+<p>系统询问命令</p>
+<p>data(询问时间) who(询问系统当前用户) pwd</p>
+</li>
+</ol>
+</li>
+<li>
+<p>重定向与管道</p>
+<p>可以在一个命令<strong>后</strong>通过&gt;和&lt;来重定向输入和输出。</p>
+<p>使用&gt;&gt;可以不覆盖，而是追加</p>
+<p>在使用管道运算符的时候Linux是真的建立了一个pipe文件来实现管道。当管道满的时候，前命令停止运行，管道空时，后命令停止运行。</p>
+</li>
+<li>
+<p>通信命令</p>
+<ol>
+<li>
+<p>信箱通信命令mail</p>
+<p>可以向自己或者向另一个用户发送邮件。</p>
+<p>格式：mail 接收者，如果不填接收者，就是查看自己的信箱。</p>
+</li>
+<li>
+<p>对话通信命令write</p>
+<p>格式：write 用户名[终端名]</p>
+<p>在发送后，对方的终端上会直接显示消息。但是得要别人的允许才行。</p>
+</li>
+<li>
+<p>允许或拒绝接受消息mesg</p>
+<p>格式：mesg -n/-y</p>
+<p>禁止别人写或允许别人写。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>后台命令</p>
+<p>通过在命令末尾加上&amp;实现让这条命令在后台运行。后台运行实际上仍然是用标准输入或输出的，但是一般系统会帮忙自动将输入自动重定向到一个/dev/null的空文件上，避免影响。</p>
+</li>
+</ol>
+<h2 id="联机命令接口的实现">联机命令接口的实现</h2>
+<ol>
+<li>
+<p>键盘终端处理程序</p>
+<ol>
+<li>
+<p>字符接收</p>
+<p>一种是面向字符的方式，即不加处理直接送进用户程序。</p>
+<p>另一种是面向行方式，以一行作为缓冲(可以随意更改这一行的内容)，当接收到行结束符后才送至用户程序。有的计算机不是直接存储ascii码，而是键码，因此终端处理程序还要进行转换。</p>
+</li>
+<li>
+<p>字符缓冲</p>
+<p>通过缓冲来降低中断处理器的频率。</p>
+<ol>
+<li>专用缓冲：给每个终端都专门配备一个很小的缓冲区，实现简单，但是利用率低且空间占用大</li>
+<li>公用缓冲：设定一个由很多极小缓冲区组成的公用缓冲池，以链表的形式存储，当一个终端需要的时候，就申请一个，并且加入到自己的缓冲链中，当满了，就再申请，当使用完后就全部归还。</li>
+</ol>
+<p><img src="/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>回送显示</p>
+<p>当终端输入一个字后应该回送到屏幕上进行显示。可以使用硬件实现，速度较快，但不灵活。因此一般用软件实现，也可以处理诸如换行之类的事情。</p>
+</li>
+<li>
+<p>屏幕编辑</p>
+<p>需要提供编辑键对缓冲区内的字符进行修改。删除字符键backspace，删除一行键，插入键，移动光标键，屏幕上下移动键。</p>
+</li>
+<li>
+<p>特殊字符处理</p>
+<p>处理中断字符ctrl+c，停止/恢复上卷字符等。</p>
+</li>
+</ol>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="http://xn--MS-DOSCOMMAND-1g9yo921af87bvc2a.COM">MS-DOS解释程序COMMAND.COM</a></p>
+<p>为了方便与用户交互，一般把命令解释程序放在用户层以用户态运行。</p>
+<p>根据输入的命令输出提示符，请用户输入命令并执行对应命令。</p>
+<ol>
+<li>
+<p>组成</p>
+<p>常驻部分：包含一些中断服务子程序，及在用户程序终止后检查暂存部分时候被用户程序覆盖并将对应调入内存的程序。</p>
+<p>初始化部分：在常驻内存之后，在启动时获得控制权，包含对autoexec.bat的处理程序并决定命令解释程序的基地址。</p>
+<p>暂存部分：主要的命令解释程序，包含了所有命令，但是可以被用户程序覆盖，在完成后再调回来。</p>
+</li>
+<li>
+<p>工作流程</p>
+<p>初始化部分获得控制权，进行初始化，然后自动执行autoexec.bat文件，最后将控制权交给暂存部分。然后的过程如下图。</p>
+<p><img src="/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image%201.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>识别命令一般是有一张命令表进行逐行判断的，而程序的地址也直接记录在表格中。如果是外部命令就要通过exec去调入并获取地址。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Shell解释程序</p>
+<p>相较于MS-DOS，Shell的命令更复杂，一行可以有多个命令，而分隔符的不同也会导致执行顺序的不同。</p>
+<p>因此Shell的处理方式是将整一个命令解释成一颗二叉树。</p>
+<ol>
+<li>
+<p>命令表型节点</p>
+<p>当遇到；或者&amp;就建立一个命令表型节点，左部作为左子树，右部作为右子树。</p>
+<p>对于；来说，左子树执行完才能执行右子树。</p>
+<p>对于&amp;来说则可以同时执行。</p>
+</li>
+<li>
+<p>管道文件型节点</p>
+<p>当遇到|就建立一个管道文件型节点，左部作为左子树，右部作为右子树。</p>
+</li>
+<li>
+<p>简单命令型节点</p>
+<p>如果是内部命令，则直接执行(无须创建进程，因为shell解释程序内部就内嵌了其可执行程序)，但如果不是内部命令，则创建一个子进程执行，执行完再恢复shell。</p>
+</li>
+</ol>
+<p>整体工作流程：</p>
+<p>在系统打开之后就运行shell可解释程序。</p>
+<p>首先读取命令。然后对命令分析，建立命令行树。如果是非内部命令，就分离命令名和其参数按照execve的格式放置参数。fork一个子进程并调用exec更换执行的程序，执行子进程，结束后主进程wait结束便继续循环，如果是&amp;就不用wait。</p>
+<p><img src="/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image%202.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<h2 id="系统调用的概念和类型（程序接口）">系统调用的概念和类型（程序接口）</h2>
+<p>系统调用提供了用户程序和操作系统内核之间的接口。</p>
+<ol>
+<li>
+<p>系统调用基本概念</p>
+<ol>
+<li>
+<p>计算机中有两种状态：系统态和用户态。因此CPU指令集也被划分为特权指令和非特权指令。</p>
+<p>特权指令：能访问全部内存空间，完全不受限，答案只允许OS使用，保护系统</p>
+<p>非特权指令：在用户态运行的指令，应用程序运行的指令，只能完成一般性的操作和任务，不能对系统中的硬件和软件直接进行访问，内存空间也仅允许访问用户空间。</p>
+<p>这一区分是在硬件上实现的，如果应用程序使用了特权指令就会直接发出错误信号。</p>
+</li>
+<li>
+<p>系统调用也是一种过程调用，但是，与过程调用有一些区别：</p>
+<p>调用程序和被调用程序处在不同的系统状态，这种调用需要进行状态的转换，通过软中断机制实现。而在返回的时候也不一定会回到调用者程序（如果使用了抢占式）。</p>
+<p>也可以进行嵌套，但对嵌套深度有一定要求。</p>
+</li>
+<li>
+<p>中断机制：系统调用是通过终端实现的，所有的系统调用都是通过同一个中断入口来是实现的，如MS-DOS提供的是INT21H。有些系统虽然会提供很多中断号，但仅能通过其中被授权给应用程序保护等级的终端号才能被使用，如Linux的3,4,5是调试用的中断号，只有80是真正的系统调用中断号。如果使用不合规的中断号也会崩溃。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>系统调用的类型</p>
+<p>对于一般通用的OS来说可分为三大类。</p>
+<ol>
+<li>进程控制类：创建和终止进程；获得和设置进程属性；等待某事件</li>
+<li>文件操纵类：创建和删除文件；打开和关闭文件；读和写文件</li>
+<li>进程通信类：打开关闭同意拒绝连接；发送接收消息；建立销毁读写共享存储区</li>
+</ol>
+<p>还有设备管理类和信息维护类，前者操作设备，后者获取信息。</p>
+</li>
+<li>
+<p>POSIX标准</p>
+<p>各种操作系统实现的系统调用的方式都是不一样的。因此ISO定义了POSIX（基于UNIX的可移植操作系统接口），定义了系统调用的API。一般实现上都是如下图的。</p>
+<p><img src="/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image%203.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<h2 id="UNIX系统调用">UNIX系统调用</h2>
+<ol>
+<li>
+<p>进程控制</p>
+<p>fork：创建一个与父进程完全一致的子进程。</p>
+<p>exit：终止自己这个进程留下一条记账信息status包含运行时记录的统计信息。</p>
+<p>exec：执行一个文件，将自身的进程映像更改为这个文件。</p>
+<p>wait：等待子进程结束，用于同步</p>
+<p>获取进程ID：getp-id获取自身id/getpgrp获取进程组id/getppid获取父进程id</p>
+<p>获取用户ID：getuid获得真正用户id/geteuid获取有效用户id/getgid获取用户组id</p>
+<p>进程暂停</p>
+</li>
+<li>
+<p>文件操纵</p>
+<p>creat：创建一个新文件或重写已有文件</p>
+<p>删除文件：没有专门的系统调用</p>
+<p>open：打开文件，实际上是将其从外存搬到内存并建立一条通路，返回一个fd，通过fd就可访问这个文件</p>
+<p>close：关闭文件，实际上是将计数-1，当且仅当没有任何访问的时候才真正关闭文件</p>
+<p>read/write：有三个参数fd,buf和nbytes，读就是将nbytes读到buf中，写就是将buf中的nbytes写到文件中</p>
+<p>link：为了实现共享，需要记住共享该文件的用户数目，用link就代表提醒他+1.</p>
+<p>unlink：让计数-1，当计数为0的时候就代表没有人需要这个文件，也就删除了，因此没有一个专门的删除功能。</p>
+</li>
+<li>
+<p>进程通信和信息保护</p>
+<ol>
+<li>
+<p>msgget：建立消息队列，并获取其id:msgid</p>
+<p>msgsend：向消息队列发送消息</p>
+<p>msgrcv：从消息队列接收消息</p>
+</li>
+<li>
+<p>shmget：创建共享存储区，并获取其id:shmid</p>
+<p>shmat：将共享存储区连接到本进程的虚地址空间上</p>
+<p>shmdt：拆除连接</p>
+</li>
+<li>
+<p>信号量相关的系统调用</p>
+</li>
+<li>
+<p>stime：以超级用户设置时间</p>
+<p>time：获取时间</p>
+<p>times：获取进程和子进程时间</p>
+<p>utime：设置文件访问和修改时间</p>
+</li>
+<li>
+<p>uname：获取UNIX系统的名称</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="系统调用的实现">系统调用的实现</h2>
+<ol>
+<li>
+<p>首先要实现系统调用，就要将系统调用号和其调用参数传给中断和陷入。</p>
+<p>系统调用号传入：直接放在系统调用命令中或者放在寄存器中。</p>
+<p>调用参数传入：系统调用命令可以顺便携带少量参数；送至有限的寄存器；或者主流的方法是放在一张表中，而寄存器中只存储指向这张表的指针。这张表也有两种方式，一种是直接，将个数和参数放在一起，另一种是间接，第一张表只放个数和指向真正的表的指针。UNIX和LINUX都使用这种方法。</p>
+<p><img src="/image/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3image%204.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>系统调用的步骤</p>
+<p>从用户态转为系统态：将要中断的进程的信息保存，然后将用户定义的参数进行保存。</p>
+<p>分析调用类型：根据调用号和系统调用表找到子程序入口。</p>
+<p>完成后恢复并执行。</p>
+</li>
+<li>
+<p>UNIX系统调用实现</p>
+<ol>
+<li>
+<p>CPU环境保护：将参数表地址送入寄存器R0，并转到核心态（自动将进程信息储存，如PSL,PC,code），并取出中断和陷入总控程序trap.S程序的入口地址运行。将陷入类型type和用户栈指针usp，和要被中断进程的CPU环境的寄存器根据屏蔽码的情况选择性的压入用户核心栈中。</p>
+</li>
+<li>
+<p>参数表指针：AP存储当前执行的系统调用的参数表的地址</p>
+<p>调用栈帧指针：FP存储被压入用户核心栈的内容的地址</p>
+<p>这两个指针实现了嵌套调用。</p>
+<p>接着调用公共处理程序trap.C。</p>
+</li>
+<li>
+<p>trap.C确定系统调用号，调用子程序，格式：trap(usp,type,code,PC,PSL)。可以通过code&amp;0377来确定系统调用号，如果0&lt; &lt;64就是系统调用号，否则就通过间接参数，间接参数指针来找到系统调用号。</p>
+</li>
+<li>
+<p>参数传递：将参数表的指针赋予U.U-arg中及完成了参数传递。</p>
+</li>
+<li>
+<p>转入相应的处理程序：根据表进行查找，实际上就是一个三元表，调用所需参数，经寄存器传递的参数个数，子程序的入口地址。在子程序完成后回到trap.C，完成公共处理部分。</p>
+</li>
+<li>
+<p>公共处理：重新计算所有优先级，然后进行调度。如果在系统调用中出错，就设置再调度标志，强行重新调度。</p>
+</li>
+</ol>
+<p>如果进程在系统态运行，则不管其他进程的信号，直到返回用户态，再进行处理，并且在返回的时候执行RET命令将压入用户核心栈中的所有数据退回寄存器中，继续正常执行。</p>
+</li>
+<li>
+<p>Linux系统调用：</p>
+<p>内核态对应特权级0，用户态对应特权级3。</p>
+<p>系统调用由两个方面组成：内核函数（真正的系统调用），接口函数（供程序调用，调用内核函数，并将参数传递，并让用户态运行的应用程序陷入核心态）。</p>
+<p>其他基本一致。</p>
+</li>
+<li>
+<p>Win32系统调用：定义了一系列程序（Win32 API），提供系统调用的服务。对Win32的调用可以创建各种核心对象，并将其句柄给其他进程使用。当调用的时候，执行2E中断指令，进行类似的操作。通过Kernel，User和GUI三个组件来支持API，都存放在DLL中。</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>操作系统接口</div>
+      <div>https://lhish.github.io/project/hide/操作系统接口/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

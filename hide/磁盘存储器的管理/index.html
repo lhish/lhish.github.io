@@ -1,0 +1,990 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="总共有三个任务：有效地利用存储空间；提高磁盘IO速度；提高磁盘系统的可靠性 外存的组织方式   连续组织方式（连续分配方式） 为每一个文件分配一组邻接的盘块，而有时，直接将逻辑文件中的记录按顺序存储到个物理盘块中，被称为顺序文件结构，物理文件被称为顺序文件。但是各文件之间不一定邻接。 则会导致磁盘空间随着删改增加会被分割成很多个小块，可以使用紧凑，但一次紧凑花费时间较长。 优点：顺序访问容易（只要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="磁盘存储器的管理">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="总共有三个任务：有效地利用存储空间；提高磁盘IO速度；提高磁盘系统的可靠性 外存的组织方式   连续组织方式（连续分配方式） 为每一个文件分配一组邻接的盘块，而有时，直接将逻辑文件中的记录按顺序存储到个物理盘块中，被称为顺序文件结构，物理文件被称为顺序文件。但是各文件之间不一定邻接。 则会导致磁盘空间随着删改增加会被分割成很多个小块，可以使用紧凑，但一次紧凑花费时间较长。 优点：顺序访问容易（只要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%AE%A1%E7%90%86image.png">
+<meta property="article:published_time" content="2025-08-15T16:11:50.001Z">
+<meta property="article:modified_time" content="2025-08-15T16:11:50.001Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%AE%A1%E7%90%86image.png">
+  
+  
+  
+  <title>磁盘存储器的管理 - lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="磁盘存储器的管理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-16 00:11" pubdate>
+          2025年8月16日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">磁盘存储器的管理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>总共有三个任务：有效地利用存储空间；提高磁盘IO速度；提高磁盘系统的可靠性</p>
+<h2 id="外存的组织方式">外存的组织方式</h2>
+<ol>
+<li>
+<p>连续组织方式（连续分配方式）</p>
+<p>为每一个文件分配一组邻接的盘块，而有时，直接将逻辑文件中的记录按顺序存储到个物理盘块中，被称为顺序文件结构，物理文件被称为顺序文件。但是各文件之间不一定邻接。</p>
+<p>则会导致磁盘空间随着删改增加会被分割成很多个小块，可以使用紧凑，但一次紧凑花费时间较长。</p>
+<p>优点：顺序访问容易（只要找到第一个盘号接着往下）且速度快（连续，移动距离最短）。</p>
+<p>缺点：需要连续空间，产生内存碎片，紧凑花时间长；必须实现知道文件长度，但有时只能靠估算，因此为了避免不够，就会估大，导致空间浪费；不能灵活增删（可能需要移动）；难以管理动态增长文件</p>
+</li>
+<li>
+<p>链接组织方式（离散）</p>
+<p>将文件撞到多个离散的盘块中，盘块之间用链接指针连接成一个链表。</p>
+<p>优点：消除碎片；增删改都很容易；能动态增长</p>
+<ol>
+<li>
+<p>隐式连接</p>
+<p>目录项指出链表首尾，每个盘块有一个指针指向下一个盘块。</p>
+<p>缺点：只适合顺序访问，不适合随机访问（需要一个一个过去）；可靠性低，一个指针错误就全烂；</p>
+<p>改良：不是一个盘块一个盘块分配，而是将几个盘块形成一个簇进行分配，减少指针存储空间，提高速度，但增大了碎片。</p>
+</li>
+<li>
+<p>显式链接</p>
+<p>将整个链表的所有指针都存放在内存中的一张文件分配表FAT(File Allocation Table)中，首地址放在FCB的物理地址中，由于是在内存中，所以效率更高。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>FAT技术</p>
+<p>引入卷的概念，将一个物理磁盘分为4个逻辑磁盘，被一个就是一个卷(分区)，每卷都划分一个区域存放自己的目录和FAT表及字母。现代已经不再只能划分4个了，已经可以随意划分了。</p>
+<ol>
+<li>
+<p>FAT12</p>
+<p>一般为了安全性，会配备两张完全一致的FAT。</p>
+<p>一个盘块的大小为512B，而2^12=4096，因此每卷最大为2MB，整个磁盘最大为8MB，显然不够。</p>
+</li>
+<li>
+<p>簇</p>
+<p>因此引入簇，将几个盘块作为一个虚拟扇区。分配时按照虚拟扇区分配，而非盘块。</p>
+<p>簇不但能扩大容量，还能减小FAT的大小，减少访问FAT的存储开销，但也会造成更大的碎片。并且也没有引出容量的质变，且只支持短文件名。</p>
+</li>
+<li>
+<p>FAT16</p>
+<p>增加到16位，2^16=65536，而簇可以是4、8、…、64，因此最大为2GB。但这种情况下，每个簇大小为128KB，会浪费10%-20%的空间。</p>
+</li>
+<li>
+<p>FAT32</p>
+<p>为FAT的最后一个版本。增加位数至32位，并允许采用更小的簇，并根据分区大小动态调整簇的大小。提高了利用率，但FAT的增大，导致运行速度更慢；同时有最小分区大小；单个文件的长度也有要求；且不能向下兼容。</p>
+<p><img src="/image/%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%AE%A1%E7%90%86image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+</li>
+<li>
+<p>NTFS(New Technology File System)</p>
+<ol>
+<li>新特征：使用64位；可以很好支持长文件名；具有系统容错功能；能保证系统数据一致性</li>
+<li>磁盘结构：基本没什么变化，除了簇被称为“卷因子”，并且簇的大小仍然是根据卷的大小定的。而对于簇的定位，使用逻辑簇号LCN（按顺序对簇标号，最后将序号*簇长度即可）和虚拟簇号（一个文件类的相对簇号，只需知道首地址就很好定位）。</li>
+<li>文件的组织：将一个卷中的所有文件信息、目录信息和可用未分配信息记录在主控文件表MFT(Master File Table)上，每个文件占一行1KB，记录文件的所有属性，如果存不下，就在其他地方找空间存，并用一个指针指向它。并且，由于文件并不是所有的簇都分开放，很多的情况下都是连续的，因此不需要记这么多指针，减少存储。</li>
+<li>缺点：兼容性不好</li>
+</ol>
+</li>
+<li>
+<p>索引组织方式</p>
+<ol>
+<li>
+<p>单级索引组织方式</p>
+<p>FAT主要有两个问题：FAT很大，调入内存会占很多空间；读大文件要跟着链表找啊找，很慢。</p>
+<p>但实际上，读取一个文件并不需要整个卷的FAT，只需要这个文件相关的所有盘号。因此为每一个文件分配一个索引块，</p>
+<p>记录所有分配给该文件的盘块号，而文件的目录项只需要有一个指向这个索引块的指针即可。</p>
+<p>这样就支持直接随机访问了，而不需要一个一个找。在大文件上优于链接组织方式。但是对小文件没有几个盘块号索引块的利用率就很低下了。</p>
+</li>
+<li>
+<p>多级索引组织方式</p>
+<p>对于某些非常大的文件，一个索引块可能存不下，因此可以采用多级索引，用一个索引块，记录次一级的所有索引块。</p>
+<p>这样查找的效率更高，并且允许的最大文件也更大了。</p>
+<p>但是访问一个盘块时，启动磁盘的次数也更多了，对于在文件中占多数的中小文件也是如此，效率也就变慢了。</p>
+</li>
+<li>
+<p>增量式索引组织方式</p>
+<p>因此在实际情况中应该分类讨论，小文件的地址直接存在FCB中，中文件用一级索引，大文件用多级索引。</p>
+<p>例如Unix System V中，就设置了13个地址项。前10个是直接地址，即直接盘块号，用于小文件。第11个提供一个间接地址。第12个提供一个二级间接地址。第13个提供一个三级间接地址。根据情况来设置后面几项。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="文件存储空间的管理">文件存储空间的管理</h2>
+<p>前面只是探讨了组织方式，却没有研究该如何找出哪一部分没有被分配，以及应该分配在哪。</p>
+<ol>
+<li>
+<p>空闲表法</p>
+<ol>
+<li>
+<p>空闲表</p>
+<p>属于连续分配方式，有一张空闲表来记录，分为三列，序号，第一空闲盘块号和空闲盘块数，并按照起始盘块号递增排序。</p>
+</li>
+<li>
+<p>存储空闲的分配与回收</p>
+<p>采用首次适应算法和最佳适应算法。并且在回收的时候也要考虑合并。</p>
+<p>虽然内存分配上连续分配很少采用，但是外存中因为连续分配速率较高，因此仍然在使用中。对于文件系统，小的文件用连续，大的用离散。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>空闲链表法</p>
+<ol>
+<li>
+<p>空闲盘块链</p>
+<p>将磁盘上所有的空闲空间以盘块为单位拉成一条链。每次创建就从链首取下足够多的盘块，回收时直接放到链尾。实现简单，但由于以盘块为单位，因此效率低。</p>
+</li>
+<li>
+<p>空闲盘区链</p>
+<p>将磁盘上所有的空闲盘区拉成一条链（需要记录指针和长度）。可能是一开始就是一块大的盘区。一般采用首次适应算法进行分配，如果没有也可以分配不同盘区内的区块，可以通过显式链接的方式提高检索速度，回收时要考虑合并。过程复杂，但由于链短，每次为文件分配多个连续的块，因此效率较高。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>位示图法</p>
+<p>位示图可描述为一个二维数组，按顺序与每一个盘块对应，1为已分配，0为未分配。</p>
+<p>从位示图上找到n个0，然后根据i，j计算盘块号，然后标记为1。</p>
+<p>回收时反转换，并标记为0。</p>
+<p>优点：体积小，可以在一开始就保存于内存中，省去了很多磁盘启动，并且容易查找连续空闲区间</p>
+</li>
+<li>
+<p>成组链接法</p>
+<p>当用于大型系统的时候，空闲表和空闲链表都会太长，不适合，而成组链接法就能解决这个问题。</p>
+<p>将空闲盘块分为若干个组。每一组都要存放后面一组的指针和这一组剩余的空闲盘块数。</p>
+<p>一开始空闲盘块号栈中存放着第一组的所有数据。每次从栈顶开始分配盘块。当用尽后，也就是N=0时，就将后面一块数据复制到栈中继续分配。回收时就计数+1，并放回到空闲盘块号栈中，当满100后就移出栈，从0再造一个栈。</p>
+</li>
+</ol>
+<h2 id="提高磁盘IO速度的途径">提高磁盘IO速度的途径</h2>
+<p>为了提高对文件的访问速度，有三个因素：目录的结构导致的查找时间，文件的结构导致的访问时间和磁盘的速度。</p>
+<ol>
+<li>
+<p>磁盘高速缓存(Disk Cache)</p>
+<p>就是在内存中为磁盘盘块设置一个缓冲区（其中保存一部分盘块的副本），每次先去缓冲区看眼，如果有，就不用再磁盘IO了，否则再磁盘IO。</p>
+<ol>
+<li>
+<p>数据交付方式（该如何将缓冲区中的数据交给程序）</p>
+<p>一种是直接拷贝过去，另一种是将指向高速缓存中要求数据的指针交给程序（更快）。</p>
+</li>
+<li>
+<p>置换算法</p>
+<p>虽然类似内存置换的三大算法LRU，NRU和LFU，但是情况还有些不同，还需要考虑访问频率（比快表频率低）；可预见性（哪些更会在将来被访问）；数据一致性（内存是易失的，但其中的数据可能已经更改了，就和外存不一样了）</p>
+<p>所以将高速缓存中的所有盘块拉成一条LRU链，影响数据一致性的盘块和不会再使用的盘夸靠前，其他靠后。</p>
+</li>
+<li>
+<p>周期性地写回磁盘</p>
+<p>有些盘块可能永远留在高速缓存中，造成数据一致性问题。因此每隔一段时间（UNIX：30s）强制全部写回。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>提高磁盘IO速度的其他方法</p>
+<ol>
+<li>提前读： 如果在顺序访问，那后面一块在下一次必然会读进，那不如这次直接先把下一次读的读进高速缓存</li>
+<li>延迟写：原本在更改后应该立即写回磁盘，但也不急，不如直接挂在空闲缓冲区的末尾，等到被使用的时候就会自动写回了，而且在这段时间使用也不用再IO</li>
+<li>优化物理块的分布：虽然磁盘上盘块是离散的，但是其之间的距离也会影响IO速度。在分配的时候用位示图就很容易找到接近的盘块，提高速度，而空闲表就不行。因此有一种方式是按簇来分配，这样一簇中的至少是邻近的，比较快。</li>
+<li>虚拟盘：可以将内存中的一部分当作磁盘。与高速缓存的区别在于虚拟盘是用户控制的，而高速缓存是OS控制的。由于他是易失的，所以一般只放一些临时文件，但对用户来说是透明的。</li>
+</ol>
+</li>
+<li>
+<p>廉价磁盘冗余阵列（RAID）</p>
+<p>利用一台磁盘阵列控制器来统一管理和控制一组磁盘驱动器。</p>
+<ol>
+<li>
+<p>并行交叉存取</p>
+<p>将每一个盘块切分为很多n子盘块，分别放在n个磁盘上，这样传输的时候就可以并行传输了，速度提高了n倍。</p>
+</li>
+<li>
+<p>RAID分级</p>
+<p>0级：能够实现高速IO，但无冗余校验</p>
+<p>1级：具有磁盘镜像，一半作为数据盘，一半作为镜像盘，利用率只有50%，但很可靠</p>
+<p>3级：只利用一台奇偶校验盘来完成数据校验，其他都作为数据盘，利用率高</p>
+<p>5级：有独立传送功能，每个磁盘都可以独立的读写，校验的信息也分布式放在各个磁盘上</p>
+<p>6级：设置了一个专用的可快速访问的异步校验盘，有更好的性能。</p>
+<p>7级：所有磁盘都有高的传输速率和优异的性能</p>
+</li>
+<li>
+<p>优点：可靠性高，IO快，性价比高</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="提高磁盘可靠性的计数">提高磁盘可靠性的计数</h2>
+<p>可以防止系统因素和自然因素造成的不安全性。</p>
+<p>容错技术通过设置冗余部分来提高可靠性。</p>
+<ol>
+<li>
+<p>第一级容错技术SFT-I</p>
+<p>主要用于因磁盘表面缺陷所造成的数据缺失。</p>
+<ol>
+<li>
+<p>双份目录和双份文件分配表</p>
+<p>文件目录和文件分配表非常重要，因此备份一次，当损坏时，也可以用备份的继续访问。</p>
+</li>
+<li>
+<p>热修复重定向和写后读校验</p>
+<p>如果磁盘只有很小一部分坏了，那么仍然是可以补救的。将2%-3%的磁盘作为热修复重定向区。在写入时为了保证写的正确，就应该再将其读出到另一个内存缓冲区，并与在缓冲区中写完但还没删掉的数据进行比对，如果不一样，则说明这一部分有缺陷，就将热修复重定向区暂时替代这一部分有缺陷的居于。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>第二级容错计数SFT-II</p>
+<p>主要用于防止磁盘驱动器和控制器故障所导致的系统不能正常工作。</p>
+<ol>
+<li>
+<p>磁盘镜像</p>
+<p>增加一个完全相同的磁盘，每次向磁盘写入的时候，也要将数据写到备份磁盘上。</p>
+</li>
+<li>
+<p>磁盘双工</p>
+<p>前者是将两个磁盘连接到同一个磁盘控制器上，但是如果磁盘控制器出现问题，就出事了。因此，增加一个磁盘控制器，将两个磁盘分别与一个磁盘控制器相连接。而这种情况下可以进行并行读取，因为两者都有独立的通道，而前者只有一个通道，不能并行。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>基于集群技术的容错功能</p>
+<p>集群系统能提高并行处理能力和可用性。</p>
+<ol>
+<li>
+<p>双机热备份模式</p>
+<p>一台主服务器，一台备份服务器。平时只有主服务器服务，如果一旦主服务器出现故障，备份服务器就会监视到并直接替代，修复后主服务器再替代回来。</p>
+<p>而为了实现这一点，就通过一条镜像服务器链路MSL连接起来（通信线路最好也有备份），二者完全独立，支持远程热备份，但效率只有50%。</p>
+</li>
+<li>
+<p>双机互为备份模式</p>
+<p>两个互相运行不同服务的服务器，通过网线连接，并最好有路由器再连一根备份线路。每个服务器有两个硬盘，实时存储对方的数据，但一般情况下这个镜像盘是不能被本地用户访问的。直到对方出现问题，就立即在本地启动这个服务，直接接管。除了速度稍微慢了点，但问题都不大。</p>
+</li>
+<li>
+<p>公用磁盘模式</p>
+<p>上述两种都要传输数据。因此可以让很多个机器连接到公共的磁盘系统上，每个机器使用其中一个卷。当有机器发生故障，直接让另一台机器使用这卷，接管服务。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>后备系统</p>
+<p>由于磁盘系统不够大，因此一般把暂时不需要但仍然有用的数据放在后备系统中保存起来，用于防止系统故障导致数据丢失。</p>
+<p>一般用磁带机（只适合顺序且慢，但容量大），硬盘（移动硬盘速度高且方便，固定硬盘驱动器，有两个大硬盘，每个分两个区，其中一个存自己，一个存对方的数据）和光盘驱动器（只读光盘驱动器不能用，因为不能写，所以只能用可读写光盘驱动器）作为后备系统。</p>
+</li>
+</ol>
+<h2 id="数据一致性控制">数据一致性控制</h2>
+<p>一个数据可能放在多个文件中存储，需要保证这一数据在不同文件中的一致性。</p>
+<ol>
+<li>
+<p>事务</p>
+<ol>
+<li>
+<p>事务的定义</p>
+<p>用于访问和修改各种数据项的一个程序单位。被访问的多个数据可以在同一文件中，也可以在不同文件中。只有所有数据都修改完成了，才提交操作，如果发现其中有一个失败了，就要进行回滚，将所有的已更改的改回来。让事务操作具有原子性。</p>
+<p>事务需要具有四大属性ACID：原子性(Atomic)，一致性(Consistent)，隔离型(Isolated)(其他程序不能看到中间状态)，持久性(Durable)(即永久性)。</p>
+</li>
+<li>
+<p>事务记录</p>
+<p>事务的核心实现是事务记录（被放在一个可靠的存储器中）。其中存储事务名，数据项名，旧值和新值。而在每次进行操作之前，无论修改还是提交，都需要先写记录。</p>
+</li>
+<li>
+<p>恢复算法</p>
+<p>因为有所有的操作，因此可以对这些操作进行redo或者undo。当发生故障的时候，可以通过时候有对应的提交操作来决定这个操作到底是要redo还是undo。（需要全部重做一遍，因为对文件的操作是在内存中进行的，是易失的）</p>
+</li>
+</ol>
+</li>
+<li>
+<p>检查点</p>
+<ol>
+<li>
+<p>检查点的作用</p>
+<p>由于有各种乱七八糟的事务，因此会有很多很多记录，而每次恢复都要全部做一遍。而通过放一个检查点，就将记录全放进稳定存储器中，接着是已修改数据，最后是检查点放进去。</p>
+</li>
+<li>
+<p>恢复算法</p>
+<p>后续恢复的时候就不需要重新全部做一遍记录了，只需要对于最后一个检查点后面的做就可以了。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>并发控制</p>
+<p>现在很多情况下都是多个用户在同时执行事务，但事务对数据项的修改是互斥的。因此需要通过互斥锁(允许一个对象读写)和共享锁(允许也只允许多个对象同时读)。</p>
+</li>
+<li>
+<p>重复数据的数据一致性</p>
+<p>有时为了保证可靠性，对于一个文件有好几个备份，因此就必须对这几个文件保证一致性，不然备份了个屁股。</p>
+<ol>
+<li>
+<p>重复文件的一致性</p>
+<p>原本一个文件名对应一个索引节点，现在的目录中一个文件名对应很多个索引节点(即重复文件)。当一个文件拷贝被修改时，要么根据其文件目录找到另外几个索引节点并做同样的修改，要么为修改完的文件直接建立几个拷贝对原本的拷贝进行替换。</p>
+</li>
+<li>
+<p>链接数一致性检查</p>
+<p>共享文件的索引节点中存放着counter记录引用数，而这一数字需要和真实链接的数量一致。如果少了，就可能最后会有几个指向了一个已经被”析构”的索引节点，并后来又指向其他索引节点。如果多了，就会导致这个索引节点指向的永远不会被”释放”。因此需要通过扫描整个文件目录进行统计来保证这个数字的正确。</p>
+</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>磁盘存储器的管理</div>
+      <div>https://lhish.github.io/project/hide/磁盘存储器的管理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

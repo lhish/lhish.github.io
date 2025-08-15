@@ -1,0 +1,1145 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="运输层协议概述 路由器最高也就到网络层，而运输层是为用户服务的最底层。通信的主体是主机中的各个应用程序（而网络层的主体是主机），复用同一个运输层协议，但又能将其复用的信息分用交给各个对应的应用程序。并且还要进行差错检验   两个主要协议 OSI中传送的数据单位叫运输协议数据单元TPDU，TCP&#x2F;IP中称为TCP报文段和UDP用户数据报。   用户数据报协议UDP 不需要建立连接也不需要远程确认">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运输层">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E8%BF%90%E8%BE%93%E5%B1%82/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="运输层协议概述 路由器最高也就到网络层，而运输层是为用户服务的最底层。通信的主体是主机中的各个应用程序（而网络层的主体是主机），复用同一个运输层协议，但又能将其复用的信息分用交给各个对应的应用程序。并且还要进行差错检验   两个主要协议 OSI中传送的数据单位叫运输协议数据单元TPDU，TCP&#x2F;IP中称为TCP报文段和UDP用户数据报。   用户数据报协议UDP 不需要建立连接也不需要远程确认">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%203.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%204.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%205.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%206.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%207.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%208.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%209.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%2010.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image%2011.png">
+<meta property="article:published_time" content="2025-08-15T16:11:49.982Z">
+<meta property="article:modified_time" content="2025-08-15T16:11:49.982Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E8%BF%90%E8%BE%93%E5%B1%82image.png">
+  
+  
+  
+  <title>运输层 - lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="运输层"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-16 00:11" pubdate>
+          2025年8月16日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">运输层</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="运输层协议概述">运输层协议概述</h2>
+<p>路由器最高也就到网络层，而运输层是为用户服务的最底层。通信的主体是主机中的各个应用程序（而网络层的主体是主机），复用同一个运输层协议，但又能将其复用的信息分用交给各个对应的应用程序。并且还要进行差错检验</p>
+<ol>
+<li>
+<p>两个主要协议</p>
+<p>OSI中传送的数据单位叫运输协议数据单元TPDU，TCP/IP中称为TCP报文段和UDP用户数据报。</p>
+<ol>
+<li>
+<p>用户数据报协议UDP</p>
+<p>不需要建立连接也不需要远程确认</p>
+</li>
+<li>
+<p>传输控制协议TCP</p>
+<p>提供可靠的面向连接的服务</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+</li>
+<li>
+<p>运输层的端口</p>
+<p>为了解决不同操作系统的不同意，建立了一个抽象的接口，即协议端口（端口），一般用一个正整数端口号来表示（65535个不同的端口；16位），因此通信不但需要知道IP，还需要知道端口。</p>
+<p>硬件端口：不同的硬件设备交互；软件端口：各种协议进程和运输实体进行交互。</p>
+<p>端口仅有本地意义，不同计算机即便端口相同也也没有关联。</p>
+<p>端口号的分类：</p>
+<ol>
+<li>
+<p>服务端使用的端口：</p>
+<p>熟知端口号（全球通用端口号）：1-1023，分配给一些TCP/IP最重要的一些应用程序。</p>
+<p>登记端口号：1024-49151，给没有熟知端口号的引用程序用</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%201.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>客户端使用的端口号（短暂端口号）：49152~65535，仅在客户进程运行的时候才动态选择，在结束后被操作系统回收。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="用户数据报协议UDP">用户数据报协议UDP</h2>
+<ol>
+<li>
+<p>概述</p>
+<p>无连接</p>
+<p>尽最大努力交互</p>
+<p>面向报文，既不合并，也不拆分，可能会影响IP层的效率</p>
+<p>没有拥塞控制，允许丢失一些数据，而不会延迟</p>
+<p>支持一对一，一对多，多对一，多对多</p>
+<p>首部开销小</p>
+<p>虽然UDP允许丢失一些数据，但也有可能由于拥塞导致所有数据都收不到，应用程序可以在应用层增加一些提高可靠性的措施。</p>
+</li>
+<li>
+<p>首部格式</p>
+<table>
+<thead>
+<tr>
+<th>源端口</th>
+<th>2</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的端口</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>长度</td>
+<td>2</td>
+<td>最长65536.最小8，即只包括首部</td>
+</tr>
+<tr>
+<td>检验和</td>
+<td>2</td>
+<td>检测错误</td>
+</tr>
+</tbody>
+</table>
+<p>计算检验和的时候，不但包括首部，还要在前面增加伪首部，还要包括数据部分。</p>
+<table>
+<thead>
+<tr>
+<th>源IP地址</th>
+<th>4</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的IP地址</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>全0</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>IP首部协议字段</td>
+<td>1</td>
+<td>UDP：17</td>
+</tr>
+<tr>
+<td>长度</td>
+<td>2</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>伪首部仅在计算检验和（此时其检验和部分为0）的时候增加，按2个字节分割，不足用0补充。用二进制反码求和，而接收者连通这个检验和一起计算，若无差错则为全1。（与IP数据报不同在于其没求反码）</p>
+</li>
+</ol>
+<h2 id="传输控制协议TCP">传输控制协议TCP</h2>
+<ol>
+<li>
+<p>TCP的主要特点</p>
+<p>面向连接</p>
+<p>点对点，一对一</p>
+<p>可靠交互</p>
+<p>全双工通信，允许双方在任何时间发信息，并将数据放在了TCP的缓存中，以待发送</p>
+<p>面向字节流，其不管上方是发了几个数据块，只是按照一定的长度积累或者切分后发出，因此接收者必须能够将其还原</p>
+</li>
+<li>
+<p>TCP的连接</p>
+<p>对于TCP连接，其实质上就是一对套接字（IP地址：端口号）</p>
+</li>
+</ol>
+<h2 id="可靠传输的原理">可靠传输的原理</h2>
+<ol>
+<li>
+<p>理想的传输条件有两个特点</p>
+<ol>
+<li>传输信道不产生差错（TCP要进行差错检验）</li>
+<li>不管发送方以多快发送数据，接收方总是来得及处理（缓冲）</li>
+</ol>
+</li>
+<li>
+<p>停止等待协议（自动重传请求ARQ）</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%202.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在发送一个分组后进行等待，而接收方接收到分组后就发消息回来确认，在接收到确认消息后在发送下一个分组。</p>
+<p>但如果中途丢失了，也就是发送者超过一定的时间没有接收到确认，就会进行超时重传（其内部会有一个超时计时器）。而为了实现超时重传，在发送完后不能立即丢弃发送的分组，并且分组和确认分组需要确认来知道收到的是什么确认，最后，超时的时长要设定的比分组传输的平均往返时间稍微长一点，但实际上非常难知道，因为网络的状况是玄学的。</p>
+<p>接收者收到多次分组或者发送者收到多次确认后，直接丢弃后面的即可。</p>
+<p>这样，就可以实现可靠通信。</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%203.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>而这种情况的信道利用率很低，其信道利用率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>=</mo><mfrac><msub><mi>T</mi><mi>D</mi></msub><mrow><msub><mi>T</mi><mi>D</mi></msub><mo>+</mo><mi>R</mi><mi>T</mi><mi>T</mi><mo>+</mo><msub><mi>T</mi><mi>A</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">U=\frac{T_D}{T_D+RTT+T_A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3339em;vertical-align:-0.4453em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8886em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">RTT</span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4103em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4453em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，因此可以通过流水线连续发送多个分组，而非每发送一个就停一下。</p>
+</li>
+<li>
+<p>连续ARQ协议</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%204.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>对于一个固定大小的发送窗口，连续发送窗口内所有的分组，而按收到分组后，窗口就可以向后移动。而接收方并不是收到一个就发送一个确认，而是累计确认。将收到的按序的最后一个作为确认发回去，但如果中间有一个丢失了，就得要从这个丢失的开始的发送窗口全部再发送一遍（Go-Back-N），即便其中有一部分已经发送过了。</p>
+</li>
+</ol>
+<h2 id="TCP报文段的首部格式">TCP报文段的首部格式</h2>
+<table>
+<thead>
+<tr>
+<th>源端口</th>
+<th>2</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的端口</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>序号</td>
+<td>4</td>
+<td>超过2^32的mod 2^32，用来说明顺序，表示数据部分的第一个字节的序号</td>
+</tr>
+<tr>
+<td>确认号</td>
+<td>4</td>
+<td>期望收到的下一个报文的起始序号，同时也表明确认号-1的数据都收到了</td>
+</tr>
+<tr>
+<td>数据偏移</td>
+<td>0.5</td>
+<td>单位，4字节，表示数据部分的起始位置，因此首部最大60字节</td>
+</tr>
+<tr>
+<td>保留</td>
+<td>0.75</td>
+<td>供以后使用</td>
+</tr>
+<tr>
+<td>紧急URG</td>
+<td>1/8</td>
+<td>置1表示表示该报文应该立即发送，而非按原本的顺序，应该直接插入到报文段的最前面</td>
+</tr>
+<tr>
+<td>确认ACK</td>
+<td>1/8</td>
+<td>当ACK=1时确认号才有效，建立连接后就应该一致被置1</td>
+</tr>
+<tr>
+<td>推送PSH</td>
+<td>1/8</td>
+<td>置1表示不等待缓冲填满再发送，立即发送</td>
+</tr>
+<tr>
+<td>复位RST</td>
+<td>1/8</td>
+<td>置1表示重新建立连接，也可以用于拒绝非法报文或者打开连接</td>
+</tr>
+<tr>
+<td>同步SYN</td>
+<td>1/8</td>
+<td>连接请求：SYN=1，ACK=0；连接接受：SYN=1，ACK=1</td>
+</tr>
+<tr>
+<td>终止FIN</td>
+<td>1/8</td>
+<td>置1表示结束释放连接</td>
+</tr>
+<tr>
+<td>窗口</td>
+<td>2</td>
+<td>表示发送者的接受窗口的大小（即接受缓存的大小）</td>
+</tr>
+<tr>
+<td>检验和</td>
+<td>2</td>
+<td>与UDP检验和类似，但是要将协议类型的数字改为6</td>
+</tr>
+<tr>
+<td>紧急指针</td>
+<td>2</td>
+<td>指出了紧急报文的字节数（当窗口为0也可发送紧急数据）</td>
+</tr>
+<tr>
+<td>选项</td>
+<td>≤40</td>
+<td></td>
+</tr>
+<tr>
+<td>最大报文段长度MSS</td>
+<td></td>
+<td>表示每一个TCP报文段的数据字段的最大值；但是很难确定最佳MSS，一般双方会将自己支持的MSS告诉对方。若不填写，默认为536（576(IP数据报长度)-20-20）。</td>
+</tr>
+<tr>
+<td>窗口扩大</td>
+<td>3</td>
+<td>最大值14，表示移位值S，一个窗口的最终大小为 窗口大小*2^S，提高吞吐量</td>
+</tr>
+<tr>
+<td>时间戳</td>
+<td>10</td>
+<td>其中存储时间戳值和时间戳回送回答，能用于计算RTT并且防止序号绕回PAWS</td>
+</tr>
+</tbody>
+</table>
+<h2 id="TCP可靠传输的实现">TCP可靠传输的实现</h2>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%205.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在一开始建立连接的时候，就会交换自己的窗口大小，因此建立发送窗口的时候也不会超过对方的接受窗口大小。一般都是按序发送信息的，因此，其中前一段是已发送完成的，而后一段是没发送的（可用窗口）。</p>
+<p>对于发送窗口，当收到确认的时候，后沿就会向右移动。而前沿也会随之移动，但是前沿也可以向左移动（当对方的接收窗口变小了），但是TCP标准强烈不赞成这么做（因为可能已经丢失了很多数据了）。</p>
+<p>而对于接收窗口，其只会将按序的最大的进行确认（而不管后面不按序收到的），并且向后移动，如果发送窗口发送完了，并且也超时了，就会直接重新发送。</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%206.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>对于发送窗口和发送缓存，当被确认，就不用让他留在缓存里了，因此后沿是相同的，而发送窗口之外还有一部分应用程序已经存放的但还没进入发送窗口的，应用程序必须控制发送速率。</p>
+<p>而对于接收窗口和接受缓存，前部是已经收到的数据但还没被应用程序接收的数据集，而后部就是接受窗口，其中一般把不按序到达的数据先临时存储而非直接丢弃，这样会减少工作量。</p>
+<p>但是发送窗口和接受窗口并不是一致保持一致的，因为网络延迟。而对于累计确认，甚至可以随发回的数据捎带上，但是要求确认推迟的时间不超过0.5s并且如果是具有最大长度的报文段，则必须每个都确认。</p>
+<ol>
+<li>
+<p>超时重传时间的选择</p>
+<p>使用自适应算法。根据发送时间和接收到确认的时间计算报文段往返时间RTT，每次根据新的RTT来更新加权平均往返时间RTTs<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>T</mi><msub><mi>T</mi><mi>s</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mi>R</mi><mi>T</mi><msub><mi>T</mi><mi>s</mi></msub><mo>+</mo><mi>α</mi><mi>R</mi><mi>T</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">RTT_s=(1-\alpha)RTT_s+\alpha RTT</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mord mathnormal" style="margin-right:0.13889em;">RTT</span></span></span></span>。α越大更新越快，一般为0.125。而超时重传时间RTO一般要略大于RTT，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>T</mi><mi>O</mi><mo>=</mo><mi>R</mi><mi>T</mi><msub><mi>T</mi><mi>s</mi></msub><mo>+</mo><mn>4</mn><mi>R</mi><mi>T</mi><msub><mi>T</mi><mi>D</mi></msub></mrow><annotation encoding="application/x-tex">RTO=RTT_s+4RTT_D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">RTO</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord">4</span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。而RTTD是RTT的偏差的加权平均值，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>T</mi><msub><mi>T</mi><mi>D</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>β</mi><mo stretchy="false">)</mo><mi>R</mi><mi>T</mi><msub><mi>T</mi><mi>D</mi></msub><mo>+</mo><mi>β</mi><mi mathvariant="normal">∣</mi><mi>R</mi><mi>T</mi><msub><mi>T</mi><mi>s</mi></msub><mo>−</mo><mi>R</mi><mi>T</mi><mi>T</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">RTT_D=(1-\beta)RTT_D+\beta|RTT_s-RTT|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mclose">)</span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.13889em;">RT</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RTT</span><span class="mord">∣</span></span></span></span>。一般β取0.25。</p>
+<p>但是有时确认并不能反应RTT，因为他可能是针对重传的确认。因此，如果报文段如果重传了，就不计入RTO的考虑。但是，为了防止由于平均时延突然增大导致的无限重传，每重传一次报文就将其乘2。</p>
+</li>
+<li>
+<p>选择确认SACK</p>
+<p>当未按序收到的时候，发送者还要重传已经发送过的，有重复开销。因此可以通过选择确认SACK来告诉发送者已经接收到的字节段，每一个通过2个指针来表示，一个begin，一个尾后，都是4直接，而考虑上用来指明选项类型和选项长度的两个2字节，最多能够指明4个字节块。</p>
+</li>
+</ol>
+<h2 id="TCP流量控制">TCP流量控制</h2>
+<ol>
+<li>
+<p>利用滑动窗口来实现流量控制</p>
+<p>通过窗口值，发送窗口不能超过接收方给出的接受窗口的大小。</p>
+<p>但是当接受者给发送者发送零窗口的报文，发送者就不会再发送了，而如果接受者空出新的窗口，但发送信息时丢失了，就永远不会接收到发送者的信息了（永远是0）。因此需要为每一个连接设定一个持续计时器，只要收到零窗口，就开始计时，如果超时，就探测一下，接受者如果接收到了就发送报文更新发送者的窗口。</p>
+</li>
+<li>
+<p>TCP的传输效率</p>
+<p>TCP的什么时候将自己的缓存中的信息发出去是其自己决定的。可以通过以下几种方式</p>
+<ol>
+<li>MSS</li>
+<li>每经过一段时间就发送</li>
+<li>应用程序PSH</li>
+</ol>
+<p>Nagle算法：只有当接收到前一个发送的报文的确认后才发送下一个</p>
+<p>但是可能会导致糊涂窗口综合征，即接受者的应用程序处理的很慢，每次只空出很小的一块发回确认，效率很低。因此可以让接受者等待一会，等有足够长度的接收空间后再发回确认。</p>
+</li>
+</ol>
+<h2 id="TCP拥塞控制">TCP拥塞控制</h2>
+<p>拥塞控制与流量控制的区别：对于从水龙头里节水，流量控制是杯子很小，拥塞控制是管子很细。</p>
+<ol>
+<li>
+<p>当对网络的某一资源的需求量大于可用资源，就会发生拥塞，并且常常会趋于恶化，因为拥塞会导致丢失，而丢失会产生重传，重传导致需求量更大。</p>
+<p>拥塞控制就是不让过多的数据注入网络中。</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%207.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>不进行控制就会趋于恶化甚至最终导致死锁。</p>
+<p>但是拥塞控制是一个动态的过程，有时甚至拥塞控制本身是导致死锁的原因。</p>
+<p>一般是使用闭环控制来做拥塞控制：通过检测网络拥塞的时间和地点，并将信息传送到可采取行动的地方，并采取行动。一般检测就是检测到之后发回，但是可能会导致更加拥塞。另一种是路由器或主机时长发出探测分组，但是过于频繁也会导致拥塞。</p>
+</li>
+<li>
+<p>拥塞控制的方法</p>
+<p>发送窗口维持一个拥塞窗口，表示他认为多少的量是不会导致网络拥塞的。</p>
+<p>慢开始：一开始由于不知道网络状况，从非常小的值开始增加。最开始设置为2-4个发送方的最大报文段SMSS（若SMSS&gt;2190，则2个，1095&lt;SMSS≤2190，3个，SMSS&lt;1095，4个）。在每次接收到确认报文后，就增加min(N，SMSS），N为原先未被确认的而现在刚收到确认报文段确认的字节数。</p>
+<p>可以很显然发现，慢开始是指数增长的。因此为了避免增长过大，当他达到慢开始门限ssthresh时，就开始采用拥塞避免。</p>
+<p>拥塞避免：将增加更改为固定时间增加1个SMSS大小，让网络不容易出现拥塞。但一旦在这两个情况下发生超时，就直接将ssthresh/2并重新开始慢开始。</p>
+<p>快重传：有的时候，可能并不是网络拥塞了，而是一个包意外丢了。因此，为了检测这种情况，就要求接收方没接收到就立刻确认。当收到3个重复确认（即总共收到4个确认），就认为是3-ACK，只是意外丢失。就执行快恢复而非慢开始。</p>
+<p>快恢复：慢开始门限还是除2，但是拥塞窗口不置为1，而是慢开始门限的大小。（虽然有的是设置为3*MSS+ssthresh，因为认为有3个分组已经过去了，所以网络中减少了3个分组）。</p>
+<p>ssthresh乘法减少，拥塞窗口加法增大。</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%208.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>发送方窗口上限为min(拥塞窗口，接受窗口）。</p>
+</li>
+<li>
+<p>主动队列管理AQM</p>
+<p>对TCP拥塞控制影响最大的是路由器的丢失策略。一般都是尾部丢失，但这样一般会导致一连串的分组被丢失，导致很多都同时进入慢开始（全局同步）。</p>
+<p>AQM：在到达某个范围之后就按概率丢弃，其中丢弃的策略有很多，主要是随机早期检验RED。</p>
+<p>RED：当小于最小门限，则放入队列。若大于最大门限，则丢弃。否则有p概率丢弃（在检测到早期的征兆的时候就开始控制）。</p>
+</li>
+</ol>
+<h2 id="TCP的运输连接管理">TCP的运输连接管理</h2>
+<ol>
+<li>
+<p>连接建立</p>
+<p>需要解决3个问题：要是每一方知道对方的存在</p>
+<p>是允许双方协商一些参数</p>
+<p>能够分配运输实体资源</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%209.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>SYN</th>
+<th>ACK</th>
+<th>ack</th>
+<th>携带数据</th>
+<th>序号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>等待</td>
+<td>B创建传输控制块TCB，处于LISTEN。</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+</tr>
+<tr>
+<td>连接请求</td>
+<td>A创建传输控制块TCB，发出连接请求</td>
+<td>1</td>
+<td>0</td>
+<td>/</td>
+<td>/</td>
+<td>初始化并消耗</td>
+</tr>
+<tr>
+<td>连接接收</td>
+<td>B接收到发送确认</td>
+<td>1</td>
+<td>1</td>
+<td>+1</td>
+<td>/</td>
+<td>初始化并消耗</td>
+</tr>
+<tr>
+<td>连接确认</td>
+<td>A在收到B的确认后，要给B确认，用于防止已失效的连接请求</td>
+<td>0</td>
+<td>1</td>
+<td>+1</td>
+<td>可带可不带</td>
+<td>若携带数据则消耗，否则不消耗</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>连接释放</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%2010.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>FIN</th>
+<th>序号</th>
+<th>ACK</th>
+<th>ack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A连接释放</td>
+<td>发送连接释放报文段，停止发送数据，关闭连接</td>
+<td>1</td>
+<td>u</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>B对释放的确认</td>
+<td>发出确认，处于半关闭，若B发送数据，A仍要接收</td>
+<td>0</td>
+<td>v</td>
+<td>1</td>
+<td>u+1</td>
+</tr>
+<tr>
+<td>B连接释放</td>
+<td>释放连接，停止发送数据，关闭连接</td>
+<td>1</td>
+<td>w</td>
+<td>1</td>
+<td>u+1</td>
+</tr>
+<tr>
+<td>A对释放的确认</td>
+<td>在发送后，需要经过时间等待计时器2MSL（最长报文段寿命）</td>
+<td>0</td>
+<td>u+1</td>
+<td>1</td>
+<td>w+1</td>
+</tr>
+</tbody>
+</table>
+<p>最后要等待是因为，首先要等待B能够收到最后一个报文，如果超时了，要重传。其次，可以保证下一个连接不会被本连接影响（因为经过这么一段时间后这些消息就没了）。</p>
+<p>另外双方还有保活计时器，每收到一次客户的数据，就重置，如果2小时内没有收到，就发送探测报文，如果仍然没有收到就隔75秒继续发送，如果发送10个都没有回应，就认为故障并关闭。</p>
+<p><img src="/image/%E8%BF%90%E8%BE%93%E5%B1%82image%2011.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>运输层</div>
+      <div>https://lhish.github.io/project/hide/运输层/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

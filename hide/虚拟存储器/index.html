@@ -1,0 +1,936 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="虚拟存储器概述 从逻辑上扩充内存容量   常规储存管理方式的特征和局部性原理 常规存储器虽然也有许多存储方式，但是，不管是哪种存储方式，实际上都只是为了提高内存的利用率，减少内存碎片的出现，当作业的大小大于内存时，不管使用哪种方式都不能放入内存。 其有着两个特征：一次性（作业必须全部装入内存后才能运行），驻留性（在被装入内存后，直到运行结束，都不会换出）。（整体对换不太好分类） 但程序具有局部性原">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟存储器">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="虚拟存储器概述 从逻辑上扩充内存容量   常规储存管理方式的特征和局部性原理 常规存储器虽然也有许多存储方式，但是，不管是哪种存储方式，实际上都只是为了提高内存的利用率，减少内存碎片的出现，当作业的大小大于内存时，不管使用哪种方式都不能放入内存。 其有着两个特征：一次性（作业必须全部装入内存后才能运行），驻留性（在被装入内存后，直到运行结束，都不会换出）。（整体对换不太好分类） 但程序具有局部性原">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8image.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8image%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8image%202.png">
+<meta property="article:published_time" content="2025-08-15T16:11:49.990Z">
+<meta property="article:modified_time" content="2025-08-15T16:11:49.990Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8image.png">
+  
+  
+  
+  <title>虚拟存储器 - lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="虚拟存储器"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-16 00:11" pubdate>
+          2025年8月16日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">虚拟存储器</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="虚拟存储器概述">虚拟存储器概述</h2>
+<p>从逻辑上扩充内存容量</p>
+<ol>
+<li>
+<p>常规储存管理方式的特征和局部性原理</p>
+<p>常规存储器虽然也有许多存储方式，但是，不管是哪种存储方式，实际上都只是为了提高内存的利用率，减少内存碎片的出现，当作业的大小大于内存时，不管使用哪种方式都不能放入内存。</p>
+<p>其有着两个特征：一次性（作业必须全部装入内存后才能运行），驻留性（在被装入内存后，直到运行结束，都不会换出）。（整体对换不太好分类）</p>
+<p>但程序具有局部性原理：执行时一般顺序执行，递归调用深度不超过5，有许多循环结构并有许多对数据结构的处理，导致其有时间局限性（指令不久后可能再次执行，数据不久后会被再次访问)，空间局限性（一段时间内访问的地址可能集中在一定的范围内，程序的地址也是(顺序执行)）</p>
+<p>因此，在运行时，仅需将当前要运行的页面或段装入内存，当程序要访问的没有被装入内存，就发出缺页(段)中断请求，并用请求调页(段)装入内存，如果内存已满就置换暂时不用的页(段)。</p>
+</li>
+<li>
+<p>虚拟存储器的定义和特征</p>
+<p>虚拟存储器：指具有请求调入功能和置换功能，并从逻辑上对内存容量加以扩充的一种存储器系统。（容量为内存和外存之和，速度接近与内存，成本接近于外存）</p>
+<p>特征：</p>
+<ol>
+<li>多次性（允许被分成多次调入内存运行）</li>
+<li>对换性（允许在作业的运行过程中进行换进换出）</li>
+<li>虚拟性（从逻辑上提高内存容量）（可以提高多道程序度和程序执行的并发程度和吞吐量）</li>
+</ol>
+</li>
+<li>
+<p>虚拟存储器的实现方法</p>
+<p>有两种实现方式：分页请求系统，请求分段系统。</p>
+<p>硬件上需要请求分页(段)的页(段)表机制，缺页(段)中断机构，地址变换机构。而分页在软件上实现比分段更简单，因为是固定大小。</p>
+</li>
+</ol>
+<h2 id="请求分页存储管理方式">请求分页存储管理方式</h2>
+<ol>
+<li>
+<p>请求分页中的硬件支持</p>
+<ol>
+<li>
+<p>请求页表机制</p>
+<p>请求页表存储了逻辑地址映射到物理地址的转换。包含六项，页号，物理块号（可能为空，如果没有调入），状态位P（当前是否已调入），访问字段A（一段时间内的访问次数），修改位M（发生修改时置1在调出时也要对外存更改），外存地址。</p>
+</li>
+<li>
+<p>缺页中断机构</p>
+<p>其中断与普通中断的处理方式差不多，要保存，转入内核态等等，但缺页中断是一种特殊中断，其在执行期间产生和处理信号（而一般中断都是执行完一条指令后），并且一条指令可能会产生多次缺页中断。</p>
+</li>
+<li>
+<p>地址变换机构</p>
+<p><img src="/image/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+</li>
+<li>
+<p>请求分页中的内存分配</p>
+<ol>
+<li>
+<p>最小物理块数（保证进程正常运行所需的最小物理块数）的确定</p>
+<p>正常情况只需要2，程序1，数据1，若允许间接寻址，则3，而大部分功能较强的需要6，如下图。</p>
+<p><img src="/image/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8image%201.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>内存分配策略</p>
+<ol>
+<li>
+<p>固定分配局部置换</p>
+<p>给每个进程分配的物理块数量固定，当发生缺页，就置换其中一块物理块。缺点在无法确定该分配多少内存，多了减少内存中进程数，少了会频繁中断。</p>
+</li>
+<li>
+<p>可变分配全局置换</p>
+<p>一开始分配一定物理块，当缺页，就从当前还未分配的空闲物理块分配一块给这个进程（内存增加）。当无空闲物理块时，就对任意某个进程的物理块进行置换（内存减少）。</p>
+</li>
+<li>
+<p>可变分配局部置换</p>
+<p>与固定分配局部置换类似，但是如果发现频繁中断，则增加其物理块，否则减少。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>物理块分配算法（固定分配）</p>
+<ol>
+<li>平均分配：每个进程数量一致</li>
+<li>按比例分配：根据进程大小按比例分配（应大于最小物理块大小）</li>
+<li>考虑优先权分配算法：为了让优先级高的尽快完成，应增加其物理块数量。因此，将内存分为两部分，一部分按比例分配，一部分按优先级进行分配</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>页面调入策略</p>
+<ol>
+<li>
+<p>何时调入页面</p>
+<ol>
+<li>
+<p>预调页策略：一次性调入一批页面，通过预测的方式来决定哪些会被调入。</p>
+<p>优点：在程序一开始，程序员可以指定一批调入页面；当程序被调度时，可以将其使用的工作集一起调入。</p>
+<p>缺点：预测准确率低，导致大部分调入的未被访问，效率低。</p>
+</li>
+<li>
+<p>请求调页策略：当不存在时才调入</p>
+<p>优点：调入的页面一定会被访问，实现简单</p>
+<p>缺点：一次仅调入一页，增加了IO频率。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>从何处调入页面</p>
+<ol>
+<li>拥有足够的对换空间：进程调度时就全部放进对换区。</li>
+<li>没有足够的对换空间：若被修改，从对换区调入（也要调出到对换区），若不变，则从文件区调入（无须调出到文件区）。</li>
+<li>UNIX方式：未运行过的从文件区调入，其他从对换区调入。</li>
+</ol>
+</li>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>缺页率</mtext><mi>f</mi><mo>=</mo><mfrac><mrow><mi>F</mi><mtext>访问页面失败次数</mtext></mrow><mrow><mi>A</mi><mtext>访问页面从次数</mtext></mrow></mfrac></mrow><annotation encoding="application/x-tex">缺页率f=\frac{F访问页面失败次数}{A访问页面从次数}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord cjk_fallback">缺页率</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="mord cjk_fallback mtight">访问页面从次数</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span><span class="mord cjk_fallback mtight">访问页面失败次数</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>受页面大小，进程所分配物理块数目，页面置换算法和程序固有特性影响。</p>
+<p>而实际上，换出页面时的时间是不统一的，修改花的时间更多。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>缺页中断处理时间</mtext><mi>t</mi><mo>=</mo><mtext>修改概率</mtext><mi>β</mi><mo>∗</mo><msub><mi>t</mi><mi>a</mi></msub><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>β</mi><mo stretchy="false">)</mo><mo>∗</mo><msub><mi>t</mi><mi>b</mi></msub></mrow><annotation encoding="application/x-tex">缺页中断处理时间t=修改概率\beta*t_a+(1-\beta)*t_b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">缺页中断处理时间</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord cjk_fallback">修改概率</span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="页面置换算法">页面置换算法</h2>
+<p>抖动：被换出的页面又立即被换入，进程频繁的更换页面，大部分时间都花费在页面置换上</p>
+<ol>
+<li>
+<p>最佳(Optimal)置换算法：最佳的方法就是换出最长时间不会再被使用的页面。</p>
+<p>是理想的最佳方法，但实际上这是无法预测的，因此一般用来评价其他算法。</p>
+</li>
+<li>
+<p>先进先出(FIFO)页面置换算法（队列）：淘汰最先进入的页面。</p>
+<p>性能非常差。</p>
+</li>
+<li>
+<p>LRU(Least Recently Used)置换算法：换出最长时间未被访问的页面。</p>
+<p>以最近的过去类比最近的未来，但实际上并没有必然性。</p>
+<p>实现起来较为复杂，一般用寄存器或栈来实现。</p>
+<ol>
+<li>
+<p>寄存器</p>
+<p>每一个页面对应一个n为移位寄存器，当其被访问时，就将最高位置为1，每过一个时间，就将整体右移，值最小的寄存器对应的页面就是最久未被访问的页面。因为很显然越久未被访问寄存器中的第一个1越靠右。</p>
+</li>
+<li>
+<p>栈</p>
+<p>保存各个页面的页面号。当访问时，将其移出栈，并压入栈顶，很显然，最底下的就是最久未被访问的页面。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>LFU(Least Frequently Used)置换算法：换出最近某一段时间内访问次数最少的页面</p>
+<p>实现上需要记录最近一段时间的访问次数，但这是不现实的，因为1ms内可能会对页面连续访问成千上万次。</p>
+<p>因此一般仍然使用移位寄存器来实现，如果被访问，就将最高位设为1，然后每隔一定时间(如100ms)就向右移一位，最后全部相加即为使用最少的页面。但实际上这也不能完全反应，因为这一段时间内访问100次和1次的效果是一样的。</p>
+</li>
+<li>
+<p>Clock置换算法</p>
+<p>LRU需要比较多的硬件支持，因此一般用Clock算法来近似LRU。</p>
+<ol>
+<li>
+<p>简单的Clock置换算法（NRU(Not Recently Used))</p>
+<p>为每一个页表增加一位bool表示是否被访问过。若被访问，则置1。并将所有内存中的页面串成一条链，每次要换出时，从前一次到达的地方往后走，如果为1，就置0，给予第二次留在内存的机会，否则如果为0，就直接换出。</p>
+</li>
+<li>
+<p>改进型Clock置换算法</p>
+<p>在换出时，如果页面被修改了，那么其换出的代价是更大的，因此也要考虑。因此改进Clock算法对修改位M也进行考查。</p>
+<p>首先找未被访问且未被修改，其次是未访问但修改了的，然后是访问但没修改，最后是访问且修改了。每一次寻找都要扫描一遍所有的页面，直到找到了就停止。而在实际实现上，前两步没什么要注意的，而后两部则并非是扫描访问位A=1的，而是在第二次扫描的时候将所有1置为0，因此后两步的扫描和前两步的扫描的条件实际上是相同的（在经过第二次扫描后，所有已访问的就会变为未被访问的。</p>
+<p>IO减少，但算法本身开销变大。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>页面缓冲算法PBA</p>
+<p>除了算法会影响时间，读入内存和写回磁盘的频率也会大大的影响时间。PBA就是在这方面进行优化。</p>
+<p>首先，他是可变分配和局部置换方式。其在内存中有两个链表，空闲页面链表和修改页面链表。当一个未被修改的页面被换出时，就放到空闲页面链表中，当再次被访问时也能很快再拿回来，但空闲链表还是起到其本身在可变分配时的作用。当一个被修改过的页面换出时，放到修改页面链表中，当再次被访问时也能很快再拿回来，并且当修改页面链表达到一定大小，再一起写入磁盘，减少IO频率。</p>
+</li>
+<li>
+<p>访问内存的有效时间</p>
+<p>在访问时总共有三种情况。</p>
+<ol>
+<li>访问页在内存中，且页表项在快表中：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>查找块表时间</mtext><mi>λ</mi><mo>+</mo><mtext>访问内存时间</mtext><mi>t</mi></mrow><annotation encoding="application/x-tex">查找块表时间\lambda+访问内存时间t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback">查找块表时间</span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">访问内存时间</span><span class="mord mathnormal">t</span></span></span></span></li>
+<li>访问页在内存中，且页表项不在快表中（在快表中的一定在内存，反之不成立）：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>∗</mo><mo stretchy="false">(</mo><mi>λ</mi><mo>+</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">2*(\lambda+t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span>，因为还要修改快表，所以多一次更新快表时间</li>
+<li>访问页在不内存中：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>∗</mo><mo stretchy="false">(</mo><mi>λ</mi><mo>+</mo><mi>t</mi><mo stretchy="false">)</mo><mo>+</mo><mtext>中断时间</mtext><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">2*(\lambda+t)+中断时间\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">中断时间</span><span class="mord mathnormal">ϵ</span></span></span></span></li>
+</ol>
+<p>再加上缺页率和命中率就能计算出平均访问内存的有效时间。</p>
+</li>
+</ol>
+<h2 id="抖动和工作集">抖动和工作集</h2>
+<ol>
+<li>
+<p>抖动：通过虚拟存储器，可以提高多道程序度，但是，随着数量的增加，到达某一个点后，处理机的利用率就会开始下降。这是因为，内存中的程序太多，每一个程序拥有的物理块太小，导致其大部分时间都在换入换出，不再能做任何有效工作，因此处理机效率就降低了。</p>
+</li>
+<li>
+<p>工作集：一段时间内使用的页面的集合</p>
+<p>但这一般无法预测，因此也一般使用最近的过去作为最近的将来，将过去的几个页面作为工作集。在时间t大小为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span></span></span></span>的工作集记为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi mathvariant="normal">Δ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">w(t,\Delta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">Δ</span><span class="mclose">)</span></span></span></span>。</p>
+</li>
+<li>
+<p>预防抖动的方法</p>
+<ol>
+<li>采用局部置换策略：避免进程互相影响。但实际上如果某个进程发生抖动，其缺页中断也会间接的影响其他进程的缺页中断，导致影响其他进程。</li>
+<li>把工作集算法融入到处理机调度中：当处理机利用率低时，应该先检查时候有缺页多的进程，没有才调入新的进程</li>
+<li>利用”L=S”准则调节缺页率：L为缺页之间的平均时间，S为平均缺页服务时间。当L=S时，处理机和磁盘都达到最佳。</li>
+<li>选择暂停的进程：当出现抖动或将要出现的时候，可以暂时将进程暂停，选择进程的方式与处理机调度类似。</li>
+</ol>
+</li>
+</ol>
+<h2 id="请求分段存储管理方式">请求分段存储管理方式</h2>
+<ol>
+<li>
+<p>硬件支持</p>
+<ol>
+<li>
+<p>请求段表机制</p>
+<p>需要段名，段长，段基址，存取方式，访问字段A，修改位M，存在位P，增补位和外存始址。</p>
+<p>相较于页表，其多了段长，存取方式和增补位。</p>
+<p>存取方式：用于控制段的权限，如只读，只写。</p>
+<p>增补位：在内存中时时候有动态增长。</p>
+</li>
+<li>
+<p>缺段中断机构</p>
+<p>相较于页面，段在调入的时候需要判断内存中时候有足够大小或者时候能够拼起来凑成一个足够大的空闲区，否则就要置换。</p>
+</li>
+<li>
+<p>地址变换机构</p>
+<p>相较于页面，还需要检查其地址合法性和权限问题。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>分段的共享与保护</p>
+<p>分段的共享和保护是通过共享段表来实现的。这张段表上存着所有被共享的共享段的基础信息，每一个共享段有着一个count计数，当为0时这段内存才能释放（共享指针）。并且还保存所有共享该段的进程信息，如状态，进程名，进程号，段号（在不同的进程中可能不一样）和存取控制（为不同的进程分配不同的权限）。</p>
+</li>
+<li>
+<p>共享段的分配与回收</p>
+<p>分配时，第一个分配空间，并更改共享段表，后来的只需更改共享段表。</p>
+<p>回收时更改共享段表，最后一个释放空间。</p>
+</li>
+<li>
+<p>分段保护</p>
+<ol>
+<li>越界检查：检查段号的合法性和段内地址的合法性</li>
+<li>存取控制检查：由硬件实现，无法从软件更改</li>
+<li>环保护机构：低编号的环具有高优先权，OS核心处于0号环。</li>
+</ol>
+</li>
+</ol>
+<p><img src="/image/%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8image%202.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>虚拟存储器</div>
+      <div>https://lhish.github.io/project/hide/虚拟存储器/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

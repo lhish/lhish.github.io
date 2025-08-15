@@ -1,0 +1,1097 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="几个共通问题  链路：两个相邻节点间的物理线路 数据链路：实现传输的通信协议的硬件（最常用的是网络适配器）和软件加链路 PDU：帧     封装成帧 将一个IP数据报加上帧首部和帧尾部就封装成了帧，但是帧的数据部分有长度上限MTU，如果超过了就要分割成多个帧。 而当进入了物理层之后就不知道帧的开始和结尾了，因此要用帧定界符来指定开始和结尾。也能保证接受者能够分辨出传输的是否是一个完整的帧，并将不完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据链路层">
+<meta property="og:url" content="https://lhish.github.io/project/hide/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="几个共通问题  链路：两个相邻节点间的物理线路 数据链路：实现传输的通信协议的硬件（最常用的是网络适配器）和软件加链路 PDU：帧     封装成帧 将一个IP数据报加上帧首部和帧尾部就封装成了帧，但是帧的数据部分有长度上限MTU，如果超过了就要分割成多个帧。 而当进入了物理层之后就不知道帧的开始和结尾了，因此要用帧定界符来指定开始和结尾。也能保证接受者能够分辨出传输的是否是一个完整的帧，并将不完">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%203.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%204.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%205.png">
+<meta property="og:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%206.png">
+<meta property="article:published_time" content="2025-08-15T16:11:49.986Z">
+<meta property="article:modified_time" content="2025-08-15T16:11:49.986Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image.png">
+  
+  
+  
+  <title>数据链路层 - lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据链路层"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-16 00:11" pubdate>
+          2025年8月16日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">数据链路层</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="几个共通问题">几个共通问题</h2>
+<ol>
+<li>链路：两个相邻节点间的物理线路</li>
+<li>数据链路：实现传输的通信协议的硬件（最常用的是网络适配器）和软件加链路</li>
+<li>PDU：帧</li>
+</ol>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol>
+<li>
+<p>封装成帧</p>
+<p>将一个IP数据报加上帧首部和帧尾部就封装成了帧，但是帧的数据部分有长度上限MTU，如果超过了就要分割成多个帧。</p>
+<p>而当进入了物理层之后就不知道帧的开始和结尾了，因此要用帧定界符来指定开始和结尾。也能保证接受者能够分辨出传输的是否是一个完整的帧，并将不完整的抛弃。如ASCII中就用SOH和EOT作为开始和结束。</p>
+</li>
+<li>
+<p>透明传输（透明：某一个实际存在的事物看起来却好像不存在一样）</p>
+<p>字节填充：如果使用数据部分全部是ASCII编码，那问题不大。但如果不是，那么数据部分就可能出现帧定界符，可能导致接受者误判断。因此通过字节填充的方式在数据部分中的歧义的，如帧定界符，转义字符之前加上一个转义字符</p>
+</li>
+<li>
+<p>差错检测</p>
+<p>数据在传输过程中可能出现比特错误，即0变1，1变0。</p>
+<p>因此要进行差错检验，数据链路层广泛使用循环冗余检验CRC。</p>
+<p>CRC：</p>
+<p>首先选择一个n位的不超过原数据长度的二进制数P，在原数据后加上(n-1)位0，并对P进行二进制模2运算，得到(n-1)位的余数R（称为帧检验序列FCS），将数据末尾加上FCS发送。</p>
+<p>对于接收到的数据对P进行二进制模2运算，如果结果为0，则无差错。如果有差错就直接丢弃。</p>
+<p>二进制模2运算：根据当前剩下的最高位，如果1，就当大于，用P去异或，否则用全0去异或（也就是保留），直到算到最后一位。</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%201.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>可以通过多项式来生成P，如x^3+x^2+1就是1101。</p>
+<p>但是CRC仅能做到无差错接受，即保证不会出现比特错误，并不能做到可靠传输，因为还可能出现帧丢失/重复/失序。</p>
+<p>原本按照OSI，数据链路层应该要提供可靠传输，增加了帧编号，确认，重传机制，但实际上现在并不这么要求，而是根据网络情况具体讨论。</p>
+<p>如果网络好，则只要求无差错，如果不好，则需要提供可靠传输。</p>
+</li>
+</ol>
+<h2 id="点对点协议PPP（全双工）（调制解调器通信）">点对点协议PPP（全双工）（调制解调器通信）</h2>
+<ol>
+<li>
+<p>特点</p>
+<ol>
+<li>
+<p>非常简单，是与ISP通信使用的数据链路层协议</p>
+<p>复杂的都在TCP中，PPP只做到了最基本的数据链路层：3大特性。</p>
+<p>支持多种网络层协议，也支持多种类链路(如串行并行）</p>
+<p>能够检查连接状态，及时发现当前情况，能进行网络层地址协商，使双方的网络层能直到对方的地址。</p>
+</li>
+<li>
+<p>PPPoe(PPP over Etherent)，宽带上网用户使用的。</p>
+</li>
+<li>
+<p>组成：</p>
+<ol>
+<li>将IP数据报封装到串行链路的方法。</li>
+<li>链路控制协议LCP</li>
+<li>网络控制协议NCP</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>PPP协议帧格式</p>
+<table>
+<thead>
+<tr>
+<th>帧首部F</th>
+<th>1</th>
+<th>7E</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地址字段A</td>
+<td>1</td>
+<td>FF</td>
+<td>无意义</td>
+</tr>
+<tr>
+<td>控制字段C</td>
+<td>1</td>
+<td>03</td>
+<td>无意义</td>
+</tr>
+<tr>
+<td>协议</td>
+<td>2</td>
+<td></td>
+<td>0x0021 IP数据报  0xC021 LCP数据</td>
+</tr>
+<tr>
+<td>内容</td>
+<td>≤1500</td>
+<td></td>
+<td>内容</td>
+</tr>
+<tr>
+<td>FCS</td>
+<td>2</td>
+<td></td>
+<td>检验</td>
+</tr>
+<tr>
+<td>帧尾部F</td>
+<td>1</td>
+<td>7E</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>异步传输下的透明：字节填充</p>
+<table>
+<thead>
+<tr>
+<th>0x7E</th>
+<th>0x5D 0x5E</th>
+<th>帧首尾</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x7D</td>
+<td>0x7D 0x5D</td>
+<td>转义</td>
+</tr>
+<tr>
+<td>≤0x20</td>
+<td>0x7D 后一段进行处理</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>同步传输下的透明：零比特填充（因为开始和结尾一定会出现连续的6个1）</p>
+<p>只要发现连续5个1，就插入一个0，使得不会连续出现6个1。</p>
+<p>除了这两种填充方式还有两种，一种是直接在首部加一个表示帧长度的字节，另一种是将开始和结束的这个字节用违规字节填充，如曼彻斯特中间肯定会跳变一下，那么我违规的时候就不跳变来表示开始和结尾。</p>
+</li>
+<li>
+<p>工作状态</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%202.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<table>
+<thead>
+<tr>
+<th>链路静止</th>
+<th>通过调制解调器向路由器发消息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链路建立</td>
+<td>发送LCP配置请求帧(PPP帧），回应接受，不接受，和不理解三种可能</td>
+</tr>
+<tr>
+<td>鉴别</td>
+<td>在口令鉴别协议PAP和握手鉴别协议CHAP的情况下发送分组通过鉴别身份</td>
+</tr>
+<tr>
+<td>网络层协议</td>
+<td>NCP根据协议交换网络控制分组，将控制信息用(PPP帧)发送</td>
+</tr>
+<tr>
+<td>链路打开</td>
+<td>可以互相发信息，也可以通过回送请求LCP分组和回送回答LCP分组来检查连接状态，也可以通过终止请求来关闭</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h2 id="广播信道（适配器通信）">广播信道（适配器通信）</h2>
+<p>局域网使用的就是广播信道。</p>
+<ol>
+<li>
+<p>局域网的数据链路层</p>
+<p>以太网是局域网的一种，只不过由于他是最典型的，最流行的，因此以太网已经成为局域网的同义词。</p>
+<p>局域网的特点：</p>
+<ol>
+<li>具有广播功能，局域网上的主机共享引荐和软件资源</li>
+<li>便于扩展</li>
+<li>提高了可靠性，可用性和生存性</li>
+</ol>
+<p>拓扑结构：星型网（用集线器连接），环形网，总线网。</p>
+<p>局域网存在着一个PPP不存在的问题，那就是共享信道。而PPP是独占的。</p>
+<p>有两种方式：</p>
+<ol>
+<li>静态划分信道（使用前述的各种分用算法，但代价较高，不适合局域网）</li>
+<li>动态媒体接入控制（多点接入）
+<ol>
+<li>随机接入，每个用户都可以随机的发送消息，但要解决碰撞的问题</li>
+<li>受控接入，要服从一定的控制，如轮询</li>
+</ol>
+</li>
+</ol>
+<p>由于以太网的标准有很多，因此数据链路层被拆分为两个子层：逻辑链路控制LLC子层和媒体接入控制MAC子层，对于LLC来说下面的都是透明的。</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%203.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>但是当前主流的标准仅剩下以太网802.2一种，因此LLC子层就不再是必须的了。因此不讨论LLC。</p>
+<p>适配器（网络接口卡NIC，即网卡）负责具体的计算机与局域网的通信。计算机将网络层的IP数据报交给网卡，网卡包装成帧后发送出去。</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%204.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>CSMA/CD协议（最早都是总线型局域网，这个协议是针对总线型的）（半双工）</p>
+<p>当要用广播发送一对一消息的时候，会在消息上带上一个地址，而适配器会根据这个地址是否与自己匹配来决定时候接收。</p>
+<p>而由于局域网良好的通信质量和灵活简便，使用无连接方式，不进行编号也不要求对方确认，仅保证最大努力的交付。并且使用曼彻斯特编码。</p>
+<p>碰撞检测：</p>
+<ol>
+<li>
+<p>当且仅当检测到信道上是空闲的，才进行发送。</p>
+</li>
+<li>
+<p>然而，由于在信道上传播是有延迟的，所以仍然会发生碰撞（例如两个同时发送消息）。因此，假设总线上的单程端到端传播时延记为τ，那么，最多2τ（争用期，碰撞窗口）的时间就能发现碰撞（在发送到别人门口的时候对方发送消息了），因此，当自身最多2τ的时间就能接收到碰撞者的信息，而在接收到碰撞后立即停止传送，空出信道。</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%205.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>为了避免在发送很短的帧的情况下，发送完毕可能都没接收到碰撞信息，因此要求以太网最短帧长为512Bit，因此，只要在发送512bit的期间内没有检测到碰撞，就不会碰撞。因此，争用期也就随之调整为了发送512Bit所需的时间。而总线的长度也受此限制，必须要保证是小于关系。而由于发生碰撞就立即停止发送，因此无效帧都一定是不足64字节的。</p>
+</li>
+<li>
+<p>当发生碰撞后，就要退避一段时间。重传等待时间为r*2τ，r为从<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><mo stretchy="false">(</mo><msup><mn>2</mn><mi>k</mi></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">0\to(2^k-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0991em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>中随机取的一个数，k为min(10，重传次数)。这样，若是多次发生冲突，因此需要推迟的平均时间也就增大了(动态退避)。</p>
+</li>
+<li>
+<p>若到16次也没重传成功，就丢弃并向高层报告。如果信道较急，则可能会丢弃掉很多帧。</p>
+</li>
+<li>
+<p>强化碰撞，当发送数据的站检测到碰撞，就会发送32或48比特的认为干扰信号，让所有用户知道现在已经发生了碰撞</p>
+</li>
+</ol>
+<p>帧间最小间隔：9.6μs，为了让接受者有处理的时间。</p>
+</li>
+<li>
+<p>使用集线器的星形拓扑</p>
+<p>集线器在物理上看起来是星形网，但是其模拟的是实际电缆线的工作，使得其实际上还是一个总线网，使用CSMA/CD协议。</p>
+<p>集线器有很多端口，每一台主机都要用两根双绞线连接，一根收，一根发。</p>
+<p>其实质上就是一个转发器，工作在物理层，仅仅是转发比特，不进行额外的操作。</p>
+<p>但会进行自适应串音回波抵消，让比特之间的干扰减小。</p>
+</li>
+<li>
+<p>信道利用率</p>
+<p>信道的利用：n*2τ（争用期）+T0（发送时延）+τ（传输时延）</p>
+<p>τ越小，T0越大，占用率越高。因此可以定义<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mfrac><mi>τ</mi><msub><mi>T</mi><mn>0</mn></msub></mfrac></mrow><annotation encoding="application/x-tex">a=\frac{\tau}{T_0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1405em;vertical-align:-0.4451em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6954em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.1132em;">τ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，当a越小，占用率越高。</p>
+<p>以太网的连线不能太长，帧长不能太短。极限信道利用率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><mi>a</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">S_{max}=\frac{1}{1+a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ma</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2484em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">a</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，当且仅当a远小于1时，利用率才比较高，当利用率达到30%就已经处于重载了。</p>
+</li>
+<li>
+<p>以太网的MAC层</p>
+<p>MAC地址（物理地址/硬件地址/适配器标识符EUI-48）</p>
+<p>只是一个名字，一个48位二进制，是一个固化在适配器的ROM中的地址，他不会随所处地的改变而改变。当电脑拥有多个适配器或更换了适配器，那么他的MAC地址也会有多个或者更换。</p>
+<p>所有生产适配器的都必须从IEEE的注册管理机构RA购买一个字段的前3个字节（组织唯一标识符OUI），这个OUI并不是强制一个公司一个的。而购买了OUI的公司生产的网络适配器的前3位就是这个OUI，而后三个字节（扩展标识符）则由厂家自行指配。</p>
+<p>地址的第一字节的最低有效位为I/G位，为0时表示单个站地址，1表示组地址，用于多播。</p>
+<p>地址的第一字节的倒数第二有效位为G/L位，为0时表示全球管理，没有相同地址，1表示本地管理，可以随意分配。</p>
+<p>通过过滤器可以处理发送不同的帧：单播，广播，多播。适配器仅要求要识别前两种。</p>
+<p>当适配器处于混杂模式的时候，会把过滤器去掉，就能悄悄听到局域网上所有的信息，方便分析和黑客。</p>
+<p>MAC帧</p>
+<p>前部不属于MAC帧的额外插入内容：</p>
+<table>
+<thead>
+<tr>
+<th>前同步码</th>
+<th>7</th>
+<th>用来帮助适配器的时钟与比特流同步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>帧开始定界符</td>
+<td>1</td>
+<td>用来表示开始，10101011，最后两个1表示MAC帧的内容要开始了</td>
+</tr>
+</tbody>
+</table>
+<p>正式的MAC帧：</p>
+<table>
+<thead>
+<tr>
+<th>目的地址</th>
+<th>6</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>源地址</td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td>类型</td>
+<td>2</td>
+<td>表示上层协议，如0x0800就是IP数据报</td>
+</tr>
+<tr>
+<td>数据字段</td>
+<td>46≤x≤1500</td>
+<td></td>
+</tr>
+<tr>
+<td>FCS</td>
+<td>4</td>
+<td>只检验从目的地址开始的</td>
+</tr>
+</tbody>
+</table>
+<p>没有帧结束定界符，因为局域网使用了曼彻斯特编码，当没有内容的时候就不会再有变化，也就结束了。</p>
+<p>如果数据字段的长度没到46字节，就填充到64字节，而由于IP数据报中有一个字段是长度，因此也可以确定真实长度。但需要保证MAC帧之间有空隙。</p>
+<p>丢弃无效MAC帧：1. 帧的长度不是整数个字节 2. FCS错  3. 长度不在64-1518字节之间</p>
+</li>
+</ol>
+<h2 id="扩展的以太网">扩展的以太网</h2>
+<ol>
+<li>
+<p>在物理层扩展以太网</p>
+<p>可以使用光纤加调制解调器将集线器连接起来来扩大以太网范围。</p>
+<p>但是有两个缺点：</p>
+<ol>
+<li>会让所有集线器连接的电脑形成一个碰撞域，假设原本三个局域网的最大吞吐量都是10，总是30，但是在连接之后总的就都只有10了</li>
+<li>如果使用的是不同的以太网技术，那么总体的速度就会被限制为整个局域网中最低的协议。</li>
+</ol>
+</li>
+<li>
+<p>在数据链路层扩展以太网</p>
+<p>最远古的：网桥：对收到的帧根据其MAC帧的目的地址进行转发和过滤。</p>
+<p>现代：交换机（第二层交换机/交换式集线器）。</p>
+<ol>
+<li>
+<p>以太网交换机的特点</p>
+<p>是一个多端口的网桥。不但并行而且是全双工，对于其每一个端口和连接到端口的主机构成了一个碰撞域，相互通信的主机都能独占传输媒体，其带宽并不会因为共享而减少。并能在繁忙时在端口出缓存数据（当然也可以不存储，在接收到的时候直接进行处理转发）。</p>
+<p>他是即插即用的，其转发表是自学习算法逐渐建立的（内容可寻址存储器CAM）。</p>
+</li>
+<li>
+<p>自学习</p>
+<p>一开始交换表为空，当交换器收到一条消息，就会记录其发送者的端口号，对于接受者，如果表中有，则直接转发，否则广播。</p>
+<p><img src="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82image%206.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>但是网络的情况可能会变化，因此记录的信息如果一段时间没有更新，如超过300秒，就会自动删除。</p>
+<p>生成树协议STP：自学习算法也可能造成兜圈子的情况，因此这个协议保证从一台主机到其他主机的路径是无环路的树状结构。</p>
+</li>
+<li>
+<p>从总线以太网到星形以太网</p>
+<p>由于一开始交换器的可靠性不高，因此都使用总线以太网，而现在可靠性高了，自然就都转向星形以太网了。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>虚拟局域网</p>
+<p>当一个以太网的主机太多，广播帧和因为错误配置引起的循环广播会消耗很多资源，并且也不够保密。</p>
+<p>虚拟局域网：在局域网上划分不同的广播域。每个主机都有一个VLAN标签，表示这个主机属于哪一个VLAN。并且，不是一种新的局域网，而只是一个服务。</p>
+<p>VLAN会在MAC帧的源地址后插入一个VLAN标签。</p>
+<table>
+<thead>
+<tr>
+<th>802.1Q标签类型</th>
+<th>2</th>
+<th>0x8100固定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无用位</td>
+<td>0.5</td>
+<td></td>
+</tr>
+<tr>
+<td>VID（VLAN标识符）</td>
+<td>1.5</td>
+<td>4096个不同的VLAN</td>
+</tr>
+</tbody>
+</table>
+<p>但在插入后必FCS.须要重新计算。</p>
+<p>汇聚链路：交换机之间的链路，传输的是带VLAN的</p>
+<p>接入链路：交换机与主机之间的链路，传输的是不带VLAN的</p>
+<p>在交换机发给另一个交换机的时候，要加上VLAN标签，另一个交换机收到后去掉VLAN标签，再交给其他主机。</p>
+<p>接入链路上是不带VLAN的，因为主机自身是不知道自己的VID的。</p>
+<p>但如果同一个交换机的不同主机交换信息，就需要网络层的路由器或者专门有转发模块的交换机(L3/L2交换机）来处理。</p>
+</li>
+</ol>
+<h2 id="高速以太网">高速以太网</h2>
+<ol>
+<li>
+<p>100BASE-T以太网</p>
+<p>可以使用10Mbit/s也可以100Mbit/s。在好的交换器的支持下，可以做到全双工，但使用的MAC帧仍然是802.3标准。</p>
+</li>
+<li>
+<p>吉比特以太网</p>
+<p>全双工或半双工，1Gbit/s，802.3</p>
+<p>使用载波延长的方式提高速率，将争用期增大为512字节，而非64字节，不足直接填充。</p>
+<p>并且在半双工下有分组突发，当有很多短分组要发送，就只有第一个要填充，而后面的都不需要，只需要保持最小间隔就好了。</p>
+</li>
+<li>
+<p>10吉比特以太网和更快的以太网</p>
+<p>全双工，因此就不需要考虑距离了，802.3。</p>
+<p>以太网很成熟，可靠，易用，便宜，统一。</p>
+</li>
+<li>
+<p>使用以太网进行宽带接入</p>
+<p>以太网能方便进行宽带的带宽调整，因此很适合接入网上。但是，并不能验证身份，因此PPPoe将PPP帧封装在MAC帧中。然后直接发送到主交换器，而不用进行任何调制或者解调。</p>
+<p>另外关于带宽大小，仅仅能在第一个交换器得到保障，在后面的都是与其他用户共享。</p>
+<p>而使用电话线，虽然对用户来说差不多，但他最终还是会经过一次ADSL的调制和解调的，因此不能算以太网上网。</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据链路层</div>
+      <div>https://lhish.github.io/project/hide/数据链路层/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
