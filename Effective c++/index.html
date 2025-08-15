@@ -1,0 +1,936 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lhy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="模板推导  对于传数组，由于c中数组和指针是等价的，因此，数组通过值传递的时候被视为一个指针，模板推导出来也是一个指针。然而，当作为引用传递的时候，其就不和指针等价了，可以推导出其类型和大小。  但实际上，这两个传进去的东西用起来是一样的。都是函数()。 auto 1234template&lt;typename T&gt;void f(ParamType param);ParamTypeOfAu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective c++">
+<meta property="og:url" content="https://lhish.github.io/project/Effective%20c++/index.html">
+<meta property="og:site_name" content="lhish&#39;s blog">
+<meta property="og:description" content="模板推导  对于传数组，由于c中数组和指针是等价的，因此，数组通过值传递的时候被视为一个指针，模板推导出来也是一个指针。然而，当作为引用传递的时候，其就不和指针等价了，可以推导出其类型和大小。  但实际上，这两个传进去的东西用起来是一样的。都是函数()。 auto 1234template&lt;typename T&gt;void f(ParamType param);ParamTypeOfAu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhish.github.io/image/c++Untitled.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++Untitled%201.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++Untitled%202.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++Untitled%203.png">
+<meta property="og:image" content="https://lhish.github.io/image/c++Untitled%204.png">
+<meta property="article:published_time" content="2025-08-15T16:23:27.282Z">
+<meta property="article:modified_time" content="2025-08-15T16:23:27.282Z">
+<meta property="article:author" content="lhy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhish.github.io/image/c++Untitled.png">
+  
+  
+  
+  <title>Effective c++ - lhish&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhish.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","app_key":"3Vcbojuu7Fs8YXYGfaCXxvfs","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhish&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Effective c++"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-16 00:23" pubdate>
+          2025年8月16日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Effective c++</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="模板推导">模板推导</h3>
+<p><img src="/image/c++Untitled.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>对于传数组，由于c中数组和指针是等价的，因此，数组通过值传递的时候被视为一个指针，模板推导出来也是一个指针。然而，当作为引用传递的时候，其就不和指针等价了，可以推导出其类型和大小。</p>
+<p><img src="/image/c++Untitled%201.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>但实际上，这两个传进去的东西用起来是一样的。都是函数()。</p>
+<h3 id="auto">auto</h3>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jsx">template&lt;typename T&gt;<br><span class="hljs-keyword">void</span> <span class="hljs-title function_">f</span>(<span class="hljs-title class_">ParamType</span> param);<br><br><span class="hljs-title class_">ParamTypeOfAuto</span> param;<br></code></pre></td></tr></table></figure>
+<p>这两个实际上是等价的，除了一种情况。</p>
+<p>当使用{}初始化的时候，auto会默认为std::initialize_list，而模板推导则不会默认，模板推导接受{}是必烂的。而如果是构造，如果这个{}能够符合两个类型的构造，那么就是歧义的。</p>
+<p>返回类型的auto和lambda的形参auto虽然看着是auto，但实际上使用的规则是模板推导的规则而非auto的规则。</p>
+<p>另外，lambda的形参使用auto相当于就是模板函数。</p>
+<p><strong>使用auto能够让类型上的依赖自动推导，不用牵一发而动全身。</strong></p>
+<h3 id="decltype">decltype</h3>
+<p>decltype不是类型推导，decltype会忠诚的返回变量本身的类型。</p>
+<p>然而，对于一个非引用值来说，如果他是复杂的表达式，即便是(param)，param是T类型，也会让整个类型的推导变为T&amp;。</p>
+<p>由于auto是类型推导，为了让其使用decltype的规则，就应该使用decltype(auto)，这个时候会把推导方法使用decltype的规则。</p>
+<h3 id="推导">推导</h3>
+<p>编译器或者typeid产生的推导可能是不正确的，还是靠编译器编译的时候的解释比较靠谱。一种比较简单的方式是</p>
+<p><img src="/image/c++Untitled%202.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="使用auto的好处">使用auto的好处</h3>
+<ol>
+<li>避免没有初始化</li>
+<li>省略冗长类型名</li>
+<li>避免不必要的类型转换(如在不同平台typedef实际不同)及其产生的相关问题</li>
+</ol>
+<p><img src="/image/c++Untitled%203.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="不使用auto的场合">不使用auto的场合</h3>
+<blockquote>
+<p>由于c++不允许对bit的引用，但是vector<bool>是按bit存放的，因此，返回的并不是bool&amp;，而是一个代理类，有着类似的功能。</p>
+</blockquote>
+<p>然而，不显式的代理类一般是不被平常使用的，他是隐藏于使用但我们并不知道他被使用了，我们也不会主动去使用他，因为这可能会导致一些错误，就像工具人一样。</p>
+<p>而使用auto会让这些代理类被显式使用，会导致错误。</p>
+<p>为了贯彻auto的理念，使用 auto a=static_cast<type>(b)来显式类型初始化惯用法。</p>
+<p>而这也表明了，b可能不是这个类型，而我希望让他转换成type这个类型的意思。</p>
+<h3 id="和">()和{}</h3>
+<ul>
+<li>
+<p>{}的好处</p>
+<p>在任何情况下都可以用</p>
+<p>避免了类型变窄的隐式转换</p>
+<p>避免了默认初始化可能会被误判成函数声明的问题</p>
+</li>
+<li>
+<p>{}的坏处</p>
+<p>如果定义了以initialized_list为参数的构造函数(要避免)，那么所有能够匹配到initialized_list的都会使用这个构造函数</p>
+<p>当通过模板完美转发的时候，不知道使用者到底是想要使用{}还是()</p>
+</li>
+</ul>
+<h3 id="使用nullptr">使用nullptr</h3>
+<h3 id="使用别名声明">使用别名声明</h3>
+<ol>
+<li>using看起来比typedef更易懂</li>
+<li>using支持模板，而typedef应该是一个宏，所以不支持</li>
+</ol>
+<blockquote>
+<p>为什么要加typename的原因是::所得的成员不一定是一个类型，可能是一个实际成员。</p>
+</blockquote>
+<h3 id="使用限定域enum">使用限定域enum</h3>
+<p>避免了作用域的问题。</p>
+<p>避免了隐式转化。</p>
+<p>限定域enum默认最为int大小，而非限定没有默认，因此不能声明和定义分开。</p>
+<p>而对于用来表示对应数字的问题，如对于tuple的get来说，是比较麻烦的，但为了贯彻限定域enum，可以</p>
+<p><img src="/image/c++Untitled%204.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="使用deleted">使用deleted</h3>
+<p>deleted能够达到与声明为private一样的效果。</p>
+<ol>
+<li>能够在编译的时候就检测出来，而非在链接的时候。</li>
+<li>针对任何函数</li>
+<li>能够用来对于函数的参数进行过滤，虽然现在大概应该要用concept更好把</li>
+</ol>
+<h3 id="使用override">使用override</h3>
+<blockquote>
+<p>基类和派生类函数名必须完全一样（除非是析构函数)，因此构造函数不能继承。</p>
+</blockquote>
+<h3 id="使用const-iterator">使用const_iterator</h3>
+<h3 id="使用noexcept">使用noexcept</h3>
+<p>移动，swap和析构都需要是noexcept的。</p>
+<p>一个函数时候应该是noexcept应该要衡量noexcept带来的性能上的优势与实现noexcept带来的性能上的劣势。</p>
+<p>另外，noexcept函数并不要求其调用的函数是noexcept（这是为了兼容老代码）。</p>
+<h3 id="使用constexpr">使用constexpr</h3>
+<p>constexpr保证了变量是编译器可知的，因此编译器就会在编译期把他求出来，一个constexpr变量一定是const的。</p>
+<p>constexpr函数则表示，这个函数的返回值可能是编译期可知的，也就是，可以用非constexpr参数去调用这个函数，返回的也不是constexpr的，但是，如果用constexpr的形参去调用，则返回的结果也是constexpr的，但不一定是const的。</p>
+<p>所以如果一个函数的调用的形参是constexpr的，那么这个函数就应该被声明为constexpr的。</p>
+<h3 id="保证const函数线程安全">保证const函数线程安全</h3>
+<blockquote>
+<p>大概是为了保证其他函数的const性，所以某些函数也要被生成为const，至少表面看上去是const，而为了在里面修改内容，就需要用mutable</p>
+</blockquote>
+<p>由于const函数是只读的，因此对于多线程是可以并行的。所以如果有mutable，那么就要进行保护，如使用atomic或者mutex。</p>
+<p>一般来说atomic比mutex快，但是，对于多个mutable同时操作，atomic就并不能保证安全了，只能用mutex。</p>
+<h3 id="默认函数的生成">默认函数的生成</h3>
+<blockquote>
+<p>对于默认生成的移动函数来说，对于所有成员都会进行移动请求，可以移动的就会移动，但如果无法移动就会拷贝</p>
+</blockquote>
+<p>拷贝的两个函数的生成是互不影响的。</p>
+<p>移动当且仅当5大函数都没有声明的时候才会生成。</p>
+<blockquote>
+<p>这些的逻辑是，如果声明了，那么就说明他和默认的不一样，那么连带着其他的也可能不一样</p>
+</blockquote>
+<h3 id="unique-ptr">unique_ptr</h3>
+<p>比如说pimpl或者工厂都会使用unique_ptr。</p>
+<h3 id="shared-ptr">shared_ptr</h3>
+<p>如果通过一个shared_ptr的this来构造shared_ptr，那么会烂掉。</p>
+<p>这种情况要让这个被shared_ptr管理的类继承于enable_shared_from_this。</p>
+<p>shared_ptr和unique_ptr都是原子的。</p>
+<h3 id="用make">用make</h3>
+<p>使用make保证了当分配内存的时候他就必然已经被管理了。而new返回的指针来构造则并不能保证这一点。这样才是异常安全的。</p>
+<p>但make不能自定义deleter。</p>
+<p>make中使用的完美转发也会导致()和{}的内部使用问题。</p>
+<p>对于重载了new和delete的类不能使用make。</p>
+<h3 id="Pimple和ptr">Pimple和ptr</h3>
+<p>如果一个类中的成员的类型依赖于其他文件，这样就会导致依赖库的变化会导致整个的变化。</p>
+<p>因此一般声明一个struct，并让类拥有一个指向这个struct的指针。</p>
+<p>而这个struct的定义在cpp中实现，这样依赖就不在.h中了，大大减少了编译时间。</p>
+<p>一般来说，这个指针用unique_ptr。</p>
+<p>但是，不能使用默认生成的移动函数和析构函数。因为，这二者都会调用unique_ptr的delete，但是他的delete由于是一个类型参数，因此会去判断删除的类型是不是一个不完整类型，很显然，是的。</p>
+<p>因此，二者的定义就必须延迟到struct定义完后才行，因此要在.h中声明，在.cpp中定义。</p>
+<p>而shared_ptr就没有这个问题，因为他的删除器并不是一个模板参数。</p>
+<h3 id="std-move和std-forward">std::move和std::forward</h3>
+<p>实际上只是进行了类型转换。std::move是不管左值还是右值都转换为右值。</p>
+<p>而std::forward是只有当传入为右值时才将这个左值的右值转换为右值。</p>
+<p>然而，这种转换并没有对cv做任何操作。因此，如果原本是一个const对象，并调用了std::move并去初始化对象，调用的会是拷贝构造函数，因为const还在。</p>
+<h3 id="通用引用">通用引用</h3>
+<p>当带有类型推导的时候的&amp;&amp;，如auto&amp;&amp;和T&amp;&amp;都是通用引用，代表既有可能是左值也有可能是右值。</p>
+<p>cv的出现也会让通用引用失效，如const auto&amp;&amp;就是烂的。</p>
+<h3 id="对通用引用用forward，对右值引用用move">对通用引用用forward，对右值引用用move</h3>
+<p>如果在一个函数中，按值返回一个右值或者通用引用的形参，那么应该对这个返回值进行forward或者move，为了使他进行的是移动而非是拷贝。因为他是一个左值引用或者对右值的左值引用。</p>
+<p>而如果返回的是非引用变量，就不应该这么做，因为有复制消除。</p>
+<h3 id="不要对通用引用进行重载">不要对通用引用进行重载</h3>
+<p>有的时候，为了转发一个参数，我们使用了通用引用。然而我们对这个函数进行重载了一个版本，仅仅将这个通用引用换成了一个普通的类型，然而，调用这个函数的时候，仍然会匹配到通用引用的版本。并且，如果一个构造函数只用了通用引用的单参数函数，那么这甚至可能会抢夺拷贝构造函数的饭碗。</p>
+<h3 id="解决方案">解决方案</h3>
+<ol>
+<li>使用const T&amp;</li>
+<li>值传递，见倒数第二个点</li>
+<li>concept限制类型来进行重载</li>
+</ol>
+<p>完美转发可以转发任意类型，因此，如果某种类型是非期待的，可能会由于完美转发导致到达很深的地方才产生错误，导致麻烦，因此可以在完美转发之前使用static_assert对这些情况进行更有效的错误汇报。</p>
+<h3 id="引用折叠">引用折叠</h3>
+<p>只有&amp;&amp; &amp;&amp;是&amp;&amp;，其他都是&amp;。</p>
+<h3 id="移动操作的缺点">移动操作的缺点</h3>
+<p>有的时候移动操作不一定会比普通的拷贝快多少，比如对一个数组的拷贝。</p>
+<h3 id="完美转发不能起效的情况">完美转发不能起效的情况</h3>
+<ol>
+<li>
+<p>一个Args&amp;&amp;…的模板，传入一个{…}，会被认为无法推导。</p>
+</li>
+<li>
+<p>在转发的时候想转给一个指针，但是传入了0或者NULL，此时被推导为int。</p>
+</li>
+<li>
+<p>对于一个static const的类成员，它是没有地址的，如果对它转发，也会烂。</p>
+</li>
+<li>
+<p>转发函数的时候如果是直接通过函数名来指定函数，那么，如果这个函数名能代表多个函数，就会推导失败，无法判断是哪一个函数。普通的通过函数名来判断是因为有形参类型作为依据。</p>
+<p>因此，要显式的指明这个函数名代表的函数对应的函数类型。</p>
+</li>
+<li>
+<p>位域也不行。</p>
+</li>
+</ol>
+<h3 id="不要使用默认捕获">不要使用默认捕获</h3>
+<p>捕获的变量可能为悬空。</p>
+<p>捕获只会对自动存储器变量进行捕获。</p>
+<ol>
+<li>如果是引用捕获，那么，如果离开了这个作用域而使用这个lambda，那么就会悬空。</li>
+<li>如果是值捕获，确实没有1中的问题，但如果捕获的是指针，那么也会产生悬空。</li>
+</ol>
+<p>如果在成员函数中使用lambda进行捕获，除了局部变量以外，并不会捕捉到成员，即便它是可见的。使用这些成员的方式是，捕获this指针。[this]代表按引用捕获，[*this]代表按值捕获。当使用&amp;默认捕获时，会捕获。但用=时则不会捕获。</p>
+<p>解决方法是，初始化捕获。[变量名=初始化值或&amp;变量名=初始化变量]，每个之间用,隔开，依然是引用或者值传递，但这样，就可以不限于只捕获局部变量了。</p>
+<p>对于静态变量，是不被捕获的，如果在lambda所在作用域可见，那么在lambda中也可见，就像全局变量一样，外部的变化也会影响lambda。</p>
+<p>这些依赖如果使用默认捕获不够明确，因此应该显式的捕获。</p>
+<h3 id="使用初始化捕获">使用初始化捕获</h3>
+<p>如果是不支持初始化捕获的，那么可以使用类似bind的方法来实现移动。</p>
+<h3 id="对auto-使用decltype和forward">对auto&amp;&amp;使用decltype和forward</h3>
+<p>一个泛型lambda可以放进任何其实例化类型的function中，只不过放入后就类型确定了。</p>
+<p>如果要对auto&amp;&amp;捕获所得变量进行转发，由于不存在T类型，但是forward必须要指定对应类型，因此此时可以使用decltype(变量)，如果是auto&amp;&amp;… param，那么可以std::forward&lt;decltype(param)&gt;(param)…</p>
+<h3 id="优先用lambda而非std-bind">优先用lambda而非std::bind</h3>
+<h3 id="使用基于任务的而非线程的并行">使用基于任务的而非线程的并行</h3>
+<p>线程就是std::thread</p>
+<p>而任务是std::async</p>
+<p>std::thread不会去要求其返回值，然而std::async可以通过std::future去获取他的返回值。这样也能够捕获任务的异常，而std::thread就不能。</p>
+<p>std::thread是手动开一个线程进行跑，线程的分配是我们自己进行掌管的，然而，当负载很大的时候，我们实际上并不能非常好的进行分配，从而产生性能上的问题，不如将这个任务交给标准库，让他进行管理，通过std::async就能实现，他不一定会开一个新的线程，而是根据情况来决定，而通过策略的改变也能进行调整。</p>
+<p>除非<strong>需要访问非常基础的线程API或者需要且能够优化应用的线程使用</strong>。</p>
+<h3 id="如果有异步的必要则要用std-thread-async">如果有异步的必要则要用std::thread::async</h3>
+<ul>
+<li><code>std::async</code>的默认启动策略是异步和同步执行兼有的。</li>
+<li>这个灵活性导致访问<code>thread_local</code>s的不确定性，隐含了任务可能不会被执行的意思，会影响调用基于超时的<code>wait</code>的程序逻辑。</li>
+<li>如果异步执行任务非常关键，则指定<code>std::launch::async</code>。</li>
+</ul>
+<h3 id="保证所有线程在结束的时候是不可结合的">保证所有线程在结束的时候是不可结合的</h3>
+<p>不可结合的包括，thread中没有包含内容，或者已经join或detach的。</p>
+<p>如果对于一个可结合的线程隐式join或者detach都是非常恐怖的，因此，标准中如果对可结合的线程析构将会直接抛出异常。</p>
+<p>可以使用RAII。</p>
+<p>而在一个类中存储一个thread的时候，将thread放在最后，保证析构的异常安全。</p>
+<h3 id="条款38，待补充">条款38，待补充</h3>
+<h3 id="条款39，待补充">条款39，待补充</h3>
+<h3 id="volatile和atomic">volatile和atomic</h3>
+<p>atomic能保证操作的原子性和对代码重排顺序的限制(一种弱序关系)，而volatile不行。</p>
+<p>volatile则用来保证对这一块内存的操作不被优化。一般来说，如果两句语句之间没什么关系，那么编译器就会进行重排优化，重排完后，可能出现很多连续对同一个变量进行冗余访问和存储，因此就会被优化。</p>
+<p>但是对一些特殊内存，如IO接口，实际上内容一直是在变化的，那么此时这些“冗余”访问和存储就不一定是冗余的了，不能被优化。</p>
+<h3 id="对移动成本低的且总是拷贝的形参使用值传递">对移动成本低的且总是拷贝的形参使用值传递</h3>
+<p>一般为了处理左值和右值且高效，要重载两个函数或者使用通用引用。</p>
+<p>然而有的时候使用值传递可能更便捷且增加不了多少开销。</p>
+<p>值传递进来，并移动进去。</p>
+<ol>
+<li>不可拷贝的值传递相当于进行了构造，不可接受</li>
+<li>移动成本低，因为会增加一次移动成本</li>
+<li>总是拷贝，因为如果不总是拷贝，那么按理来说就不会构造一个新的变量，引用确实没有构造，然而，值传递构造了。</li>
+</ol>
+<p>有的时候，赋值操作会重用内存空间，但移动会增加内存申请和销毁的费用，这时候也不应该值传递。</p>
+<p>在需要高性能的情况下，也不应该使用，因为移动的成本是不好估计的。</p>
+<h3 id="使用emplace">使用emplace</h3>
+<p>更快，但是要保证传入的实参是正确的</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Effective c++</div>
+      <div>https://lhish.github.io/project/Effective c++/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lhy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/git/" title="git">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">git</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/c++premier/" title="c++premier">
+                        <span class="hidden-mobile">c++premier</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"FRE6onbifjN6EZHDhQU1JNHi-gzGzoHsz","appKey":"3Vcbojuu7Fs8YXYGfaCXxvfs","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
